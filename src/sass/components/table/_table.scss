@@ -1,0 +1,47 @@
+@use "../../abstracts/index" as abs;
+
+.table {
+  &__wrapper {
+    border-radius: 3px;
+    overflow-x: scroll;
+  }
+
+  & table {
+    border-collapse: collapse;
+    border: 0.2rem solid var(--clr-star-300);
+
+    & tr {
+      border: 0.2rem solid var(--clr-star-300);
+
+      & th, td {
+        border-color: var(--clr-star-300);
+        padding: 12px 10px;
+        vertical-align: middle;
+        text-align: center;
+        font-size: var(--fs-100);
+        color: var(--clr-star-300);
+      }
+    }
+
+    & tbody {
+      tr:hover {
+        background: var(--clr-dark-cosmos-200);
+        cursor: pointer;
+      }
+    }
+  }
+
+  @include abs.mq(medium) {
+    &__wrapper {
+      overflow-x: unset;
+
+      & table {
+        & tr {
+          & th, td {
+            font-size: var(--fs-200);
+          }
+        }
+      }
+    }
+  }
+}
