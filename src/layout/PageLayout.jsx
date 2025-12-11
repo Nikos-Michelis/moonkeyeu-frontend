@@ -10,6 +10,7 @@ function PageLayout() {
 
     return (
         <>
+            <Header/>
             <main className="container" data-type="full-bleed" data-spacing="none">
                 <ErrorBoundary FallbackComponent={GetFallbackComponent} resetKeys={[location.key]} >
                     <Outlet />
