@@ -1,5 +1,5 @@
 import React from "react";
-import {Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import Header from "./layout/Header.jsx";
 import Home from "@/pages/Home.jsx";
 import Astronauts from "./pages/Astronauts.jsx";
@@ -57,69 +57,71 @@ function App() {
     ]);
     return (
         <ProvidersTree>
-            <Header />
-                <Routes>
-                    <Route element={<PageLayout />}>
-                        <Route path="/" element={<Navigate to="/launches" />} />
-                        <Route path="/launches" element={<Layout />}>
-                            <Route index element={<Home />} />
-                            <Route path=":id" element={<Launch/>} />
-                        </Route>
-                        <Route path="/programs" element={<Layout />}>
-                            <Route index element={<Programs />} />
-                            <Route path=":id" element={<Program />} />
-                        </Route>
-                        <Route path="/astronauts" element={<Layout />}>
-                            <Route index element={<Astronauts />} />
-                            <Route path=":id" element={<Astronaut />} />
-                        </Route>
-                        {<Route path="/agencies" element={<Layout />}>
-                            <Route index element={<Agencies />} />
-                            <Route path=":id" element={<Agency />}/>
-                        </Route>}
-                        <Route path="/vehicles" element={<Layout />}>
-                            <Route index element={<Vehicles />} />
-                            <Route path="spacecraft" element={<Layout />}>
-                                <Route index element={<Spacecraft />} />
-                                <Route path=":id" element={<SpacecraftConfig />} />
+            <BrowserRouter>
+                <Header />
+                    <Routes>
+                        <Route element={<PageLayout />}>
+                            <Route path="/" element={<Navigate to="/launches" />} />
+                            <Route path="/launches" element={<Layout />}>
+                                <Route index element={<Home />} />
+                                <Route path=":id" element={<Launch/>} />
                             </Route>
-                            <Route path="rockets" element={<Rockets />}/>
-                            <Route path="launchers" element={<Boosters />}/>
+                            <Route path="/programs" element={<Layout />}>
+                                <Route index element={<Programs />} />
+                                <Route path=":id" element={<Program />} />
+                            </Route>
+                            <Route path="/astronauts" element={<Layout />}>
+                                <Route index element={<Astronauts />} />
+                                <Route path=":id" element={<Astronaut />} />
+                            </Route>
+                            {<Route path="/agencies" element={<Layout />}>
+                                <Route index element={<Agencies />} />
+                                <Route path=":id" element={<Agency />}/>
+                            </Route>}
+                            <Route path="/vehicles" element={<Layout />}>
+                                <Route index element={<Vehicles />} />
+                                <Route path="spacecraft" element={<Layout />}>
+                                    <Route index element={<Spacecraft />} />
+                                    <Route path=":id" element={<SpacecraftConfig />} />
+                                </Route>
+                                <Route path="rockets" element={<Rockets />}/>
+                                <Route path="launchers" element={<Boosters />}/>
+                            </Route>
+                            <Route path="/profile" element={<ProtectedRoutes><Layout /></ProtectedRoutes>}>
+                                <Route index element={<Profile />} />
+                                <Route path="change-password" element={<ChangePassword />} />
+                            </Route>
+                            <Route path="/dashboard" element={<ProtectedRoutes><Layout /></ProtectedRoutes>}>
+                                <Route index element={<Dashboard />} />
+                                <Route path="messages" element={<Messages />}/>
+                                <Route path="etl-report" element={<EtlReport />}/>
+                                <Route path="members" element={<MembersReport />}/>
+                            </Route>
+                            <Route path="/bookmarks" element={<ProtectedRoutes><Layout /></ProtectedRoutes>} >
+                                <Route index element={<Bookmarks />} />
+                                <Route path=":name" element={<MyLaunches />} />
+                            </Route>
+                            <Route path="/locations" element={<Layout />}>
+                                <Route index element={<Locations />} />
+                                <Route path=":id" element={<LaunchPad />} />
+                            </Route>
+                            <Route path="/news" element={<News />} />
+                            <Route path="/nasa-apod" element={<NasaApodArticle/>}></Route>
+                            <Route path='/account/reset-password/:token' exact={true} element={<ResetPassword />} />
+                            <Route path='/contact' element={<Contact />} />
+                            <Route path='/privacy' element={<PrivacyPolicy />} />
+                            <Route
+                                path='*'
+                                exact={true}
+                                element={<FallbackComponent code={404} message="Oops! Somthing went wrong, try again later." error="404 Page Not Found"/>} />
                         </Route>
-                        <Route path="/profile" element={<ProtectedRoutes><Layout /></ProtectedRoutes>}>
-                            <Route index element={<Profile />} />
-                            <Route path="change-password" element={<ChangePassword />} />
-                        </Route>
-                        <Route path="/dashboard" element={<ProtectedRoutes><Layout /></ProtectedRoutes>}>
-                            <Route index element={<Dashboard />} />
-                            <Route path="messages" element={<Messages />}/>
-                            <Route path="etl-report" element={<EtlReport />}/>
-                            <Route path="members" element={<MembersReport />}/>
-                        </Route>
-                        <Route path="/bookmarks" element={<ProtectedRoutes><Layout /></ProtectedRoutes>} >
-                            <Route index element={<Bookmarks />} />
-                            <Route path=":name" element={<MyLaunches />} />
-                        </Route>
-                        <Route path="/locations" element={<Layout />}>
-                            <Route index element={<Locations />} />
-                            <Route path=":id" element={<LaunchPad />} />
-                        </Route>
-                        <Route path="/news" element={<News />} />
-                        <Route path="/nasa-apod" element={<NasaApodArticle/>}></Route>
-                        <Route path='/account/reset-password/:token' exact={true} element={<ResetPassword />} />
-                        <Route path='/contact' element={<Contact />} />
-                        <Route path='/privacy' element={<PrivacyPolicy />} />
-                        <Route
-                            path='*'
-                            exact={true}
-                            element={<FallbackComponent code={404} message="Oops! Somthing went wrong, try again later." error="404 Page Not Found"/>} />
-                    </Route>
-                </Routes>
-                <ModalPortal>
-                    <ModalLayout/>
-                </ModalPortal>
-            {!cookies.cookieConsent && <CookieConsent/>}
-            <GoTop />
+                    </Routes>
+                    <ModalPortal>
+                        <ModalLayout/>
+                    </ModalPortal>
+                {!cookies.cookieConsent && <CookieConsent/>}
+                <GoTop />
+            </BrowserRouter>
         </ProvidersTree>
     )
 }
