@@ -39,9 +39,9 @@ const RouterConfig = () => {
         { base: "profile", index: Profile, nested: { path: "change-password", component: ChangePassword, layout: ProtectedRoutes } },
         { base: "dashboard", index: Dashboard,
             array: [
-                { path: "messages", component: Messages },
-                { path: "etl-report", component: EtlReport },
-                { path: "members", component: MembersReport }
+                { base: "messages", component: Messages },
+                { base: "etl-report", component: EtlReport },
+                { base: "members", component: MembersReport }
             ], layout: ProtectedRoutes
         },
         { base: "vehicles", index: Vehicles,
@@ -66,6 +66,24 @@ const RouterConfig = () => {
         }
     ];
 
+    const vehiclesSection = {
+        path: '/vehicles',
+        element: <Layout/>,
+        children: [
+            { index: true, element: <Vehicles/>, },
+            {
+                path: 'spacecraft',
+                element: <Layout/>,
+                children: [
+                    { index: true, element: <Spacecraft/>, },
+                    { path: ':id', element: <SpacecraftConfig/>, }
+                ]
+            },
+            { path: 'rockets', element: <Rockets/>, },
+            { path: 'launchers', element: <Boosters/>, },
+        ],
+    };
+
     const generateChildrenRoutes = (section) => {
         const children = [];
 
@@ -80,17 +98,23 @@ const RouterConfig = () => {
         }
 
         if (section.array) {
-            const component = section.nested ? section?.nested?.component : section.component;
-            const arrayRoutes = section.array.map((route) => ({
-                path: route.base,
-                index: !!route.index,
-                element: <route.component />,
-            }));
+            const arrayRoutes = childrenRoutes(children, section)
             children.push(...arrayRoutes);
         }
 
         return children;
     };
+
+    const childrenRoutes = (children, section) => {
+        return section.array.map((route) => {
+            const Component = route?.component || route?.layout;
+            return {
+                path: route.base,
+                index: !!route.index,
+                element: <Component />,
+            };
+        });
+    }
 
     const routes = [
         { path: "/", element: <Navigate to="/launches" /> },
@@ -104,7 +128,10 @@ const RouterConfig = () => {
         }),
     ];
     console.log(routes)
-    return([...routes]);
+    return([
+        //vehiclesSection,
+        ...routes
+    ]);
 }
 
 export default RouterConfig;
