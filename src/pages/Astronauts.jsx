@@ -8,6 +8,7 @@ import AstronautsFiltering from "@/components/filtering/AstronautsFiltering.jsx"
 import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
+import ContentLayout from "@/layout/ContentLayout.jsx";
 
 function Astronauts() {
     const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/astronauts`;
@@ -46,33 +47,37 @@ function Astronauts() {
                 title="Astronauts"
                 description="Meet the astronauts from different missions and backgrounds – Apply filters to find those that align with your interests."
             />
-             <Heading
-                 title="Astronauts"
-                 description="Meet the astronauts from different missions and backgrounds – Apply filters to find those that align with your interests."
-             />
-             <AstronautsFiltering
-                filters={filterData.data}
-                searchPlaceHolder="e.g. Armstrong"
-                isPending={filterData.isPending}
-                isFetching={filterData.isFetching}
-                isError={filterData.isError}
-             />
-             <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
-             <AstronautsSection
-                 astronauts={queryData.data || {}}
-                 isPending={queryData.isPending}
-                 isFetching={queryData.isFetching}
-                 isError={queryData.isError}
-             />
-             <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
+
+            <ContentLayout>
+                <Heading
+                    title="Astronauts"
+                    description={
+                        <>
+                            Meet the astronauts from different missions and Biography,
+                            <br />
+                            apply filters to find those that align with your interests.
+                        </>
+                    }
+                />
+                <AstronautsFiltering
+                    filters={filterData.data}
+                    searchPlaceHolder="e.g. Armstrong"
+                    isPending={filterData.isPending}
+                    isFetching={filterData.isFetching}
+                    isError={filterData.isError}
+                />
+                <AstronautsSection
+                    astronauts={queryData.data || {}}
+                    isPending={queryData.isPending}
+                    isFetching={queryData.isFetching}
+                    isError={queryData.isError}
+                />
+                <Pagination
+                    {...pagination}
+                    isPending={queryData.isPending}
+                    isFetching={queryData.isFetching}
+                />
+            </ContentLayout>
         </>
     );
 }

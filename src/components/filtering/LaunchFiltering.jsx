@@ -5,7 +5,7 @@ import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import CustomSelect from "@/components/utils/CustomSelect.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faArrowsRotate, faFilter, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faAngleDown, faArrowsRotate, faFilter, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
 
 LaunchFiltering.propTypes = {
@@ -88,44 +88,45 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
 
     return (
         <section className="toolbar">
-            <div className="toolbar__container margin-block-start-12 margin-block-end-8 margin-inline-8">
-                <div className="search flex justify-center">
-                    <input type="hidden" name="action" value="search" />
-                    <input
-                        className="search__searchbar box-shadow-light"
-                        value={localSearch || ""}
-                        type="text"
-                        name="search"
-                        placeholder={searchPlaceHolder}
-                        onChange={(e) => setLocalSearch(e.target.value)}
-                    />
-                    <div className="search__btn-search box-shadow-light">
-                        <FontAwesomeIcon icon={faSearch} />
+            <div className="container toolbar__container margin-block-4" data-type="full-bleed">
+                    <div className="toolbar__tools">
+                        <div className="">
+                            <Button
+                                ref={triggerRef}
+                                className="btn btn--overlay fw-bold fs-small-200"
+                                onClick={() => toggleOptions(true)}
+                                disabled={isFetching || isPending || isError}
+                            >
+                                Add Filter <FontAwesomeIcon icon={faPlus} />
+                            </Button>
+                        </div>
+                        <CustomSelect
+                            options={limitOptions || []}
+                            field="limit"
+                            placeholder={`Limit ${limit <= maxLimit ? limit : maxLimit }`}
+                            setFilters={setFilters}
+                            selectedOption={selectedOption}
+                            setSelectedOption={setSelectedOption}
+                            defaultValue={Number(limit)}
+                            isSearchable={false}
+                            btnClassName="select__btn select__btn--small"
+                            dropDownClassName="select__content--medium"
+                        />
                     </div>
-                </div>
-                <div className="toolbar__tools">
-                    <div className="flex justify-center">
-                        <Button
-                            ref={triggerRef}
-                            className="btn btn--overlay"
-                            onClick={() => toggleOptions(true)}
-                            disabled={isFetching || isPending || isError}
-                        >
-                            <FontAwesomeIcon icon={faFilter} />
-                        </Button>
+                    <div className="search flex justify-center">
+                        <input type="hidden" name="action" value="search" />
+                        <input
+                            className="search__searchbar box-shadow-light"
+                            value={localSearch || ""}
+                            type="text"
+                            name="search"
+                            placeholder={searchPlaceHolder}
+                            onChange={(e) => setLocalSearch(e.target.value)}
+                        />
+                        <div className="search__btn-search box-shadow-light">
+                            <FontAwesomeIcon icon={faSearch} />
+                        </div>
                     </div>
-                    <CustomSelect
-                        options={limitOptions || []}
-                        field="limit"
-                        placeholder={`Limit ${limit <= maxLimit ? limit : maxLimit }`}
-                        setFilters={setFilters}
-                        selectedOption={selectedOption}
-                        setSelectedOption={setSelectedOption}
-                        defaultValue={Number(limit)}
-                        isSearchable={false}
-                        btnClassName="select__btn select__btn--small"
-                        dropDownClassName="select__content--medium"
-                    />
                 </div>
                 <div ref={optionsRef} className={`toolbar__wrapper height-fade ${ showOptions ? "show md" : ""}`}>
                     <div className="toolbar__options padding-block-start-8 padding-inline-6">
@@ -230,7 +231,6 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                         </Button>
                     </div>
                 </div>
-            </div>
         </section>
     );
 }

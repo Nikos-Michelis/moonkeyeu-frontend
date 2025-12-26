@@ -57,7 +57,7 @@
   &--overlay {
     @include abs.button-color-variation($color: var(--clr-dark-cosmos-300));
     @include abs.button-hover($color: var(--clr-main-300), $background-color: transparent, $border-color: var(--clr-main-300));
-    margin: 0.5rem;
+    //margin-inline: 0.5rem;
 
     &:active {
       transform: scale(1.1);

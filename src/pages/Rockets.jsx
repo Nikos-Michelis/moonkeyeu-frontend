@@ -8,6 +8,7 @@ import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
+import ContentLayout from "@/layout/ContentLayout.jsx";
 
 const defaultFilters = {
     page: 1,
@@ -44,30 +45,27 @@ function Rockets() {
                 title="Rockets"
                 description="Explore the latest and historic rocket vehicles that shaped space exploration."
             />
-            <Heading
-                title="Rockets"
-                description="Explore the latest and historic rocket vehicles that shaped space exploration."
-            />
-            <BasicFiltering
-                defaultFilters={defaultFilters}
-                searchPlaceHolder="e.g. Falcon 9 Block 5"
-            />
-            <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
-            <RocketSection
-                rocket={queryData.data || {}}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-                isError={queryData.isError}
-            />
-            <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
+            <ContentLayout>
+                <Heading
+                    title="Rockets"
+                    description="Explore the latest and historic rocket vehicles that shaped space exploration."
+                />
+                <BasicFiltering
+                    defaultFilters={defaultFilters}
+                    searchPlaceHolder="e.g. Falcon 9 Block 5"
+                />
+                <RocketSection
+                    rocket={queryData.data || {}}
+                    isPending={queryData.isPending}
+                    isFetching={queryData.isFetching}
+                    isError={queryData.isError}
+                />
+                <Pagination
+                    {...pagination}
+                    isPending={queryData.isPending}
+                    isFetching={queryData.isFetching}
+                />
+            </ContentLayout>
         </>
     );
 }

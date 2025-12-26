@@ -16,7 +16,7 @@
 
     &:not(.select__btn--yt-video){
       max-width: 15rem;
-      margin: 0.2rem;
+      margin-inline: 0.5rem;
       padding: 1rem;
     }
 
@@ -123,3 +123,4 @@
     }
   }
 }
+

@@ -18,9 +18,8 @@ const AstronautsSection = ({astronauts, isPending, isFetching, isError}) => {
     }
     return (
         <section className="astronauts-section">
-            <div className="flex justify-center">
-                <div className="grid-layout--col container container--light-overlay flex justify-center rounded-md" data-layout="grid-wrapper" data-spacing="none">
-                    <div className="container">
+            <div className={`container--light-overlay ${contentConfig?.styles?.bottomGap || ""} flex flex-wrap justify-center rounded-md box-shadow-light`}>
+                    <div className="grid-layout container flex justify-center" data-layout="grid-wrapper" data-spacing="none">
                         <div className={`${items.length > 0 || (isFetching || isPending) ? "grid-layout__portrait" : ""}`}>
                             <SkeletonLoader
                                 isFetching={isFetching}
@@ -38,7 +37,6 @@ const AstronautsSection = ({astronauts, isPending, isFetching, isError}) => {
                                      </div>
                                  )}
                             </SkeletonLoader>
-                          </div>
                     </div>
                     <aside>
                         <BuyMeACoffee />

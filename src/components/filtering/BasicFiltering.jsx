@@ -49,21 +49,7 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
 
     return (
         <section className="toolbar">
-            <div className="toolbar__container margin-block-start-12 margin-block-end-8 margin-inline-8">
-                <div className="search flex justify-center">
-                    <input type="hidden" name="action" value="search" />
-                    <input
-                        className="search__searchbar box-shadow-light"
-                        value={locaSearch || ""}
-                        type="text"
-                        name="search"
-                        placeholder={searchPlaceHolder}
-                        onChange={(e) => setLocalSearch(e.target.value)}
-                    />
-                    <div className="search__btn-search box-shadow-light">
-                        <FontAwesomeIcon icon={faSearch} />
-                    </div>
-                </div>
+            <div className="container toolbar__container margin-block-4" data-type="full-bleed">
                 <div className="toolbar__tools">
                     <CustomSelect
                         options={limitOptions || []}
@@ -92,6 +78,20 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
                         btnClassName="select__btn select__btn--small"
                         dropDownClassName="select__content--medium"
                     />
+                </div>
+                <div className="search flex justify-center">
+                    <input type="hidden" name="action" value="search" />
+                    <input
+                        className="search__searchbar box-shadow-light"
+                        value={locaSearch || ""}
+                        type="text"
+                        name="search"
+                        placeholder={searchPlaceHolder}
+                        onChange={(e) => setLocalSearch(e.target.value)}
+                    />
+                    <div className="search__btn-search box-shadow-light">
+                        <FontAwesomeIcon icon={faSearch} />
+                    </div>
                 </div>
             </div>
         </section>
