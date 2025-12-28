@@ -70,6 +70,10 @@
   --max-width: #{$container-max-width-medium};
 }
 
+.container[data-type="content"] {
+  --max-width: 70rem;
+}
+
 .container[data-type="wide"] {
   --max-width: #{$container-max-width-wide};
 }

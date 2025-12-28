@@ -61,11 +61,7 @@ function Boosters() {
                     isPending={queryData.isPending}
                     isFetching={queryData.isFetching}
                     isError={queryData.isError}
-                />
-                <Pagination
-                    {...pagination}
-                    isPending={queryData.isPending}
-                    isFetching={queryData.isFetching}
+                    pagination={pagination}
                 />
             </ContentLayout>
         </>

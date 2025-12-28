@@ -7,12 +7,14 @@ import PreviousBtn from "@/components/button/PreviousBtn.jsx";
 import StarshipCard from "@/components/cards/StarshipCard.jsx"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faFilter} from '@fortawesome/free-solid-svg-icons';
+import Pagination from "@/components/pagination/Pagination.jsx";
 const ContentSection = (
     {
         items,
         isFetching,
         isPending,
         isError,
+        pagination,
         contentConfig,
         CardComponent,
         itemKeyExtractor,
@@ -35,8 +37,8 @@ const ContentSection = (
 
     return (
         <section className={contentConfig?.styles?.section}>
-            <div className={`container--light-overlay ${contentConfig?.styles?.bottomGap || ""} flex flex-wrap justify-center rounded-md box-shadow-light`}>
-                <div className="grid-layout container padding-block-5 padding-inline-4" data-layout="grid-wrapper" data-overflow="visible">
+            <div className={`grid__container container container--light-overlay margin-block-end-15 rounded-md box-shadow-light`} data-type="full-bleed">
+                <div className="grid__layout padding-block-5 padding-inline-4">
                     { options?.showPrevBtn && <div className="flex"><PreviousBtn/></div>}
                     { (options?.showBackBtn || options?.showItemsLimit) &&
                         <div className="flex justify-space-between margin-block-end-4">
@@ -58,7 +60,7 @@ const ContentSection = (
                             }
                         </div>
                     }
-                    <div className={`grid-layout__landscape ${contentConfig?.styles?.grid || ''}`}>
+                    <div className={`grid__landscape ${contentConfig?.styles?.grid || ''}`}>
                         <SkeletonLoader
                             isPending={isPending}
                             isFetching={isFetching}
@@ -83,6 +85,13 @@ const ContentSection = (
                                 </div>
                             )}
                         </SkeletonLoader>
+                        {items.length > 0 &&
+                            <Pagination
+                                {...pagination}
+                                isPending={isPending}
+                                isFetching={isFetching}
+                            />
+                        }
                     </div>
                 </div>
                 <aside>

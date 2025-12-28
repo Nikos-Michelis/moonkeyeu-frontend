@@ -4,7 +4,6 @@ import LaunchFiltering from "../components/filtering/LaunchFiltering.jsx";
 import Heading from "../components/utils/Heading.jsx";
 import {useSearchParams} from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
-import Pagination from "@/components/pagination/Pagination.jsx";
 import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
@@ -78,11 +77,7 @@ function Home() {
                     isFetching={queryData.isFetching}
                     isError={queryData.isError}
                     options={options}
-                />
-                <Pagination
-                    {...pagination}
-                    isPending={queryData.isPending}
-                    isFetching={queryData.isFetching}
+                    pagination={pagination}
                 />
             </ContentLayout>
         </>

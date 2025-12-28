@@ -21,12 +21,11 @@ const Header = () => {
     }
 
     return (
-
         <header>
             <nav className="navbar">
                 <div className="navbar__brand-box">
                     <Link className="navbar__image-link" to="launches">
-                        <img className="navbar__brand-icon" src={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`} alt="MoonkeyEU logo"/>
+                        <img className="navbar__brand-icon" src={`/new-logo.svg`} alt="MoonkeyEU logo"/>
                     </Link>
                     <div className="navbar__brand-title">
                         <h1>MoonkeyEU</h1>

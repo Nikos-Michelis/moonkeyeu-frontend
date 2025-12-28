@@ -10,20 +10,25 @@
     background-color: var(--clr-star-300);
     font-size: 0.8rem;
     font-weight: 700;
-    min-width: 15rem;
-    height: 3.3125rem;
+    min-width: 0.625rem;
+    height: 1.3125rem;
     color: var(--clr-dark-cosmos-300);
+    user-select: none;
+    &:not(.select__btn--small):not(.select__btn--medium):not(.select__btn--large) {
+      width: 12rem;
+      margin-inline: 0.2rem;
+    }
 
     &:not(.select__btn--yt-video){
       max-width: 15rem;
-      margin-inline: 0.5rem;
+      margin-inline: 0.2rem;
       padding: 1rem;
     }
 
     &--small {
       max-width: 7rem;
       min-width: 7rem;
-      height: 2.7rem;
+      height: 2.25rem;
     }
 
     &--yt-video {
@@ -31,6 +36,9 @@
       color: var(--clr-star-300);
       background-color: var(--clr-yt-red);
       padding: 2rem 1rem;
+    }
+    &--ellipsis {
+      @include abs.singleLine-ellipsis(9rem);
     }
   }
 
@@ -41,7 +49,7 @@
     background: var(--clr-star-200);
     border-radius: 7px;
     box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
-    width: 15rem;
+    width: 13rem;
     color: var(--clr-dark-cosmos-300);
     z-index: 1;
 
@@ -120,6 +128,9 @@
         border-radius: 5px;
         background: var(--clr-star-300);
       }
+    }
+    &--ellipsis {
+      @include abs.singleLine-ellipsis(8rem);
     }
   }
 }

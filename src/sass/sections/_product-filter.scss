@@ -3,7 +3,6 @@
 .toolbar {
   &__container {
     display: flex;
-    justify-content: center;
     align-items: center;
     overflow: visible;
     flex-flow: wrap;
@@ -14,30 +13,41 @@
     justify-content: flex-start;
     width: 100%;
     align-items: center;
-    margin-block: 0.8rem;
+    margin-block: 0.5rem;
   }
 
   &__wrapper {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    flex-direction: column;
     background-color: var(--clr-star-200);
     border-radius: 0.3rem;
     box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
-    position: absolute;
     z-index: 1;
+    position: absolute;
+    top: 23rem;
+    width: fit-content;
+    overflow: visible;
   }
 
   &__options {
     box-sizing: inherit;
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: column;
     justify-content: center;
     height: auto;
     gap: 10px;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+
+  }
+
+  &__title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-inline: 0.5rem;
   }
 
   &__actions{
+    display: flex;
     width: 100%;
   }
 
@@ -48,12 +58,6 @@
     &__tools {
       justify-content: center;
       width: fit-content;
-    }
-  }
-
-  @include abs.mq(xl) {
-    &__wrapper {
-      width: 60%;
     }
   }
 }

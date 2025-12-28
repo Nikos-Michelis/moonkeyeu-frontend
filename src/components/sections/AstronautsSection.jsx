@@ -6,7 +6,8 @@ import SkeletonPortraitLoader from "@/components/skeleton/SkeletonPortraitLoader
 import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFilter} from "@fortawesome/free-solid-svg-icons";
-const AstronautsSection = ({astronauts, isPending, isFetching, isError}) => {
+import Pagination from "@/components/pagination/Pagination.jsx";
+const AstronautsSection = ({astronauts, isPending, isFetching, isError, pagination}) => {
     const contentConfig = {
         component: SkeletonPortraitLoader,
     };
@@ -18,31 +19,39 @@ const AstronautsSection = ({astronauts, isPending, isFetching, isError}) => {
     }
     return (
         <section className="astronauts-section">
-            <div className={`container--light-overlay ${contentConfig?.styles?.bottomGap || ""} flex flex-wrap justify-center rounded-md box-shadow-light`}>
-                    <div className="grid-layout container flex justify-center" data-layout="grid-wrapper" data-spacing="none">
-                        <div className={`${items.length > 0 || (isFetching || isPending) ? "grid-layout__portrait" : ""}`}>
-                            <SkeletonLoader
-                                isFetching={isFetching}
-                                isLoading={isPending}
-                                isError={isError}
-                                contentConfig={contentConfig}>
-                                 {items.length > 0 ? (
-                                     items.map(astronaut => (
-                                        <AstronautCard key={astronaut?.id} {...astronaut} />
-                                     ))
-                                 ) : (
-                                     <div className="padding-8 text-center">
-                                         <h2>{emptyList.heading}</h2>
-                                         <p>{emptyList.message} <FontAwesomeIcon icon={emptyList.icon}/></p>
-                                     </div>
-                                 )}
-                            </SkeletonLoader>
+            <div className={`grid__container container--light-overlay margin-block-end-15 rounded-md box-shadow-light`}>
+                <div className="grid__layout">
+
+                <div className={`${items.length > 0 || (isFetching || isPending) ? "grid__portrait" : ""}`}>
+                        <SkeletonLoader
+                            isFetching={isFetching}
+                            isLoading={isPending}
+                            isError={isError}
+                            contentConfig={contentConfig}>
+                             {items.length > 0 ? (
+                                 items.map(astronaut => (
+                                    <AstronautCard key={astronaut?.id} {...astronaut} />
+                                 ))
+                             ) : (
+                                 <div className="padding-8 text-center">
+                                     <h2>{emptyList.heading}</h2>
+                                     <p>{emptyList.message} <FontAwesomeIcon icon={emptyList.icon}/></p>
+                                 </div>
+                             )}
+                        </SkeletonLoader>
                     </div>
-                    <aside>
-                        <BuyMeACoffee />
-                        <LatestNews />
-                    </aside>
+                {items.length > 0 &&
+                    <Pagination
+                        {...pagination}
+                        isPending={isPending}
+                        isFetching={isFetching}
+                    />
+                }
                 </div>
+                <aside>
+                    <BuyMeACoffee />
+                    <LatestNews />
+                </aside>
             </div>
         </section>
     );

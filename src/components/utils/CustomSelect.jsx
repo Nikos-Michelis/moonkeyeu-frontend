@@ -1,11 +1,15 @@
 import React, {useState, useRef} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faAngleDown, faAngleUp, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
+import {faAngleDown, faAngleUp, faCircleInfo, faMagnifyingGlass, faX, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
+import {Link} from "react-router-dom";
+import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import {faCircleXmark} from "@fortawesome/free-regular-svg-icons";
 const CustomSelect = (
     {
         options = [],
         setFilters,
+        resetFilterByName,
         placeholder,
         field,
         searchValue,
@@ -18,9 +22,10 @@ const CustomSelect = (
         dropDownClassName = "",
 
     }) => {
+    const OPTIONS_LENGTH = 15;
+    const SELECTED_LENGTH = 18;
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
-
     const preSelected = options?.find?.((item) => item.id === defaultValue)?.name || null;
     const handleOnSelect = (value) => {
         if (!value) return;
@@ -44,12 +49,27 @@ const CustomSelect = (
     };
 
     useClickOutside({ modalRef: dropdownRef, handler: handleClickOutside });
-
+    const handleClearance = (field) => {
+        setSelectedOption(prev => ({...prev, [field]: ""}));
+        resetFilterByName(field);
+    };
+    const btnPlaceholder = selectedOption?.[field] || preSelected || placeholder;
     return (
         <div className="select" ref={dropdownRef}>
-            <div className={`select__btn ${btnClassName}`} onClick={() => setIsOpen(!isOpen)}>
-                <span>{selectedOption?.[field] || preSelected || placeholder}</span>
-                <FontAwesomeIcon icon={isOpen ? faAngleUp : faAngleDown} />
+            <div className={`select__btn ${btnClassName}`} onClick={() => selectedOption?.[field] && !isOpen ? handleClearance(field) : setIsOpen(!isOpen)}>
+                {
+                    btnPlaceholder.length > OPTIONS_LENGTH
+                        ?
+                        <Tooltip message={btnPlaceholder}>
+                            <div className="select__btn--ellipsis">
+                                {btnPlaceholder}
+                            </div>
+                        </Tooltip>
+                        :
+                        <div>{selectedOption?.[field] || preSelected || placeholder}</div>
+                }
+
+                <FontAwesomeIcon icon={selectedOption?.[field] ? faXmark : isOpen ? faAngleUp : faAngleDown} />
             </div>
             {isOpen && (
                 <div className={`select__content ${dropDownClassName}`}>
@@ -68,7 +88,13 @@ const CustomSelect = (
                         {filteredOptions.length > 0 ? (
                             filteredOptions.map((option) => (
                                 <li className={`${defaultValue === option.id? "selected" : ""}`} key={option.id} onClick={() => handleOnSelect(option)}>
-                                    {option.name}
+                                    { option?.name.length > SELECTED_LENGTH
+                                        ?
+                                        <Tooltip message={option.name}>
+                                            <div className="select__options--ellipsis">{option.name}</div>
+                                        </Tooltip>
+                                        : <div>{option.name}</div>
+                                    }
                                 </li>
                             ))
                         ) : (

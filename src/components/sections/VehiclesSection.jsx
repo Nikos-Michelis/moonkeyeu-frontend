@@ -43,10 +43,10 @@ const sections = [
 const VehiclesSection = () => {
     return (
         <section className="vehicles-section">
-            <div className="flex justify-center margin-block-end-15">
-                <div className="grid-layout--col container container--light-overlay flex justify-center rounded-md" data-layout="grid-wrapper" data-spacing="none">
+            <div className="grid__container container--light-overlay rounded-md margin-block-end-15">
+                <div className="grid__layout rounded-md">
                     <div className="container" data-type="full-bleed" data-spacing="none">
-                        <div className="grid-layout__portrait-vehicle">
+                        <div className="grid__portrait-vehicle">
                             {sections.map((section, index) => (
                                 <VehicleOptionCard
                                     key={index}
@@ -60,11 +60,11 @@ const VehiclesSection = () => {
                             ))}
                         </div>
                     </div>
-                    <aside>
-                        <BuyMeACoffee />
-                        <LatestNews />
-                    </aside>
                 </div>
+                <aside>
+                    <BuyMeACoffee />
+                    <LatestNews />
+                </aside>
             </div>
         </section>
     );

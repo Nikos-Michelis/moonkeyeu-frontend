@@ -1,9 +1,7 @@
 const ContentLayout = ({ children }) => {
     return (
-        <div className="container" data-type="full-bleed">
-            <div className="container" data-width="fit-content">
-                {children}
-            </div>
+        <div className="container flex flex-column" data-type="content" data-overflow="visible">
+            {children}
         </div>
     );
 }

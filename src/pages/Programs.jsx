@@ -59,12 +59,8 @@ function Programs() {
                      isPending={queryData.isPending}
                      isFetching={queryData.isFetching}
                      isError={queryData.isError}
+                     pagination={pagination}
                  />
-                 <Pagination
-                    {...pagination}
-                    isPending={queryData.isPending}
-                    isFetching={queryData.isFetching}
-                />
             </ContentLayout>
         </>
     );

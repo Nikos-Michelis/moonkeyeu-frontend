@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import Heading from "@/components/utils/Heading.jsx";
 import NewsSection from "@/components/sections/NewsSection.jsx";
-import Pagination from "@/components/pagination/Pagination.jsx";
 import {useSearchParams} from "react-router-dom";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
@@ -57,11 +56,7 @@ function News() {
                     isPending={queryData.isPending}
                     isFetching={queryData.isFetching}
                     isError={queryData.isError}
-                />
-                <Pagination
-                    {...pagination}
-                    isPending={queryData.isPending}
-                    isFetching={queryData.isFetching}
+                    pagination={pagination}
                 />
             </ContentLayout>
         </>

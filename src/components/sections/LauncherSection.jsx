@@ -3,7 +3,7 @@ import ContentSection from "@/components/sections/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
 import LauncherCard from "@/components/cards/LauncherCard.jsx";
 
-const LauncherSection = ({launcher, isFetching, isError}) => {
+const LauncherSection = ({launcher, isFetching, isError, pagination}) => {
     const items = launcher._embedded?.launcherDTOes || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
@@ -20,6 +20,7 @@ const LauncherSection = ({launcher, isFetching, isError}) => {
             contentConfig={contentConfig}
             CardComponent={LauncherCard}
             itemKeyExtractor={(item) => item.id}
+            pagination={pagination}
         />
     );
 };

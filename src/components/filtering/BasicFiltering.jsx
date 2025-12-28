@@ -33,7 +33,7 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
         limit,
         ordering,
         setFilters,
-        resetFilters,
+        resetFilterByName
     } = useBasicFilters(defaultFilters);
     const [locaSearch, setLocalSearch] = useState(search);
     const debounceSearch = useDebounce(locaSearch);
@@ -41,11 +41,6 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
     useEffect(() => {
         setFilters({search: debounceSearch});
     }, [debounceSearch]);
-    const handleReset = () => {
-        setSelectedOption('');
-        resetFilters();
-        setLocalSearch('');
-    };
 
     return (
         <section className="toolbar">
@@ -56,6 +51,7 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
                         field="limit"
                         placeholder={`Limit ${limit}`}
                         setFilters={setFilters}
+                        resetFilterByName={resetFilterByName}
                         selectedOption={selectedOption}
                         setSelectedOption={setSelectedOption}
                         defaultValue={Number(limit)}
@@ -63,14 +59,12 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
                         btnClassName="select__btn select__btn--small"
                         dropDownClassName="select__content--medium"
                     />
-                    <Button  className="btn btn--overlay" onClick={handleReset}>
-                        <FontAwesomeIcon icon={faArrowsRotate} />
-                    </Button>
                     <CustomSelect
                         options={orderingOptions || []}
                         field="ordering"
                         placeholder={selectedOption}
                         setFilters={setFilters}
+                        resetFilterByName={resetFilterByName}
                         selectedOption={selectedOption}
                         setSelectedOption={setSelectedOption}
                         defaultValue={ordering}

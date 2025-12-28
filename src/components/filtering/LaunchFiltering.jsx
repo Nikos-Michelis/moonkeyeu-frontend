@@ -56,6 +56,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
         ordering,
         setFilters,
         resetFilters,
+        resetFilterByName
     } = useLaunchFilters();
     const [localSearch, setLocalSearch] = useState(search);
     const debounceSearch = useDebounce(localSearch);
@@ -87,13 +88,13 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
     });
 
     return (
-        <section className="toolbar">
-            <div className="container toolbar__container margin-block-4" data-type="full-bleed">
+        <div className="toolbar">
+             <div className="container toolbar__container margin-block-4" data-type="full-bleed">
                     <div className="toolbar__tools">
-                        <div className="">
+                        <div>
                             <Button
                                 ref={triggerRef}
-                                className="btn btn--overlay fw-bold fs-small-200"
+                                className="btn btn--overlay fw-bold fs-small-100"
                                 onClick={() => toggleOptions(true)}
                                 disabled={isFetching || isPending || isError}
                             >
@@ -105,11 +106,12 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                             field="limit"
                             placeholder={`Limit ${limit <= maxLimit ? limit : maxLimit }`}
                             setFilters={setFilters}
+                            resetFilterByName={resetFilterByName}
                             selectedOption={selectedOption}
                             setSelectedOption={setSelectedOption}
                             defaultValue={Number(limit)}
                             isSearchable={false}
-                            btnClassName="select__btn select__btn--small"
+                            btnClassName="select__btn--small"
                             dropDownClassName="select__content--medium"
                         />
                     </div>
@@ -129,12 +131,14 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                     </div>
                 </div>
                 <div ref={optionsRef} className={`toolbar__wrapper height-fade ${ showOptions ? "show md" : ""}`}>
-                    <div className="toolbar__options padding-block-start-8 padding-inline-6">
+                    <div className="toolbar__options">
+                        <div className="toolbar__title"><span>Filter by...</span></div>
                         <div className="toolbar__option">
                             <CustomSelect
                                 options={sheduled || []}
                                 field="upcoming"
                                 setFilters={setFilters}
+                                resetFilterByName={resetFilterByName}
                                 placeholder="Upcoming/Past"
                                 searchValue={searchValue}
                                 setSearchValue={setSearchValue}
@@ -150,6 +154,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                                 field="location"
                                 placeholder={"Location"}
                                 setFilters={setFilters}
+                                resetFilterByName={resetFilterByName}
                                 searchValue={searchValue}
                                 setSearchValue={setSearchValue}
                                 selectedOption={selectedOption}
@@ -162,6 +167,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                                 options={filters?.data?.launchers || []}
                                 field="launcher"
                                 setFilters={setFilters}
+                                resetFilterByName={resetFilterByName}
                                 placeholder="Launcher"
                                 searchValue={searchValue}
                                 setSearchValue={setSearchValue}
@@ -175,6 +181,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                                 options={filters?.data?.agencies || []}
                                 field="agency"
                                 setFilters={setFilters}
+                                resetFilterByName={resetFilterByName}
                                 placeholder="Agency"
                                 searchValue={searchValue}
                                 setSearchValue={setSearchValue}
@@ -188,6 +195,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                                 options={filters?.data?.rocket_configurations || []}
                                 field="rocketConfig"
                                 setFilters={setFilters}
+                                resetFilterByName={resetFilterByName}
                                 placeholder="Rocket"
                                 searchValue={searchValue}
                                 setSearchValue={setSearchValue}
@@ -201,6 +209,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                                 options={filters?.data?.spacecraft_configurations || []}
                                 field="spacecraftConfig"
                                 setFilters={setFilters}
+                                resetFilterByName={resetFilterByName}
                                 placeholder="Spacecraft"
                                 searchValue={searchValue}
                                 setSearchValue={setSearchValue}
@@ -214,6 +223,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                                 options={filters?.data?.astronauts || []}
                                 field="astronaut"
                                 setFilters={setFilters}
+                                resetFilterByName={resetFilterByName}
                                 placeholder="Astronaut"
                                 searchValue={searchValue}
                                 setSearchValue={setSearchValue}
@@ -223,15 +233,15 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                             />
                         </div>
                     </div>
-                    <div className="toolbar__actions flex flex-wrap justify-start padding-4">
+                    <div className="toolbar__actions">
                         <Button
-                            className="btn btn--primary btn--small"
+                            className="btn--transparent rotation fs-small-200 clr-dark-cosmos-300"
                             onClick={ handleReset }>
                             <FontAwesomeIcon icon={faArrowsRotate} />
                         </Button>
                     </div>
                 </div>
-        </section>
+        </div>
     );
 }
 

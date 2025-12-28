@@ -1,6 +1,6 @@
 import React from 'react';
 import BookmarkCard from "@/components/cards/BookmarkCard.jsx";
-import SkeletonBookMarkLoader from "@/components/skeleton/SkeletonBookMarkLoader.jsx";
+import SkeletonBookmarkLoader from "@/components/skeleton/SkeletonBookmarkLoader.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
 import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
@@ -13,7 +13,7 @@ const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
     const { status } = useAuth();
     const items = bookmarks || [];
     const contentConfig = {
-        component: SkeletonBookMarkLoader,
+        component: SkeletonBookmarkLoader,
         styles: {
             wrapper: "small-wrapper",
             section: "bookmark-section"

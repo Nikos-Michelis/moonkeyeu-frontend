@@ -3,7 +3,7 @@ import ContentSection from "@/components/sections/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
 import ProgramsCard from "@/components/cards/ProgramsCard.jsx";
 
-const ProgramsSection = ({ programs, isFetching, isError }) => {
+const ProgramsSection = ({ programs, isFetching, isError, pagination}) => {
     const items = programs._embedded?.programSummarizedDTOes || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
@@ -20,6 +20,7 @@ const ProgramsSection = ({ programs, isFetching, isError }) => {
             contentConfig={contentConfig}
             CardComponent={ProgramsCard}
             itemKeyExtractor={(item) => item.id}
+            pagination={pagination}
         />
     );
 };

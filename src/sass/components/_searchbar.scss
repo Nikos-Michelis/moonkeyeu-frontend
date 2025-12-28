@@ -6,9 +6,9 @@
   @include abs.font($font-size: var(--fs-100));
   &__searchbar {
     box-sizing: inherit;
-    height: 50px;
+    height: 45px;
     width: 100%;
-    padding: 0.9rem;
+    padding: 0.8rem;
     border: 1px solid transparent;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -23,9 +23,9 @@
     border: 1px solid transparent;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    padding: 0.9rem;
+    padding: 0.8rem;
     background-color: var(--clr-star-200);
-    height: 50px;
+    height: 45px;
   }
   @include abs.mq(medium) {
     width: 250px;

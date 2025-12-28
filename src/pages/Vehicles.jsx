@@ -17,11 +17,19 @@ function Vehicles() {
                 title="Vehicles"
                 description="Explore the vehicles that shape space exploration — from historic milestones to today's cutting-edge technology."
             />
+            <ContentLayout>
                 <Heading
                     title="Spaceflight Vehicles"
-                    description="Explore the vehicles that shape space exploration — from historic milestones to today's cutting-edge technology."
+                    description={
+                        <>
+                            Explore the vehicles that shape space exploration,
+                            <br />
+                            from historic milestones to today's cutting-edge technology.
+                        </>
+                    }
                 />
                 <VehiclesSection />
+            </ContentLayout>
         </>
     );
 }
