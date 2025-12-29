@@ -4,9 +4,9 @@ import LatestNews from "../sidebars/LatestNews.jsx";
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
 import SkeletonPortraitLoader from "@/components/skeleton/SkeletonPortraitLoader.jsx";
 import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFilter} from "@fortawesome/free-solid-svg-icons";
 import Pagination from "@/components/pagination/Pagination.jsx";
+
 const AstronautsSection = ({astronauts, isPending, isFetching, isError, pagination}) => {
     const contentConfig = {
         component: SkeletonPortraitLoader,
@@ -14,15 +14,14 @@ const AstronautsSection = ({astronauts, isPending, isFetching, isError, paginati
     const items = astronauts._embedded?.astronautNormalDTOes || [];
     const emptyList= {
         heading: "No Results Match Current Settings!",
-        message: "Check your filtering settings using the above",
+        message: "Review your filters by clicking the Add Filter button above.",
         icon: faFilter
     }
     return (
         <section className="astronauts-section">
-            <div className={`grid__container container--light-overlay margin-block-end-15 rounded-md box-shadow-light`}>
+            <div className={`grid__container container container--light-overlay margin-block-end-15 rounded-md`} data-type="full-bleed">
                 <div className="grid__layout">
-
-                <div className={`${items.length > 0 || (isFetching || isPending) ? "grid__portrait" : ""}`}>
+                    <div className={`${items.length > 0 || (isFetching || isPending) ? "grid__portrait" : ""}`}>
                         <SkeletonLoader
                             isFetching={isFetching}
                             isLoading={isPending}
@@ -33,20 +32,20 @@ const AstronautsSection = ({astronauts, isPending, isFetching, isError, paginati
                                     <AstronautCard key={astronaut?.id} {...astronaut} />
                                  ))
                              ) : (
-                                 <div className="padding-8 text-center">
+                                 <div className="padding-8 text-center clr-star-300">
                                      <h2>{emptyList.heading}</h2>
-                                     <p>{emptyList.message} <FontAwesomeIcon icon={emptyList.icon}/></p>
+                                     <p>{emptyList.message}</p>
                                  </div>
                              )}
                         </SkeletonLoader>
                     </div>
-                {items.length > 0 &&
-                    <Pagination
-                        {...pagination}
-                        isPending={isPending}
-                        isFetching={isFetching}
-                    />
-                }
+                    {(items.length > 0 && pagination) &&
+                        <Pagination
+                            {...pagination}
+                            isPending={isPending}
+                            isFetching={isFetching}
+                        />
+                    }
                 </div>
                 <aside>
                     <BuyMeACoffee />

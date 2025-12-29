@@ -105,7 +105,6 @@ function MembersReport() {
                 title="Members"
                 description="Manage and view all registered members from your dashboard."
             />
-            <TablePagination table={table} />
             <section className="members-section">
                 <div className="container container--light-overlay padding-5 rounded-sm" data-type="wide">
                     {!(queryData.isPending || queryData.isFetching) &&

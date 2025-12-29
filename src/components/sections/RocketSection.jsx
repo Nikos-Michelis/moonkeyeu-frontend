@@ -3,7 +3,7 @@ import RocketCard from "@/components/cards/RocketCard.jsx";
 import ContentSection from "@/components/sections/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
 
-const RocketSection = ({rocket, isFetching, isError}) => {
+const RocketSection = ({rocket, isFetching, isError, pagination}) => {
     const items = rocket._embedded?.rocketConfigSummarizedDTOes || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
@@ -17,6 +17,7 @@ const RocketSection = ({rocket, isFetching, isError}) => {
             items={items}
             isFetching={isFetching}
             isError={isError}
+            pagination={pagination}
             contentConfig={contentConfig}
             CardComponent={RocketCard}
             itemKeyExtractor={(item) => item.id}

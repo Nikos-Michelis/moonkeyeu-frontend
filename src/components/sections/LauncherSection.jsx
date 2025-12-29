@@ -17,10 +17,10 @@ const LauncherSection = ({launcher, isFetching, isError, pagination}) => {
             items={items}
             isFetching={isFetching}
             isError={isError}
+            pagination={pagination}
             contentConfig={contentConfig}
             CardComponent={LauncherCard}
             itemKeyExtractor={(item) => item.id}
-            pagination={pagination}
         />
     );
 };

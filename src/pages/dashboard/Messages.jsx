@@ -10,6 +10,7 @@ import {useSearchParams} from "react-router-dom";
 import { useParameterizedQuery } from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
+import ContentLayout from "@/layout/ContentLayout.jsx";
 
 const defaultFilters = {
     page: 1,
@@ -54,30 +55,23 @@ function Messages() {
                 title="Messages"
                 description="View and manage community messages."
             />
-            <Heading
-                title="Contact Messages"
-                description="View and manage community messages."
-            />
-            <BasicFiltering
-                defaultFilters={defaultFilters}
-                searchPlaceHolder="e.g. example@gmail.com"
-            />
-            <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
-            <MessagesSection
-                messages={queryData.data || {}}
-                isPending={queryData.isPending || (status.isPending && !status.isError)}
-                isFetching={queryData.isFetching}
-                isError={queryData.isError}
-            />
-            <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
+            <ContentLayout>
+                <Heading
+                    title="Contact Messages"
+                    description="View and manage community messages."
+                />
+                <BasicFiltering
+                    defaultFilters={defaultFilters}
+                    searchPlaceHolder="e.g. example@gmail.com"
+                />
+                <MessagesSection
+                    messages={queryData.data || {}}
+                    isPending={queryData.isPending || (status.isPending && !status.isError)}
+                    isFetching={queryData.isFetching}
+                    isError={queryData.isError}
+                    pagination={pagination}
+                />
+            </ContentLayout>
         </>
     );
 }

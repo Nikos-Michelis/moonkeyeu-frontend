@@ -4,7 +4,7 @@ import MessageCard from "@/components/cards/MessageCard.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
 import {faMessage} from "@fortawesome/free-solid-svg-icons";
 
-const MessagesSection = ({ messages, isPending , isFetching , isError  }) =>{
+const MessagesSection = ({ messages, isPending , isFetching , isError, pagination }) =>{
     const items = messages._embedded?.contactDTOes || [];
 
     const contentConfig = {
@@ -32,6 +32,7 @@ const MessagesSection = ({ messages, isPending , isFetching , isError  }) =>{
                 isFetching={isFetching}
                 isPending={isPending}
                 isError={isError}
+                pagination={pagination}
                 contentConfig={contentConfig}
                 CardComponent={MessageCard}
                 itemKeyExtractor={(item) => item.id}

@@ -1,10 +1,9 @@
 import React, {useState, useRef} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faAngleDown, faAngleUp, faCircleInfo, faMagnifyingGlass, faX, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {faAngleDown, faAngleUp, faMagnifyingGlass, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
-import {Link} from "react-router-dom";
 import Tooltip from "@/components/tooltip/Tooltip.jsx";
-import {faCircleXmark} from "@fortawesome/free-regular-svg-icons";
+
 const CustomSelect = (
     {
         options = [],

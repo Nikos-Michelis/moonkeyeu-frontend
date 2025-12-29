@@ -9,20 +9,17 @@
   }
   &__layout {
     width: 100%;
+    padding: 1rem;
   }
-  &--col{
-    flex-direction: column;
-  }
+
   &__portrait {
     width: 100%;
-    padding: 1rem;
     justify-items: center;
     @include abs.repeat-grid($min-col: auto, $min-row: 500px, $gap: 0.9rem);
   }
 
   &__portrait-vehicle {
     width: fit-content;
-    margin: 1rem;
     justify-items: center;
     @include abs.repeat-grid($col: auto-fill, $min-col: 300px, $gap: 0.9rem);
   }
@@ -63,7 +60,7 @@
       grid-template-columns: repeat(3, minmax(230px, 1fr));
     }
     &__portrait-vehicle{
-      @include abs.repeat-grid($col: 2, $min-col: 400px, $gap: 0.9rem);
+      @include abs.repeat-grid($col: 2, $min-col: 600px, $gap: 0.9rem);
     }
   }
 }

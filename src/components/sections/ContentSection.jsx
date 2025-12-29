@@ -21,7 +21,7 @@ const ContentSection = (
         isBookmarked,
         emptyList= {
             heading: "No Results Match Current Settings!",
-            message: "Check your filtering settings using the above",
+            message: "Review your filters by clicking the Add Filter button above.",
             icon: faFilter
         },
         options = {
@@ -37,8 +37,8 @@ const ContentSection = (
 
     return (
         <section className={contentConfig?.styles?.section}>
-            <div className={`grid__container container container--light-overlay margin-block-end-15 rounded-md box-shadow-light`} data-type="full-bleed">
-                <div className="grid__layout padding-block-5 padding-inline-4">
+            <div className={`grid__container container container--light-overlay margin-block-end-15 rounded-md`} data-type="full-bleed">
+                <div className="grid__layout">
                     { options?.showPrevBtn && <div className="flex"><PreviousBtn/></div>}
                     { (options?.showBackBtn || options?.showItemsLimit) &&
                         <div className="flex justify-space-between margin-block-end-4">
@@ -79,13 +79,13 @@ const ContentSection = (
                                     />
                                 ))
                             ) : (
-                                <div className="padding-8 text-center">
+                                <div className="padding-8 text-center clr-star-300">
                                     <h2>{emptyList.heading}</h2>
                                     <p>{emptyList.message} <FontAwesomeIcon icon={emptyList.icon}/></p>
                                 </div>
                             )}
                         </SkeletonLoader>
-                        {items.length > 0 &&
+                        {(items.length > 0 && pagination) &&
                             <Pagination
                                 {...pagination}
                                 isPending={isPending}

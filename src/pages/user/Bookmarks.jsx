@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import {useSimpleQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
+import ContentLayout from "@/layout/ContentLayout.jsx";
 
 function Bookmarks() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -36,16 +37,18 @@ function Bookmarks() {
                 title="Bookmarks"
                 description="View all your bookmarked space launches."
             />
-            <Heading
-                title="My Bookmarks"
-                description="Save and organize your favorite launches."
-            />
-            <BookmarksSection
-                bookmarks={queryData.data || {}}
-                isLoading={queryData.isPending}
-                isFetching={queryData.isFetching}
-                isError={queryData.isError}
-            />
+            <ContentLayout>
+                <Heading
+                    title="My Bookmarks"
+                    description="Save and organize your favorite launches."
+                />
+                <BookmarksSection
+                    bookmarks={queryData.data || {}}
+                    isLoading={queryData.isPending}
+                    isFetching={queryData.isFetching}
+                    isError={queryData.isError}
+                />
+            </ContentLayout>
         </>
     );
 }

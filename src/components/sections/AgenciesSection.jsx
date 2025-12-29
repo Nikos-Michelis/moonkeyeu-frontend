@@ -9,7 +9,6 @@ const AgenciesSection = ({ agencies, isFetching, isError}) => {
         styles: {
             wrapper: "small-wrapper",
             section: "spacecraft-articles",
-            bottomGap:"margin-block-end-15"
         },
     };
     return (
@@ -21,6 +20,7 @@ const AgenciesSection = ({ agencies, isFetching, isError}) => {
             CardComponent={AgencyCard}
             itemKeyExtractor={(item) => item.id}
             isDetailed={true}
+            pagination={false}
         />
     );
 };

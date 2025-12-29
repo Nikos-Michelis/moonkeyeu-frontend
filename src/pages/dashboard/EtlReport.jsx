@@ -122,7 +122,6 @@ function EtlReport() {
                 title="ETL Tasks"
                 description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
             />
-            <TablePagination table={table} />
             <section className="members-section">
                 <div className="container container--light-overlay padding-inline-5 rounded-sm" data-type="wide">
                     {!(queryData.isPending || queryData.isFetching) &&

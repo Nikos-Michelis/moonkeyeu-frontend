@@ -17,10 +17,10 @@ const ProgramsSection = ({ programs, isFetching, isError, pagination}) => {
             items={items}
             isFetching={isFetching}
             isError={isError}
+            pagination={pagination}
             contentConfig={contentConfig}
             CardComponent={ProgramsCard}
             itemKeyExtractor={(item) => item.id}
-            pagination={pagination}
         />
     );
 };
