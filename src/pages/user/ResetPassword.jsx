@@ -10,6 +10,7 @@ import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import PasswordField from "@/components/utils/PasswordField.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight, faSpinner} from "@fortawesome/free-solid-svg-icons";
+
 const ResetPassword = () =>{
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const { token } = useParams();

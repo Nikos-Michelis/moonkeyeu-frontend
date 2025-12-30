@@ -13,6 +13,7 @@ import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faChevronLeft, faCircleExclamation} from '@fortawesome/free-solid-svg-icons';
+import ContentLayout from "@/layout/ContentLayout.jsx";
 
 function EtlReport() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -113,29 +114,30 @@ function EtlReport() {
 
     return (
         <>
-            <Heading
-                title="ETL Tasks"
-                description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
-            />
-            <JsonLdGeneric
-                type="CollectionPage"
-                title="ETL Tasks"
-                description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
-            />
-            <TablePagination table={table} />
-            <section className="members-section">
-                <div className="container container--light-overlay padding-inline-5 rounded-sm" data-type="wide">
-                    {!(queryData.isPending || queryData.isFetching) &&
-                        <div className="flex justify-start margin-block-4">
-                            <Button className="btn--transparent" onClick={() => window.history.back()}>
-                                <FontAwesomeIcon icon={faChevronLeft} /> Back
-                            </Button>
-                        </div>
-                    }
-                    {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <BasicTable table={table} />}
-                </div>
-            </section>
-            <TablePagination table={table} />
+            <ContentLayout>
+                <Heading
+                    title="ETL Tasks"
+                    description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
+                />
+                <JsonLdGeneric
+                    type="CollectionPage"
+                    title="ETL Tasks"
+                    description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
+                />
+                <section className="members-section">
+                    <div className="container container--light-overlay padding-inline-5 rounded-sm" data-type="wide">
+                        {!(queryData.isPending || queryData.isFetching) &&
+                            <div className="flex justify-start margin-block-4">
+                                <Button className="btn--transparent" onClick={() => window.history.back()}>
+                                    <FontAwesomeIcon icon={faChevronLeft} /> Back
+                                </Button>
+                            </div>
+                        }
+                        {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <BasicTable table={table} />}
+                        <TablePagination table={table} />
+                    </div>
+                </section>
+            </ContentLayout>
         </>
     );
 }

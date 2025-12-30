@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {useModal} from "@/context/ModalProvider.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import {Button} from "@/components/button/Button.jsx";
@@ -21,7 +21,6 @@ const Header = () => {
     }
 
     return (
-
         <header>
             <nav className="navbar">
                 <div className="navbar__brand-box">

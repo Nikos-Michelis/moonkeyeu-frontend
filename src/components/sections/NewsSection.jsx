@@ -2,7 +2,7 @@ import React from 'react';
 import NewsArticle from "@/components/cards/NewsArticle.jsx";
 import ContentSection from "@/components/sections/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
-const NewsSection = ({ articles, isLoading, isFetching, isError }) => {
+const NewsSection = ({ articles, isPending, isFetching, isError, pagination }) => {
     const items = articles.results || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
@@ -15,8 +15,9 @@ const NewsSection = ({ articles, isLoading, isFetching, isError }) => {
         <ContentSection
             items={items}
             isFetching={isFetching}
-            isLoading={isLoading}
+            isPending={isPending}
             isError={isError}
+            pagination={pagination}
             contentConfig={contentConfig}
             CardComponent={NewsArticle}
             itemKeyExtractor={(item) => item.id}

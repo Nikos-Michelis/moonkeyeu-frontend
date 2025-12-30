@@ -4,10 +4,10 @@ import LaunchFiltering from "../components/filtering/LaunchFiltering.jsx";
 import Heading from "../components/utils/Heading.jsx";
 import {useSearchParams} from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
-import Pagination from "@/components/pagination/Pagination.jsx";
 import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
+import ContentLayout from "@/layout/ContentLayout.jsx";
 
 const options = {
     showPrevBtn: true,
@@ -52,34 +52,34 @@ function Home() {
                 createdAt={queryData?.data?.window_start}
                 updatedAt={queryData?.data?.window_end}
             />
-            <Heading
-                title={`${searchParams.get("upcoming") === "true" ? "Upcoming" : "Previous"} Launches`}
-                description="Discover past and upcoming space launches – Use filters to easily find results that match your specific interests."
-            />
-            <LaunchFiltering
-                filters={filterData.data}
-                searchPlaceHolder="e.g. Falcon 9 | Block 5"
-                isPending={filterData.isPending}
-                isFetching={filterData.isFetching}
-                isError={filterData.isError}
-            />
-            <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
-            <LaunchesSection
-                launches={queryData.data || {}}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-                isError={queryData.isError}
-                options={options}
-            />
-            <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
+
+            <ContentLayout>
+                <Heading
+                    title={`${searchParams.get("upcoming") === "true" ? "Upcoming" : "Previous"} Launches`}
+                    description={
+                        <>
+                            Discover past and upcoming space launches,
+                            <br />
+                            apply filters to easily find results that match your specific interests.
+                        </>
+                    }
+                />
+                <LaunchFiltering
+                    filters={filterData.data}
+                    searchPlaceHolder="e.g. Falcon 9 | Block 5"
+                    isPending={filterData.isPending}
+                    isFetching={filterData.isFetching}
+                    isError={filterData.isError}
+                />
+                <LaunchesSection
+                    launches={queryData.data || {}}
+                    isPending={queryData.isPending}
+                    isFetching={queryData.isFetching}
+                    isError={queryData.isError}
+                    options={options}
+                    pagination={pagination}
+                />
+            </ContentLayout>
         </>
     );
 }

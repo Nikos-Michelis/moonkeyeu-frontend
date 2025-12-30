@@ -5,7 +5,7 @@ import {useAstronautsFilters} from "@/hooks/paging-filtering/useAstronautsFilter
 import {Button} from "@/components/button/Button.jsx";
 import CustomSelect from "@/components/utils/CustomSelect.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faArrowsRotate, faFilter, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faArrowsRotate, faFilter, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
 
 AstronautsFiltering.propTypes = {
@@ -15,7 +15,7 @@ AstronautsFiltering.propTypes = {
     limit: PropTypes.number,
 };
 
-function AstronautsFiltering({ filters, searchPlaceHolder, field, isLoading, isFetching, isError }) {
+function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isFetching, isError }) {
     const [showOptions, setShowOptions] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const [selectedOption, setSelectedOption] = useState('');
@@ -79,7 +79,31 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isLoading, isF
 
     return (
         <section className="toolbar">
-            <div className="toolbar__container margin-block-start-12 margin-block-end-8 margin-inline-8">
+            <div className="container toolbar__container margin-block-4" data-type="full-bleed">
+                <div className="toolbar__tools">
+                    <div>
+                        <Button
+                            ref={triggerRef}
+                            className="btn btn--overlay fw-bold fs-small-100"
+                            onClick={() => toggleOptions(true)}
+                            disabled={isFetching || isPending || isError}
+                        >
+                            Add Filter <FontAwesomeIcon icon={faPlus} />
+                        </Button>
+                    </div>
+                    <CustomSelect
+                         options={limitOptions || []}
+                         field="limit"
+                         placeholder={`Limit ${limit}`}
+                         setFilters={setFilters}
+                         selectedOption={selectedOption}
+                         setSelectedOption={setSelectedOption}
+                         defaultValue={Number(limit)}
+                         isSearchable={false}
+                         btnClassName="select__btn select__btn--small"
+                         dropDownClassName="select__content--medium"
+                    />
+                </div>
                 <div className="search flex justify-center">
                     <input type="hidden" name="action" value="search" />
                     <input
@@ -94,31 +118,9 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isLoading, isF
                         <FontAwesomeIcon icon={faSearch} />
                     </div>
                 </div>
-                <div className="toolbar__tools">
-                    <div className="flex flex-wrap justify-center">
-                        <Button
-                            ref={triggerRef}
-                            className="btn btn--overlay"
-                            onClick={() => toggleOptions(true)}
-                            disabled={isFetching || isLoading || isError}
-                        >
-                            <FontAwesomeIcon icon={faFilter} />
-                        </Button>
-                    </div>
-                    <CustomSelect
-                         options={limitOptions || []}
-                         field="limit"
-                         placeholder={`Limit ${limit}`}
-                         setFilters={setFilters}
-                         selectedOption={selectedOption}
-                         setSelectedOption={setSelectedOption}
-                         defaultValue={Number(limit)}
-                         isSearchable={false}
-                         btnClassName="select__btn select__btn--small"
-                         dropDownClassName="select__content--medium"/>
-                </div>
                 <div ref={optionsRef} className={`toolbar__wrapper height-fade ${ showOptions ? "show md" : ""}`}>
-                    <div className="toolbar__options padding-block-start-8 padding-inline-6">
+                    <div className="toolbar__options">
+                        <div className="toolbar__title"><span>Filter by...</span></div>
                         <div className="toolbar__option">
                             <CustomSelect
                                 options={filters?.data?.status || []}
@@ -183,9 +185,9 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isLoading, isF
                              />
                         </div>
                     </div>
-                    <div className="toolbar__actions flex flex-wrap justify-start padding-4">
+                    <div className="toolbar__actions">
                         <Button
-                            className="btn btn--primary btn--small"
+                            className="btn--transparent fs-small-100 clr-dark-cosmos-300"
                             onClick={ handleReset }>
                             <FontAwesomeIcon icon={faArrowsRotate} />
                         </Button>

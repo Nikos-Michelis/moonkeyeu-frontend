@@ -17,6 +17,7 @@ import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
+import ContentLayout from "@/layout/ContentLayout.jsx";
 
 function MembersReport() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -96,29 +97,30 @@ function MembersReport() {
 
     return (
         <>
-            <Heading
-                title="Members"
-                description="Manage and view all registered members from your dashboard."
-            />
-            <JsonLdGeneric
-                type="CollectionPage"
-                title="Members"
-                description="Manage and view all registered members from your dashboard."
-            />
-            <TablePagination table={table} />
-            <section className="members-section">
-                <div className="container container--light-overlay padding-5 rounded-sm" data-type="wide">
-                    {!(queryData.isPending || queryData.isFetching) &&
-                        <div className="flex justify-start margin-block-4">
-                            <Button className="btn--transparent" onClick={() => window.history.back()}>
-                                <FontAwesomeIcon icon={faChevronLeft} /> Back
-                            </Button>
-                        </div>
-                    }
-                    {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <BasicTable table={table} />}
-                </div>
-            </section>
-            <TablePagination table={table} />
+            <ContentLayout>
+                <Heading
+                    title="Members"
+                    description="Manage and view all registered members from your dashboard."
+                />
+                <JsonLdGeneric
+                    type="CollectionPage"
+                    title="Members"
+                    description="Manage and view all registered members from your dashboard."
+                />
+                <section className="members-section">
+                    <div className="container container--light-overlay margin-block-end-13 padding-5 rounded-sm" data-type="wide">
+                        {!(queryData.isPending || queryData.isFetching) &&
+                            <div className="flex justify-start margin-block-4">
+                                <Button className="btn--transparent" onClick={() => window.history.back()}>
+                                    <FontAwesomeIcon icon={faChevronLeft} /> Back
+                                </Button>
+                            </div>
+                        }
+                        {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <BasicTable table={table} />}
+                        <TablePagination table={table} />
+                    </div>
+                </section>
+            </ContentLayout>
         </>
     );
 }

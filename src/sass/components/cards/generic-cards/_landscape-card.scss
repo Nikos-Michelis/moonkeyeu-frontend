@@ -13,13 +13,11 @@
     justify-content: center;
     align-items: center;
     background-color: var(--clr-main-300);
-    width: 100%;
     border: 0.2rem solid var(--clr-dark-cosmos-300);
     border-radius: 0.2rem;
     box-shadow: 0 0.35rem 0 var(--clr-dark-cosmos-300);
-    &:not(.landscape-card__container--article-card) {
-      max-width: 500px;
-    }
+    width: 100%;
+    max-width: 500px;
     &--article-card{
       max-width: 850px;
     }
@@ -28,7 +26,7 @@
   &__media {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 18rem;
   }
 
   &__image {
@@ -98,7 +96,7 @@
     position: absolute;
     width: 50px;
     height: 50px;
-    z-index: 2;
+    z-index: 0;
     top: 1rem;
     right: 0.5rem;
     @include abs.font($font-size: var(--fs-600), $color: var(--clr-star-300));
@@ -118,30 +116,13 @@
 
   @include abs.mq(medium) {
     &__container {
+      max-width: 100%;
+
       flex-direction: row;
     }
-
-    &__container:not(.landscape-card__container--article-card) {
-      max-width: 430px;
-      min-width: 430px;
-    }
-
     &__media {
+      height: 100%;
       width: 50%;
-    }
-  }
-
-  @include abs.mq(xl) {
-    &__container:not(.landscape-card__container--article-card)  {
-      max-width: 600px;
-      min-width: 600px;
-    }
-  }
-
-  @include abs.mq(xxl) {
-    &__container:not(.landscape-card__container--article-card)  {
-      max-width: 800px;
-      min-width: 800px;
     }
   }
 }

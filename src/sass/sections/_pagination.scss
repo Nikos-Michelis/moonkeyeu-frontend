@@ -10,17 +10,17 @@
   }
 
   &__text {
-    text-decoration: underline var(--clr-main-300);
+    text-decoration: underline var(--clr-star-300);
     margin: 0.625rem;
-    @include abs.font($font-size: 1rem, $color: var(--clr-main-300));
+    @include abs.font($font-size: 1rem, $color: var(--clr-star-300));
 
     & span {
-      color: var(--clr-main-300);
+      color: var(--clr-dark-cosmsos-300);
       font-weight: bold;
     }
   }
 
-  @include abs.mq(medium) {
+  @include abs.mq(small) {
     &__container {
       flex-direction: row;
     }

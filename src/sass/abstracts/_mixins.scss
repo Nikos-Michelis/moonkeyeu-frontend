@@ -12,11 +12,11 @@
   color: $color;
 }
 
-@mixin heading($fs, $color: $heading-color-default) {
+@mixin heading($fs, $color: $heading-color-default, $font-family: $heading-font-family, $font-variant: none) {
   font-size: $fs;
   color: $color;
-
-  font-family: $heading-font-family;
+  font-family: $font-family;
+  font-variant: $font-variant;
   text-transform: $heading-text-transform;
   letter-spacing: $heading-letter-spacing;
   font-weight: $heading-font-weight;

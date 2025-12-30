@@ -4,8 +4,9 @@ import {useSimpleQuery} from "@/services/queries.jsx";
 
 export const NasaApodContext = createContext({
     nasaApod: null,
-    isLoadingNasaImage: false,
-    isErrorNasaImage: false,
+    isPending: false,
+    isFetching: false,
+    isError: false,
 });
 
 export const NasaApodProvider = ({ children }) => {
