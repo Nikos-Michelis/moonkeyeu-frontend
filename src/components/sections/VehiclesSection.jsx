@@ -43,28 +43,26 @@ const sections = [
 const VehiclesSection = () => {
     return (
         <section className="vehicles-section">
-            <div className="flex justify-center margin-block-end-15">
-                <div className="grid-layout--col container container--light-overlay flex justify-center rounded-md" data-layout="grid-wrapper" data-spacing="none">
-                    <div className="container" data-type="full-bleed" data-spacing="none">
-                        <div className="grid-layout__portrait-vehicle">
-                            {sections.map((section, index) => (
-                                <VehicleOptionCard
-                                    key={index}
-                                    title={section.title}
-                                    description={section.description}
-                                    linkText={section.linkText}
-                                    sectionImage={section.sectionImage}
-                                    link={section.navigation}
-                                    disable={section.disable}
-                                />
-                            ))}
-                        </div>
+            <div className="grid__container container container--light-overlay margin-block-end-15 rounded-md" data-type="full-bleed">
+                <div className="grid__layout">
+                    <div className="grid__portrait--vehicle">
+                        {sections.map((section, index) => (
+                            <VehicleOptionCard
+                                key={index}
+                                title={section.title}
+                                description={section.description}
+                                linkText={section.linkText}
+                                sectionImage={section.sectionImage}
+                                link={section.navigation}
+                                disable={section.disable}
+                            />
+                        ))}
                     </div>
-                    <aside>
-                        <BuyMeACoffee />
-                        <LatestNews />
-                    </aside>
                 </div>
+                <aside>
+                    <BuyMeACoffee />
+                    <LatestNews />
+                </aside>
             </div>
         </section>
     );

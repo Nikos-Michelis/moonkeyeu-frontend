@@ -8,6 +8,7 @@ import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
+import ContentLayout from "@/layout/ContentLayout.jsx";
 
 const defaultFilters = {
     page: 1,
@@ -46,30 +47,23 @@ function Boosters() {
                 title="Boosters"
                 description="Explore the latest and historic boosters that shaped space exploration"
             />
-            <Heading
-                title="Boosters"
-                description="Explore the latest and historic boosters that shaped space exploration"
-            />
-            <BasicFiltering
-                defaultFilters={defaultFilters}
-                searchPlaceHolder="e.g. Booster 12"
-            />
-            <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
-            <LauncherSection
-                launcher={queryData.data || {}}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-                isError={queryData.isError}
-            />
-            <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
+            <ContentLayout>
+                <Heading
+                    title="Boosters"
+                    description="Explore the latest and historic boosters that shaped space exploration"
+                />
+                <BasicFiltering
+                    defaultFilters={defaultFilters}
+                    searchPlaceHolder="e.g. Booster 12"
+                />
+                <LauncherSection
+                    launcher={queryData.data || {}}
+                    isPending={queryData.isPending}
+                    isFetching={queryData.isFetching}
+                    isError={queryData.isError}
+                    pagination={pagination}
+                />
+            </ContentLayout>
         </>
     );
 }

@@ -11,14 +11,14 @@ import {
 const TablePagination = ({table}) => {
     return (
         <section className="pagination">
-            <div className="pagination__container margin-block-10">
+            <div className="pagination__container margin-block-4">
                 <div className="backward-arrows">
                     {table.getCanPreviousPage() && (
-                        <Button className="btn btn--overlay" onClick={() => table.setPageIndex(0)}>
+                        <Button className="btn btn--primary" onClick={() => table.setPageIndex(0)}>
                             <FontAwesomeIcon icon={faAnglesLeft} />
                         </Button>
                     )}
-                    <Button className="btn btn--overlay" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+                    <Button className="btn btn--primary" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
                         <FontAwesomeIcon icon={faAngleLeft} /> Prev
                     </Button>
                 </div>
@@ -32,11 +32,11 @@ const TablePagination = ({table}) => {
                     items
                 </span>
                 <div className="forward-arrows">
-                    <Button className="btn btn--overlay" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+                    <Button className="btn btn--primary" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
                         Next <FontAwesomeIcon icon={faAngleRight} />
                     </Button>
                     {table.getCanNextPage() && (
-                        <Button className="btn btn--overlay" onClick={() => table.setPageIndex(table.getPageCount() - 1)}>
+                        <Button className="btn btn--primary" onClick={() => table.setPageIndex(table.getPageCount() - 1)}>
                             <FontAwesomeIcon icon={faAnglesRight} />
                         </Button>
                     )}

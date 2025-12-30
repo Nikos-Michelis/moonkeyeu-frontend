@@ -1,0 +1,16 @@
+
+.heading {
+  text-align: start;
+  font-family: monospace;
+  padding-block-start: 4rem;
+  padding-block-end: 2rem;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    font-variant: all-petite-caps;
+    font-size: var(--fs-900);
+  }
+  &__text {
+    font-size: var(--fs-200);
+  }
+}

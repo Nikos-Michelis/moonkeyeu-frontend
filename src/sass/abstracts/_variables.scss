@@ -19,6 +19,7 @@ $container-min-margin-inline: $size-4;
 $container-max-width: 64rem;
 $container-max-width-narrow: 40rem;
 $container-max-width-medium: 55rem;
+$container-max-width-base: 70rem;
 $container-max-width-wide: 75rem;
 $container-fit-content: fit-content;
 /* default button variables */
@@ -46,3 +47,5 @@ $heading-2-font-size: $font-size-800;
 $heading-2-color: $heading-color-default;
 $heading-3-font-size: $font-size-700;
 $heading-3-color: $heading-color-default;
+$heading-4-font-size: $font-size-300;
+$heading-4-color: $heading-color-default;

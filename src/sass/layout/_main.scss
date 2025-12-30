@@ -5,6 +5,9 @@ main.container {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  & > div > section {
+    width: 100%;
+  }
   & > section {
     width: 100%;
   }

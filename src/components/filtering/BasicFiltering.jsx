@@ -33,7 +33,7 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
         limit,
         ordering,
         setFilters,
-        resetFilters,
+        resetFilterByName
     } = useBasicFilters(defaultFilters);
     const [locaSearch, setLocalSearch] = useState(search);
     const debounceSearch = useDebounce(locaSearch);
@@ -41,15 +41,38 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
     useEffect(() => {
         setFilters({search: debounceSearch});
     }, [debounceSearch]);
-    const handleReset = () => {
-        setSelectedOption('');
-        resetFilters();
-        setLocalSearch('');
-    };
 
     return (
         <section className="toolbar">
-            <div className="toolbar__container margin-block-start-12 margin-block-end-8 margin-inline-8">
+            <div className="container toolbar__container margin-block-4" data-type="full-bleed">
+                <div className="toolbar__tools">
+                    <CustomSelect
+                        options={limitOptions || []}
+                        field="limit"
+                        placeholder={`Limit ${limit}`}
+                        setFilters={setFilters}
+                        resetFilterByName={resetFilterByName}
+                        selectedOption={selectedOption}
+                        setSelectedOption={setSelectedOption}
+                        defaultValue={Number(limit)}
+                        isSearchable={false}
+                        btnClassName="select__btn select__btn--small"
+                        dropDownClassName="select__content--medium"
+                    />
+                    <CustomSelect
+                        options={orderingOptions || []}
+                        field="ordering"
+                        placeholder={selectedOption}
+                        setFilters={setFilters}
+                        resetFilterByName={resetFilterByName}
+                        selectedOption={selectedOption}
+                        setSelectedOption={setSelectedOption}
+                        defaultValue={ordering}
+                        isSearchable={false}
+                        btnClassName="select__btn select__btn--small"
+                        dropDownClassName="select__content--medium"
+                    />
+                </div>
                 <div className="search flex justify-center">
                     <input type="hidden" name="action" value="search" />
                     <input
@@ -63,35 +86,6 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
                     <div className="search__btn-search box-shadow-light">
                         <FontAwesomeIcon icon={faSearch} />
                     </div>
-                </div>
-                <div className="toolbar__tools">
-                    <CustomSelect
-                        options={limitOptions || []}
-                        field="limit"
-                        placeholder={`Limit ${limit}`}
-                        setFilters={setFilters}
-                        selectedOption={selectedOption}
-                        setSelectedOption={setSelectedOption}
-                        defaultValue={Number(limit)}
-                        isSearchable={false}
-                        btnClassName="select__btn select__btn--small"
-                        dropDownClassName="select__content--medium"
-                    />
-                    <Button  className="btn btn--overlay" onClick={handleReset}>
-                        <FontAwesomeIcon icon={faArrowsRotate} />
-                    </Button>
-                    <CustomSelect
-                        options={orderingOptions || []}
-                        field="ordering"
-                        placeholder={selectedOption}
-                        setFilters={setFilters}
-                        selectedOption={selectedOption}
-                        setSelectedOption={setSelectedOption}
-                        defaultValue={ordering}
-                        isSearchable={false}
-                        btnClassName="select__btn select__btn--small"
-                        dropDownClassName="select__content--medium"
-                    />
                 </div>
             </div>
         </section>

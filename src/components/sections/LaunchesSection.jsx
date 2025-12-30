@@ -9,6 +9,7 @@ const LaunchesSection = (
         isFetching,
         isPending,
         isError,
+        pagination,
         isBookmarked,
         emptyList,
         options,
@@ -30,6 +31,7 @@ const LaunchesSection = (
                 isFetching={isFetching}
                 isPending={isPending}
                 isError={isError}
+                pagination={pagination}
                 contentConfig={contentConfig}
                 CardComponent={LaunchCard}
                 itemKeyExtractor={(item) => item.id}

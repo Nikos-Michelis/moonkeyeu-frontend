@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 
-function SkeletonBookMarkLoader(){
+function SkeletonBookmarkLoader(){
 
     return(
     <div className="bookmark-card container flex flex-column bg-hr-400 rounded-md" data-type="full-width">
@@ -20,4 +20,4 @@ function SkeletonBookMarkLoader(){
     </div>
     )
 }
-export default SkeletonBookMarkLoader;
+export default SkeletonBookmarkLoader;

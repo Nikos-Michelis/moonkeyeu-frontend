@@ -12,11 +12,9 @@
     overflow: hidden;
     box-shadow: 0 0.3rem 0 var(--clr-dark-cosmos-300);
     width: 100%;
+    max-width: 500px;
     &:not([class*="bg-"]) {
       background-color: var(--clr-main-300);
-    }
-    &--small {
-      width: 100%;
     }
   }
 
@@ -78,31 +76,10 @@
 
   @include abs.mq(small) {
     &__container {
-      max-width: 400px;
       &__details-span {
         padding: 0.625rem 0;
         max-width: 5rem;
       }
-    }
-  }
-
-  @include abs.mq(medium) {
-    &__container {
-      max-width: 390px;
-    }
-  }
-
-  @include abs.mq(xl) {
-    &__container:not(.portrait-card__container--small) {
-      max-width: 300px;
-      min-width: 220px;
-    }
-  }
-
-  @include abs.mq(xxl) {
-    &__container:not(.portrait-card__container--small):not(.portrait-card--vehicle__container) {
-      max-width: 250px;
-      min-width: 250px;
     }
   }
 }

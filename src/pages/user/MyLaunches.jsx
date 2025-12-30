@@ -9,6 +9,7 @@ import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
+import ContentLayout from "@/layout/ContentLayout.jsx";
 
 const defaultFilters = {
     page: 1,
@@ -55,33 +56,26 @@ function MyLaunches() {
                 title="Members"
                 description="Manage and view all registered members from your dashboard."
             />
-            <Heading
-                title={`My Launches - ${name}`}
-                description="View and manage your bookmarked space launches."
-            />
-            <BasicFiltering
-                defaultFilters={defaultFilters}
-                searchPlaceHolder="e.g. Falcon 9 Block 5"
-            />
-            <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
-            <LaunchesSection
-                launches={queryData.data || {}}
-                isPending={queryData.isPending || status.isPending}
-                isFetching={queryData.isFetching}
-                isError={queryData.isError}
-                isBookmarked={true}
-                options={options}
-                navUrl="/launches/"
-            />
-            <Pagination
-                {...pagination}
-                isPending={queryData.isPending}
-                isFetching={queryData.isFetching}
-            />
+            <ContentLayout>
+                <Heading
+                    title={`My Launches - ${name}`}
+                    description="View and manage your bookmarked space launches."
+                />
+                <BasicFiltering
+                    defaultFilters={defaultFilters}
+                    searchPlaceHolder="e.g. Falcon 9 Block 5"
+                />
+                <LaunchesSection
+                    launches={queryData.data || {}}
+                    isPending={queryData.isPending || status.isPending}
+                    isFetching={queryData.isFetching}
+                    isError={queryData.isError}
+                    pagination={pagination}
+                    isBookmarked={true}
+                    options={options}
+                    navUrl="/launches/"
+                />
+            </ContentLayout>
         </>
     );
 }

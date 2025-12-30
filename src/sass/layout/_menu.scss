@@ -43,7 +43,7 @@
     padding: 5px;
 
     & h1 {
-      @include abs.font($font-size: var(--fs-400), $font-weight: 900, $color: var(--clr-dark-cosmos-300), $font-family: $font-family-accent);
+      @include abs.font($font-size: var(--fs-400), $font-weight: 900, $color: var(--clr-dark-cosmos-300), $font-family: $font-family-orbitron);
     }
   }
 

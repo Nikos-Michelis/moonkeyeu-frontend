@@ -1,22 +1,21 @@
 @use "../../abstracts" as abs;
 
-
-.grid-layout {
-  &--col{
+.grid {
+  width: 100%;
+  &__container {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
   }
-  &__portrait {
-    max-width: 1000px;
-    margin: 1rem;
-    justify-items: center;
-    @include abs.repeat-grid($min-col: 200px, $gap: 0.9rem);
+  &__layout {
+    width: 100%;
+    padding: 1rem;
   }
 
-  &__portrait-vehicle {
-    max-width: 1000px;
-    margin: 1rem;
+  &__portrait {
+    width: 100%;
     justify-items: center;
-    @include abs.repeat-grid($col: auto-fill, $min-col: 300px, $gap: 0.9rem);
+    @include abs.repeat-grid($min-col: auto, $min-row: auto, $gap: 0.9rem);
   }
 
   &__landscape {
@@ -30,29 +29,32 @@
   }
 
   @include abs.mq(small) {
-    &__portrait-vehicle{
+    &__portrait--vehicle{
       @include abs.repeat-grid($col: auto-fill, $min-col: 400px, $gap: 0.9rem);
     }
   }
 
   @include abs.mq(medium) {
-    &--col {
+    &__container {
       flex-direction: row;
     }
     &__portrait {
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
     }
   }
 
   @include abs.mq(xl) {
     &__portrait {
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
     }
   }
 
   @include abs.mq(xxl) {
     &__portrait {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(3, minmax(230px, 1fr));
+    }
+    &__portrait--vehicle{
+      @include abs.repeat-grid($col: 2, $min-col: 400px, $gap: 0.9rem);
     }
   }
 }

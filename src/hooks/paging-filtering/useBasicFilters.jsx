@@ -35,11 +35,23 @@ export function useBasicFilters(defaultFilters) {
         setSearchParams(defaultFilters, {replace: true});
     }, [filterParams]);
 
+    const resetFilterByName = useCallback((name) => {
+        setSearchParams(prev => {
+            if (defaultFilters?.[name] != null) {
+                prev.set(name, defaultFilters[name]);
+            } else {
+                prev.delete(name);
+            }
+            return prev;
+        }, { replace: true });
+    }, [setSearchParams]);
+
     return {
         search,
         limit,
         ordering,
         setFilters,
         resetFilters,
+        resetFilterByName
     };
 }

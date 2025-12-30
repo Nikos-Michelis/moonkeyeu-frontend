@@ -6,7 +6,7 @@ function GoogleLoginButton({ onSuccess }) {
             <GoogleLogin
                 onSuccess={onSuccess}
                 onError={() => {
-                    console.log('Login Failed');
+                    console.error('Unable to login with Google provider.');
                 }}
                 useOneTap={false}
             />

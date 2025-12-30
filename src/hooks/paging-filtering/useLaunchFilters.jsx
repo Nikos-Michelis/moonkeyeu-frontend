@@ -1,5 +1,7 @@
 import {useCallback, useLayoutEffect} from "react";
 import {useSearchParams} from "react-router-dom";
+import {value} from "lodash/seq.js";
+import log from "eslint-plugin-react/lib/util/log.js";
 
 const defaultFilters = {
     page: 1,
@@ -46,6 +48,17 @@ export function useLaunchFilters() {
         setSearchParams(defaultFilters, {replace: true});
     }, [filterParams]);
 
+    const resetFilterByName = useCallback((name) => {
+        setSearchParams(prev => {
+            if (defaultFilters?.[name] != null) {
+                prev.set(name, defaultFilters[name]);
+            } else {
+                prev.delete(name);
+            }
+            return prev;
+        }, { replace: true });
+    }, [setSearchParams]);
+
     return {
         search,
         location,
@@ -59,5 +72,6 @@ export function useLaunchFilters() {
         ordering,
         setFilters,
         resetFilters,
+        resetFilterByName,
     };
 }
