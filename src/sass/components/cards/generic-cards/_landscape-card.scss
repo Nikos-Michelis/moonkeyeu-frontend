@@ -17,7 +17,7 @@
     border-radius: 0.2rem;
     box-shadow: 0 0.35rem 0 var(--clr-dark-cosmos-300);
     width: 100%;
-
+    max-width: 500px;
     &--article-card{
       max-width: 850px;
     }
@@ -116,7 +116,8 @@
 
   @include abs.mq(medium) {
     &__container {
-      width: 100%;
+      max-width: 100%;
+
       flex-direction: row;
     }
     &__media {

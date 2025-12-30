@@ -36,7 +36,7 @@ const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
         <section className="bookmarks-section">
             <div className={`grid__container container container--light-overlay margin-block-end-15 rounded-md`} data-type="full-bleed">
                 <div className="grid__layout">
-                    <div className="flex justify-space-between margin-block-start-4 margin-inline-4">
+                    <div className="flex justify-space-between margin-block-end-4">
                         { options?.showBackBtn &&
                             (
                                 <Button className="btn--transparent margin-block-2" onClick={() => window.history.back()}>
@@ -74,11 +74,11 @@ const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
                             }
                         </SkeletonLoader>
                     </div>
-                    <aside>
-                        <BuyMeACoffee />
-                        <LatestNews />
-                    </aside>
                 </div>
+                <aside>
+                    <BuyMeACoffee />
+                    <LatestNews />
+                </aside>
             </div>
         </section>
     );

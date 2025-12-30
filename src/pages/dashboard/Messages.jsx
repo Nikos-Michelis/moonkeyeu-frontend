@@ -3,7 +3,6 @@ import Heading from "@/components/utils/Heading.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import MessagesSection from "@/components/sections/MessagesSection.jsx";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
-import Pagination from "@/components/pagination/Pagination.jsx";
 import showErrorToast from "@/components/utils/ShowErrorToast.jsx";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import {useSearchParams} from "react-router-dom";

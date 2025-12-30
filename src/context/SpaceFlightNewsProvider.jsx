@@ -3,10 +3,10 @@ import toast from "react-hot-toast";
 import {useSimpleQuery} from "@/services/queries.jsx";
 
 export const SpaceFlightNewsContext = createContext({
-    newsData: null,
-    isLoadingNews: false,
-    isFetchingNews: false,
-    isErrorNews: false,
+    data: null,
+    isPending: false,
+    isFetching: false,
+    isError: false,
 });
 
 export const SpaceFlightNewsProvider = ({ children }) => {

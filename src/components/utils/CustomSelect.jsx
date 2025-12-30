@@ -21,8 +21,8 @@ const CustomSelect = (
         dropDownClassName = "",
 
     }) => {
-    const OPTIONS_LENGTH = 15;
-    const SELECTED_LENGTH = 18;
+    const OPTIONS_LENGTH = 20;
+    const MAX_LIST_LENGTH = 5;
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     const preSelected = options?.find?.((item) => item.id === defaultValue)?.name || null;
@@ -71,7 +71,7 @@ const CustomSelect = (
                 <FontAwesomeIcon icon={selectedOption?.[field] ? faXmark : isOpen ? faAngleUp : faAngleDown} />
             </div>
             {isOpen && (
-                <div className={`select__content ${dropDownClassName}`}>
+                <div className={`select__content ${filteredOptions.length > MAX_LIST_LENGTH ? "select__content--scrollable" : "" } ${dropDownClassName}`}>
                     {isSearchable && (
                         <div className="select__search">
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
@@ -83,23 +83,25 @@ const CustomSelect = (
                             />
                         </div>
                     )}
-                    <ul className="select__options">
-                        {filteredOptions.length > 0 ? (
-                            filteredOptions.map((option) => (
-                                <li className={`${defaultValue === option.id? "selected" : ""}`} key={option.id} onClick={() => handleOnSelect(option)}>
-                                    { option?.name.length > SELECTED_LENGTH
-                                        ?
-                                        <Tooltip message={option.name}>
-                                            <div className="select__options--ellipsis">{option.name}</div>
-                                        </Tooltip>
-                                        : <div>{option.name}</div>
-                                    }
-                                </li>
-                            ))
-                        ) : (
-                            <li>No results found</li>
-                        )}
-                    </ul>
+                    <div className="select__wrapper">
+                        <ul className="select__options">
+                            {filteredOptions.length > 0 ? (
+                                filteredOptions.map((option) => (
+                                    <li className={`${defaultValue === option.id? "selected" : ""}`} key={option.id} onClick={() => handleOnSelect(option)}>
+                                        { option?.name.length > OPTIONS_LENGTH
+                                            ?
+                                            <Tooltip message={option.name}>
+                                                <div className="select__options--ellipsis">{option.name}</div>
+                                            </Tooltip>
+                                            : <div>{option.name}</div>
+                                        }
+                                    </li>
+                                ))
+                            ) : (
+                                <li>No results found</li>
+                            )}
+                        </ul>
+                    </div>
                 </div>
             )}
         </div>

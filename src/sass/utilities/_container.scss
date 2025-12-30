@@ -34,16 +34,6 @@
   }
 }
 
-.container[data-layout="grid-wrapper"] {
-  --max-width: 100%;
-  width: var(--max-width);
-  margin-inline: auto;
-
-  @include abs.mq(medium) {
-    width: fit-content;
-  }
-}
-
 .container[data-type="fixed"] {
   --max-width: 64rem;
   width: var(--max-width);
@@ -70,8 +60,8 @@
   --max-width: #{$container-max-width-medium};
 }
 
-.container[data-type="content"] {
-  --max-width: 70rem;
+.container[data-type="base"] {
+  --max-width: #{$container-max-width-base};
 }
 
 .container[data-type="wide"] {
@@ -82,7 +72,7 @@
   --max-width: 100%;
 }
 
-.container[data-width="fit-content"] {
+.container[data-type="fit-content"] {
   width: fit-content;
 }
 

@@ -15,13 +15,7 @@
   &__portrait {
     width: 100%;
     justify-items: center;
-    @include abs.repeat-grid($min-col: auto, $min-row: 500px, $gap: 0.9rem);
-  }
-
-  &__portrait-vehicle {
-    width: fit-content;
-    justify-items: center;
-    @include abs.repeat-grid($col: auto-fill, $min-col: 300px, $gap: 0.9rem);
+    @include abs.repeat-grid($min-col: auto, $min-row: auto, $gap: 0.9rem);
   }
 
   &__landscape {
@@ -35,7 +29,7 @@
   }
 
   @include abs.mq(small) {
-    &__portrait-vehicle{
+    &__portrait--vehicle{
       @include abs.repeat-grid($col: auto-fill, $min-col: 400px, $gap: 0.9rem);
     }
   }
@@ -59,8 +53,8 @@
     &__portrait {
       grid-template-columns: repeat(3, minmax(230px, 1fr));
     }
-    &__portrait-vehicle{
-      @include abs.repeat-grid($col: 2, $min-col: 600px, $gap: 0.9rem);
+    &__portrait--vehicle{
+      @include abs.repeat-grid($col: 2, $min-col: 400px, $gap: 0.9rem);
     }
   }
 }

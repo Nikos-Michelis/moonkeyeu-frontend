@@ -14,6 +14,7 @@
     height: 1.3125rem;
     color: var(--clr-dark-cosmos-300);
     user-select: none;
+
     &:not(.select__btn--small):not(.select__btn--medium):not(.select__btn--large) {
       width: 12rem;
       margin-inline: 0.2rem;
@@ -44,7 +45,6 @@
 
   &__content {
     display: block;
-    padding: 0.9375rem;
     margin-top: 0.9375rem;
     background: var(--clr-star-200);
     border-radius: 7px;
@@ -57,6 +57,10 @@
       position: absolute;
     }
 
+    &--scrollable {
+      overflow-y: scroll;
+    }
+
     &--medium {
       width: 8rem;
     }
@@ -65,30 +69,38 @@
       width: 100%;
     }
   }
+
+  &__wrapper {
+    padding: 0.9375rem;
+  }
+
   &__search {
-    position: relative;
+    position: sticky;
+    top: 0;
+    background-color: var(--clr-star-200);
+    z-index: 1;
+    padding: 0.5rem;
 
     & svg {
       top: 50%;
       left: 15px;
       color: #bfbfbf;
-      font-size: 20px;
+      font-size: 1rem;
       pointer-events: none;
       transform: translateY(-50%);
       position: absolute;
     }
 
     & input {
-      height: 50px;
+      height: 40px;
       width: 100%;
       outline: none;
-      font-size: 17px;
+      font-size: 1rem;
       border-radius: 5px;
-      padding: 0 20px 0 43px;
+      padding: 0 20px 0 30px;
       border: 1px solid #B3B3B3;
 
       &:focus {
-        padding-left: 42px;
         border: 2px solid var(--clr-dark-cosmos-300);
       }
 
@@ -101,7 +113,7 @@
   &__options {
     margin-top: 10px;
     max-height: 250px;
-    overflow-y: auto;
+    overflow: visible;
     padding: 0;
 
     & a {
@@ -130,7 +142,7 @@
       }
     }
     &--ellipsis {
-      @include abs.singleLine-ellipsis(8rem);
+      @include abs.singleLine-ellipsis(9rem);
     }
   }
 }

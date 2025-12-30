@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import Heading from "../components/utils/Heading.jsx";
-import Pagination from "../components/pagination/Pagination.jsx";
 import AstronautsSection from "../components/sections/AstronautsSection.jsx";
 import {useSearchParams} from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
@@ -40,12 +39,12 @@ function Astronauts() {
         <>
              <Head
                  title="Astronauts"
-                 description="Meet the astronauts from different missions and backgrounds – Apply filters to find those that align with your interests."
+                 description="Meet the astronauts from different missions and backgrounds, apply filters to find those that align with your interests."
              />
             <JsonLdGeneric
                 type="CollectionPage"
                 title="Astronauts"
-                description="Meet the astronauts from different missions and backgrounds – Apply filters to find those that align with your interests."
+                description="Meet the astronauts from different missions and backgrounds, apply filters to find those that align with your interests."
             />
 
             <ContentLayout>

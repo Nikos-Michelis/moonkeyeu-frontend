@@ -4,7 +4,6 @@ import LatestNews from "../sidebars/LatestNews.jsx";
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
 import SkeletonPortraitLoader from "@/components/skeleton/SkeletonPortraitLoader.jsx";
 import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
-import {faFilter} from "@fortawesome/free-solid-svg-icons";
 import Pagination from "@/components/pagination/Pagination.jsx";
 
 const AstronautsSection = ({astronauts, isPending, isFetching, isError, pagination}) => {
@@ -15,16 +14,15 @@ const AstronautsSection = ({astronauts, isPending, isFetching, isError, paginati
     const emptyList= {
         heading: "No Results Match Current Settings!",
         message: "Review your filters by clicking the Add Filter button above.",
-        icon: faFilter
     }
     return (
         <section className="astronauts-section">
-            <div className={`grid__container container container--light-overlay margin-block-end-15 rounded-md`} data-type="full-bleed">
+            <div className="grid__container container container--light-overlay margin-block-end-15 rounded-md" data-type="full-bleed">
                 <div className="grid__layout">
                     <div className={`${items.length > 0 || (isFetching || isPending) ? "grid__portrait" : ""}`}>
                         <SkeletonLoader
                             isFetching={isFetching}
-                            isLoading={isPending}
+                            isPending={isPending}
                             isError={isError}
                             contentConfig={contentConfig}>
                              {items.length > 0 ? (

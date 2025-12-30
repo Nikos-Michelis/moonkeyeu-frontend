@@ -6,7 +6,7 @@ import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
 import PreviousBtn from "@/components/button/PreviousBtn.jsx";
 import StarshipCard from "@/components/cards/StarshipCard.jsx"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronLeft, faFilter} from '@fortawesome/free-solid-svg-icons';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import Pagination from "@/components/pagination/Pagination.jsx";
 const ContentSection = (
     {
@@ -22,7 +22,6 @@ const ContentSection = (
         emptyList= {
             heading: "No Results Match Current Settings!",
             message: "Review your filters by clicking the Add Filter button above.",
-            icon: faFilter
         },
         options = {
             showPrevBtn: false,
@@ -81,7 +80,7 @@ const ContentSection = (
                             ) : (
                                 <div className="padding-8 text-center clr-star-300">
                                     <h2>{emptyList.heading}</h2>
-                                    <p>{emptyList.message} <FontAwesomeIcon icon={emptyList.icon}/></p>
+                                    <p>{emptyList.message}</p>
                                 </div>
                             )}
                         </SkeletonLoader>

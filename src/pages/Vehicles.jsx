@@ -10,14 +10,14 @@ function Vehicles() {
         <>
             <Head
                 title="Vehicles"
-                description="Explore the vehicles that shape space exploration — from historic milestones to today's cutting-edge technology."
+                description="Explore the vehicles that shape space exploration, from historic milestones to today's cutting-edge technology."
             />
             <JsonLdGeneric
                 type="CollectionPage"
                 title="Vehicles"
-                description="Explore the vehicles that shape space exploration — from historic milestones to today's cutting-edge technology."
+                description="Explore the vehicles that shape space exploration, from historic milestones to today's cutting-edge technology."
             />
-            <ContentLayout>
+            <ContentLayout size="fit-content">
                 <Heading
                     title="Spaceflight Vehicles"
                     description={

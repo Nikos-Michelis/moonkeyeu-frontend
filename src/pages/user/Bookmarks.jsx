@@ -44,7 +44,7 @@ function Bookmarks() {
                 />
                 <BookmarksSection
                     bookmarks={queryData.data || {}}
-                    isLoading={queryData.isPending}
+                    isPending={queryData.isPending}
                     isFetching={queryData.isFetching}
                     isError={queryData.isError}
                 />

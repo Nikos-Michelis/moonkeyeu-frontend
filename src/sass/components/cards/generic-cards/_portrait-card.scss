@@ -16,9 +16,6 @@
     &:not([class*="bg-"]) {
       background-color: var(--clr-main-300);
     }
-    &--small {
-      width: 100%;
-    }
   }
 
   &__image-link {

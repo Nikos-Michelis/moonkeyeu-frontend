@@ -43,22 +43,20 @@ const sections = [
 const VehiclesSection = () => {
     return (
         <section className="vehicles-section">
-            <div className="grid__container container--light-overlay rounded-md margin-block-end-15">
-                <div className="grid__layout rounded-md">
-                    <div className="container" data-type="full-bleed" data-spacing="none">
-                        <div className="grid__portrait-vehicle">
-                            {sections.map((section, index) => (
-                                <VehicleOptionCard
-                                    key={index}
-                                    title={section.title}
-                                    description={section.description}
-                                    linkText={section.linkText}
-                                    sectionImage={section.sectionImage}
-                                    link={section.navigation}
-                                    disable={section.disable}
-                                />
-                            ))}
-                        </div>
+            <div className="grid__container container container--light-overlay margin-block-end-15 rounded-md" data-type="full-bleed">
+                <div className="grid__layout">
+                    <div className="grid__portrait--vehicle">
+                        {sections.map((section, index) => (
+                            <VehicleOptionCard
+                                key={index}
+                                title={section.title}
+                                description={section.description}
+                                linkText={section.linkText}
+                                sectionImage={section.sectionImage}
+                                link={section.navigation}
+                                disable={section.disable}
+                            />
+                        ))}
                     </div>
                 </div>
                 <aside>

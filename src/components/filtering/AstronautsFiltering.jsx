@@ -15,7 +15,7 @@ AstronautsFiltering.propTypes = {
     limit: PropTypes.number,
 };
 
-function AstronautsFiltering({ filters, searchPlaceHolder, field, isLoading, isFetching, isError }) {
+function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isFetching, isError }) {
     const [showOptions, setShowOptions] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const [selectedOption, setSelectedOption] = useState('');
@@ -86,7 +86,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isLoading, isF
                             ref={triggerRef}
                             className="btn btn--overlay fw-bold fs-small-100"
                             onClick={() => toggleOptions(true)}
-                            disabled={isFetching || isLoading || isError}
+                            disabled={isFetching || isPending || isError}
                         >
                             Add Filter <FontAwesomeIcon icon={faPlus} />
                         </Button>
@@ -120,6 +120,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isLoading, isF
                 </div>
                 <div ref={optionsRef} className={`toolbar__wrapper height-fade ${ showOptions ? "show md" : ""}`}>
                     <div className="toolbar__options">
+                        <div className="toolbar__title"><span>Filter by...</span></div>
                         <div className="toolbar__option">
                             <CustomSelect
                                 options={filters?.data?.status || []}
