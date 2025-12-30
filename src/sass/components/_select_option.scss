@@ -15,7 +15,7 @@
     color: var(--clr-dark-cosmos-300);
     user-select: none;
 
-    &:not(.select__btn--small):not(.select__btn--medium):not(.select__btn--large) {
+    &:not(.select__btn--small):not(.select__btn--medium):not(.select__btn--large):not(.select__btn--yt-video) {
       width: 12rem;
       margin-inline: 0.2rem;
     }
