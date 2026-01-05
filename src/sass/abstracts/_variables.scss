@@ -22,6 +22,10 @@ $container-max-width-medium: 55rem;
 $container-max-width-base: 70rem;
 $container-max-width-wide: 75rem;
 $container-fit-content: fit-content;
+/* grid layout */
+$grid-col-size: 100%;
+$grid-col-count: auto-fit;
+$grid-gap: $size-3;
 /* default button variables */
 $button-padding-y:10px;
 $button-padding-x:10px;
