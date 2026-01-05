@@ -25,7 +25,7 @@ const RelatedNews = ({articles}) =>{
                      data-scroll={articles.length > 2 ? "vertical" : undefined}
                 >
                     <div className="margin-block-5 margin-inline-4">
-                        <div className="grid__landscape padding-block-2">
+                        <div className="grid__layout grid__layout--landscape padding-block-2">
                             {articles.length > 0 &&
                                 articles.map(article =>
                                     <NewsArticle

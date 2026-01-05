@@ -37,7 +37,7 @@ const ContentSection = (
     return (
         <section className={contentConfig?.styles?.section}>
             <div className={`grid__container container container--light-overlay margin-block-end-15 rounded-md`} data-type="full-bleed">
-                <div className="grid__layout">
+                <div className="grid__wrapper">
                     { options?.showPrevBtn && <div className="flex"><PreviousBtn/></div>}
                     { (options?.showBackBtn || options?.showItemsLimit) &&
                         <div className="flex justify-space-between margin-block-end-4">
@@ -59,7 +59,7 @@ const ContentSection = (
                             }
                         </div>
                     }
-                    <div className={`grid__landscape ${contentConfig?.styles?.grid || ''}`}>
+                    <div className={`grid__layout grid__layout--landscape ${contentConfig?.styles?.grid || ''}`}>
                         <SkeletonLoader
                             isPending={isPending}
                             isFetching={isFetching}
