@@ -22,10 +22,6 @@
     justify-items: center;
     @include abs.repeat-grid($col: var(--col-count), $min-col: var(--col-size), $gap: var(--gap));
 
-    &--vehicle {
-      --col-size: 25rem;
-    }
-
     &--landscape {
       --col-count: 1;
       --gap: 1.2rem;
@@ -37,14 +33,14 @@
       flex-direction: row;
     }
     &__layout:not(.grid__layout--vehicle) {
-      --col-size: 200px;
+      --col-size: 12.5rem;
     }
   }
 
   @include abs.mq(xxl) {
     &__layout--vehicle{
       --col-count: 2;
-      --col-size: 400px;
+      --col-size: 25rem;
     }
   }
 }
