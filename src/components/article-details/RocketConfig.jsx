@@ -29,7 +29,7 @@ const RocketConfig = ({ queryData,  pagination }) =>{
                 <div className="container" data-spacing="none" data-type="full-width">
                     <div className="margin-block-5 margin-inline-4">
                         { pagination?.totalItems > 4 && <StatePagination pagination={pagination}/> }
-                            <div className="grid__landscape padding-block-2 margin-block-4">
+                            <div className="grid__layout grid__layout--landscape padding-block-2 margin-block-4">
                                 <SkeletonLoader
                                     isPending={queryData?.isPending}
                                     isFetching={queryData?.isFetching}
