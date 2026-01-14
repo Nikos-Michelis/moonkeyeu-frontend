@@ -2,17 +2,26 @@
 @use "../abstracts/sizes" as *;
 @use "../abstracts/typography" as *;
 
+/*Theme*/
+$active-theme: $dark;
+$enable-media-query-dark-mode: false;
+
 $section-padding-block: clamp(5rem, 10vh, 6rem);
 $letter-spacing-loose: 0;
 
 /* box shadows */
+/*
 $box-shadow-1: 0px 6px 5px rgb(0, 0, 0, 0.012),
 0px 22px 18px rgb(0, 0, 0, 0.018), 0px 100px 80px rgb(0, 0, 0, 0.03);
 
 $box-shadow-2: 0px 6px 5px rgb(0, 0, 0, 0.016),
 0px 22px 18px rgb(0, 0, 0, 0.024), 0px 100px 80px rgb(0, 0, 0, 0.04);
+*/
 
-$box-shadow-3: 0 0.3rem var(--clr-dark-cosmos-300);
+$box-shadow-1: 0.35rem 0.35rem var(--clr-neutral-1000);
+$box-shadow-2: 0.25rem 0.25rem var(--clr-neutral-1000);
+$box-shadow-3: 0.15rem 0.15rem var(--clr-neutral-1000);
+$box-shadow-4: 0.5rem 0.5rem var(--clr-neutral-1000);
 
 /* container variables */
 $container-min-margin-inline: $size-4;
@@ -22,25 +31,21 @@ $container-max-width-medium: 55rem;
 $container-max-width-base: 70rem;
 $container-max-width-wide: 75rem;
 $container-fit-content: fit-content;
-/* grid layout */
-$grid-col-size: 100%;
-$grid-col-count: auto-fill;
-$grid-gap: $size-3;
 /* default button variables */
 $button-padding-y:10px;
 $button-padding-x:10px;
-$button-default-font-color:var(--clr-dark-cosmos-300);
+$button-default-font-color:var(--clr-neutral-1000);
 $button-font-weight:normal;
 $button-font-size:var(--fs-300);
 $button-line-height:1.2;
-$button-default-bg-color:var(--clr-star-300);
-$button-border-width:2px;
-$button-default-border-color:var(--clr-dark-cosmos-300);
+$button-default-bg-color:var(--clr-neutral-300);
+$button-border-width: 0.1rem;
+$button-default-border-color:var(--clr-neutral-1000);
 $button-border-radius:5px;
 $button-transition:all 0.1s ease;
 /* heading */
 $heading-font-family: $font-family-base;
-$heading-color-default: $clr-star-300;
+$heading-color-default: --clr-neutral-300;
 $heading-font-weight: $font-weight-bold;
 $heading-letter-spacing: $letter-spacing-loose;
 $heading-line-height: 1.1;

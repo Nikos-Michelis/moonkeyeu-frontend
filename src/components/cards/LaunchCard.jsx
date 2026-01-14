@@ -147,7 +147,6 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                             <CountdownTimer net={zonedDateTime} timerStyle="margin-block-start-3" />
                         ) }
                     </div>
-                    <hr className="hr-100-sm bg-hr-600"/>
                     <div className="launch-card__actions flex flex-wrap justify-center padding-block-2" data-type="narrow">
                         {id ? (
                             <div className="launch-card__info">

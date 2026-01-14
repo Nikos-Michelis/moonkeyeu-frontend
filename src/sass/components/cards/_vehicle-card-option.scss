@@ -1,4 +1,5 @@
-@use "../../abstracts" as abs;
+@use "../../abstracts/index" as abs;
+@use "../../abstracts/variables" as *;
 
 .portrait-card {
   &--vehicle {
@@ -10,17 +11,10 @@
       background-color: rgb(50 50 50 / 83%);
       width: 100%;
       text-align: center;
-      color: var(--clr-star-300);
+      color: var(--clr-neutral-300);
       font-size: 1rem;
-      border: 0.2rem solid var(--clr-dark-cosmos-300);
-      border-radius: 0.2rem;
-      box-shadow: 0 0.35rem 0 var(--clr-dark-cosmos-300);
-    }
-  }
-
-  @include abs.mq(small) {
-    &--vehicle {
-     // max-width: max-content;
+      @include abs.cursive_border();
+      box-shadow: $box-shadow-1;
     }
   }
 

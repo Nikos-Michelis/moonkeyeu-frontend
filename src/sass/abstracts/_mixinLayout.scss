@@ -41,7 +41,7 @@
   grid-template-columns: $columns;
 }
 
-@mixin repeat-grid($col: auto-fill, $row: auto-fill, $min-col: 12.5rem, $min-row: 12.5rem, $gap: 1rem) {
+@mixin repeat-grid($col: 1, $row: auto-fill, $min-col: 200px, $min-row: 200px, $gap: 1rem) {
   @include grid(
           $columns: repeat($col, minmax(#{$min-col}, 1fr)),
           $rows: repeat($row, minmax(#{$min-row}, 1fr)),

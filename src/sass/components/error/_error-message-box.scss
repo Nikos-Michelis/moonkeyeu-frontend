@@ -26,7 +26,7 @@ div.response-error-wrapper {
           position: relative;
           display: flex;
           justify-content: start;
-          color: var(--clr-dark-cosmos-300);
+          color: var(--clr-neutral-1000);
           width: 100%;
           font-size: 0.8rem;
           font-weight: bold;
@@ -47,7 +47,7 @@ div.response-error-wrapper {
       position: absolute;
       left: 1rem;
       top: 1rem;
-      color: var(--clr-star-300);
+      color: var(--clr-neutral-300);
     }
   }
 }

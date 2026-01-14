@@ -12,14 +12,14 @@
     width: 100%;
   }
   &__menu-item {
-    height: 40px;
+    height: 2.5rem;
     transition: background 500ms;
     text-decoration: none;
-    color: var(--clr-dark-cosmos-300);
+    color: var(--clr-neutral-1000);
     width: 100%;
     &:hover {
       background-color: var(--clr-secondary-200);
-      color: var(--clr-dark-cosmos-300);
+      color: var(--clr-neutral-1000);
       width: 100%;
     }
   }

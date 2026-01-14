@@ -10,8 +10,10 @@
 
   &__overview {
     max-width: 950px;
-    border: 0.2rem solid var(--clr-dark-cosmos-300);
+    border: 0.15rem solid var(--clr-neutral-1000);
+    box-shadow: 0.35rem 0.35rem 0 var(--clr-neutral-1000);
     border-radius: 0.2rem;
+    background-color: var(--clr-neutral-100);
   }
 
   &__image-box {
@@ -42,7 +44,7 @@
   }
 
   &__title-box{
-    @include abs.font($font-size: var(--fs-400), $color: var(--clr-star-300));
+    @include abs.font($font-size: var(--fs-400), $color: var(--clr-neutral-1000));
   }
 
   &__subtitle {
@@ -65,7 +67,7 @@
     align-items: baseline;
     width: 100%;
     padding: 0.5rem 0;
-    @include abs.font($font-size: var(--fs-400), $color: var(--clr-star-300));
+    @include abs.font($font-size: var(--fs-400), $color: var(--clr-neutral-1000));
 
     &--col{
       flex-direction: column;
@@ -80,7 +82,7 @@
   &__info-container {
     max-width: 950px;
     line-height: 1.5;
-    @include abs.font($font-size: inherit, $color: var(--clr-star-300));
+    @include abs.font($font-size: inherit, $color: var(--clr-neutral-1000));
   }
 
   & section {
@@ -117,7 +119,7 @@
     & span {
       text-overflow: ellipsis;
       overflow: hidden;
-      @include abs.font($font-size: var(--fs-300), $font-weight: bold, $color: var(--clr-star-300));
+      @include abs.font($font-size: var(--fs-300), $font-weight: bold, $color: var(--clr-neutral-1000));
       margin: 0 0.5rem;
     }
     & p {
@@ -144,7 +146,7 @@
     }
   }
   &__description {
-    @include abs.font($font-size: var(--fs-300), $color: var(--clr-star-300));
+    @include abs.font($font-size: var(--fs-300), $color: var(--clr-neutral-1000));
   }
   &__rocket-info {
     line-height: 2.5;

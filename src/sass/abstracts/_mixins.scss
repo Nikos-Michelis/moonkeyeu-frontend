@@ -2,7 +2,7 @@
 @use "variables" as *;
 @mixin font($font-size: var(--fs-300),
           $font-weight: normal,
-          $color: var(--clr-dark-cosmos-300),
+          $color: var(--clr-neutral-1000),
           $font-family: inherit,
           $font-variant: none) {
   font-size: $font-size;
@@ -23,7 +23,7 @@
   line-height: $heading-line-height;
 }
 
-@mixin cursive_border($border-width: 1px, $border-radius: 10px, $color: var(--clr-dark-cosmos-300)) {
+@mixin cursive_border($border-width: 0.2rem, $border-radius: 0.1rem, $color: var(--clr-neutral-1000)) {
   border-radius: $border-radius;
   border: $border-width $color solid;
 }

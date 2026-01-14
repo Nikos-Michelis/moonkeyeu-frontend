@@ -10,9 +10,9 @@
   }
 
   &__text {
-    text-decoration: underline var(--clr-star-300);
+    text-decoration: underline var(--clr-neutral-1000);
     margin: 0.625rem;
-    @include abs.font($font-size: 1rem, $color: var(--clr-star-300));
+    @include abs.font($font-size: 1rem, $color: var(--clr-neutral-1000));
 
     & span {
       color: var(--clr-dark-cosmsos-300);

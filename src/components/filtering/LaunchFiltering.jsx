@@ -94,7 +94,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                         <div>
                             <Button
                                 ref={triggerRef}
-                                className="btn btn--overlay fw-bold fs-small-100"
+                                className="btn btn--primary btn--big fw-bold fs-small-100"
                                 onClick={() => toggleOptions(true)}
                                 disabled={isFetching || isPending || isError}
                             >
@@ -118,14 +118,14 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                     <div className="search flex justify-center">
                         <input type="hidden" name="action" value="search" />
                         <input
-                            className="search__searchbar box-shadow-light"
+                            className="search__searchbar"
                             value={localSearch || ""}
                             type="text"
                             name="search"
                             placeholder={searchPlaceHolder}
                             onChange={(e) => setLocalSearch(e.target.value)}
                         />
-                        <div className="search__btn-search box-shadow-light">
+                        <div className="search__btn-search">
                             <FontAwesomeIcon icon={faSearch} />
                         </div>
                     </div>

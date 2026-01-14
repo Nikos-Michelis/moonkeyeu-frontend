@@ -1,5 +1,4 @@
 @use "../../abstracts" as abs;
-@use "../../abstracts/variables" as *;
 
 .grid {
   width: 100%;
@@ -8,23 +7,30 @@
     flex-direction: column;
     justify-content: center;
   }
-
-  &__wrapper {
+  &__layout {
     width: 100%;
-    padding: 1rem;
+    margin-inline-end: 1.5rem;
   }
 
-  &__layout {
-    --col-size: #{$grid-col-size};
-    --col-count: #{$grid-col-count};
-    --gap: #{$grid-gap};
+  &__portrait {
     width: 100%;
     justify-items: center;
-    @include abs.repeat-grid($col: var(--col-count), $min-col: var(--col-size), $gap: var(--gap));
+    @include abs.repeat-grid($min-col: auto, $min-row: auto, $gap: 0.9rem);
+  }
 
-    &--landscape {
-      --col-count: 1;
-      --gap: 1.2rem;
+  &__landscape {
+    width: 100%;
+    justify-items: center;
+    @include abs.grid(
+            $rows: repeat(auto-fill, minmax(200px, 1fr)),
+            $columns: repeat(1, 1fr),
+            $gap: 1.2rem
+    );
+  }
+
+  @include abs.mq(small) {
+    &__portrait--vehicle{
+      @include abs.repeat-grid($col: auto-fill, $min-col: 400px, $gap: 0.9rem);
     }
   }
 
@@ -32,15 +38,23 @@
     &__container {
       flex-direction: row;
     }
-    &__layout:not(.grid__layout--vehicle) {
-      --col-size: 12.5rem;
+    &__portrait {
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }
+  }
+
+  @include abs.mq(xl) {
+    &__portrait {
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
     }
   }
 
   @include abs.mq(xxl) {
-    &__layout--vehicle{
-      --col-count: 2;
-      --col-size: 25rem;
+    &__portrait {
+      grid-template-columns: repeat(3, minmax(230px, 1fr));
+    }
+    &__portrait--vehicle{
+      @include abs.repeat-grid($col: 2, $min-col: 400px, $gap: 0.9rem);
     }
   }
 }

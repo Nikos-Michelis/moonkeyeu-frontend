@@ -8,18 +8,18 @@
 
   & table {
     border-collapse: collapse;
-    border: 0.2rem solid var(--clr-star-300);
+    border: 0.2rem solid var(--clr-neutral-300);
 
     & tr {
-      border: 0.2rem solid var(--clr-star-300);
+      border: 0.2rem solid var(--clr-neutral-300);
 
       & th, td {
-        border-color: var(--clr-star-300);
+        border-color: var(--clr-neutral-300);
         padding: 12px 10px;
         vertical-align: middle;
         text-align: center;
         font-size: var(--fs-100);
-        color: var(--clr-star-300);
+        color: var(--clr-neutral-300);
       }
     }
 

@@ -103,7 +103,7 @@ function Launch(){
                                     <FontAwesomeIcon icon={faChevronLeft} /> Back
                                 </Button>
                             </div>
-                            <div className="container article__overview flex flex-column justify-center align-center bg-dark-cosmos-300" data-type="full-bleed">
+                            <div className="container article__overview flex flex-column justify-center align-center" data-type="full-bleed">
                                 {zonedDateTime.invalid === null && zonedDateTime > Date.now() ? (
                                     <CountdownTimer net={zonedDateTime} timerStyle="counter--container"/>
                                 ) : null }

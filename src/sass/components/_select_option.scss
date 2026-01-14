@@ -1,20 +1,21 @@
 @use "../abstracts/index" as abs;
+@use "../abstracts/variables" as *;
 
 .select {
   &__btn {
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-radius: 0.2rem;
     justify-content: space-between;
-    background-color: var(--clr-star-300);
+    background-color: var(--clr-neutral-300);
     font-size: 0.8rem;
     font-weight: 700;
     min-width: 0.625rem;
     height: 1.3125rem;
-    color: var(--clr-dark-cosmos-300);
+    color: var(--clr-neutral-1000);
     user-select: none;
-
+    @include abs.cursive_border($border-width: 0.12rem);
+    box-shadow: $box-shadow-2;
     &:not(.select__btn--small):not(.select__btn--medium):not(.select__btn--large):not(.select__btn--yt-video) {
       width: 12rem;
       margin-inline: 0.2rem;
@@ -22,7 +23,7 @@
 
     &:not(.select__btn--yt-video){
       max-width: 15rem;
-      margin-inline: 0.2rem;
+      margin-inline: 0.6rem;
       padding: 1rem;
     }
 
@@ -34,7 +35,7 @@
 
     &--yt-video {
       width: 100%;
-      color: var(--clr-star-300);
+      color: var(--clr-neutral-300);
       background-color: var(--clr-yt-red);
       padding: 2rem 1rem;
     }
@@ -46,11 +47,10 @@
   &__content {
     display: block;
     margin-top: 0.9375rem;
-    background: var(--clr-star-200);
-    border-radius: 7px;
-    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+    background-color: var(--clr-primary-100);
+    @include abs.cursive_border($border-width: 0.13rem, $border-radius: 0.2rem);
     width: 13rem;
-    color: var(--clr-dark-cosmos-300);
+    color: var(--clr-neutral-1000);
     z-index: 1;
 
     &:not(.select__content--full-width){
@@ -77,14 +77,14 @@
   &__search {
     position: sticky;
     top: 0;
-    background-color: var(--clr-star-200);
+    background-color: var(--clr-primary-200);
     z-index: 1;
     padding: 0.5rem;
 
     & svg {
       top: 50%;
       left: 15px;
-      color: #bfbfbf;
+      color: var(--clr-neutral-1000);
       font-size: 1rem;
       pointer-events: none;
       transform: translateY(-50%);
@@ -96,16 +96,16 @@
       width: 100%;
       outline: none;
       font-size: 1rem;
-      border-radius: 5px;
       padding: 0 20px 0 30px;
-      border: 1px solid #B3B3B3;
-
+      @include abs.cursive_border($border-width: 0.1rem, $border-radius: 0.125rem);
+      background-color: var(--clr-neutral-100);
+      color: var(--clr-neutral-1000);
       &:focus {
-        border: 2px solid var(--clr-dark-cosmos-300);
+        border: 0.15rem solid var(--clr-neutral-1000);
       }
 
       &::placeholder {
-        color: #bfbfbf;
+        color: var(--clr-neutral-1000);
       }
     }
   }
@@ -118,7 +118,7 @@
 
     & a {
       width: 100%;
-      color: var(--clr-dark-cosmos-300);
+      color: var(--clr-neutral-1000);
     }
 
     & li, a {
@@ -129,16 +129,16 @@
       padding: 0 0.8125rem;
       font-size: 0.8125rem;
       font-weight: 600;
-      color: var(--clr-dark-cosmos-300);
+      color: var(--clr-neutral-1000);
 
       &:hover {
         border-radius: 5px;
-        background: var(--clr-star-300);
+        background: var(--clr-neutral-200);
       }
 
       &.selected {
         border-radius: 5px;
-        background: var(--clr-star-300);
+        background: var(--clr-neutral-200);
       }
     }
     &--ellipsis {

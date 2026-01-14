@@ -2,10 +2,10 @@
 
 .container {
   &--form {
-    border: 0.2rem solid var(--clr-dark-cosmos-300);
+    border: 0.2rem solid var(--clr-neutral-1000);
     border-radius: .2rem;
     background-color: var(--clr-star-100);
-    box-shadow: 0 .3rem var(--clr-dark-cosmos-300);
+    box-shadow: 0 .3rem var(--clr-neutral-1000);
   }
 
   @include abs.mq(medium) {

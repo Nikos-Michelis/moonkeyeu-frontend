@@ -1,11 +1,10 @@
 @use "../../abstracts" as abs;
+@use "../../abstracts/variables" as *;
 
 .bookmark-card {
   position: relative;
-  border: 0.2rem solid var(--clr-dark-cosmos-300);
-  border-radius: 0.2rem;
-  box-shadow: 0 0.35rem 0 var(--clr-dark-cosmos-300);
-
+  @include abs.cursive_border();
+  box-shadow: $box-shadow-1;
   & h3 {
     @include abs.singleLine-ellipsis(15rem);
   }
@@ -27,6 +26,6 @@
     padding: 4px 6px;
     font-size: 12px;
     border-radius: 4px;
-    color: var(--clr-star-300);
+    color: var(--clr-neutral-300);
   }
 }

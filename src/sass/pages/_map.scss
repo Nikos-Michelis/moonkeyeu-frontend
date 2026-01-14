@@ -13,9 +13,9 @@
       padding: 0;
     }
     & a.leaflet-popup-close-button{
-      color: var(--clr-star-300);
+      color: var(--clr-neutral-300);
       &:hover{
-        color: var(--clr-dark-cosmos-300);
+        color: var(--clr-neutral-1000);
       }
     }
     & div.leaflet-popup-content {
@@ -47,7 +47,7 @@
     justify-content: center;
     align-content: center;
     & a {
-      color: var(--clr-dark-cosmos-300);
+      color: var(--clr-neutral-1000);
     }
   }
   &__launch-pad{

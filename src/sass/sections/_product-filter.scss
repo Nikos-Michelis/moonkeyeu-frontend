@@ -1,4 +1,5 @@
 @use "../abstracts/index" as abs;
+@use "../abstracts/variables" as *;
 
 .toolbar {
   &__container {
@@ -19,9 +20,9 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    background-color: var(--clr-star-200);
-    border-radius: 0.3rem;
-    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+    background-color: var(--clr-neutral-100);
+    @include abs.cursive_border($border-width: 0.12rem);
+    box-shadow: $box-shadow-2;
     z-index: 1;
     position: absolute;
     top: 23rem;
@@ -44,6 +45,7 @@
     font-size: 0.9rem;
     font-weight: bold;
     margin-inline: 0.5rem;
+    color: var(--clr-neutral-1000);
   }
 
   &__actions{

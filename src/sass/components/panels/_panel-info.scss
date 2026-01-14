@@ -48,7 +48,7 @@
     padding: 1rem 0;
 
     & a {
-      @include abs.font($font-size: var(--fs-500), $color: var(--clr-dark-cosmos-300));
+      @include abs.font($font-size: var(--fs-500), $color: var(--clr-neutral-1000));
     }
   }
 

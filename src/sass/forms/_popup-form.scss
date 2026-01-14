@@ -58,9 +58,9 @@ div.form-popup-container{
       width: 100%;
       text-align: center;
       box-sizing: inherit;
-      border-bottom: 2px solid var(--clr-dark-cosmos-300);
+      border-bottom: 2px solid var(--clr-neutral-1000);
       padding: 0 2rem 2rem 2rem;
-      color: var(--clr-dark-cosmos-300);
+      color: var(--clr-neutral-1000);
     }
     & input[type="checkbox"] {
       height: 20px;
@@ -83,7 +83,7 @@ div.form-popup-container{
     overflow-y: auto;
     div.form-box div.form-details{
       width: 45%;
-      border-right: 2px solid var(--clr-dark-cosmos-300);
+      border-right: 2px solid var(--clr-neutral-1000);
       border-bottom: none;
       padding: 2rem;
     }

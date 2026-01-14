@@ -1,7 +1,8 @@
 @use "../abstracts" as *;
 @use "../abstracts/colors" as *;
+@use "../abstracts/variables" as *;
 
-@each $color, $shade-map in $colors {
+@each $color, $shade-map in $active-theme {
   @each $shade, $value in $shade-map {
     .clr-#{$color}-#{$shade} {
       color: var(--clr-#{$color}-#{$shade});

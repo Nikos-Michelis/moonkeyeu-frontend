@@ -1,20 +1,20 @@
+@use "../../abstracts/index" as abs;
+
+
 .btn-goTop {
   position: fixed;
-  background: rgba(224, 218, 239, 0.8);
-  box-shadow: 2px, 2px, 5px var(--clr-dark-cosmos-300);
-  border: 0.15rem solid var(--clr-dark-cosmos-300);
-  width: 40px;
-  height: 40px;
-  border-radius: 25px;
+  background: var(--clr-primary-300);
+  width: 2.5rem;
+  height: 2.5rem;
+  @include abs.cursive_border($border-width: 0.15rem, $border-radius:1.5625rem);
   bottom: 5%;
   left: 89%;
   cursor: pointer;
   text-align: center;
-  line-height: 30px;
+  line-height: 1.875rem;
   z-index: 10;
    &__text{
-     color: var(--clr-dark-cosmos-300);
-     box-shadow: 2px, 2px, 5px var(--clr-dark-cosmos-300);
+     color: var(--clr-neutral-1000);
      &:hover {
        transform: scale(1.1);
      }
