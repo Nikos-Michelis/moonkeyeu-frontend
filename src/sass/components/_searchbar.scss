@@ -4,6 +4,8 @@
 .search {
   height: auto;
   width: 100%;
+  display: flex;
+  justify-content: center;
   @include abs.font($font-size: var(--fs-100));
   &__searchbar {
     box-sizing: inherit;
@@ -16,8 +18,9 @@
     background-color: var(--clr-neutral-100);
     outline: none;
     box-shadow: $box-shadow-1;
+    color: var(--clr-neutral-1000);
     &::placeholder {
-      color: var(--clr-neutral-1000);
+      color: inherit;
     }
     &--small{
       width: 250px;

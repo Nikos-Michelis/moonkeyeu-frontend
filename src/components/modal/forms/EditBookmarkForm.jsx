@@ -63,7 +63,7 @@ export function EditBookmarkForm() {
         <div className="form-popup-container bookmark-form-container">
             <Button
                 onClick={handleClose}
-                className="btn--transparent btn--close clr-dark-cosmos-300">
+                className="btn--transparent btn--close">
                 <FontAwesomeIcon icon={faXmark} />
             </Button>
             <div className="form-box small-form flex flex-column justify-center align-center">

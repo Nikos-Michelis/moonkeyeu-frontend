@@ -29,7 +29,7 @@ const spacecraft = ({ stage }) =>{
                 <FontAwesomeIcon icon={faShuttleSpace} />
                 <h2>Spacecraft</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="container flex flex-wrap justify-space-around align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__img-box margin-block-2">
                     <Img
@@ -41,7 +41,7 @@ const spacecraft = ({ stage }) =>{
                 </div>
                 <div className="panel panel--small">
                     <h3 className="panel__title">{checkValue(configuration.name)}</h3>
-                    <hr className="hr-75-sm bg-hr-600" />
+                    <hr className="hr-75-sm" />
                     <div className="panel__wrapper">
                         <div className="panel__container">
                             <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
@@ -66,7 +66,7 @@ const spacecraft = ({ stage }) =>{
                             </div>
                         </div>
                     </div>
-                    <hr className="hr-75-sm bg-hr-600" />
+                    <hr className="hr-75-sm" />
                     <div className="panel__wrapper">
                         <div className="panel__container">
                             <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
@@ -91,7 +91,7 @@ const spacecraft = ({ stage }) =>{
                             </div>
                         </div>
                     </div>
-                    <hr className="hr-75-sm bg-hr-600" />
+                    <hr className="hr-75-sm" />
                     <div className="flex justify-center flex-wrap padding-block-start-4">
                         {configuration?.id ? (
                             <div className="article__btn-info">

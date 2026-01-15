@@ -34,7 +34,7 @@ const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
 
     return(
         <section className="bookmarks-section">
-            <div className={`grid__container container container--light-overlay margin-block-end-15 rounded-md`} data-type="full-bleed">
+            <div className={`grid__container container margin-block-end-15 rounded-md`} data-type="full-bleed">
                 <div className="grid__layout">
                     <div className="flex justify-space-between margin-block-end-4">
                         { options?.showBackBtn &&

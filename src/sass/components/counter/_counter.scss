@@ -10,8 +10,8 @@
     top: 27.5rem;
     background-color: var(--clr-secondary-300);
     padding: 0.8rem;
-    @include abs.cursive_border($border-width: 0.125rem, $border-radius: 0.3rem);
     box-shadow: $box-shadow-2;
+    @include abs.cursive_border($border-width: 0.125rem, $border-radius: 0.3rem);
   }
 
   &__digit-box {
@@ -23,8 +23,7 @@
   &__number {
     display: flex;
     flex-wrap: nowrap;
-    color: var(--clr-neutral-1000);
-    font-size: 1rem;
+    @include abs.font($font-size: var(--fs-500), $color: var(--clr-neutral-1000), $font-variant: all-small-caps);
     & > span {
       text-align: center;
       flex-wrap: nowrap;

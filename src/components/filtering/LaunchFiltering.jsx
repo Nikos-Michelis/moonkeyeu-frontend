@@ -91,7 +91,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
         <div className="toolbar">
              <div className="container toolbar__container margin-block-4" data-type="full-bleed">
                     <div className="toolbar__tools">
-                        <div>
+                        <div className="margin-inline-end-2">
                             <Button
                                 ref={triggerRef}
                                 className="btn btn--primary btn--big fw-bold fs-small-100"
@@ -115,7 +115,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                             dropDownClassName="select__content--medium"
                         />
                     </div>
-                    <div className="search flex justify-center">
+                    <div className="search">
                         <input type="hidden" name="action" value="search" />
                         <input
                             className="search__searchbar"
@@ -235,7 +235,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                     </div>
                     <div className="toolbar__actions">
                         <Button
-                            className="btn--transparent rotation fs-small-200 clr-dark-cosmos-300"
+                            className="btn--transparent rotation fs-small-200"
                             onClick={ handleReset }>
                             <FontAwesomeIcon icon={faArrowsRotate} />
                         </Button>

@@ -8,7 +8,7 @@ const WeatherConcerns = ({weather_concerns}) => {
                 <FontAwesomeIcon icon={faChartLine} />
                 <h2>Weather</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="flex flex-column">
                 <div className="article__info-box">
                     <>

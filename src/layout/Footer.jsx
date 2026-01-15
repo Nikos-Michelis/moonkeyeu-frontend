@@ -41,7 +41,7 @@ const Footer = () => {
                         <LinkButton className="btn--transparent" to="https://nikos-michelis.github.io/">About</LinkButton> | <LinkButton to="/privacy" className="btn--transparent">Privacy Policy</LinkButton> | <LinkButton to="/contact" className="btn--transparent">Contact</LinkButton>
                     </span>
                 </div>
-                <hr className="hr-30-sm bg-hr-400"/>
+                <hr className="hr-30-sm"/>
                 <div className="footer__info-box--copyright">
                     <p>
                         &copy; <span>{currentYear}</span> Copyright

@@ -17,7 +17,7 @@ const Crew = ({crew}) =>{
                 <FontAwesomeIcon icon={faUserAstronaut} />
                 <h2>Crew</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container"
                      data-type="full-width"

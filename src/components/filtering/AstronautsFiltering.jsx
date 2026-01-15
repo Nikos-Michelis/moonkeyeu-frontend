@@ -81,7 +81,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
         <section className="toolbar">
             <div className="container toolbar__container margin-block-4" data-type="full-bleed">
                 <div className="toolbar__tools">
-                    <div>
+                    <div className="margin-inline-end-2">
                         <Button
                             ref={triggerRef}
                             className="btn btn--primary btn--big fw-bold fs-small-100"
@@ -187,7 +187,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                     </div>
                     <div className="toolbar__actions">
                         <Button
-                            className="btn--transparent fs-small-100 clr-dark-cosmos-300"
+                            className="btn--transparent fs-small-100"
                             onClick={ handleReset }>
                             <FontAwesomeIcon icon={faArrowsRotate} />
                         </Button>

@@ -76,6 +76,13 @@ $-clr-twitter-black-500: hsl(210, 11%, 9%);
 $-clr-twitter-black-600: hsl(210, 11%, 7%);
 $-clr-twitter-black-700: hsl(210, 11%, 5%);
 
+$-clr-overlay-100: rgb(50 50 50 / 15%);
+$-clr-overlay-200: rgb(50 50 50 / 30%);
+$-clr-overlay-300: rgb(50 50 50 / 45%);
+$-clr-overlay-400: rgb(50 50 50 / 60%);
+$-clr-overlay-500: rgb(50 50 50 / 75%);
+$-clr-overlay-600: rgb(50 50 50 / 90%);
+
 
 
 $light: (
@@ -134,19 +141,22 @@ $dark: (
   ),
   "nav": (
     "300": $-clr-secondary-300
-  )
+  ),
 );
 
-$constant-colors: (
+$clr-constants: (
         yt-red: #d50501
 );
 
 // contextual color tokens
 $clr-star-200: $-clr-star-200;
+$clr-secondary-300: $-clr-secondary-300;
 $clr-main-300: $-clr-main-300;
 $clr-yt-red-300: $-clr-yt-red-300;
 $clr-dark-cosmos-300: $-clr-dark-cosmos-300;
-
+$clr-warning-300: $-clr-warning-300;
+$clr-success-300: $-clr-success-300;
+$clr-sky-500: $-clr-sky-500;
 
 $color-neutral-000: var(--neutral-000);
 $color-neutral-100: var(--neutral-100);
@@ -180,6 +190,11 @@ $color-accent-700: var(--accent-700);
 $color-accent-800: var(--accent-800);
 $color-accent-900: var(--accent-900);
 
-
+$clr-overlay-100: $-clr-overlay-100;
+$clr-overlay-200: $-clr-overlay-200;
+$clr-overlay-300: $-clr-overlay-300;
+$clr-overlay-400: $-clr-overlay-400;
+$clr-overlay-500: $-clr-overlay-500;
+$clr-overlay-600: $-clr-overlay-600;
 
 

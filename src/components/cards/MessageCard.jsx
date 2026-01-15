@@ -67,7 +67,7 @@ const MessageCard = ({id, category, email, message, created_at}) => {
                     </div>
                     <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
                         <Button
-                            className="btn btn--primary bg-warning-200"
+                            className="btn btn--primary"
                             onClick={() =>
                                 openModal("deleteMessage", {
                                     title: "Delete Message - Are you sure?",

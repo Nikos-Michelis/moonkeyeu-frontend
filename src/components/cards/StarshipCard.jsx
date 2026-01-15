@@ -12,7 +12,7 @@ const StarshipCard = () => {
                         <h3 className="ff-accent">Starship</h3>
                     </div>
                         <article className="portrait-card margin-block-4">
-                            <div className="portrait-card__container portrait-card__container--small bg-dark-cosmos-300 flex flex-column">
+                            <div className="portrait-card__container portrait-card__container--small flex flex-column">
                                 <div className="starship-animation environment flex flex-column justify-center align-center">
                                     <div className="starship-container">
                                         <Img

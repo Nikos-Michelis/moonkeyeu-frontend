@@ -45,7 +45,7 @@ function NasaApodArticle(){
                 contentConfig={contentConfig}>
                 <section className="article">
                     <div className="container flex justify-center" data-type="wide" data-spacing="none">
-                        <div className="container container--light-overlay article__content flex flex-column align-center" data-type="fixed" data-spacing="none">
+                        <div className="container article__content flex flex-column align-center" data-type="fixed" data-spacing="none">
                             <div className="container flex justify-start padding-block-start-7 padding-block-end-2">
                                 <Button
                                     className="btn--transparent"
@@ -54,7 +54,7 @@ function NasaApodArticle(){
                                     <FontAwesomeIcon icon={faChevronLeft} /> Back
                                 </Button>
                             </div>
-                            <div className="container article__overview flex flex-column justify-center align-center bg-dark-cosmos-300" data-type="full-bleed">
+                            <div className="container article__overview flex flex-column justify-center align-center" data-type="full-bleed">
                                 <div className="article__image-box article__image-box--nasa-apod">
                                     <LinkButton to={nasaApod?.url} className="btn--transparent hover scale-small pos-absolute right-2 top-2" isExternal={true}>
                                         <FontAwesomeIcon icon={faExpand} />

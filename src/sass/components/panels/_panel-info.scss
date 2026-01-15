@@ -11,9 +11,7 @@
     border: none;
     height: 0.125rem;
     margin-block: 0.2rem;
-    &:not([class*='bg-']) {
-      background-color: var(--clr-hr-600);
-    }
+    background-color: var(--clr-neutral-1000);
   }
 
   &__wrapper {

@@ -24,7 +24,7 @@ const RocketConfig = ({ queryData,  pagination }) =>{
                 <FontAwesomeIcon icon={faGear} />
                 <h2>Rocket Configs</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container" data-spacing="none" data-type="full-width">
                     <div className="margin-block-5 margin-inline-4">

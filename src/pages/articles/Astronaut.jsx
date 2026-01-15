@@ -69,13 +69,13 @@ function Astronaut(){
                 contentConfig={contentConfig}>
                 <section className="article">
                     <div className="container flex justify-center" data-type="wide" data-spacing="none">
-                        <div className="container container--light-overlay article__content flex flex-column align-center" data-type="fixed" data-spacing="none">
+                        <div className="container article__content flex flex-column align-center" data-type="fixed" data-spacing="none">
                                 <div className="container flex justify-start padding-block-start-7 padding-block-end-2">
                                     <Button className="btn--transparent" onClick={() => window.history.back()}>
                                         <FontAwesomeIcon icon={faChevronLeft} /> Back
                                     </Button>
                                 </div>
-                                <div className="container article__overview flex flex-column justify-center align-center bg-dark-cosmos-300" data-type="full-bleed">
+                                <div className="container article__overview flex flex-column justify-center align-center" data-type="full-bleed">
                                     <div className="article__image-box">
                                         <Img
                                             src={data.images?.[0]?.image_url}
@@ -90,32 +90,32 @@ function Astronaut(){
                                             <h5 className="article__subtitle">{checkValue(agency?.name)}</h5>
                                         </div>
                                         <div className="panel">
-                                            <hr className="bg-star-300"/>
+                                            <hr/>
                                             <div className="panel__wrapper">
                                                 <div className="panel__container">
-                                                    <div className="panel__detail-box fs-small-200 clr-star-300 padding-block-2 padding-inline-1">
+                                                    <div className="panel__detail-box fs-small-200 padding-block-2 padding-inline-1">
                                                         <p className="panel__text">Nationality</p>
                                                         <p className="panel__text">
                                                             {checkValue(data.nationality?.length > 0 ? data.nationality[0]?.nationality_name : null)}
                                                         </p>
                                                     </div>
-                                                    <div className="panel__detail-box fs-small-200 clr-star-300 padding-block-2 padding-inline-1">
+                                                    <div className="panel__detail-box fs-small-200 padding-block-2 padding-inline-1">
                                                         <p className="panel__text">Date Of Birth</p>
                                                         <p className="panel__text">{checkValue(data?.date_of_birth)}</p>
                                                     </div>
                                                 </div>
                                                 <div className="panel__container">
-                                                    <div className="panel__detail-box fs-small-200 clr-star-300 padding-block-2 padding-inline-1">
+                                                    <div className="panel__detail-box fs-small-200 padding-block-2 padding-inline-1">
                                                         <p className="panel__text">Status</p>
                                                         <p className="panel__text">{checkValue(data?.status)}</p>
                                                     </div>
-                                                    <div className="panel__detail-box fs-small-200 clr-star-300 padding-block-2 padding-inline-1">
+                                                    <div className="panel__detail-box fs-small-200 padding-block-2 padding-inline-1">
                                                         <p className="panel__text">type</p>
                                                         <p className="panel__text">{checkValue(agency?.type)}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr className="bg-star-300"/>
+                                            <hr/>
                                         </div>
                                         <div className="flex justify-space-evenly align-center padding-block-2">
                                             { instagram ? (
@@ -225,7 +225,7 @@ function Astronaut(){
                                             <FontAwesomeIcon icon={faBook} />
                                             <h2>Astronaut Biography</h2>
                                         </div>
-                                        <hr className="hr-100-sm bg-hr-600" />
+                                        <hr className="hr-100-sm" />
                                         <div className="article__info-box">
                                             <p>{data?.bio}</p>
                                         </div>

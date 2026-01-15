@@ -69,13 +69,13 @@ function SpacecraftConfig(){
                 contentConfig={contentConfig}>
                 <section className="article">
                     <div className="container flex justify-center" data-type="wide" data-spacing="none">
-                        <div className="container container--light-overlay article__content flex flex-column align-center" data-type="fixed" data-spacing="none">
+                        <div className="container article__content flex flex-column align-center" data-type="fixed" data-spacing="none">
                             <div className="container flex justify-start padding-block-start-7 padding-block-end-2">
                                 <Button className="btn--transparent" onClick={() => window.history.back()}>
                                     <FontAwesomeIcon icon={faChevronLeft} /> Back
                                 </Button>
                             </div>
-                            <div className="container article__overview flex flex-column justify-center align-center bg-dark-cosmos-300" data-type="full-bleed">
+                            <div className="container article__overview flex flex-column justify-center align-center" data-type="full-bleed">
                                 <div className="article__image-box">
                                     <Img
                                         src={data.images?.[0]?.image_url}
@@ -88,7 +88,7 @@ function SpacecraftConfig(){
                                     <div className="panel">
                                         <h3 className="panel__title clr-star-300">{checkValue(data?.name)}</h3>
                                         <h5 className="panel__subtitle clr-star-300">{checkValue(data?.agency?.name)}</h5>
-                                        <hr className="bg-star-300"/>
+                                        <hr/>
                                         <div className="panel__wrapper">
                                             <div className="panel__container">
                                                 <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
@@ -111,7 +111,7 @@ function SpacecraftConfig(){
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr className="bg-star-300"/>
+                                        <hr/>
                                         <div className="panel__wrapper">
                                             <div className="panel__container">
                                                 <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
@@ -134,7 +134,7 @@ function SpacecraftConfig(){
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr className="bg-star-300"/>
+                                        <hr/>
                                     </div>
                                     <div className="flex justify-space-evenly align-center padding-block-2">
                                         { data?.info_url ? (

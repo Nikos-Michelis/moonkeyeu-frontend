@@ -1,20 +1,20 @@
 @use "../../abstracts/index" as abs;
 @use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
 
 .portrait-card {
   &--vehicle {
-    min-height: 400px;
+    min-height: 30rem;
     background-position: center center;
     background-size: cover;
 
     &__container {
-      background-color: rgb(50 50 50 / 83%);
+      background-color: $clr-overlay-400;
       width: 100%;
       text-align: center;
-      color: var(--clr-neutral-300);
-      font-size: 1rem;
-      @include abs.cursive_border();
       box-shadow: $box-shadow-1;
+      @include abs.font($font-size: var(--fs-300), $color: $clr-secondary-300);
+      @include abs.cursive_border();
     }
   }
 

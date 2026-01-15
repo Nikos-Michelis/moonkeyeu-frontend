@@ -79,7 +79,7 @@ const SpacecraftCard = (
                                 <div className="landscape-card__detail-box landscape-card--ellipsis">
                                     <p className="capability">{capability.endsWith('.') ? capability : capability + '.'} {history}</p>
                                 </div>
-                                <hr className="hr-100-sm bg-hr-600"/>
+                                <hr className="hr-100-sm"/>
                             </div>
                         </>
                     }

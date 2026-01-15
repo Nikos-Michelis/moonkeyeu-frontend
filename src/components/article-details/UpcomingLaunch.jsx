@@ -16,7 +16,7 @@ const UpcomingLaunch = ({launch}) => {
                 <FontAwesomeIcon icon={faStopwatch} />
                 <h2>Upcoming Launch</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="container" data-spacing="none" data-type="full-width">
                 <div className="margin-block-8 margin-inline-4">
                     <LaunchCard

@@ -1,5 +1,4 @@
-@use "../abstracts/index" as abs;
-@use "../abstracts/variables" as *;
+@use "../abstracts/index" as *;
 
 .toolbar {
   &__container {
@@ -21,7 +20,7 @@
     display: flex;
     flex-direction: column;
     background-color: var(--clr-neutral-100);
-    @include abs.cursive_border($border-width: 0.12rem);
+    @include cursive_border($border-width: 0.12rem);
     box-shadow: $box-shadow-2;
     z-index: 1;
     position: absolute;
@@ -42,10 +41,8 @@
   }
 
   &__title {
-    font-size: 0.9rem;
-    font-weight: bold;
     margin-inline: 0.5rem;
-    color: var(--clr-neutral-1000);
+    @include font($font-size: var(--fs-200), $font-weight: bold);
   }
 
   &__actions{
@@ -53,7 +50,7 @@
     width: 100%;
   }
 
-  @include abs.mq(medium) {
+  @include mq(medium) {
     &__container {
       justify-content: space-between;
     }

@@ -8,7 +8,7 @@ const Trajectory = ({flightclub_url}) => {
                 <FontAwesomeIcon icon={faChartLine} />
                 <h2>Telemetry</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
                 <div className="article__info-box">
                     <>
                         {flightclub_url !== null ?

@@ -1,4 +1,5 @@
 @use "../abstracts" as *;
+@use "../abstracts/index" as abs;
 
 div.blur-bg-overlay {
   position: fixed;
@@ -47,12 +48,14 @@ div.form-popup-container{
   width: 100%;
   margin: 0 auto;
   padding: 2rem 0;
-  background: #f0f1f2;
+  background: var(--clr-primary-300);
   box-sizing: inherit;
-  border-radius: 0.3rem;
   max-height: calc(100% - 100px);
   overflow-y: auto;
   height: auto;
+  color: var(--clr-neutral-1000);
+  box-shadow: $box-shadow-1;
+  @include abs.cursive_border();
   & div.form-box{
     & .form-details{
       width: 100%;
@@ -60,7 +63,6 @@ div.form-popup-container{
       box-sizing: inherit;
       border-bottom: 2px solid var(--clr-neutral-1000);
       padding: 0 2rem 2rem 2rem;
-      color: var(--clr-neutral-1000);
     }
     & input[type="checkbox"] {
       height: 20px;
@@ -76,6 +78,7 @@ div.form-popup-container{
     }
   }
 }
+
 @media screen and (min-width: 761px) {
   div.form-popup-container {
     max-width: 920px;

@@ -1,4 +1,4 @@
-@use "../abstracts/index" as abs;
+@use "../abstracts/index" as *;
 
 .map {
   &__container {
@@ -39,7 +39,7 @@
     text-align: center;
   }
   &__title{
-    font-size: 0.925rem;
+    font-size: var(--fs-200);
     margin-block-end: 0.25rem;
   }
   &__actions {
@@ -54,9 +54,8 @@
     background: rgba(255, 255, 255, 0.8);
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
-    font-size: 0.6875rem;
-    font-weight: 700;
     z-index: 1000;
+    @include font($font-size: 0.6875rem, $font-weight: 700);
     & span{
       margin: 0 0.2rem;
     }

@@ -9,7 +9,7 @@ const Dropdown = ({status, menus, className, style }) => {
     };
 
     return (
-        <div className={`${className} bg-star-100 padding-4 rounded-md`} style={{ ...style }} ref={ dropdownRef }>
+        <div className={`${className} padding-4 rounded-md`} style={{ ...style }} ref={ dropdownRef }>
             {menus.map((menu) => (
                 <div className="container" data-spacing="none" key={menu.name}>
                     {menu.items.map((item, index) => (

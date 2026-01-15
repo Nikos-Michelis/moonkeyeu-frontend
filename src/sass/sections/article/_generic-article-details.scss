@@ -83,6 +83,7 @@
     max-width: 950px;
     line-height: 1.5;
     @include abs.font($font-size: inherit, $color: var(--clr-neutral-1000));
+    margin-block: 2rem;
   }
 
   & section {

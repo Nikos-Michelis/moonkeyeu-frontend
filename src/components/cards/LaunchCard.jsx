@@ -144,7 +144,7 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                             </div>
                         }
                         { zonedDateTime > Date.now() && (
-                            <CountdownTimer net={zonedDateTime} timerStyle="margin-block-start-3" />
+                            <CountdownTimer net={zonedDateTime} timerStyle="margin-block-3" />
                         ) }
                     </div>
                     <div className="launch-card__actions flex flex-wrap justify-center padding-block-2" data-type="narrow">

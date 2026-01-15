@@ -1,27 +1,25 @@
-@use "../abstracts/index" as abs;
+@use "../abstracts/index" as *;
 
 .profile, .dashboard {
   &__user-icon {
     display: flex;
-    width: 100%;
-    min-height: 10rem;
     justify-content: center;
     align-items: center;
-    font-size: 6rem;
-
+    width: 100%;
+    min-height: 10rem;
+    font-size: var(--fs-800);
     svg {
       color: var(--clr-neutral-1000);
-      border: 0.2rem solid var(--clr-neutral-1000);
-      border-radius: 5rem;
-      padding: 2rem;
       background-color: var(--clr-secondary-300);
+      padding: 2rem;
+      @include cursive_border($border-width: 0.2rem, $border-radius: 5rem);
     }
   }
   & .btn--big-hg {
     margin: 0.5rem;
   }
 
-  @include abs.mq(medium) {
+  @include mq(medium) {
     .btn--big-hg {
       width: 45%;
     }

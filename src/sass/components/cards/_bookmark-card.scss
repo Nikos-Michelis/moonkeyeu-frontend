@@ -1,12 +1,11 @@
-@use "../../abstracts" as abs;
-@use "../../abstracts/variables" as *;
+@use "../../abstracts" as *;
 
 .bookmark-card {
   position: relative;
-  @include abs.cursive_border();
   box-shadow: $box-shadow-1;
+  @include cursive_border();
   & h3 {
-    @include abs.singleLine-ellipsis(15rem);
+    @include singleLine-ellipsis(15rem);
   }
   &__thumbnail {
     width: 100%;
@@ -24,8 +23,7 @@
     right: 5px;
     background: rgba(0, 0, 0, 0.7);
     padding: 4px 6px;
-    font-size: 12px;
+    font-size: var(--fs-200);
     border-radius: 4px;
-    color: var(--clr-neutral-300);
   }
 }

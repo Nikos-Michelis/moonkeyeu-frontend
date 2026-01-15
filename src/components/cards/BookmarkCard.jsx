@@ -61,7 +61,7 @@ const BookmarkCard = ({ id, bookmark, launches }) => {
     };
 
     return (
-        <article ref={cardRef} className="bookmark-card container flex flex-column bg-hr-600 rounded-md" data-type="full-width" data-overflow="visible">
+        <article ref={cardRef} className="bookmark-card container flex flex-column rounded-md" data-type="full-width" data-overflow="visible">
             <div className="container" data-spacing="none">
                 <Img
                     src={launches?.[0]?.image?.image_url}

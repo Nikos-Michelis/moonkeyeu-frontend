@@ -4,18 +4,16 @@
 .select {
   &__btn {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    justify-content: space-between;
     background-color: var(--clr-neutral-300);
-    font-size: 0.8rem;
-    font-weight: 700;
     min-width: 0.625rem;
     height: 1.3125rem;
-    color: var(--clr-neutral-1000);
     user-select: none;
-    @include abs.cursive_border($border-width: 0.12rem);
     box-shadow: $box-shadow-2;
+    @include abs.font($font-size: var(--fs-100), $font-weight: 700, $color: var(--clr-neutral-1000));
+    @include abs.cursive_border($border-width: 0.12rem);
     &:not(.select__btn--small):not(.select__btn--medium):not(.select__btn--large):not(.select__btn--yt-video) {
       width: 12rem;
       margin-inline: 0.2rem;
@@ -23,7 +21,7 @@
 
     &:not(.select__btn--yt-video){
       max-width: 15rem;
-      margin-inline: 0.6rem;
+      margin-inline: 0.2rem;
       padding: 1rem;
     }
 
@@ -35,7 +33,7 @@
 
     &--yt-video {
       width: 100%;
-      color: var(--clr-neutral-300);
+      color: var(--clr-neutral-1000);
       background-color: var(--clr-yt-red);
       padding: 2rem 1rem;
     }
@@ -50,7 +48,7 @@
     background-color: var(--clr-primary-100);
     @include abs.cursive_border($border-width: 0.13rem, $border-radius: 0.2rem);
     width: 13rem;
-    color: var(--clr-neutral-1000);
+    //color: var(--clr-neutral-1000);
     z-index: 1;
 
     &:not(.select__content--full-width){
@@ -77,29 +75,28 @@
   &__search {
     position: sticky;
     top: 0;
-    background-color: var(--clr-primary-200);
     z-index: 1;
     padding: 0.5rem;
+    background-color: var(--clr-primary-200);
 
     & svg {
+      position: absolute;
       top: 50%;
       left: 15px;
-      color: var(--clr-neutral-1000);
-      font-size: 1rem;
       pointer-events: none;
       transform: translateY(-50%);
-      position: absolute;
+      @include abs.font($font-size: var(--fs-300), $color: var(--clr-neutral-1000));
     }
 
     & input {
       height: 40px;
       width: 100%;
       outline: none;
-      font-size: 1rem;
       padding: 0 20px 0 30px;
-      @include abs.cursive_border($border-width: 0.1rem, $border-radius: 0.125rem);
       background-color: var(--clr-neutral-100);
-      color: var(--clr-neutral-1000);
+      @include abs.cursive_border($border-width: 0.1rem, $border-radius: 0.125rem);
+      @include abs.font($font-size: var(--fs-300), $color: var(--clr-neutral-1000));
+
       &:focus {
         border: 0.15rem solid var(--clr-neutral-1000);
       }
@@ -127,9 +124,7 @@
       cursor: pointer;
       height: 50px;
       padding: 0 0.8125rem;
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--clr-neutral-1000);
+      @include abs.font($font-size: var(--fs-100), $font-weight: 600, $color: var(--clr-neutral-1000));
 
       &:hover {
         border-radius: 5px;

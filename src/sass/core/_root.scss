@@ -10,7 +10,7 @@
     }
   }
 
-  @each $name, $value in $constant-colors {
+  @each $name, $value in $clr-constants {
     --clr-#{$name}: #{$value};
   }
 

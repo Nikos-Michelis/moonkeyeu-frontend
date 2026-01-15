@@ -108,7 +108,7 @@ function MembersReport() {
                     description="Manage and view all registered members from your dashboard."
                 />
                 <section className="members-section">
-                    <div className="container container--light-overlay margin-block-end-13 padding-5 rounded-sm" data-type="wide">
+                    <div className="container margin-block-end-13 padding-5 rounded-sm" data-type="wide">
                         {!(queryData.isPending || queryData.isFetching) &&
                             <div className="flex justify-start margin-block-4">
                                 <Button className="btn--transparent" onClick={() => window.history.back()}>

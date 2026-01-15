@@ -41,7 +41,7 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                             <div className="landscape-card__detail-box landscape-card--ellipsis">
                                 <p>{description}</p>
                             </div>
-                            <hr className="hr-100-sm bg-hr-600"/>
+                            <hr className="hr-100-sm"/>
                         </>
                     }
                     {isDetailed &&

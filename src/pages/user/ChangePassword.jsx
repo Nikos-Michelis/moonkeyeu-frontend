@@ -48,7 +48,7 @@ const ChangePassword = () =>{
             <ScrollToTop behavior="auto" />
             <section className="reset-password-section">
                 <div className="container flex justify-center" data-height="full" data-type="medium" data-spacing="none">
-                    <div className="container container--light-overlay flex flex-column align-center padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
+                    <div className="container flex flex-column align-center padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
                         <div className="container flex justify-start padding-block-end-4">
                             <Button className="btn--transparent" onClick={() => window.history.back()}>
                                 <FontAwesomeIcon icon={faChevronLeft} /> Back

@@ -144,7 +144,7 @@ export function AddBookmarkForm() {
         <div className="form-popup-container bookmark-form-container">
             <Button
                 onClick={handleClose}
-                className="btn--transparent btn--close clr-dark-cosmos-300"
+                className="btn--transparent btn--close"
             >
                 <FontAwesomeIcon icon={faXmark} className="fs-small-500"/>
             </Button>
@@ -173,8 +173,8 @@ export function AddBookmarkForm() {
                                         onChange={handleBookmarkChange}
                                         disabled={addToBookmarkMutation.isPending || removeLaunchMutation.isPending}
                                     />
-                                    <p className="margin-inline-8 clr-dark-cosmos-300 fw-regular ellipsis-single-md fs-small-200">{bookmark?.bookmark}</p>
-                                    <Button className="btn btn--transparent clr-dark-cosmos-300" onClick={() => handleOnNavigate(`bookmarks/${bookmark.bookmark}`)}>
+                                    <p className="margin-inline-8 fw-regular ellipsis-single-md fs-small-200">{bookmark?.bookmark}</p>
+                                    <Button className="btn btn--transparent" onClick={() => handleOnNavigate(`bookmarks/${bookmark.bookmark}`)}>
                                         <FontAwesomeIcon icon={faEye} />
                                     </Button>
                                 </div>
@@ -183,7 +183,7 @@ export function AddBookmarkForm() {
                 </div>
                 <div className="flex flex-wrap justify-center margin-block-4">
                     <Button onClick={() => setToggle(!toggle)}
-                            className="btn--transparent btn--big--transparent clr-dark-cosmos-300">
+                            className="btn--transparent btn--big--transparent">
                         {toggle ? (
                             <FontAwesomeIcon icon={faAngleUp} />
                         ) : (

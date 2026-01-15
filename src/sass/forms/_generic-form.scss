@@ -1,4 +1,6 @@
 @use "../abstracts" as *;
+@use "../abstracts/index" as abs;
+@use "../abstracts/variables" as *;
 
 div.form-content {
   width: 100%;
@@ -8,7 +10,7 @@ div.form-content {
   & h2 {
     text-align: center;
     margin-bottom: 1.8rem;
-    font-size: 1.1rem;
+    font-size: var(--fs-400);
   }
   & div.input-field {
     position: relative;
@@ -22,19 +24,16 @@ div.form-content {
       height: 3.7rem;
       width: 100%;
       outline: none;
-      border: 1px solid #ccc;
-      border-radius: 3px;
+      box-shadow: $box-shadow-2;
       font-family: inherit;
       background: none;
       resize: none;
-      &:focus {
-        border: 1px solid var(--clr-dark-cosmos-100);
-        transition: all 0.12s;
-      }
+      @include abs.cursive_border($border-width: 0.15rem);
       &.input-error {
-        border: 1px solid var(--clr-warning-300);
+        @include abs.cursive_border($color: $clr-warning-300);
+        box-shadow: $box-shadow-warning-1;
         &:focus {
-          border: 1px solid var(--clr-warning-300);
+          @include abs.cursive_border($color: $clr-warning-300);
         }
       }
     }
@@ -49,21 +48,20 @@ div.form-content {
         transition: all 0.15s;
         padding: 0 0.25rem;
         pointer-events: none;
-        color: #aaa;
       }
 
       &.active label {
-        font-size: 12px;
-        color: var(--clr-neutral-1000);
-        background-color: #f0f1f2;
+        font-size: var(--fs-100);
+        color: var(--clr-neutral-300);
+        background-color: var(--clr-neutral-1000);
         transform: translateY(-200%);
       }
     }
     & p.error-message{
       position: relative;
       transform: translateY(5px);
-      font-size: 0.85rem;
-      color: var(--clr-warning-300);
+      font-size: var(--fs-100);
+      color: $clr-warning-300;
     }
     & span.visibility {
       position: absolute;

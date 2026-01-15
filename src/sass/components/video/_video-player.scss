@@ -1,3 +1,5 @@
+@use "../../abstracts/index" as *;
+
 .youtube-embed{
   position: relative;
   width: 100%;
@@ -13,7 +15,5 @@
     top: 0;
     left: 0;
     display: block;
-    background: var(--clr-dark-cosmos-400);
-    border-radius: 0.7rem;
   }
 }

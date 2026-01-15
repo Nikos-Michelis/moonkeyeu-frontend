@@ -138,7 +138,7 @@ const OpenStreetMap = (
                                             <h3 className="map__title fs-small-200">{location?.name}</h3>
                                             <span className="map__subtitle fs-small-100">{location.location?.name}</span>
                                         </div>
-                                        <hr className="hr-60-xs bg-hr-400"/>
+                                        <hr className="hr-60-xs"/>
                                         <div className="map__actions">
                                             {location.id ? (
                                                 <div className="map__info">

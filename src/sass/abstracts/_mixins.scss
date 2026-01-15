@@ -23,7 +23,7 @@
   line-height: $heading-line-height;
 }
 
-@mixin cursive_border($border-width: 0.2rem, $border-radius: 0.1rem, $color: var(--clr-neutral-1000)) {
+@mixin cursive_border($border-width: 0.2rem, $border-radius: 0.2rem, $color: var(--clr-neutral-1000)) {
   border-radius: $border-radius;
   border: $border-width $color solid;
 }

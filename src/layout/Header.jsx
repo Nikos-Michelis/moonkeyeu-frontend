@@ -82,7 +82,7 @@ const Header = () => {
                                 )
                             ) : (
                                 <div>
-                                    <div className="skeleton skeleton--circle bg-dark-cosmos-300"></div>
+                                    <div className="skeleton skeleton--circle"></div>
                                 </div>
                             )}
 
@@ -103,7 +103,7 @@ const Header = () => {
                                 )
                             ) : (
                                 <div>
-                                    <div className="skeleton skeleton--circle bg-dark-cosmos-300"></div>
+                                    <div className="skeleton skeleton--circle"></div>
                                 </div>
                             )}
                         </div>

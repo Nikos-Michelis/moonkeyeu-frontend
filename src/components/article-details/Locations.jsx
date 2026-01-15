@@ -15,7 +15,7 @@ const Location = ({pad}) => {
                 <FontAwesomeIcon icon={faLocationDot} />
                 <h2>Location</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__info-box article__info-box--col">
                     <h3>{pad.name}</h3>

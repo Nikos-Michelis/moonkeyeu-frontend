@@ -13,7 +13,7 @@ const Agency = ({ launchProvider }) =>{
                 <FontAwesomeIcon icon={faBuilding} />
                 <h2>Agency</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__img-box margin-block-start-5">
                     <Img
@@ -25,8 +25,8 @@ const Agency = ({ launchProvider }) =>{
                     <div className="article__badge flex flex-wrap">
                         {launchProvider?.administrator? <span className="badge--pill">President: {launchProvider?.administrator}</span> : null}
                         <div className="badge--pill">Founded: {launchProvider?.founding_year}</div>
-                        <div className="badge--pill bg-success-400">Successes: {launchProvider?.successful_launches}</div>
-                        <div className="badge--pill bg-warning-200">Failures: {launchProvider?.failed_launches}</div>
+                        <div className="badge--pill badge--success">Successes: {launchProvider?.successful_launches}</div>
+                        <div className="badge--pill badge--warning">Failures: {launchProvider?.failed_launches}</div>
                         <div className="badge--pill">Pending: {launchProvider?.pending_launches}</div>
                     </div>
                 </div>

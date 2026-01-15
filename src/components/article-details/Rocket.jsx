@@ -21,7 +21,7 @@ const Rocket = (
                 <FontAwesomeIcon icon={faRocket} />
                 <h2>Rocket</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__img-box margin-block-start-5">
                     <Img
@@ -35,9 +35,9 @@ const Rocket = (
                         <div className="badge--pill">Maiden Flight: {checkValue(maiden_flight)}</div>
                         { active
                             ?
-                            <div className="badge--pill bg-success-400">Active</div>
+                            <div className="badge--pill badge--success">Active</div>
                             :
-                            <div className="badge--pill bg-warning-200">Retired</div>}
+                            <div className="badge--pill badge--warning">Retired</div>}
                     </div>
                 </div>
                 <div className="article__info-box article__info-box--col">
@@ -59,33 +59,33 @@ const Rocket = (
                                     <p>Min Stage</p>
                                     <span>{checkValue(min_stage)}</span>
                                 </div>
-                                <hr className="hr-75-sm bg-hr-600" />
+                                <hr className="hr-75-sm" />
                                 <div className="info-box-col">
                                     <p>Max Stage</p>
                                     <span>{checkValue(max_stage)}</span>
                                 </div>
                             </>}
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Length</p>
                             <span>{checkValue(length, "m")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Diameter</p>
                             <span>{checkValue(diameter, "m")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Launch Mass</p>
                             <span>{checkValue(launch_mass, "Tons")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Thrust</p>
                             <span>{checkValue(to_thrust, "kN")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                     </div>
                     <div className="info-col container fs-small-200 text-center padding-2 margin-block-10">
                         <div>
@@ -99,22 +99,22 @@ const Rocket = (
                             <p>Name</p>
                             <span>{checkValue(name)}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Variant</p>
                             <span>{checkValue(variant)}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Alias</p>
                             <span>{checkValue(alias)}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Full Name</p>
                             <span>{checkValue(fullname)}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                     </div>
                     <div className="info-col container fs-small-200 text-center padding-2 margin-block-10">
                         <div>
@@ -128,27 +128,27 @@ const Rocket = (
                             <p>Launch Cost</p>
                             <span>{formattedNumber}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Low Earth Orbit</p>
                             <span>{checkValue(leo_capacity, "kg")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Geostationary Transfer Orbit</p>
                             <span>{checkValue(gto_capacity, "kg")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Direct Geostationary</p>
                             <span>{checkValue(geo_capacity, "kg")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Sun-Synchronous Capacity</p>
                             <span>{checkValue(sso_capacity, "kg")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                     </div>
                 </div>
             </div>

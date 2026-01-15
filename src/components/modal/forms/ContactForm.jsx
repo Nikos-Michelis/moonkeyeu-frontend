@@ -59,7 +59,7 @@ const ContactForm = () => {
         <>
             <section className="contact-section">
                 <div className="container flex justify-center" data-type="medium" data-spacing="none">
-                    <div className="container container--light-overlay flex flex-column align-center padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
+                    <div className="container flex flex-column align-center padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
                         <div className="container flex justify-start padding-block-end-4">
                             <Button
                                 className="btn--transparent"
@@ -71,7 +71,7 @@ const ContactForm = () => {
                             <div className="flex justify-center">
                                 <h2 className="heading-2"><FontAwesomeIcon icon={faBug}/> Report</h2>
                             </div>
-                            <hr className="bg-hr-600"/>
+                            <hr/>
                             <p className="clr-star-300 fs-small-300">
                                 To help us organize bug reports more effectively, please create a new issue
                                 <LinkButton
@@ -79,7 +79,7 @@ const ContactForm = () => {
                                     isExternal={true}> here. </LinkButton>
                                 Thank you for your feedback — we're striving to make the platform better!
                             </p>
-                            <hr className="bg-hr-600"/>
+                            <hr/>
                             <p className="clr-star-300 margin-block-start-2 fs-small-300 text-center">You can email us at moonkeyeu@gmail.com</p>
                         </div>
                         <div className="container container--form margin-block-end-12 margin-inline-5" data-type="narrow">

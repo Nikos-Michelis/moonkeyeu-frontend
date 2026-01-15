@@ -49,7 +49,7 @@ export function PromptModal({ modalId }) {
                 </Button>
                 {hasConfirmBtn &&
                     <Button
-                        className="btn btn--primary bg-warning-200"
+                        className="btn btn--primary"
                         onClick={confirmFn}
                         disabled={modalStatus?.[modalId]?.isPending}
                     >

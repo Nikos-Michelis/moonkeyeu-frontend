@@ -13,7 +13,7 @@
   }
 }
 
-@each $name in $constant-colors {
+@each $name in $clr-constants {
   .clr-#{$name} {
     color: var(--clr-#{$name});
   }

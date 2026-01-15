@@ -17,7 +17,7 @@ const Agencies = ({ agencies }) =>{
                 <FontAwesomeIcon icon={faBuilding} />
                 <h2>Related Agencies</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container"
                      data-type="full-width"

@@ -14,7 +14,7 @@ const Mission = ({mission, launchCost, missionPatches}) => {
                 <FontAwesomeIcon icon={faTimeline} />
                 <h2>Mission</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__info-box article__info-box--col">
                     <h3>{mission.name}</h3>
