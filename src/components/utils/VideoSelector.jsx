@@ -47,7 +47,7 @@ const YoutubeDropdown = ({options, setVideo, placeholder, defaultValue}) => {
                 <FontAwesomeIcon icon={isOpen ? faAngleUp : faAngleDown} />
             </div>
             {isOpen && (
-                <div className="select__content select__content--full-width">
+                <div className="select__content select__content--full-width padding-4">
                     <div className="select__options">
                         {options.length > 0 ? (
                             options.map((option) => (

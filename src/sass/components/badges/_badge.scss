@@ -11,7 +11,7 @@
     padding: 0.1rem 0.4rem;
     box-shadow: $box-shadow-3;
     @include abs.cursive_border($border-width: 0.0625rem);
-    @include abs.font($font-size: var(--fs-100), $font-weight: 500, $color: var(--clr-neutral-1000));
+    @include abs.font($font-size: var(--fs-medium-100), $font-weight: 500, $color: var(--neutral-1000));
   }
 
   &--primary {

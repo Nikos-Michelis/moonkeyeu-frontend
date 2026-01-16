@@ -19,7 +19,7 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    background-color: var(--clr-neutral-100);
+    background-color: var(--neutral-100);
     @include cursive_border($border-width: 0.12rem);
     box-shadow: $box-shadow-2;
     z-index: 1;
@@ -42,7 +42,7 @@
 
   &__title {
     margin-inline: 0.5rem;
-    @include font($font-size: var(--fs-200), $font-weight: bold);
+    @include font($font-size: var(--fs-small-200), $font-weight: bold);
   }
 
   &__actions{

@@ -17,7 +17,7 @@ const AstronautsSection = ({astronauts, isPending, isFetching, isError, paginati
     }
     return (
         <section className="astronauts-section">
-            <div className="grid__container container margin-block-end-15 rounded-md" data-type="full-bleed">
+            <div className="grid__container container margin-block-end-15" data-overflow="visible" data-type="full-bleed">
                 <div className="grid__layout">
                     <div className={`${items.length > 0 || (isFetching || isPending) ? "grid__portrait" : ""}`}>
                         <SkeletonLoader
@@ -30,7 +30,7 @@ const AstronautsSection = ({astronauts, isPending, isFetching, isError, paginati
                                     <AstronautCard key={astronaut?.id} {...astronaut} />
                                  ))
                              ) : (
-                                 <div className="padding-8 text-center clr-star-300">
+                                 <div className="padding-8 text-center clr-neutral-1000">
                                      <h2>{emptyList.heading}</h2>
                                      <p>{emptyList.message}</p>
                                  </div>

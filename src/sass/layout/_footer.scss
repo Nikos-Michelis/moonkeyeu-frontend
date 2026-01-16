@@ -6,13 +6,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--clr-nav-300);
+  background-color: var(--nav-300);
   padding: 1rem;
   overflow: hidden;
   z-index: 1;
 
   &__social_box {
-    @include abs.font($font-size: var(--fs-600));
+    @include abs.font($font-size: var(--fs-medium-500));
 
     & > a {
       text-decoration: none;
@@ -43,15 +43,15 @@
     align-items: center;
 
     & a {
-      @include abs.font($font-size: var(--fs-200), $font-weight: 900, $color: $clr-dark-cosmos-300);
+      @include abs.font($font-size: var(--fs-small-200), $font-weight: 900, $color: $clr-dark-cosmos-300);
     }
 
     & p {
-      @include abs.font($font-size: var(--fs-300), $font-weight: 400, $color: $clr-dark-cosmos-300);
+      @include abs.font($font-size: var(--fs-medium-300), $font-weight: 400, $color: $clr-dark-cosmos-300);
     }
 
     &--copyright {
-      @include abs.font($font-size: var(--fs-300), $font-weight: 500, $color: $clr-dark-cosmos-300);
+      @include abs.font($font-size: var(--fs-medium-300), $font-weight: 500, $color: $clr-dark-cosmos-300);
     }
   }
 

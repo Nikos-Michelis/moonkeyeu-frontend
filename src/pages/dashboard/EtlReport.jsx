@@ -70,7 +70,7 @@ function EtlReport() {
                                 }, "prompt")
                             }
                         >
-                            <FontAwesomeIcon icon={faCircleExclamation} style={{ color: "var(--clr-warning-300)" }} />
+                            <FontAwesomeIcon icon={faCircleExclamation} style={{ color: "var(--warning-300)" }} />
                         </Button>
                     ) : (
                         "-"

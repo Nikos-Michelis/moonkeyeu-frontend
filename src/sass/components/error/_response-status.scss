@@ -1,28 +1,28 @@
 @use "../../abstracts/index" as abs;
 
 .error {
-  color: var(--clr-secondary-300);
+  color: var(--secondary-300);
   &__code{
-    @include abs.font($font-size: calc(var(--fs-1000) * 2.5), $font-weight: bold);
+    @include abs.font($font-size: calc(var(--fs-medium-1000) * 2.5), $font-weight: bold);
   }
   &__message {
-    @include abs.font($font-size: calc(var(--fs-500) * 1), $font-weight: bold);
+    @include abs.font($font-size: calc(var(--fs-medium-500) * 1), $font-weight: bold);
   }
   & svg {
-    @include abs.font($font-size: calc(var(--fs-1000) * 2), $font-weight: bold);
+    @include abs.font($font-size: calc(var(--fs-medium-1000) * 2), $font-weight: bold);
   }
   &__heading {
-    @include abs.font($font-size: calc(var(--fs-1000) * 1), $font-weight: bold);
+    @include abs.font($font-size: calc(var(--fs-medium-1000) * 1), $font-weight: bold);
   }
 }
 
 @include abs.mq(medium){
   .error {
     &__code {
-      @include abs.font($font-size: calc(var(--fs-1000) * 4), $font-weight: bold);
+      @include abs.font($font-size: calc(var(--fs-medium-1000) * 4), $font-weight: bold);
     }
     &__message {
-      @include abs.font($font-size: calc(var(--fs-800)), $font-weight: bold);
+      @include abs.font($font-size: calc(var(--fs-medium-900)), $font-weight: bold);
     }
   }
 }

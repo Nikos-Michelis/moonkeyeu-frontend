@@ -48,12 +48,12 @@ div.form-popup-container{
   width: 100%;
   margin: 0 auto;
   padding: 2rem 0;
-  background: var(--clr-primary-300);
+  background: var(--primary-300);
   box-sizing: inherit;
   max-height: calc(100% - 100px);
   overflow-y: auto;
   height: auto;
-  color: var(--clr-neutral-1000);
+  color: var(--neutral-1000);
   box-shadow: $box-shadow-1;
   @include abs.cursive_border();
   & div.form-box{
@@ -61,7 +61,7 @@ div.form-popup-container{
       width: 100%;
       text-align: center;
       box-sizing: inherit;
-      border-bottom: 2px solid var(--clr-neutral-1000);
+      border-bottom: 2px solid var(--neutral-1000);
       padding: 0 2rem 2rem 2rem;
     }
     & input[type="checkbox"] {
@@ -86,7 +86,7 @@ div.form-popup-container{
     overflow-y: auto;
     div.form-box div.form-details{
       width: 45%;
-      border-right: 2px solid var(--clr-neutral-1000);
+      border-right: 2px solid var(--neutral-1000);
       border-bottom: none;
       padding: 2rem;
     }

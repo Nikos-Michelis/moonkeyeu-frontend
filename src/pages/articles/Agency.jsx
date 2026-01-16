@@ -71,7 +71,6 @@ function Agency(){
                 alt={data?.images?.[0]?.name }
             />
             <ScrollToTop behavior="auto" />
-            Conte
             <SkeletonLoader
                 isFetching={queryData.isFetching}
                 isPending={queryData.isFetching}
@@ -96,31 +95,31 @@ function Agency(){
                                 </div>
                                 <div className="container flex flex-column justify-center padding-2">
                                     <div className="panel">
-                                        <h3 className="panel__title clr-star-300 text-center">{data?.name}</h3>
+                                        <h3 className="panel__title text-center">{data?.name}</h3>
                                         <hr/>
                                         <div className="panel__wrapper">
                                             <div className="panel__container">
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Type</p>
                                                     <p className="panel__text">{data?.type}</p>
                                                 </div>
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Country</p>
                                                     <p className="panel__text">{country?.[0]?.alpha_3_code}</p>
                                                 </div>
                                             </div>
                                             <div className="panel__container">
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Spacecraft</p>
                                                     <p className="panel__text">{checkValue(data?.Spacecraft)}</p>
                                                 </div>
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Launchers</p>
                                                     <p className="panel__text">{checkValue(data?.Launchers)}</p>
                                                 </div>
                                             </div>
                                             <div className="panel__container">
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Administrator</p>
                                                     <p className="panel__text">{checkValue(data?.administrator)}</p>
                                                 </div>

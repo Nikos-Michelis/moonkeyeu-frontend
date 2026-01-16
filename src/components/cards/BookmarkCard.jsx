@@ -70,7 +70,7 @@ const BookmarkCard = ({ id, bookmark, launches }) => {
                     defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`}
                 />
             </div>
-            <div className="clr-star-300 padding-2">
+            <div className="padding-2">
                 <div className="flex justify-space-between align-center">
                     <h3 className="fs-small-300">{bookmark}</h3>
                     <Button

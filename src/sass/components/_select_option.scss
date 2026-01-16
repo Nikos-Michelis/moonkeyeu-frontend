@@ -1,5 +1,6 @@
 @use "../abstracts/index" as abs;
 @use "../abstracts/variables" as *;
+@use "../abstracts/colors" as *;
 
 .select {
   &__btn {
@@ -7,12 +8,12 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    background-color: var(--clr-neutral-300);
+    background-color: var(--neutral-300);
     min-width: 0.625rem;
     height: 1.3125rem;
     user-select: none;
     box-shadow: $box-shadow-2;
-    @include abs.font($font-size: var(--fs-100), $font-weight: 700, $color: var(--clr-neutral-1000));
+    @include abs.font($font-size: var(--fs-medium-200), $font-weight: 700, $color: var(--neutral-1000));
     @include abs.cursive_border($border-width: 0.12rem);
     &:not(.select__btn--small):not(.select__btn--medium):not(.select__btn--large):not(.select__btn--yt-video) {
       width: 12rem;
@@ -33,8 +34,8 @@
 
     &--yt-video {
       width: 100%;
-      color: var(--clr-neutral-1000);
-      background-color: var(--clr-yt-red);
+      color: $clr-star-200;
+      background-color: var(--yt-red);
       padding: 2rem 1rem;
     }
     &--ellipsis {
@@ -45,10 +46,9 @@
   &__content {
     display: block;
     margin-top: 0.9375rem;
-    background-color: var(--clr-primary-100);
+    background-color: var(--primary-100);
     @include abs.cursive_border($border-width: 0.13rem, $border-radius: 0.2rem);
-    width: 13rem;
-    //color: var(--clr-neutral-1000);
+    width: 14rem;
     z-index: 1;
 
     &:not(.select__content--full-width){
@@ -77,7 +77,7 @@
     top: 0;
     z-index: 1;
     padding: 0.5rem;
-    background-color: var(--clr-primary-200);
+    background-color: var(--primary-200);
 
     & svg {
       position: absolute;
@@ -85,7 +85,7 @@
       left: 15px;
       pointer-events: none;
       transform: translateY(-50%);
-      @include abs.font($font-size: var(--fs-300), $color: var(--clr-neutral-1000));
+      @include abs.font($font-size: var(--fs-medium-300), $color: var(--neutral-1000));
     }
 
     & input {
@@ -93,16 +93,16 @@
       width: 100%;
       outline: none;
       padding: 0 20px 0 30px;
-      background-color: var(--clr-neutral-100);
+      background-color: var(--neutral-100);
       @include abs.cursive_border($border-width: 0.1rem, $border-radius: 0.125rem);
-      @include abs.font($font-size: var(--fs-300), $color: var(--clr-neutral-1000));
+      @include abs.font($font-size: var(--fs-medium-300), $color: var(--neutral-1000));
 
       &:focus {
-        border: 0.15rem solid var(--clr-neutral-1000);
+        border: 0.15rem solid var(--neutral-1000);
       }
 
       &::placeholder {
-        color: var(--clr-neutral-1000);
+        color: var(--neutral-1000);
       }
     }
   }
@@ -115,7 +115,7 @@
 
     & a {
       width: 100%;
-      color: var(--clr-neutral-1000);
+      color: var(--neutral-1000);
     }
 
     & li, a {
@@ -124,16 +124,16 @@
       cursor: pointer;
       height: 50px;
       padding: 0 0.8125rem;
-      @include abs.font($font-size: var(--fs-100), $font-weight: 600, $color: var(--clr-neutral-1000));
+      @include abs.font($font-size: var(--fs-medium-200), $font-weight: 600, $color: var(--neutral-1000));
 
       &:hover {
         border-radius: 5px;
-        background: var(--clr-neutral-200);
+        background: var(--neutral-200);
       }
 
       &.selected {
         border-radius: 5px;
-        background: var(--clr-neutral-200);
+        background: var(--neutral-200);
       }
     }
     &--ellipsis {

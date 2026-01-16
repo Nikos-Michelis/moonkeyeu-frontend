@@ -29,7 +29,7 @@ export function SkeletonLoader(
         return (
             <>
                 <div className="flex flex-column padding-block-12">
-                    <FontAwesomeIcon icon={faGears} className="fs-small-800 margin-block-start-8"/>
+                    <FontAwesomeIcon icon={faGears} className="fs-medium-900 margin-block-start-8"/>
                     <p>Currently unavailable...</p>
                 </div>
             </>

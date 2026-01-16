@@ -4,15 +4,15 @@
 .sidebar {
   width: 100%;
   max-width: 25rem;
-  box-shadow: 0.25rem 0.35rem 0 var(--clr-neutral-1000);
-  background-color: var(--clr-neutral-100);
-  @include abs.cursive_border($border-width: 0.2rem, $border-radius: 0.1rem, $color: var(--clr-neutral-1000));
+  box-shadow: 0.25rem 0.35rem 0 var(--neutral-1000);
+  background-color: var(--neutral-100);
+  @include abs.cursive_border($border-width: 0.2rem, $border-radius: 0.1rem, $color: var(--neutral-1000));
 
   &__heading-box {
     padding: .5rem;
     text-align: center;
     font-variant: all-small-caps;
-    color: var(--clr-neutral-1000);
+    color: var(--neutral-1000);
   }
 }
 @include abs.mq(medium) {

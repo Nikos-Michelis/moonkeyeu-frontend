@@ -94,7 +94,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                         <div className="margin-inline-end-2">
                             <Button
                                 ref={triggerRef}
-                                className="btn btn--primary btn--big fw-bold fs-small-100"
+                                className="btn btn--primary btn--big fw-bold fs-medium-200"
                                 onClick={() => toggleOptions(true)}
                                 disabled={isFetching || isPending || isError}
                             >

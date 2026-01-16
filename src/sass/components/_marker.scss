@@ -10,7 +10,7 @@
     left: 0;
     width: max-content;
     white-space: nowrap;
-    @include abs.font($font-size: var(--fs-100), $font-weight: 600, $color: var(--clr-neutral-1000));
+    @include abs.font($font-size: var(--fs-medium-100), $font-weight: 600, $color: var(--neutral-1000));
   }
 }
 

@@ -46,7 +46,7 @@ const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
                         }
                         { options?.showItemsLimit &&
                             (
-                                <div className="fs-big-300 fw-bold clr-star-300">
+                                <div className="fs-small-300 fw-bold">
                                     <span>{items.length >= 0 ? items.length : 0}</span>
                                     <span> / </span>
                                     <span>{options?.maxItems}</span>
@@ -67,7 +67,7 @@ const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
                                     {...bookmark}
                                 />
                             )) :
-                                <div className="padding-8 text-center clr-star-300">
+                                <div className="padding-8 text-center">
                                     <h2>{emptyList.heading}</h2>
                                     <p>{emptyList.message} <FontAwesomeIcon icon={emptyList.icon} /></p>
                                 </div>

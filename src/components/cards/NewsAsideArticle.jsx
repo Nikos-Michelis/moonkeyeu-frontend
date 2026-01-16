@@ -13,10 +13,10 @@ const NewsAsideArticle = ({imageSrc, title, author, url}) => {
                     />
                 </a>
                 <div className="padding-block-start-3 padding-block-end-2 padding-inline-1">
-                    <p className="fs-small-100 text-center fw-regular">{title}</p>
+                    <p className="fs-medium-200 text-center fw-regular">{title}</p>
                 </div>
                 <div className="padding-block-start-3 padding-block-end-2 padding-inline-end-1">
-                    <p className="fs-small-100 text-end fw-regular">{author}</p>
+                    <p className="fs-medium-200 text-end fw-regular">{author}</p>
                 </div>
             </div>
         </article>

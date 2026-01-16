@@ -297,7 +297,7 @@ const PopUpForm = () => {
                                 />
                             </div>
                             <PasswordField errors={errors} register={register} />
-                            <div className="flex justify-space-between align-center fs-small-100 margin-block-end-4">
+                            <div className="flex justify-space-between align-center fs-medium-200 margin-block-end-4">
                                 <div className="flex justify-center align-center">
                                     <input
                                         name="rememberMe"

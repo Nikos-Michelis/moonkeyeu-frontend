@@ -8,6 +8,8 @@
   overflow: auto;
   pointer-events: auto;
   -webkit-overflow-scrolling: touch;
+  box-shadow: $box-shadow-1;
+  @include cursive_border();
   & iframe{
     width: 100%;
     height: 100%;

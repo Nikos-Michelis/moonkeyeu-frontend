@@ -5,9 +5,9 @@
 .btn {
   @include abs.button;
   &--primary {
-    @include abs.button-color-variation($color: var(--clr-neutral-1000), $background-color: var(--clr-primary-300), $border-color: var(--clr-neutral-1000));
-    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-100));
-    @include abs.button-hover($color: var(--clr-neutral-1000), $background-color: var(--clr-primary-400), $border-color: var(--clr-neutral-1000));
+    @include abs.button-color-variation($color: var(--neutral-1000), $background-color: var(--primary-300), $border-color: var(--neutral-1000));
+    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
+    @include abs.button-hover($color: var(--neutral-1000), $background-color: var(--primary-400), $border-color: var(--neutral-1000));
     box-shadow: $box-shadow-2;
     transition: box-shadow 120ms cubic-bezier(.2,.8,.2,1), transform 120ms cubic-bezier(.2,.8,.2,1);
     padding: 5px 10px;
@@ -17,15 +17,15 @@
     }
 
     &:active {
-      box-shadow: 0 0 0 var(--clr-neutral-1000);
+      box-shadow: 0 0 0 var(--neutral-1000);
       transform: translate(0.22rem, 0.22rem);
     }
   }
 
   &--yt {
-    @include abs.button-color-variation($color: $clr-star-200, $background-color: $clr-yt-red-300, $border-color: var(--clr-neutral-1000));
-    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-100));
-    @include abs.button-hover($color: var(--clr-neutral-300), $background-color: var(--clr-yt-red-400), $border-color: var(--clr-neutral-1000));
+    @include abs.button-color-variation($color: $clr-star-200, $background-color: $clr-yt-red-300, $border-color: var(--neutral-1000));
+    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
+    @include abs.button-hover($color: $clr-star-200, $background-color: $clr-yt-red-400, $border-color: var(--neutral-1000));
     box-shadow: $box-shadow-2;
     transition:
             box-shadow 120ms cubic-bezier(.2,.8,.2,1),
@@ -36,15 +36,15 @@
     }
 
     &:active {
-      box-shadow: 0 0 0 var(--clr-neutral-1000);
+      box-shadow: 0 0 0 var(--neutral-1000);
       transform: translate(0.22rem, 0.22rem);
     }
   }
 
    &--Xtwitter {
-    @include abs.button-color-variation($color: var(--clr-neutral-300), $background-color: var(--clr-twitter-black-200), $border-color: var(--clr-neutral-1000));
-    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-100));
-    @include abs.button-hover($color: var(--clr-neutral-300), $background-color: var(--clr-twitter-black-500), $border-color: var(--clr-neutral-1000));
+    @include abs.button-color-variation($color: var(--neutral-300), $background-color: var(--twitter-black-200), $border-color: var(--neutral-1000));
+    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
+    @include abs.button-hover($color: var(--neutral-300), $background-color: var(--twitter-black-500), $border-color: var(--neutral-1000));
      box-shadow: $box-shadow-2;
     padding: 5px 10px;
 
@@ -60,8 +60,8 @@
 
   &--overlay {
     @include abs.button-size($padding-y: 8px, $padding-x: 8px);
-    @include abs.button-color-variation($color: var(--clr-neutral-1000));
-    @include abs.button-hover($color: var(--clr-primary-300), $background-color: transparent, $border-color: var(--clr-primary-300));
+    @include abs.button-color-variation($color: var(--neutral-1000));
+    @include abs.button-hover($color: var(--primary-300), $background-color: transparent, $border-color: var(--primary-300));
     &:active {
       transform: scale(1.1);
     }
@@ -70,7 +70,7 @@
   &--transparent {
     cursor: pointer;
     text-decoration: none;
-    @include abs.button-color-variation($color: var(--clr-neutral-1000), $background-color: transparent, $border-color: transparent);
+    @include abs.button-color-variation($color: var(--neutral-1000), $background-color: transparent, $border-color: transparent);
   }
 
   &--assisance {
@@ -81,23 +81,23 @@
   }
 
   &--small {
-    @include abs.button-color-variation($color: var(--clr-neutral-1000), $background-color: var(--clr-primary-300), $border-color: var(--clr-neutral-1000));
-    @include abs.button-size($padding-y: 10px, $padding-x: 10px, $font-size: var(--fs-200));
+    @include abs.button-color-variation($color: var(--neutral-1000), $background-color: var(--primary-300), $border-color: var(--neutral-1000));
+    @include abs.button-size($padding-y: 10px, $padding-x: 10px, $font-size: var(--fs-small-200));
   }
 
   &--big {
-    @include abs.button-size($padding-y: 0.6rem, $padding-x: 0.6rem, $font-size: var(--fs-200));
+    @include abs.button-size($padding-y: 0.6rem, $padding-x: 0.6rem, $font-size: var(--fs-small-200));
     width: 100%;
     margin-top: 1rem;
     margin-bottom: 2rem;
     text-transform: uppercase;
     &--transparent {
-      font-size: var(--fs-800);
+      font-size: var(--fs-medium-900);
     }
   }
 
   &--big-hg {
-    @include abs.button-size($padding-y: 1.5rem, $padding-x: 0.6rem, $font-size: var(--fs-200));
+    @include abs.button-size($padding-y: 1.5rem, $padding-x: 0.6rem, $font-size: var(--fs-small-200));
     width: 100%;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
@@ -113,9 +113,9 @@
     cursor: not-allowed;
     &:is([class*="btn--primary"], [class*="btn--yt"]) {
       @include abs.button-color-variation(
-              $color: var(--clr-neutral-1000),
-              $background-color: var(--clr-primary-400),
-              $border-color: var(--clr-neutral-1000)
+              $color: var(--neutral-1000),
+              $background-color: var(--primary-400),
+              $border-color: var(--neutral-1000)
       );
     }
   }
@@ -141,7 +141,7 @@
     width: 20rem;
 
     &:active {
-      box-shadow: 0 0 0 var(--clr-neutral-1000);
+      box-shadow: 0 0 0 var(--neutral-1000);
       transform: translate(0.22rem, 0.22rem);
     }
   }

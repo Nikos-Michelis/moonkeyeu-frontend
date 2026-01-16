@@ -11,10 +11,10 @@ export default function CookieConsent(){
         setCookie("cookieConsent", true, { path: "/", expires: expirationDate });
     };
     return(
-        <div className="container pos-fixed bottom-0 left-0 flex flex-wrap justify-space-between align-center clr-dark-cosmos-300 border-t-xs border-star-300 z-overlay" data-type="full-width">
+        <div className="container pos-fixed bottom-0 left-0 flex flex-wrap justify-space-between align-center border-t-xs border-star-300 z-overlay" data-type="full-width">
             <div className="container flex flex-wrap justify-space-between align-center margin-inline-4" data-type="full-bleed">
                 <div>
-                    <FontAwesomeIcon icon={faCookieBite} className="fs-small-800 margin-4" />
+                    <FontAwesomeIcon icon={faCookieBite} className="fs-medium-900 margin-4" />
                 </div>
                 <div className="container flex flex-column margin-4" data-type="wide">
                     <p>
@@ -23,7 +23,7 @@ export default function CookieConsent(){
                         Without them, the smooth operation is directly affected. By continuing to use this site, you agree to our use of cookies.
                     </p>
                 </div>
-                <Button className="btn btn--primary clr-secondary-300 margin-4" onClick={giveCookieConsent}>I understand</Button>
+                <Button className="btn btn--primary margin-4" onClick={giveCookieConsent}>I understand</Button>
             </div>
         </div>
     );

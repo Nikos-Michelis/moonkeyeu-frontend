@@ -5,13 +5,14 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  color: var(--neutral-1000);
 
   & hr {
     width: 100%;
     border: none;
     height: 0.125rem;
     margin-block: 0.2rem;
-    background-color: var(--clr-neutral-1000);
+    background-color: var(--neutral-1000);
   }
 
   &__wrapper {
@@ -46,7 +47,7 @@
     padding: 1rem 0;
 
     & a {
-      @include abs.font($font-size: var(--fs-500), $color: var(--clr-neutral-1000));
+      @include abs.font($font-size: var(--fs-medium-500));
     }
   }
 

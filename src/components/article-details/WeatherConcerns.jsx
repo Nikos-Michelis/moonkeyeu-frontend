@@ -20,7 +20,7 @@ const WeatherConcerns = ({weather_concerns}) => {
                         }
                     </>
                 </div>
-                <div className="flex justify-end clr-dark-cosmos-300 margin-block-start-4">
+                <div className="flex justify-end margin-block-start-4">
                     <small>Weather data powered by <a href="https://openweathermap.org/" target="_blank">OpenWeather</a></small>
                 </div>
             </div>

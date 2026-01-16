@@ -6,19 +6,17 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  @include abs.font($font-size: var(--fs-100));
+  @include abs.font($font-size: var(--fs-medium-200));
   &__searchbar {
     box-sizing: inherit;
     height: 45px;
     width: 100%;
     padding: 0.8rem;
-    border: 0.13rem solid var(--clr-neutral-1000);
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    background-color: var(--clr-neutral-100);
+    background-color: var(--neutral-100);
     outline: none;
     box-shadow: $box-shadow-1;
-    color: var(--clr-neutral-1000);
+    color: var(--neutral-1000);
+    @include abs.cursive_border($border-width: $button-border-width, $border-radius: $button-border-radius, $corners: (top-left-radius bottom-left-radius));
     &::placeholder {
       color: inherit;
     }
@@ -28,15 +26,13 @@
   }
 
   &__btn-search{
-    border: 0.13rem solid var(--clr-neutral-1000);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
     padding: 0.75rem;
-    background-color: var(--clr-neutral-100);
+    background-color: var(--neutral-100);
     height: 45px;
     box-shadow: $box-shadow-1;
-
+    @include abs.cursive_border($border-width: $button-border-width, $border-radius: $button-border-radius, $corners: (top-right-radius bottom-right-radius));
   }
+
   @include abs.mq(medium) {
     width: 250px;
   }

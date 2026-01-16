@@ -72,7 +72,7 @@ const ContactForm = () => {
                                 <h2 className="heading-2"><FontAwesomeIcon icon={faBug}/> Report</h2>
                             </div>
                             <hr/>
-                            <p className="clr-star-300 fs-small-300">
+                            <p className="fs-small-300">
                                 To help us organize bug reports more effectively, please create a new issue
                                 <LinkButton
                                     className="btn--transparent fw-bold" to="https://github.com/Nikos-Michelis/MoonkeyEU-Feedback/issues/new"
@@ -80,7 +80,7 @@ const ContactForm = () => {
                                 Thank you for your feedback — we're striving to make the platform better!
                             </p>
                             <hr/>
-                            <p className="clr-star-300 margin-block-start-2 fs-small-300 text-center">You can email us at moonkeyeu@gmail.com</p>
+                            <p className="margin-block-start-2 fs-small-300 text-center">You can email us at moonkeyeu@gmail.com</p>
                         </div>
                         <div className="container container--form margin-block-end-12 margin-inline-5" data-type="narrow">
                             <div className="form-content">

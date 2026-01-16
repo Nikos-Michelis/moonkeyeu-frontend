@@ -7,10 +7,10 @@
     align-items: center;
     width: 100%;
     min-height: 10rem;
-    font-size: var(--fs-800);
+    font-size: var(--fs-medium-900);
     svg {
-      color: var(--clr-neutral-1000);
-      background-color: var(--clr-secondary-300);
+      color: var(--neutral-1000);
+      background-color: var(--secondary-300);
       padding: 2rem;
       @include cursive_border($border-width: 0.2rem, $border-radius: 5rem);
     }

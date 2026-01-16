@@ -24,11 +24,11 @@ const BoosterInfo = ({launcher, type, landing}) =>{
                     <hr/>
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Serial</p>
                                 <p className="panel__text">{checkValue(launcher?.serial_number)}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Flight Proven</p>
                                 <p className="panel__text">{booleanConverter(checkValue(launcher?.flight_proven))}</p>
                             </div>
@@ -36,11 +36,11 @@ const BoosterInfo = ({launcher, type, landing}) =>{
                     </div>
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Status</p>
                                 <p className="panel__text">{checkValue(launcher?.status)}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">flights</p>
                                 <p className="panel__text">{checkValue(launcher?.flights)}</p>
                             </div>
@@ -49,11 +49,11 @@ const BoosterInfo = ({launcher, type, landing}) =>{
                     <hr/>
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Landing Attempt</p>
                                 <p className="panel__text">{booleanConverter(checkValue(landing?.attempt))}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Type</p>
                                 <p className="panel__text">{checkValue(landing?.landing_type?.abbrev)}</p>
                             </div>
@@ -61,11 +61,11 @@ const BoosterInfo = ({launcher, type, landing}) =>{
                     </div>
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Landing Success</p>
                                 <p className="panel__text">{booleanConverter(checkValue(landing?.success))}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Location</p>
                                 <p className="panel__text">{checkValue(landing?.landing_zone?.abbrev)}</p>
                             </div>

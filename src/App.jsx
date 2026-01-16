@@ -44,11 +44,12 @@ import {GoogleOAuthProvider} from "@react-oauth/google";
 import {NasaApodProvider} from "@/context/NasaApodProvider.jsx";
 import {SpaceFlightNewsProvider} from "@/context/SpaceFlightNewsProvider.jsx";
 import BuildProviderTree from "@/context/BuildProviderTree.jsx";
-
+import {ThemeProvider} from "@/context/ThemeProvider.jsx";
 
 function App() {
     const[cookies] = useCookies(["cookieConsent"])
     const ProvidersTree = BuildProviderTree([
+        [ThemeProvider],
         [SpaceFlightNewsProvider],
         [NasaApodProvider],
         [GoogleOAuthProvider, { clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID}],

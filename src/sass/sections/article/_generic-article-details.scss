@@ -9,11 +9,10 @@
   }
 
   &__overview {
-    max-width: 950px;
-    border: 0.15rem solid var(--clr-neutral-1000);
-    box-shadow: 0.35rem 0.35rem 0 var(--clr-neutral-1000);
+    border: 0.15rem solid var(--neutral-1000);
+    box-shadow: 0.35rem 0.35rem 0 var(--neutral-1000);
     border-radius: 0.2rem;
-    background-color: var(--clr-neutral-100);
+    background-color: var(--neutral-100);
   }
 
   &__image-box {
@@ -31,10 +30,10 @@
     pointer-events: none;
     -webkit-user-drag: none;
     user-select: none;
+    background-color: var(--neutral-200);
 
     &--scale-down {
       object-fit: contain;
-      background-color: var(--clr-secondary-300);
       padding: 0.5rem;
     }
 
@@ -44,7 +43,7 @@
   }
 
   &__title-box{
-    @include abs.font($font-size: var(--fs-400), $color: var(--clr-neutral-1000));
+    @include abs.font($font-size: var(--fs-small-400), $color: var(--neutral-1000));
   }
 
   &__subtitle {
@@ -67,14 +66,14 @@
     align-items: baseline;
     width: 100%;
     padding: 0.5rem 0;
-    @include abs.font($font-size: var(--fs-400), $color: var(--clr-neutral-1000));
+    @include abs.font($font-size: var(--fs-small-400), $color: var(--neutral-1000));
 
     &--col{
       flex-direction: column;
     }
 
     & svg {
-      font-size: var(--fs-500);
+      font-size: var(--fs-medium-500);
       padding: 0 0.5rem;
     }
   }
@@ -82,16 +81,13 @@
   &__info-container {
     max-width: 950px;
     line-height: 1.5;
-    @include abs.font($font-size: inherit, $color: var(--clr-neutral-1000));
+    @include abs.font($font-size: inherit, $color: var(--neutral-1000));
     margin-block: 2rem;
   }
 
   & section {
     padding: 1rem;
 
-    &:first-child {
-      margin-top: 2rem;
-    }
   }
 
   &__heading-box {
@@ -104,7 +100,7 @@
     }
 
     & svg {
-      font-size: var(--fs-700);
+      font-size: var(--fs-small-700);
       padding-right: 0.7rem;
     }
   }
@@ -120,7 +116,7 @@
     & span {
       text-overflow: ellipsis;
       overflow: hidden;
-      @include abs.font($font-size: var(--fs-300), $font-weight: bold, $color: var(--clr-neutral-1000));
+      @include abs.font($font-size: var(--fs-medium-300), $font-weight: bold, $color: var(--neutral-1000));
       margin: 0 0.5rem;
     }
     & p {
@@ -147,7 +143,7 @@
     }
   }
   &__description {
-    @include abs.font($font-size: var(--fs-300), $color: var(--clr-neutral-1000));
+    @include abs.font($font-size: var(--fs-medium-300), $color: var(--neutral-1000));
   }
   &__rocket-info {
     line-height: 2.5;

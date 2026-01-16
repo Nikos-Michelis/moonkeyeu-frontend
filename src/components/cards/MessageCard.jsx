@@ -46,18 +46,18 @@ const MessageCard = ({id, category, email, message, created_at}) => {
                         <hr/>
                         <div className="panel__wrapper">
                             <div className="panel__container">
-                                <div className="panel__detail-box fs-small-100 padding-1">
+                                <div className="panel__detail-box fs-medium-200 padding-1">
                                     <p className="panel__text">Email</p>
                                     <p className="panel__text">{email}</p>
                                 </div>
-                                <div className="panel__detail-box fs-small-100 padding-1">
+                                <div className="panel__detail-box fs-medium-200 padding-1">
                                     <p className="panel__text">CreatedAt</p>
                                     <p className="panel__text">{formattedZonedDateTime}</p>
                                 </div>
                             </div>
                             <hr/>
                             <div className="panel__container padding-1">
-                                <div className="panel__detail-box fs-small-100 padding-2"
+                                <div className="panel__detail-box fs-medium-200 padding-2"
                                      data-spacing="none"
                                      data-scroll={message.length> 2  ? "vertical" : undefined}>
                                     <p className="panel__text padding-block-2">{message}</p>

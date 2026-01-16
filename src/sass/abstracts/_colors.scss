@@ -83,6 +83,8 @@ $-clr-overlay-400: rgb(50 50 50 / 60%);
 $-clr-overlay-500: rgb(50 50 50 / 75%);
 $-clr-overlay-600: rgb(50 50 50 / 90%);
 
+$-color-wind-gray: #DCDCDC;
+$-color-sun-yellow: #FFDF22;
 
 
 $light: (
@@ -125,7 +127,7 @@ $dark: (
           "100": $-clr-dark-cosmos-300,
           "000":  $-clr-dark-cosmos-300,
   ),
-  "secondary": (
+  "secondary": ( // add as a neutral
           "500": $-clr-secondary-500 ,
           "400": $-clr-secondary-400,
           "300": $-clr-secondary-300,
@@ -145,7 +147,7 @@ $dark: (
 );
 
 $clr-constants: (
-        yt-red: #d50501
+        yt-red: #d50501,
 );
 
 // contextual color tokens
@@ -153,9 +155,12 @@ $clr-star-200: $-clr-star-200;
 $clr-secondary-300: $-clr-secondary-300;
 $clr-main-300: $-clr-main-300;
 $clr-yt-red-300: $-clr-yt-red-300;
+$clr-yt-red-400: $-clr-yt-red-400;
 $clr-dark-cosmos-300: $-clr-dark-cosmos-300;
 $clr-warning-300: $-clr-warning-300;
 $clr-success-300: $-clr-success-300;
+$clr-sky-500: $-clr-sky-500;
+$clr-sky-500: $-clr-sky-500;
 $clr-sky-500: $-clr-sky-500;
 
 $color-neutral-000: var(--neutral-000);
@@ -180,21 +185,24 @@ $color-primary-700: var(--primary-700);
 $color-primary-800: var(--primary-800);
 $color-primary-900: var(--primary-900);
 
-$color-accent-100: var(--accent-100);
-$color-accent-200: var(--accent-200);
-$color-accent-300: var(--accent-300);
-$color-accent-400: var(--accent-400);
-$color-accent-500: var(--accent-500);
-$color-accent-600: var(--accent-600);
-$color-accent-700: var(--accent-700);
-$color-accent-800: var(--accent-800);
-$color-accent-900: var(--accent-900);
+$color-secondary-100: var(--secondary-100);
+$color-secondary-200: var(--secondary-200);
+$color-secondary-300: var(--secondary-300);
+$color-secondary-400: var(--secondary-400);
+$color-secondary-500: var(--secondary-500);
+$color-secondary-600: var(--secondary-600);
+$color-secondary-700: var(--secondary-700);
+$color-secondary-800: var(--secondary-800);
+$color-secondary-900: var(--secondary-900);
 
-$clr-overlay-100: $-clr-overlay-100;
-$clr-overlay-200: $-clr-overlay-200;
-$clr-overlay-300: $-clr-overlay-300;
-$clr-overlay-400: $-clr-overlay-400;
-$clr-overlay-500: $-clr-overlay-500;
-$clr-overlay-600: $-clr-overlay-600;
+$color-overlay-100: $-clr-overlay-100;
+$color-overlay-200: $-clr-overlay-200;
+$color-overlay-300: $-clr-overlay-300;
+$color-overlay-400: $-clr-overlay-400;
+$color-overlay-500: $-clr-overlay-500;
+$color-overlay-600: $-clr-overlay-600;
+
+$color-wind-gray:$-color-wind-gray;
+$color-sun-yellow:$-color-sun-yellow;
 
 

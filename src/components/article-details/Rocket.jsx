@@ -49,7 +49,7 @@ const Rocket = (
                         <div>
                             <FontAwesomeIcon
                                 icon={faGear}
-                                className="padding-block-end-6 fs-small-800 clr-dark-cosmos-300"
+                                className="padding-block-end-6 fs-medium-700"
                             />
                             <h1 className="heading-4">Specifications</h1>
                         </div>
@@ -91,7 +91,7 @@ const Rocket = (
                         <div>
                             <FontAwesomeIcon
                                 icon={faShuttleSpace}
-                                className="padding-block-end-6 fs-small-800 clr-dark-cosmos-300"
+                                className="padding-block-end-6 fs-medium-700"
                             />
                             <h1 className="heading-4">Family</h1>
                         </div>
@@ -120,7 +120,7 @@ const Rocket = (
                         <div>
                             <FontAwesomeIcon
                                 icon={faSatellite}
-                                className="padding-block-end-6 fs-small-800 clr-dark-cosmos-300"
+                                className="padding-block-end-6 fs-medium-700"
                             />
                             <h1 className="heading-4">Payload Capacity</h1>
                         </div>

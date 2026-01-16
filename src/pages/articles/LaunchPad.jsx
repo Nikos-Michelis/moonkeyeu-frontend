@@ -104,11 +104,11 @@ function LaunchPad(){
                                         <hr/>
                                         <div className="panel__wrapper">
                                             <div className="panel__container">
-                                                <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                                                <div className="panel__detail-box fs-small-200 padding-2">
                                                     <p className="panel__text">Active</p>
                                                     <p className="panel__text">{checkValue(booleanConverter(data?.active))}</p>
                                                 </div>
-                                                <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                                                <div className="panel__detail-box fs-small-200 padding-2">
                                                     <p className="panel__text">Total launches</p>
                                                     <p className="panel__text">{data?.total_launch_count}</p>
                                                 </div>
@@ -117,7 +117,7 @@ function LaunchPad(){
                                             {data?.description &&
                                                 <>
                                                     <div className="panel__container">
-                                                        <div className="panel__detail-box clr-star-300 padding-1">
+                                                        <div className="panel__detail-box padding-1">
                                                             <p className="panel__description">{data?.description}</p>
                                                         </div>
                                                     </div>

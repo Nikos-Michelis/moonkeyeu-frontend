@@ -41,7 +41,7 @@ const Dashboard = () =>{
                             </div>
                             <div className="container flex flex-column padding-block-12" data-spacing="none">
                                 <section className="account-managment-section">
-                                    <div className="flex align-center clr-star-300">
+                                    <div className="flex align-center">
                                         <FontAwesomeIcon icon={faTableColumns} className="fs-small-700" />
                                         <h2 className="padding-1">Dashboard</h2>
                                     </div>

@@ -73,7 +73,7 @@ const Profile = () =>{
                         </div>
                         <div className="container flex flex-column" data-spacing="none">
                             <section className="profile__managment">
-                                <div className="flex align-center clr-star-300">
+                                <div className="flex align-center">
                                     <FontAwesomeIcon icon={faGear} className="fs-small-700" />
                                     <h2 className="padding-1">Account Management</h2>
                                 </div>
@@ -81,21 +81,21 @@ const Profile = () =>{
                                     <hr/>
                                     <div className="panel__wrapper">
                                         <div className="panel__container">
-                                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                                            <div className="panel__detail-box fs-small-200 padding-2">
                                                 <p className="panel__text">Username</p>
                                                 <p className="panel__text">{user?.username}</p>
                                             </div>
-                                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                                            <div className="panel__detail-box fs-small-200 padding-2">
                                                 <p className="panel__text">Email</p>
                                                 <p className="panel__text">{user?.email}</p>
                                             </div>
                                         </div>
                                         <div className="panel__container">
-                                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                                            <div className="panel__detail-box fs-small-200 padding-2">
                                                 <p className="panel__text">Role</p>
                                                 <p className="panel__text">{user?.role?.[0]}</p>
                                             </div>
-                                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                                            <div className="panel__detail-box fs-small-200 padding-2">
                                                 <p className="panel__text">Member Since</p>
                                                 <p className="panel__text">{formattedZonedDateTime}</p>
                                             </div>

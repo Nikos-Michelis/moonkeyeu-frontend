@@ -28,7 +28,7 @@ div.response-error-wrapper {
           position: relative;
           width: 100%;
           padding: 0.2rem 1.125rem 0.2rem 4.875rem;
-          @include font($font-size: var(--fs-100), $font-weight: bold);
+          @include font($font-size: var(--fs-medium-100), $font-weight: bold);
         }
     }
     div.error-circle {
@@ -44,7 +44,7 @@ div.response-error-wrapper {
       height: 3.125rem;
       border-radius: 0.4375rem;
       background-color: $clr-warning-300;
-      @include font($font-size: var(--fs-700), $color: var(--clr-neutral-300));
+      @include font($font-size: var(--fs-small-700), $color: var(--neutral-300));
     }
   }
 }

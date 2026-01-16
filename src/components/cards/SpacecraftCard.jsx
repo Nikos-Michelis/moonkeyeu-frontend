@@ -90,31 +90,31 @@ const SpacecraftCard = (
                             <hr/>
                             <div className="panel__wrapper">
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Active</p>
                                         <p className="panel__text">{checkValue(booleanConverter(in_use))}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Human Rated</p>
                                         <p className="panel__text">{checkValue(booleanConverter(human_rated))}</p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Height</p>
                                         <p className="panel__text">{checkValue(length, "Meters")}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Diameter</p>
                                         <p className="panel__text">{checkValue(diameter, "Meters")}</p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Maiden Flight</p>
                                         <p className="panel__text">{checkValue(maiden_flight)}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text"></p>
                                         <p className="panel__text"></p>
                                     </div>

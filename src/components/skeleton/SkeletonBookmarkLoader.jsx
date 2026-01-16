@@ -9,11 +9,11 @@ function SkeletonBookmarkLoader(){
         <div className="card-img-box skeleton opacity-6 skeleton-img">
             <div className="bookmark-card__thumbnail">
                 <div className="bookmark-card__icon flex justify-center align-center">
-                    <FontAwesomeIcon icon={faImage} className="fs-big-600" />
+                    <FontAwesomeIcon icon={faImage} className="fs-bog-600" />
                 </div>
             </div>
         </div>
-        <div className="clr-star-300 padding-2">
+        <div className="padding-2">
             <div className="skeleton skeleton--text opacity-6"></div>
             <div className="skeleton skeleton--subtitle opacity-6"></div>
         </div>

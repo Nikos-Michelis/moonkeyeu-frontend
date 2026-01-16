@@ -32,8 +32,9 @@ import {
     faLocationDot,
     faCalendarDays,
 } from '@fortawesome/free-solid-svg-icons';
+import ContentLayout from "@/layout/ContentLayout.jsx";
 
-function Launch(){
+function Launch() {
     const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/launch`;
     const { id} = useParams();
     const { data: newsData } = useParameterizedQuery({
@@ -94,7 +95,8 @@ function Launch(){
                 contentConfig={contentConfig}>
                 <section className="article">
                     <div className="container flex justify-center" data-type="wide" data-spacing="none">
-                        <div className="container article__content flex flex-column align-center" data-type="fixed" data-spacing="none">
+                        <ContentLayout className="article__content" size="medium">
+
                             <div className="container flex justify-start padding-block-start-7 padding-block-end-2">
                                 <Button
                                     className="btn--transparent"
@@ -104,9 +106,9 @@ function Launch(){
                                 </Button>
                             </div>
                             <div className="container article__overview flex flex-column justify-center align-center" data-type="full-bleed">
-                                {zonedDateTime.invalid === null && zonedDateTime > Date.now() ? (
-                                    <CountdownTimer net={zonedDateTime} timerStyle="counter--container"/>
-                                ) : null }
+                                {zonedDateTime.invalid === null && zonedDateTime > Date.now()
+                                    && (<CountdownTimer net={zonedDateTime} timerStyle="counter--container"/>)
+                                }
                                 <div className="article__image-box">
                                     <Img
                                         src={data.rocket?.configuration?.image?.image_url}
@@ -176,7 +178,7 @@ function Launch(){
                                     <hr className="hr-90-md"/>
                                 </div>
                             </div>
-                        </div>
+                        </ContentLayout>
                     </div>
                 </section>
             </SkeletonLoader>

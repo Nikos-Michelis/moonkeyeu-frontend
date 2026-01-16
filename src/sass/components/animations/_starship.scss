@@ -15,7 +15,7 @@
     border-radius: 3.125rem;
     width: 3.125rem;
     height: 3.125rem;
-    @include abs.font($font-size: var(--fs-600), $color: $clr-star-200);
+    @include abs.font($font-size: var(--fs-medium-500), $color: $clr-star-200);
   }
 
   & div.ground {

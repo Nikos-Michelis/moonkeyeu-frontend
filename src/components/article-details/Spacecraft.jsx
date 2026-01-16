@@ -44,11 +44,11 @@ const spacecraft = ({ stage }) =>{
                     <hr className="hr-75-sm" />
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Serial</p>
                                 <p className="panel__text">{checkValue(spacecraft.serial_number)}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Status</p>
                                 <p className="panel__text">{checkValue(spacecraft.status)}</p>
                             </div>
@@ -56,11 +56,11 @@ const spacecraft = ({ stage }) =>{
                     </div>
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Crew Capacity</p>
                                 <p className="panel__text">{checkValue(configuration.crew_capacity)}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">flights</p>
                                 <p className="panel__text">{checkValue()}</p>
                             </div>
@@ -69,11 +69,11 @@ const spacecraft = ({ stage }) =>{
                     <hr className="hr-75-sm" />
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Landing Attempt</p>
                                 <p className="panel__text">{booleanConverter(checkValue(landing.attempt))}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Type</p>
                                 <p className="panel__text">{checkValue(landingType.abbrev)}</p>
                             </div>
@@ -81,11 +81,11 @@ const spacecraft = ({ stage }) =>{
                     </div>
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Landing Success</p>
                                 <p className="panel__text">{booleanConverter(checkValue(landing.success))}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Location</p>
                                 <p className="panel__text">{checkValue(landingZone.abbrev)}</p>
                             </div>

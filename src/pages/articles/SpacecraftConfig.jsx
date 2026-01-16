@@ -86,26 +86,26 @@ function SpacecraftConfig(){
                                 </div>
                                 <div className="container flex flex-column justify-center padding-2" data-type="full-bleed">
                                     <div className="panel">
-                                        <h3 className="panel__title clr-star-300">{checkValue(data?.name)}</h3>
-                                        <h5 className="panel__subtitle clr-star-300">{checkValue(data?.agency?.name)}</h5>
+                                        <h3 className="panel__title">{checkValue(data?.name)}</h3>
+                                        <h5 className="panel__subtitle">{checkValue(data?.agency?.name)}</h5>
                                         <hr/>
                                         <div className="panel__wrapper">
                                             <div className="panel__container">
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Type</p>
                                                     <p className="panel__text">{checkValue(data?.type)}</p>
                                                 </div>
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">In Use</p>
                                                     <p className="panel__text">{checkValue(booleanConverter(data?.in_use))}</p>
                                                 </div>
                                             </div>
                                             <div className="panel__container">
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Height</p>
                                                     <p className="panel__text">{checkValue(data?.height)}</p>
                                                 </div>
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Diameter</p>
                                                     <p className="panel__text">{checkValue(data?.diameter)}</p>
                                                 </div>
@@ -114,21 +114,21 @@ function SpacecraftConfig(){
                                         <hr/>
                                         <div className="panel__wrapper">
                                             <div className="panel__container">
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Payload Capacity</p>
                                                     <p className="panel__text">{checkValue(data?.payload_capacity, "kg")}</p>
                                                 </div>
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Maiden Flight</p>
                                                     <p className="panel__text">{checkValue(data?.maiden_flight)}</p>
                                                 </div>
                                             </div>
                                             <div className="panel__container">
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Crew Capacity</p>
                                                     <p className="panel__text">{checkValue(data?.crew_capacity)}</p>
                                                 </div>
-                                                <div className="panel__detail-box fs-small-200 padding-1 clr-star-300">
+                                                <div className="panel__detail-box fs-small-200 padding-1">
                                                     <p className="panel__text">Human Rated</p>
                                                     <p className="panel__text">{checkValue(booleanConverter(data?.human_rated))}</p>
                                                 </div>

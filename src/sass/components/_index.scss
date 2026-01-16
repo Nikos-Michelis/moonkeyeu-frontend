@@ -11,7 +11,8 @@
 @forward "heading/heading";
 @forward "heading/page-heading";
 @forward "button/button";
-@forward "button/btn-goTop";
+@forward "button/gotop-button";
+@forward "button/theme-button";
 @forward "loader/skeleton-card";
 @forward "loader/skeleton";
 @forward "panels/panel-info";
@@ -28,5 +29,6 @@
 @forward "animations/fade-transitions";
 @forward "animations/rotation-transition";
 @forward "animations/hover-transitions";
+@forward "animations/planet";
 @forward "searchbar";
 @forward "marker";

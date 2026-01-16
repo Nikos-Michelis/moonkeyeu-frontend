@@ -10,7 +10,7 @@ div.form-content {
   & h2 {
     text-align: center;
     margin-bottom: 1.8rem;
-    font-size: var(--fs-400);
+    font-size: var(--fs-small-400);
   }
   & div.input-field {
     position: relative;
@@ -51,16 +51,16 @@ div.form-content {
       }
 
       &.active label {
-        font-size: var(--fs-100);
-        color: var(--clr-neutral-300);
-        background-color: var(--clr-neutral-1000);
+        font-size: var(--fs-medium-100);
+        color: var(--neutral-300);
+        background-color: var(--neutral-1000);
         transform: translateY(-200%);
       }
     }
     & p.error-message{
       position: relative;
       transform: translateY(5px);
-      font-size: var(--fs-100);
+      font-size: var(--fs-medium-100);
       color: $clr-warning-300;
     }
     & span.visibility {
@@ -68,7 +68,7 @@ div.form-content {
       right: 1.25rem;
       top: 1.1875rem;
       cursor: pointer;
-      color: var(--clr-dark-cosmos-200);
+      color: var(--dark-cosmos-200);
     }
   }
 }

@@ -8,9 +8,9 @@
   justify-content: space-between;
   min-width: 260px;
   overflow: hidden;
-  background-color: var(--clr-nav-300);
+  background-color: var(--nav-300);
   padding: 0.5rem 2rem 0.5rem 2rem;
-  border-bottom: 1px solid var(--clr-neutral-300);
+  border-bottom: 1px solid var(--neutral-300);
 
   &__brand-box {
     display: flex;
@@ -27,7 +27,7 @@
     box-shadow: 0.22rem 0.22rem 0 $clr-dark-cosmos-300;
     transition: box-shadow 120ms cubic-bezier(.2,.8,.2,1), transform 120ms cubic-bezier(.2,.8,.2,1);
     &:active {
-      box-shadow: 0 0 0 var(--clr-neutral-1000);
+      box-shadow: 0 0 0 var(--neutral-1000);
       transform: translate(0.22rem, 0.22rem);
     }
   }
@@ -44,7 +44,7 @@
     padding: 1rem;
 
     & h1 {
-      @include abs.font($font-size: var(--fs-400), $font-weight: 900, $color: $clr-dark-cosmos-300, $font-family: $font-family-orbitron);
+      @include abs.font($font-size: var(--fs-small-400), $font-weight: 900, $color: $clr-dark-cosmos-300, $font-family: $font-family-orbitron);
     }
   }
 
@@ -91,7 +91,7 @@
     background: $clr-dark-cosmos-300;
     height: 6px;
     width: 2.5rem;
-    @include abs.cursive_border($border-width: 2.5rem, $border-radius: 0.625rem, $color: $clr-dark-cosmos-300);
+    @include abs.cursive_border($border-width: 0.0625rem, $border-radius: 0.625rem, $color: $clr-dark-cosmos-300);
     transition: all 0.1s ease-out;
     &--top {
       top: 0.625rem;
@@ -139,14 +139,14 @@
     text-decoration: none;
     width: 100%;
     margin-inline: 0.5rem;
-    @include abs.font($font-size: var(--fs-300), $color: $clr-dark-cosmos-300);
+    @include abs.font($font-size: var(--fs-medium-300), $color: $clr-dark-cosmos-300);
     &:hover {
       box-shadow: $box-shadow-nav-1;
     }
 
     &.active {
-      box-shadow: $box-shadow-2;
-      @include abs.cursive_border($border-width: 0.125rem);
+      box-shadow: $box-shadow-nav-2;
+      @include abs.cursive_border($border-width: 0.125rem, $color: $clr-dark-cosmos-300);
     }
   }
 
@@ -162,11 +162,10 @@
     display: flex;
     justify-content: center;
     padding: 0.625rem;
-    //border-radius: 50px;
     text-decoration: none;
     transition: ease-in-out 0.2s;
     margin: 1px 5px;
-    @include abs.font($font-size: var(--fs-500), $color: $clr-dark-cosmos-300);
+    @include abs.font($font-size: var(--fs-medium-500), $color: $clr-dark-cosmos-300);
 
     &:hover {
       transition: ease-in-out 0.2s;
@@ -178,11 +177,10 @@
     display: flex;
     justify-content: center;
     padding: 0.625rem;
-   // border-radius: 50px;
     text-decoration: none;
     transition: ease-in-out 0.2s;
     margin: 1px 5px;
-    @include abs.font($font-size: var(--fs-500), $color: var(--clr-neutral-1000));
+    @include abs.font($font-size: var(--fs-medium-500), $color: var(--neutral-1000));
 
     &:hover {
       transition: ease-in-out 0.2s;
@@ -200,7 +198,7 @@
     }
 
     &__brand-title h1 {
-      font-size: var(--fs-600);
+      font-size: var(--fs-medium-600);
     }
 
     &__hamburger-label {

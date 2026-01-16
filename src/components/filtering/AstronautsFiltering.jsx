@@ -84,7 +84,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                     <div className="margin-inline-end-2">
                         <Button
                             ref={triggerRef}
-                            className="btn btn--primary btn--big fw-bold fs-small-100"
+                            className="btn btn--primary btn--big fw-bold fs-medium-200"
                             onClick={() => toggleOptions(true)}
                             disabled={isFetching || isPending || isError}
                         >
@@ -187,7 +187,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                     </div>
                     <div className="toolbar__actions">
                         <Button
-                            className="btn--transparent fs-small-100"
+                            className="btn--transparent fs-medium-200"
                             onClick={ handleReset }>
                             <FontAwesomeIcon icon={faArrowsRotate} />
                         </Button>

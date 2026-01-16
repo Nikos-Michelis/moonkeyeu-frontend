@@ -9,11 +9,11 @@
     background-size: cover;
 
     &__container {
-      background-color: $clr-overlay-400;
+      background-color: $color-overlay-400;
       width: 100%;
       text-align: center;
       box-shadow: $box-shadow-1;
-      @include abs.font($font-size: var(--fs-300), $color: $clr-secondary-300);
+      @include abs.font($font-size: var(--fs-medium-300), $color: $clr-secondary-300);
       @include abs.cursive_border();
     }
   }

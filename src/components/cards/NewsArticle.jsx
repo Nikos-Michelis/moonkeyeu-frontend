@@ -36,7 +36,7 @@ const NewsArticle = (
                             <h3 className="title">{news_site}</h3>
                         </div>
                         <div className="landscape-card__detail-box">
-                            <small className="fw-semi-bold fs-small-100 margin-block-2">{formattedZonedDateTime}</small>
+                            <small className="fw-semi-bold fs-medium-200 margin-block-2">{formattedZonedDateTime}</small>
                         </div>
                         <div className="landscape-card__detail-box">
                             <p>{title}</p>

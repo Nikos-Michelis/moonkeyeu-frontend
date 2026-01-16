@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
-const PreviousBtn = () => {
+const PreviousButton = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const upcoming = searchParams.get("upcoming");
     const handleLaunchState = () => {
@@ -20,4 +20,4 @@ const PreviousBtn = () => {
     );
 };
 
-export default PreviousBtn;
+export default PreviousButton;

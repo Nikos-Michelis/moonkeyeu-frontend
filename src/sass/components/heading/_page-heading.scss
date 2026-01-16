@@ -6,12 +6,12 @@
   padding-block-end: 2rem;
   display: flex;
   flex-direction: column;
-  color: var(--clr-neutral-1000);
+  color: var(--neutral-1000);
   &__title {
     font-variant: all-petite-caps;
-    font-size: var(--fs-900);
+    font-size: var(--fs-medium-800);
   }
   &__text {
-    font-size: var(--fs-200);
+    font-size: var(--fs-small-200);
   }
 }

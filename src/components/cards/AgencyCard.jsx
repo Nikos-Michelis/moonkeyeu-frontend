@@ -50,27 +50,27 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                             <hr/>
                             <div className="panel__wrapper">
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Type</p>
                                         <p className="panel__text">{checkValue(type)}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">CountryCode</p>
                                         <p className="panel__text">{country?.[0]?.alpha_3_code}</p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Spacecraft</p>
                                         <p className="panel__text">{checkValue(spacecraft)}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Launchers</p>
                                         <p className="panel__text">{checkValue(launchers)}</p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Administrator</p>
                                         <p className="panel__text">{checkValue(administrator)}</p>
                                     </div>
