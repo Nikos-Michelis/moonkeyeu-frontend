@@ -19,7 +19,7 @@ $box-shadow-2: 0px 6px 5px rgb(0, 0, 0, 0.016),
 */
 
 $box-shadow-1: 0.35rem 0.35rem var(--neutral-1000);
-/*$box-shadow-1:  0px 6px 5px var(--neutral-1000),
+/*$box-shadow-1:  0px 6px 5px var(--primary-1000),
 0px 22px 18px rgb(0, 0, 0, 0.018), 0px 100px 80px var(--neutral-1000);*/
 $box-shadow-2: 0.25rem 0.25rem var(--neutral-1000);
 $box-shadow-3: 0.15rem 0.15rem var(--neutral-1000);
@@ -36,7 +36,7 @@ $grid-gap: $size-3;
 $container-min-margin-inline: $size-4;
 $container-max-width: 64rem;
 $container-max-width-narrow: 40rem;
-$container-max-width-medium: 55rem;
+$container-max-width-medium: 60rem;
 $container-max-width-base: 70rem;
 $container-max-width-wide: 75rem;
 $container-fit-content: fit-content;
@@ -48,7 +48,7 @@ $button-default-font-color: var(--neutral-1000);
 $button-font-weight: normal;
 $button-font-size: var(--fs-medium-300);
 $button-line-height: 1.2;
-$button-default-bg-color: var(--neutral-300);
+$button-default-bg-color: var(--primary-300);
 $button-border-width: 0.1rem;
 $button-default-border-color: var(--neutral-1000);
 $button-border-radius: 0.2rem;
@@ -77,7 +77,7 @@ $heading-1-font-size: $font-size-900;
 $heading-1-color: $heading-color-default;
 $heading-2-font-size: $font-size-800;
 $heading-2-color: $heading-color-default;
-$heading-3-font-size: $font-size-600;
+$heading-3-font-size: $font-size-700;
 $heading-3-color: $heading-color-default;
 $heading-4-font-size: $font-size-500;
 $heading-4-color: $heading-color-default;

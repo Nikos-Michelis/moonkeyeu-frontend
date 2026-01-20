@@ -8,7 +8,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    background-color: var(--neutral-300);
+    background-color: var(--primary-300);
     min-width: 0.625rem;
     height: 1.3125rem;
     user-select: none;
@@ -93,7 +93,7 @@
       width: 100%;
       outline: none;
       padding: 0 20px 0 30px;
-      background-color: var(--neutral-100);
+      background-color: var(--primary-100);
       @include abs.cursive_border($border-width: 0.1rem, $border-radius: 0.125rem);
       @include abs.font($font-size: var(--fs-medium-300), $color: var(--neutral-1000));
 
@@ -128,12 +128,12 @@
 
       &:hover {
         border-radius: 5px;
-        background: var(--neutral-200);
+        background: var(--primary-200);
       }
 
       &.selected {
         border-radius: 5px;
-        background: var(--neutral-200);
+        background: var(--primary-200);
       }
     }
     &--ellipsis {

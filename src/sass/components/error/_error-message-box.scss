@@ -16,7 +16,7 @@ div.response-error-wrapper {
     min-width: 100%;
     min-height: 5.5rem;
     max-width: fit-content;
-    background-color: #e9bfbf;
+    background-color: $clr-warning-100;
     position: relative;
       & ul {
         list-style-type: none;
@@ -28,7 +28,7 @@ div.response-error-wrapper {
           position: relative;
           width: 100%;
           padding: 0.2rem 1.125rem 0.2rem 4.875rem;
-          @include font($font-size: var(--fs-medium-100), $font-weight: bold);
+          @include font($font-size: var(--fs-medium-100), $font-weight: bold, $color: $clr-dark-cosmos-300);
         }
     }
     div.error-circle {
@@ -44,7 +44,7 @@ div.response-error-wrapper {
       height: 3.125rem;
       border-radius: 0.4375rem;
       background-color: $clr-warning-300;
-      @include font($font-size: var(--fs-small-700), $color: var(--neutral-300));
+      @include font($font-size: var(--fs-small-700), $color: $clr-star-200);
     }
   }
 }

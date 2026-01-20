@@ -43,7 +43,7 @@ const sections = [
 const VehiclesSection = () => {
     return (
         <section className="vehicles-section">
-            <div className="grid__container container margin-block-end-15 rounded-md" data-type="full-bleed">
+            <div className="grid__container container margin-block-end-15" data-type="full-bleed">
                 <div className="grid__layout">
                     <div className="grid__portrait--vehicle">
                         {sections.map((section, index) => (

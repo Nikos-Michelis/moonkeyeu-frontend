@@ -10,7 +10,7 @@
   overflow: hidden;
   background-color: var(--nav-300);
   padding: 0.5rem 2rem 0.5rem 2rem;
-  border-bottom: 1px solid var(--neutral-300);
+  border-bottom: 1px solid var(--primary-300);
 
   &__brand-box {
     display: flex;
@@ -156,6 +156,10 @@
     align-items: center;
     width: 100%;
     cursor: pointer;
+
+    & .skeleton--circle {
+      background-color: $clr-dark-cosmos-300;
+    }
   }
 
   &__user-button {
@@ -180,7 +184,7 @@
     text-decoration: none;
     transition: ease-in-out 0.2s;
     margin: 1px 5px;
-    @include abs.font($font-size: var(--fs-medium-500), $color: var(--neutral-1000));
+    @include abs.font($font-size: var(--fs-medium-500), $color: $clr-dark-cosmos-300);
 
     &:hover {
       transition: ease-in-out 0.2s;

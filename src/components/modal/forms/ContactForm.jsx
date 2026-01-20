@@ -69,7 +69,7 @@ const ContactForm = () => {
                         </div>
                         <div className="container margin-block-8" data-type="narrow">
                             <div className="flex justify-center">
-                                <h2 className="heading-2"><FontAwesomeIcon icon={faBug}/> Report</h2>
+                                <h2 className="heading-3"><FontAwesomeIcon icon={faBug}/> Report</h2>
                             </div>
                             <hr/>
                             <p className="fs-small-300">

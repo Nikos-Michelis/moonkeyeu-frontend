@@ -12,7 +12,7 @@
     height: 45px;
     width: 100%;
     padding: 0.8rem;
-    background-color: var(--neutral-100);
+    background-color: var(--primary-300);
     outline: none;
     box-shadow: $box-shadow-1;
     color: var(--neutral-1000);
@@ -27,7 +27,7 @@
 
   &__btn-search{
     padding: 0.75rem;
-    background-color: var(--neutral-100);
+    background-color: var(--primary-300);
     height: 45px;
     box-shadow: $box-shadow-1;
     @include abs.cursive_border($border-width: $button-border-width, $border-radius: $button-border-radius, $corners: (top-right-radius bottom-right-radius));

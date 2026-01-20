@@ -71,14 +71,13 @@ const Profile = () =>{
                         <div className="profile__user-icon margin-block-end-8">
                             <FontAwesomeIcon icon={faUserAstronaut} className="fa-user-astronaut" />
                         </div>
-                        <div className="container flex flex-column" data-spacing="none">
+                        <div className="container flex flex-column" data-spacing="none" data-overflow="visible">
                             <section className="profile__managment">
-                                <div className="flex align-center">
+                                <div className="flex align-center margin-block-2">
                                     <FontAwesomeIcon icon={faGear} className="fs-small-700" />
-                                    <h2 className="padding-1">Account Management</h2>
+                                    <h2 className="margin-inline-2">Account Management</h2>
                                 </div>
-                                <div className="panel">
-                                    <hr/>
+                                <div className="panel panel--shadow">
                                     <div className="panel__wrapper">
                                         <div className="panel__container">
                                             <div className="panel__detail-box fs-small-200 padding-2">
@@ -90,6 +89,7 @@ const Profile = () =>{
                                                 <p className="panel__text">{user?.email}</p>
                                             </div>
                                         </div>
+                                        <hr/>
                                         <div className="panel__container">
                                             <div className="panel__detail-box fs-small-200 padding-2">
                                                 <p className="panel__text">Role</p>
@@ -101,7 +101,6 @@ const Profile = () =>{
                                             </div>
                                         </div>
                                     </div>
-                                    <hr/>
                                 </div>
                                 <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed">
                                     <div className="container flex flex-wrap justify-center">
@@ -126,7 +125,7 @@ const Profile = () =>{
                                             } Logout
                                         </Button>
                                         <Button
-                                            className="btn btn--primary btn--big-hg margin-2"
+                                            className="btn btn--primary btn--big-hg btn--warning margin-2"
                                             onClick={() =>
                                                 openModal("deleteAccountModal", {
                                                     title: "Delete Account - Are you sure?",

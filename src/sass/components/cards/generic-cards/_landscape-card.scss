@@ -13,7 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--neutral-100);
+    background-color: var(--card-bg);
     @include abs.cursive_border($border-width: $card-border-width, $border-radius: $card-border-radius);
     box-shadow: $box-shadow-1;
     width: 100%;
@@ -39,7 +39,7 @@
     object-fit: cover;
     display: block;
     outline: 0.1rem solid var(--neutral-1000);
-    background-color: var(--primary-100);
+    background-color: var(--card-bg);
     pointer-events: none;
     -webkit-user-drag: none;
     user-select: none;

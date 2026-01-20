@@ -8,24 +8,24 @@
 
   & table {
     border-collapse: collapse;
-    border: 0.2rem solid var(--neutral-300);
+    border: 0.2rem solid var(--neutral-1000);
 
     & tr {
-      border: 0.2rem solid var(--neutral-300);
+      border: 0.2rem solid var(--neutral-1000);
 
       & th, td {
-        border-color: var(--neutral-300);
+        border-color: var(--neutral-1000);
         padding: 12px 10px;
         vertical-align: middle;
         text-align: center;
         font-size: var(--fs-medium-100);
-        color: var(--neutral-300);
+        color: var(--neutral-1000);
       }
     }
 
     & tbody {
       tr:hover {
-        background: var(--dark-cosmos-200);
+        background: var(--primary-200);
         cursor: pointer;
       }
     }

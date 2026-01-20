@@ -19,7 +19,7 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    background-color: var(--neutral-100);
+    background-color: var(--primary-100);
     @include cursive_border($border-width: 0.12rem);
     box-shadow: $box-shadow-2;
     z-index: 1;

@@ -43,7 +43,7 @@ div.modal-wrapper {
   }
 }
 
-div.form-popup-container{
+div.form-popup-container {
   position: absolute;
   width: 100%;
   margin: 0 auto;
@@ -77,6 +77,16 @@ div.form-popup-container{
       }
     }
   }
+  &--small {
+
+  }
+  &--medium {
+
+  }
+  &--large {
+
+  }
+
 }
 
 @media screen and (min-width: 761px) {

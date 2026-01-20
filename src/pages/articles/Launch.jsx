@@ -96,7 +96,6 @@ function Launch() {
                 <section className="article">
                     <div className="container flex justify-center" data-type="wide" data-spacing="none">
                         <ContentLayout className="article__content" size="medium">
-
                             <div className="container flex justify-start padding-block-start-7 padding-block-end-2">
                                 <Button
                                     className="btn--transparent"

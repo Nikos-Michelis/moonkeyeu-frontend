@@ -15,7 +15,7 @@
     max-width: 500px;
     color: var(--neutral-1000);
     &:not([class*="bg-"]) {
-      background-color: var(--neutral-100);
+      background-color: var(--card-bg);;
     }
   }
 

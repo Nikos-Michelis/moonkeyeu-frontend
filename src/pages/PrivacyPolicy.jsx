@@ -15,7 +15,7 @@ function Privacy(){
                 description="Learn about our privacy policy and how we protect your personal data."
             />
             <ScrollToTop behavior="auto" />
-            <section className="article-section">
+            <section className="privacy-section">
                 <div className="container flex justify-center" data-type="wide" data-spacing="none">
                     <div className="container padding-8" data-type="fixed-inherit" data-spacing="none">
                         <div className="privacy-content">

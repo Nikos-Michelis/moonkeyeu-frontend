@@ -27,7 +27,7 @@ $-clr-star-400: hsl(272, 57%, 85%);
 $-clr-star-500: hsl(272, 57%, 75%);
 
 /* warning */
-$-clr-warning-100: hsl(0, 53.1%, 63.1%);
+$-clr-warning-100: hsl(0, 53.1%, 85%);
 $-clr-warning-200: hsl(0, 53.1%, 58.1%);
 $-clr-warning-300: hsl(0, 53.1%, 53.1%);
 $-clr-warning-400: hsl(0, 53.1%, 43.1%);
@@ -76,12 +76,21 @@ $-clr-twitter-black-500: hsl(210, 11%, 9%);
 $-clr-twitter-black-600: hsl(210, 11%, 7%);
 $-clr-twitter-black-700: hsl(210, 11%, 5%);
 
-$-clr-overlay-100: rgb(50 50 50 / 15%);
-$-clr-overlay-200: rgb(50 50 50 / 30%);
-$-clr-overlay-300: rgb(50 50 50 / 45%);
-$-clr-overlay-400: rgb(50 50 50 / 60%);
-$-clr-overlay-500: rgb(50 50 50 / 75%);
-$-clr-overlay-600: rgb(50 50 50 / 90%);
+$-clr-dark-overlay-100: hsl(0 0% 20% / 15%);
+$-clr-dark-overlay-200: hsl(0 0% 20% / 30%);
+$-clr-dark-overlay-300: hsl(0 0% 20% / 45%);
+$-clr-dark-overlay-400: hsl(0 0% 20% / 60%);
+$-clr-dark-overlay-500: hsl(0 0% 20% / 75%);
+$-clr-dark-overlay-600: hsl(0 0% 20% / 90%);
+
+$-clr-light-overlay-100: hsl(0 0% 100% / 15%);
+$-clr-light-overlay-200: hsl(0 0% 100% / 30%);
+$-clr-light-overlay-300: hsl(0 0% 100% / 45%);
+$-clr-light-overlay-400: hsl(0 0% 100% / 60%);
+$-clr-light-overlay-500: hsl(0 0% 100% / 75%);
+$-clr-light-overlay-600: hsl(0 0% 100% / 90%);
+
+
 
 $-color-wind-gray: #DCDCDC;
 $-color-sun-yellow: #FFDF22;
@@ -90,11 +99,11 @@ $-color-sun-yellow: #FFDF22;
 $light: (
   "neutral": (
     "000": $-clr-star-200,
-    "100": $-clr-main-100,
-    "200": $-clr-main-200,
-    "300": $-clr-main-300,
-    "400": $-clr-main-400,
-    "500": $-clr-main-500,
+    "500": $-clr-secondary-500,
+    "400": $-clr-secondary-400,
+    "300": $-clr-secondary-300,
+    "200": $-clr-secondary-200,
+    "100": $-clr-secondary-100,
     "1000": $-clr-dark-cosmos-300,
   ),
   "secondary": (
@@ -105,11 +114,14 @@ $light: (
     "100": $-clr-star-100,
   ),
   "primary": (
-          "500": $-clr-main-500 ,
-          "400": $-clr-main-400,
-          "300": $-clr-main-300,
-          "200": $-clr-main-200,
-          "100": $-clr-main-100
+    "500": $-clr-main-500 ,
+    "400": $-clr-main-400,
+    "300": $-clr-main-300,
+    "200": $-clr-main-200,
+    "100": $-clr-main-100
+  ),
+  "card": (
+    "bg": $-clr-main-100,
   ),
   "nav": (
     "300": $-clr-main-300
@@ -119,27 +131,30 @@ $light: (
 
 $dark: (
   "neutral": (
-          "1000": $-clr-secondary-300,
-          "500": $-clr-dark-cosmos-500,
-          "400": $-clr-dark-cosmos-400,
-          "300": $-clr-dark-cosmos-100,
-          "200": $-clr-dark-cosmos-200,
-          "100": $-clr-dark-cosmos-300,
-          "000":  $-clr-dark-cosmos-300,
+    "1000": $-clr-secondary-300,
+    "500": $-clr-secondary-100,
+    "400": $-clr-secondary-200,
+    "300": $-clr-secondary-300,
+    "200": $-clr-secondary-400,
+    "100": $-clr-secondary-500,
+    "000":  $-clr-dark-cosmos-300,
   ),
-  "secondary": ( // add as a neutral
-          "500": $-clr-secondary-500 ,
-          "400": $-clr-secondary-400,
-          "300": $-clr-secondary-300,
-          "200": $-clr-secondary-200,
-          "100": $-clr-secondary-100
+  "secondary": (
+    "500": $-clr-secondary-500 ,
+    "400": $-clr-secondary-400,
+    "300": $-clr-secondary-300,
+    "200": $-clr-secondary-200,
+    "100": $-clr-secondary-100
   ),
   "primary": (
-          "500": $-clr-dark-cosmos-500,
-          "400": $-clr-dark-cosmos-400,
-          "300": $-clr-dark-cosmos-300,
-          "200": $-clr-dark-cosmos-200,
-          "100": $-clr-dark-cosmos-100,
+    "500": $-clr-dark-cosmos-500,
+    "400": $-clr-dark-cosmos-400,
+    "300": $-clr-dark-cosmos-300,
+    "200": $-clr-dark-cosmos-200,
+    "100": $-clr-dark-cosmos-100,
+  ),
+  "card": (
+    "bg": $-clr-dark-cosmos-300,
   ),
   "nav": (
     "300": $-clr-secondary-300
@@ -147,7 +162,7 @@ $dark: (
 );
 
 $clr-constants: (
-        yt-red: #d50501,
+    yt-red: #d50501,
 );
 
 // contextual color tokens
@@ -158,7 +173,10 @@ $clr-yt-red-300: $-clr-yt-red-300;
 $clr-yt-red-400: $-clr-yt-red-400;
 $clr-dark-cosmos-300: $-clr-dark-cosmos-300;
 $clr-warning-300: $-clr-warning-300;
+$clr-warning-400: $-clr-warning-400;
+$clr-warning-100: $-clr-warning-100;
 $clr-success-300: $-clr-success-300;
+$clr-success-400: $-clr-success-400;
 $clr-sky-500: $-clr-sky-500;
 $clr-sky-500: $-clr-sky-500;
 $clr-sky-500: $-clr-sky-500;
@@ -195,12 +213,20 @@ $color-secondary-700: var(--secondary-700);
 $color-secondary-800: var(--secondary-800);
 $color-secondary-900: var(--secondary-900);
 
-$color-overlay-100: $-clr-overlay-100;
-$color-overlay-200: $-clr-overlay-200;
-$color-overlay-300: $-clr-overlay-300;
-$color-overlay-400: $-clr-overlay-400;
-$color-overlay-500: $-clr-overlay-500;
-$color-overlay-600: $-clr-overlay-600;
+$color-dark-overlay-100: $-clr-dark-overlay-100;
+$color-dark-overlay-200: $-clr-dark-overlay-200;
+$color-dark-overlay-300: $-clr-dark-overlay-300;
+$color-dark-overlay-400: $-clr-dark-overlay-400;
+$color-dark-overlay-500: $-clr-dark-overlay-500;
+$color-dark-overlay-600: $-clr-dark-overlay-600;
+
+$color-light-overlay-100: $-clr-light-overlay-100;
+$color-light-overlay-200: $-clr-light-overlay-200;
+$color-light-overlay-300: $-clr-light-overlay-300;
+$color-light-overlay-400: $-clr-light-overlay-400;
+$color-light-overlay-500: $-clr-light-overlay-500;
+$color-light-overlay-600: $-clr-light-overlay-600;
+
 
 $color-wind-gray:$-color-wind-gray;
 $color-sun-yellow:$-color-sun-yellow;

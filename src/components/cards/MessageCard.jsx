@@ -23,6 +23,7 @@ const MessageCard = ({id, category, email, message, created_at}) => {
                 },
             },
         });
+
     const handleRemove = (id) => {
         removeMessageMutation.mutate(
             {
@@ -31,7 +32,6 @@ const MessageCard = ({id, category, email, message, created_at}) => {
             }
         );
     };
-
 
     useEffect(() => {
         setStatus("deleteMessage", { isPending: removeMessageMutation.isPending});
@@ -67,7 +67,7 @@ const MessageCard = ({id, category, email, message, created_at}) => {
                     </div>
                     <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
                         <Button
-                            className="btn btn--primary"
+                            className="btn btn--primary btn--warning"
                             onClick={() =>
                                 openModal("deleteMessage", {
                                     title: "Delete Message - Are you sure?",
