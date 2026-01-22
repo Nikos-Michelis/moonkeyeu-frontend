@@ -1,13 +1,9 @@
 import React from "react";
 import Img from "@/components/utils/Img.jsx";
+import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 
 const BoosterInfo = ({launcher, type, landing}) =>{
-    const checkValue = (value) => {
-        return (value ? value : "―");
-    }
-    const booleanConverter = (value) => {
-        return value ? value === true ? "Yes" : "No" : null;
-    }
+    const {handleValue, booleanConverter} = useDataFormatter();
     return(
         <>
             <div className="container flex flex-wrap justify-space-around align-center padding-block-8" data-type="full-bleed" data-spacing="none">
@@ -26,11 +22,11 @@ const BoosterInfo = ({launcher, type, landing}) =>{
                         <div className="panel__container">
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Serial</p>
-                                <p className="panel__text">{checkValue(launcher?.serial_number)}</p>
+                                <p className="panel__text">{handleValue(launcher?.serial_number)}</p>
                             </div>
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Flight Proven</p>
-                                <p className="panel__text">{booleanConverter(checkValue(launcher?.flight_proven))}</p>
+                                <p className="panel__text">{booleanConverter(handleValue(launcher?.flight_proven))}</p>
                             </div>
                         </div>
                     </div>
@@ -38,11 +34,11 @@ const BoosterInfo = ({launcher, type, landing}) =>{
                         <div className="panel__container">
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Status</p>
-                                <p className="panel__text">{checkValue(launcher?.status)}</p>
+                                <p className="panel__text">{handleValue(launcher?.status)}</p>
                             </div>
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">flights</p>
-                                <p className="panel__text">{checkValue(launcher?.flights)}</p>
+                                <p className="panel__text">{handleValue(launcher?.flights)}</p>
                             </div>
                         </div>
                     </div>
@@ -51,11 +47,11 @@ const BoosterInfo = ({launcher, type, landing}) =>{
                         <div className="panel__container">
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Landing Attempt</p>
-                                <p className="panel__text">{booleanConverter(checkValue(landing?.attempt))}</p>
+                                <p className="panel__text">{booleanConverter(handleValue(landing?.attempt))}</p>
                             </div>
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Type</p>
-                                <p className="panel__text">{checkValue(landing?.landing_type?.abbrev)}</p>
+                                <p className="panel__text">{handleValue(landing?.landing_type?.abbrev)}</p>
                             </div>
                         </div>
                     </div>
@@ -63,11 +59,11 @@ const BoosterInfo = ({launcher, type, landing}) =>{
                         <div className="panel__container">
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Landing Success</p>
-                                <p className="panel__text">{booleanConverter(checkValue(landing?.success))}</p>
+                                <p className="panel__text">{booleanConverter(handleValue(landing?.success))}</p>
                             </div>
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Location</p>
-                                <p className="panel__text">{checkValue(landing?.landing_zone?.abbrev)}</p>
+                                <p className="panel__text">{handleValue(landing?.landing_zone?.abbrev)}</p>
                             </div>
                         </div>
                     </div>

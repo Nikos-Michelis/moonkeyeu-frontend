@@ -3,19 +3,29 @@ import React from "react";
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
 import ContentLayout from "@/layout/ContentLayout.jsx";
 
-const ArticleSection = (data, contentConfig, ArticleComponent) => {
+const ArticleContentSection = (
+    {
+        data = {},
+        queryData = {},
+        pagination,
+        isPending,
+        isFetching,
+        isError,
+        contentConfig,
+        ArticleComponent
+    }) => {
     return (
         <>
             <ScrollToTop behavior="auto" />
             <SkeletonLoader
-                isFetching={data?.isFetching}
-                isPending={data?.isFetching}
-                isError={data?.isError}
+                isFetching={isPending}
+                isPending={isFetching}
+                isError={isError}
                 contentConfig={contentConfig}>
                 <section className="article">
                     <div className="container flex justify-center" data-type="wide" data-spacing="none">
                         <ContentLayout className="article__content" size="medium">
-                            <ArticleComponent data={data}/>
+                            <ArticleComponent data={data} queryData={queryData} pagination={pagination}/>
                         </ContentLayout>
                     </div>
                 </section>
@@ -23,3 +33,5 @@ const ArticleSection = (data, contentConfig, ArticleComponent) => {
         </>
     );
 }
+
+export default ArticleContentSection;

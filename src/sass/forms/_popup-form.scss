@@ -54,7 +54,7 @@ div.form-popup-container {
   overflow-y: auto;
   height: auto;
   color: var(--neutral-1000);
-  box-shadow: $box-shadow-1;
+  box-shadow: $box-shadow-2;
   @include abs.cursive_border();
   & div.form-box{
     & .form-details{

@@ -10,19 +10,15 @@ import {
     faLocationDot
 } from '@fortawesome/free-solid-svg-icons';
 import { faWikipediaW } from '@fortawesome/free-brands-svg-icons';
+import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 
 const spacecraft = ({ stage }) =>{
+    const { handleValue, booleanConverter } = useDataFormatter();
     const spacecraft = stage.spacecraft || {}
     const configuration = stage.spacecraft?.configuration || {}
     const landing = stage.landing || {}
     const landingZone = stage.landing?.landing_zone || {}
     const landingType = stage.landing?.landing_type || {}
-    const checkValue = (value) => {
-        return (value ? value : "―");
-    }
-    const booleanConverter = (value) => {
-        return value ? value === true ? "Yes" : "No" : null;
-    }
     return(
         <section className="spacecraft-section">
             <div className="article__heading-box">
@@ -40,17 +36,17 @@ const spacecraft = ({ stage }) =>{
                     />
                 </div>
                 <div className="panel panel--small">
-                    <h3 className="panel__title">{checkValue(configuration.name)}</h3>
+                    <h3 className="panel__title">{handleValue(configuration.name)}</h3>
                     <hr className="hr-75-sm" />
                     <div className="panel__wrapper">
                         <div className="panel__container">
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Serial</p>
-                                <p className="panel__text">{checkValue(spacecraft.serial_number)}</p>
+                                <p className="panel__text">{handleValue(spacecraft.serial_number)}</p>
                             </div>
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Status</p>
-                                <p className="panel__text">{checkValue(spacecraft.status)}</p>
+                                <p className="panel__text">{handleValue(spacecraft.status)}</p>
                             </div>
                         </div>
                     </div>
@@ -58,11 +54,11 @@ const spacecraft = ({ stage }) =>{
                         <div className="panel__container">
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Crew Capacity</p>
-                                <p className="panel__text">{checkValue(configuration.crew_capacity)}</p>
+                                <p className="panel__text">{handleValue(configuration.crew_capacity)}</p>
                             </div>
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">flights</p>
-                                <p className="panel__text">{checkValue()}</p>
+                                <p className="panel__text">{handleValue(spacecraft.flights_count)}</p>
                             </div>
                         </div>
                     </div>
@@ -71,11 +67,11 @@ const spacecraft = ({ stage }) =>{
                         <div className="panel__container">
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Landing Attempt</p>
-                                <p className="panel__text">{booleanConverter(checkValue(landing.attempt))}</p>
+                                <p className="panel__text">{booleanConverter(handleValue(landing.attempt))}</p>
                             </div>
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Type</p>
-                                <p className="panel__text">{checkValue(landingType.abbrev)}</p>
+                                <p className="panel__text">{handleValue(landingType.abbrev)}</p>
                             </div>
                         </div>
                     </div>
@@ -83,11 +79,11 @@ const spacecraft = ({ stage }) =>{
                         <div className="panel__container">
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Landing Success</p>
-                                <p className="panel__text">{booleanConverter(checkValue(landing.success))}</p>
+                                <p className="panel__text">{booleanConverter(handleValue(landing.success))}</p>
                             </div>
                             <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Location</p>
-                                <p className="panel__text">{checkValue(landingZone.abbrev)}</p>
+                                <p className="panel__text">{handleValue(landingZone.abbrev)}</p>
                             </div>
                         </div>
                     </div>

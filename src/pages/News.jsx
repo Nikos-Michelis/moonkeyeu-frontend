@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Heading from "@/components/utils/Heading.jsx";
-import NewsSection from "@/components/sections/NewsSection.jsx";
+import NewsSection from "@/components/sections/pages/NewsSection.jsx";
 import {useSearchParams} from "react-router-dom";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";

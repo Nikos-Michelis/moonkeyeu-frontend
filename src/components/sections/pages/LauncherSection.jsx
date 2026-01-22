@@ -1,14 +1,15 @@
 import React from 'react';
-import SpacecraftCard from "@/components/cards/SpacecraftCard.jsx";
-import ContentSection from "@/components/sections/ContentSection.jsx";
+import ContentSection from "@/components/sections/pages/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
-const SpacecraftSection = ({ spacecraft, isFetching, isError, pagination }) => {
-    const items = spacecraft._embedded?.spacecraftConfigSummarizedDTOes || [];
+import LauncherCard from "@/components/cards/LauncherCard.jsx";
+
+const LauncherSection = ({launcher, isFetching, isError, pagination}) => {
+    const items = launcher._embedded?.launcherDTOes || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
         styles: {
             wrapper: "medium-wrapper",
-            section: "spacecraft-articles",
+            section: "launcher-articles",
         },
     };
     return (
@@ -18,10 +19,10 @@ const SpacecraftSection = ({ spacecraft, isFetching, isError, pagination }) => {
             isError={isError}
             pagination={pagination}
             contentConfig={contentConfig}
-            CardComponent={SpacecraftCard}
+            CardComponent={LauncherCard}
             itemKeyExtractor={(item) => item.id}
         />
     );
 };
-export default SpacecraftSection;
 
+export default LauncherSection;

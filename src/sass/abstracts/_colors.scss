@@ -98,7 +98,7 @@ $-color-sun-yellow: #FFDF22;
 
 $light: (
   "neutral": (
-    "000": $-clr-star-200,
+    "000": $-clr-secondary-300,
     "500": $-clr-secondary-500,
     "400": $-clr-secondary-400,
     "300": $-clr-secondary-300,
@@ -212,6 +212,8 @@ $color-secondary-600: var(--secondary-600);
 $color-secondary-700: var(--secondary-700);
 $color-secondary-800: var(--secondary-800);
 $color-secondary-900: var(--secondary-900);
+$color-card-bg: var(--card-bg);
+$color-nav-300: var(--nav-300);
 
 $color-dark-overlay-100: $-clr-dark-overlay-100;
 $color-dark-overlay-200: $-clr-dark-overlay-200;

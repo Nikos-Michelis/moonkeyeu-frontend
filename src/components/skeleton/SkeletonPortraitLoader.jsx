@@ -5,7 +5,7 @@ const SkeletonPortraitLoader = () => {
     return (
         <article className="portrait-card portrait-card__container">
                 <div className="skeleton skeleton--media opacity-6">
-                    <div className="skeleton--container skeleton--container--portrait">
+                    <div className="skeleton--container">
                         <div className="skeleton--container__icon">
                             <FontAwesomeIcon icon={faImage} />
                         </div>

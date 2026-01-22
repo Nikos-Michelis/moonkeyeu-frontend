@@ -1,7 +1,7 @@
 import React from "react";
 import LaunchCard from "@/components/cards/LaunchCard.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
-import ContentSection from "@/components/sections/ContentSection.jsx";
+import ContentSection from "@/components/sections/pages/ContentSection.jsx";
 
 const LaunchesSection = (
     {

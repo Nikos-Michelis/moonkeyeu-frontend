@@ -4,6 +4,7 @@ import {faClipboardList} from "@fortawesome/free-solid-svg-icons";
 
 const RelatedPrograms = ({programs}) =>{
     const contentConfig = {
+        scroll: 2,
         styles: {
             wrapper: "article-card--small-wrapper",
             section: "launches-articles",
@@ -21,7 +22,7 @@ const RelatedPrograms = ({programs}) =>{
                 <div className="container"
                      data-type="full-width"
                      data-spacing="none"
-                     data-scroll={programs.length > 2  ? "vertical" : undefined}>
+                     data-scroll={programs.length > contentConfig?.scroll  ? "vertical" : undefined}>
                     <div className="margin-block-5 margin-inline-4">
                         <div className="grid__landscape padding-block-2">
                             {programs?.length > 0 && (

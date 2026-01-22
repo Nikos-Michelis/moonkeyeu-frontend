@@ -5,6 +5,7 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
 
 const SpacecraftConfig = ({ spacecraftConfigs }) =>{
     const contentConfig = {
+        scroll: 2,
         styles: {
             wrapper: "article-card--medium-wrapper",
             card_type: "landscape-card__container--article-card"
@@ -21,7 +22,7 @@ const SpacecraftConfig = ({ spacecraftConfigs }) =>{
                 <div className="container"
                      data-spacing="none"
                      data-type="full-width"
-                     data-scroll={spacecraftConfigs.length> 2  ? "vertical" : undefined}>
+                     data-scroll={spacecraftConfigs.length > contentConfig?.scroll  ? "vertical" : undefined}>
                     <div className="margin-block-5 margin-inline-4">
                         <div className="grid__landscape padding-block-2">
                             {spacecraftConfigs?.length > 0 && (

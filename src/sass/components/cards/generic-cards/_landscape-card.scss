@@ -13,9 +13,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--card-bg);
+    background-color: $card-background-default;
     @include abs.cursive_border($border-width: $card-border-width, $border-radius: $card-border-radius);
-    box-shadow: $box-shadow-1;
+    box-shadow: $card-shadow;
     width: 100%;
     max-width: 500px;
     overflow: hidden;

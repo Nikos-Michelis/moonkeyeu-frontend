@@ -12,7 +12,7 @@
     min-width: 0.625rem;
     height: 1.3125rem;
     user-select: none;
-    box-shadow: $box-shadow-2;
+    box-shadow: $box-shadow-3;
     @include abs.font($font-size: var(--fs-medium-200), $font-weight: 700, $color: var(--neutral-1000));
     @include abs.cursive_border($border-width: 0.12rem);
     &:not(.select__btn--small):not(.select__btn--medium):not(.select__btn--large):not(.select__btn--yt-video) {
@@ -35,7 +35,7 @@
     &--yt-video {
       width: 100%;
       color: $clr-star-200;
-      background-color: var(--yt-red);
+      background-color: abs.$clr-yt-red-300;
       padding: 2rem 1rem;
     }
     &--ellipsis {

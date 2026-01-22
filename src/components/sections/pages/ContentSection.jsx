@@ -1,5 +1,5 @@
 import React from "react";
-import LatestNews from "../sidebars/LatestNews.jsx";
+import LatestNews from "../../sidebars/LatestNews.jsx";
 import { SkeletonLoader } from "@/components/loader/SkeletonLoader.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
@@ -36,7 +36,7 @@ const ContentSection = (
 
     return (
         <section className={contentConfig?.styles?.section}>
-            <div className="grid__container container margin-block-end-15" data-type="full-bleed" data-overflow="visible">
+            <div className="grid__container container margin-block-end-15" data-overflow="visible" data-type="full-bleed">
                 <div className="grid__layout">
                     { options?.showPrevBtn && <div className="flex"><PreviousButton/></div>}
                     { (options?.showBackBtn || options?.showItemsLimit) &&

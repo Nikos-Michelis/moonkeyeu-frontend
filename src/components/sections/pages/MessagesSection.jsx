@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentSection from "@/components/sections/ContentSection.jsx";
+import ContentSection from "@/components/sections/pages/ContentSection.jsx";
 import MessageCard from "@/components/cards/MessageCard.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
 import {faMessage} from "@fortawesome/free-solid-svg-icons";

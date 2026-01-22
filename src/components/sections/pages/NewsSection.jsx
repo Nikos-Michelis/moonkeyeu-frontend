@@ -1,28 +1,27 @@
 import React from 'react';
-import ContentSection from "@/components/sections/ContentSection.jsx";
+import NewsArticle from "@/components/cards/NewsArticle.jsx";
+import ContentSection from "@/components/sections/pages/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
-import AgencyCard from "@/components/cards/AgencyCard.jsx";
-const AgenciesSection = ({ agencies, isFetching, isError}) => {
-    const items = agencies?.data || [];
+const NewsSection = ({ articles, isPending, isFetching, isError, pagination }) => {
+    const items = articles.results || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
         styles: {
             wrapper: "small-wrapper",
-            section: "spacecraft-articles",
+            section: "news-articles",
         },
     };
     return (
         <ContentSection
             items={items}
             isFetching={isFetching}
+            isPending={isPending}
             isError={isError}
+            pagination={pagination}
             contentConfig={contentConfig}
-            CardComponent={AgencyCard}
+            CardComponent={NewsArticle}
             itemKeyExtractor={(item) => item.id}
-            isDetailed={true}
-            pagination={false}
         />
     );
 };
-export default AgenciesSection;
-
+export default NewsSection;

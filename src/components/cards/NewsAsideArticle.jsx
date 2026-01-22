@@ -8,7 +8,7 @@ const NewsAsideArticle = ({imageSrc, title, author, url}) => {
                     <Img
                         src={imageSrc}
                         alt={title || "default"}
-                        className={`portrait-card__sidebar-img`}
+                        className={`portrait-card__image portrait-card__image--sidebar`}
                         defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`}
                     />
                 </a>

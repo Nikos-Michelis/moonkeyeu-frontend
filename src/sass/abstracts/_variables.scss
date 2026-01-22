@@ -18,12 +18,11 @@ $box-shadow-2: 0px 6px 5px rgb(0, 0, 0, 0.016),
 0px 22px 18px rgb(0, 0, 0, 0.024), 0px 100px 80px rgb(0, 0, 0, 0.04);
 */
 
-$box-shadow-1: 0.35rem 0.35rem var(--neutral-1000);
-/*$box-shadow-1:  0px 6px 5px var(--primary-1000),
-0px 22px 18px rgb(0, 0, 0, 0.018), 0px 100px 80px var(--neutral-1000);*/
-$box-shadow-2: 0.25rem 0.25rem var(--neutral-1000);
-$box-shadow-3: 0.15rem 0.15rem var(--neutral-1000);
-$box-shadow-4: 0.10rem 0.10rem var(--neutral-1000);
+$box-shadow-1: 0.45rem 0.45rem var(--neutral-1000);
+$box-shadow-2: 0.35rem 0.35rem var(--neutral-1000);
+$box-shadow-3: 0.25rem 0.25rem var(--neutral-1000);
+$box-shadow-4: 0.15rem 0.15rem var(--neutral-1000);
+$box-shadow-5: 0.05rem 0.05rem var(--neutral-1000);
 
 $box-shadow-warning-1: 0.35rem 0.35rem $clr-warning-300;
 $box-shadow-nav-1: 0 0.25rem $clr-dark-cosmos-300;
@@ -57,10 +56,10 @@ $button-transition: all 0.1s ease;
 // cards
 $card-flow-spacing: $size-2;
 $card-padding: $size-8;
-$card-shadow: $box-shadow-1;
-$card-border-radius: 0.2rem;
+$card-shadow: $box-shadow-2;
+$card-border-radius: 0rem;
 $card-border-width: 0.15rem;
-$card-background-default: $color-primary-100;
+$card-background-default: $color-card-bg;
 $card-color-default: $color-neutral-1000;
 $card-line-height: 1.25;
 $card-heading-color-default: $card-color-default;

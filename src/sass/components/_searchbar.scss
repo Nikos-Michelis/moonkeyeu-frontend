@@ -14,7 +14,7 @@
     padding: 0.8rem;
     background-color: var(--primary-300);
     outline: none;
-    box-shadow: $box-shadow-1;
+    box-shadow: $box-shadow-2;
     color: var(--neutral-1000);
     @include abs.cursive_border($border-width: $button-border-width, $border-radius: $button-border-radius, $corners: (top-left-radius bottom-left-radius));
     &::placeholder {
@@ -29,9 +29,10 @@
     padding: 0.75rem;
     background-color: var(--primary-300);
     height: 45px;
-    box-shadow: $box-shadow-1;
+    box-shadow: $box-shadow-2;
     @include abs.cursive_border($border-width: $button-border-width, $border-radius: $button-border-radius, $corners: (top-right-radius bottom-right-radius));
   }
+
 
   @include abs.mq(medium) {
     width: 250px;

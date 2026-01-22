@@ -55,7 +55,7 @@ const Agency = ({ launchProvider }) =>{
                                 </div>
                             </Tooltip>
                         )}
-                        { launchProvider.info_url ? (
+                        { launchProvider?.info_url ? (
                             <div className="info">
                                 <LinkButton
                                     className="btn btn--primary"
@@ -78,7 +78,7 @@ const Agency = ({ launchProvider }) =>{
                                 </div>
                             </Tooltip>
                         )}
-                        { launchProvider.wiki_url ? (
+                        { launchProvider?.wiki_url ? (
                             <div className="wiki">
                                 <LinkButton
                                     className="btn btn--primary"

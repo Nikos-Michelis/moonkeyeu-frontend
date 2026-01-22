@@ -1,13 +1,14 @@
 import React from "react";
-import useNumberFormatter from "@/hooks/util/useNumberFormatter.jsx";
 import useComparator from "@/hooks/util/useComparator.jsx";
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTimeline} from '@fortawesome/free-solid-svg-icons';
+import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 
 const Mission = ({mission, launchCost, missionPatches}) => {
-    const formattedNumber = useNumberFormatter(Number(launchCost));
+    const {handleNumberLocale} = useDataFormatter();
     const missionPatch = useComparator(missionPatches, (a, b) => a.priority > b.priority);
+    const formattedNumber = handleNumberLocale(Number(launchCost));
     return(
         <section className="mission-section">
             <div className="article__heading-box">

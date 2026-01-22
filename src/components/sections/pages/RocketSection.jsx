@@ -1,15 +1,15 @@
 import React from 'react';
-import ContentSection from "@/components/sections/ContentSection.jsx";
+import RocketCard from "@/components/cards/RocketCard.jsx";
+import ContentSection from "@/components/sections/pages/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
-import ProgramsCard from "@/components/cards/ProgramsCard.jsx";
 
-const ProgramsSection = ({ programs, isFetching, isError, pagination}) => {
-    const items = programs._embedded?.programSummarizedDTOes || [];
+const RocketSection = ({rocket, isFetching, isError, pagination}) => {
+    const items = rocket._embedded?.rocketConfigSummarizedDTOes || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
         styles: {
-            wrapper: "small-wrapper",
-            section: "programs-articles",
+            wrapper: "medium-wrapper",
+            section: "rocket-articles",
         },
     };
     return (
@@ -19,9 +19,10 @@ const ProgramsSection = ({ programs, isFetching, isError, pagination}) => {
             isError={isError}
             pagination={pagination}
             contentConfig={contentConfig}
-            CardComponent={ProgramsCard}
+            CardComponent={RocketCard}
             itemKeyExtractor={(item) => item.id}
         />
     );
 };
-export default ProgramsSection;
+
+export default RocketSection;

@@ -1,5 +1,5 @@
 import React from 'react';
-import LatestNews from "../sidebars/LatestNews.jsx";
+import LatestNews from "../../sidebars/LatestNews.jsx";
 import {VehicleOptionCard} from "@/components/cards/VehicleOptionCard.jsx";
 import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
 

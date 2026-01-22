@@ -5,8 +5,7 @@
 .btn-theme-wrapper {
   box-shadow: $box-shadow-nav-2;
   @include abs.cursive_border($color:$clr-dark-cosmos-300);
-  margin-block:0.6rem;
-
+  margin-block: 0.6rem;
 }
 
 .btn-text {

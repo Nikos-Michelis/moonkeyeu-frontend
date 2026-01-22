@@ -13,13 +13,13 @@ import Contact from "@/pages/Contact.jsx";
 import PrivacyPolicy from "@/pages/PrivacyPolicy.jsx";
 import Agencies from "@/pages/Agencies.jsx";
 import Spacecraft from "@/pages/Spacecraft.jsx";
-import Launch from "@/pages/articles/Launch.jsx";
-import Astronaut from "@/pages/articles/Astronaut.jsx";
-import Program from "@/pages/articles/Program.jsx";
-import SpacecraftConfig from "@/pages/articles/SpacecraftConfig.jsx";
+import LaunchArticle from "@/pages/articles/LaunchArticle.jsx";
+import AstronautArticle from "@/pages/articles/AstronautArticle.jsx";
+import ProgramArticle from "@/pages/articles/ProgramArticle.jsx";
+import SpacecraftConfigArticle from "@/pages/articles/SpacecraftConfigArticle.jsx";
 import NasaApodArticle from "@/pages/articles/NasaApodArticle.jsx";
-import LaunchPad from "@/pages/articles/LaunchPad.jsx";
-import Agency from "@/pages/articles/Agency.jsx";
+import LaunchPadArticle from "@/pages/articles/LaunchPadArticle.jsx";
+import AgencyArticle from "@/pages/articles/AgencyArticle.jsx";
 import Profile from "@/pages/user/Profile.jsx";
 import ResetPassword from "@/pages/user/ResetPassword.jsx";
 import Bookmarks from "@/pages/user/Bookmarks.jsx";
@@ -65,25 +65,25 @@ function App() {
                             <Route path="/" element={<Navigate to="/launches" />} />
                             <Route path="/launches" element={<Layout />}>
                                 <Route index element={<Home />} />
-                                <Route path=":id" element={<Launch/>} />
+                                <Route path=":id" element={<LaunchArticle/>} />
                             </Route>
                             <Route path="/programs" element={<Layout />}>
                                 <Route index element={<Programs />} />
-                                <Route path=":id" element={<Program />} />
+                                <Route path=":id" element={<ProgramArticle />} />
                             </Route>
                             <Route path="/astronauts" element={<Layout />}>
                                 <Route index element={<Astronauts />} />
-                                <Route path=":id" element={<Astronaut />} />
+                                <Route path=":id" element={<AstronautArticle />} />
                             </Route>
                             {<Route path="/agencies" element={<Layout />}>
                                 <Route index element={<Agencies />} />
-                                <Route path=":id" element={<Agency />}/>
+                                <Route path=":id" element={<AgencyArticle />}/>
                             </Route>}
                             <Route path="/vehicles" element={<Layout />}>
                                 <Route index element={<Vehicles />} />
                                 <Route path="spacecraft" element={<Layout />}>
                                     <Route index element={<Spacecraft />} />
-                                    <Route path=":id" element={<SpacecraftConfig />} />
+                                    <Route path=":id" element={<SpacecraftConfigArticle />} />
                                 </Route>
                                 <Route path="rockets" element={<Rockets />}/>
                                 <Route path="launchers" element={<Boosters />}/>
@@ -104,7 +104,7 @@ function App() {
                             </Route>
                             <Route path="/locations" element={<Layout />}>
                                 <Route index element={<Locations />} />
-                                <Route path=":id" element={<LaunchPad />} />
+                                <Route path=":id" element={<LaunchPadArticle />} />
                             </Route>
                             <Route path="/news" element={<News />} />
                             <Route path="/nasa-apod" element={<NasaApodArticle/>}></Route>

@@ -8,7 +8,7 @@
     @include abs.button-color-variation($color: var(--neutral-1000), $background-color: var(--primary-300), $border-color: var(--neutral-1000));
     @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
     @include abs.button-hover($color: var(--neutral-1000), $background-color: var(--primary-400), $border-color: var(--neutral-1000));
-    box-shadow: $box-shadow-2;
+    box-shadow: $box-shadow-3;
     transition: box-shadow 120ms cubic-bezier(.2,.8,.2,1), transform 120ms cubic-bezier(.2,.8,.2,1);
     padding: 5px 10px;
 
@@ -34,7 +34,7 @@
 
   &--google {
     color-scheme: auto;
-    box-shadow: $box-shadow-2;
+    box-shadow: $box-shadow-3;
     @include abs.cursive_border($border-radius: 0.5rem);
     padding: 0;
     background-color: var(--neutral-1000);
@@ -44,7 +44,7 @@
     @include abs.button-color-variation($color: $clr-star-200, $background-color: $clr-yt-red-300, $border-color: var(--neutral-1000));
     @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
     @include abs.button-hover($color: $clr-star-200, $background-color: $clr-yt-red-400, $border-color: var(--neutral-1000));
-    box-shadow: $box-shadow-2;
+    box-shadow: $box-shadow-3;
     transition:
             box-shadow 120ms cubic-bezier(.2,.8,.2,1),
             transform 120ms cubic-bezier(.2,.8,.2,1);
@@ -63,7 +63,7 @@
     @include abs.button-color-variation($color: var(--primary-300), $background-color: var(--twitter-black-200), $border-color: var(--neutral-1000));
     @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
     @include abs.button-hover($color: var(--primary-300), $background-color: var(--twitter-black-500), $border-color: var(--neutral-1000));
-     box-shadow: $box-shadow-2;
+     box-shadow: $box-shadow-3;
     padding: 5px 10px;
 
     &:not([class*="margin-"]) {
@@ -89,6 +89,12 @@
     cursor: pointer;
     text-decoration: none;
     @include abs.button-color-variation($color: var(--neutral-1000), $background-color: transparent, $border-color: transparent);
+  }
+
+  &--transparent-dark {
+    cursor: pointer;
+    text-decoration: none;
+    @include abs.button-color-variation($color: $clr-dark-cosmos-300, $background-color: transparent, $border-color: transparent);
   }
 
   &--assisance {
@@ -154,7 +160,7 @@
 
   &__donation {
     @include abs.cursive_border($border-radius: 1rem);
-    box-shadow: $box-shadow-2;
+    box-shadow: $box-shadow-3;
     transition: box-shadow 120ms cubic-bezier(.2,.8,.2,1), transform 120ms cubic-bezier(.2,.8,.2,1);
     width: 20rem;
 

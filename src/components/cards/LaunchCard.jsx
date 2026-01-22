@@ -85,7 +85,7 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
 
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'large-wrapper'}`}>
-            <div className={`landscape-card__container ${cardStyles?.card_type || ''}`}>
+            <div className={`landscape-card__container lift lift--lg ${cardStyles?.card_type || ''}`}>
                 <div className="landscape-card__media">
                     <div className="landscape-card__btn-bookmark flex justify-center align-center">
                         {isBookmarked ?

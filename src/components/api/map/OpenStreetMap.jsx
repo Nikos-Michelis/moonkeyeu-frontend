@@ -141,7 +141,7 @@ const OpenStreetMap = (
                                         <div className="map__actions">
                                             {location.id ? (
                                                 <div className="map__info">
-                                                    <LinkButton className="btn btn--transparent hover scale-small" to={location.id.toString()} >
+                                                    <LinkButton className="btn btn--transparent-dark hover scale-small" to={location.id.toString()} >
                                                         <FontAwesomeIcon icon={faCircleInfo} />
                                                     </LinkButton>
                                                 </div>

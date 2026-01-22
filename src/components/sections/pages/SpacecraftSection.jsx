@@ -1,27 +1,27 @@
 import React from 'react';
-import NewsArticle from "@/components/cards/NewsArticle.jsx";
-import ContentSection from "@/components/sections/ContentSection.jsx";
+import SpacecraftCard from "@/components/cards/SpacecraftCard.jsx";
+import ContentSection from "@/components/sections/pages/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
-const NewsSection = ({ articles, isPending, isFetching, isError, pagination }) => {
-    const items = articles.results || [];
+const SpacecraftSection = ({ spacecraft, isFetching, isError, pagination }) => {
+    const items = spacecraft._embedded?.spacecraftConfigSummarizedDTOes || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
         styles: {
-            wrapper: "small-wrapper",
-            section: "news-articles",
+            wrapper: "medium-wrapper",
+            section: "spacecraft-articles",
         },
     };
     return (
         <ContentSection
             items={items}
             isFetching={isFetching}
-            isPending={isPending}
             isError={isError}
             pagination={pagination}
             contentConfig={contentConfig}
-            CardComponent={NewsArticle}
+            CardComponent={SpacecraftCard}
             itemKeyExtractor={(item) => item.id}
         />
     );
 };
-export default NewsSection;
+export default SpacecraftSection;
+

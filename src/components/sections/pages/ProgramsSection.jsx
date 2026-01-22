@@ -1,15 +1,15 @@
 import React from 'react';
-import ContentSection from "@/components/sections/ContentSection.jsx";
+import ContentSection from "@/components/sections/pages/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
-import LauncherCard from "@/components/cards/LauncherCard.jsx";
+import ProgramsCard from "@/components/cards/ProgramsCard.jsx";
 
-const LauncherSection = ({launcher, isFetching, isError, pagination}) => {
-    const items = launcher._embedded?.launcherDTOes || [];
+const ProgramsSection = ({ programs, isFetching, isError, pagination}) => {
+    const items = programs._embedded?.programSummarizedDTOes || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
         styles: {
-            wrapper: "medium-wrapper",
-            section: "launcher-articles",
+            wrapper: "small-wrapper",
+            section: "programs-articles",
         },
     };
     return (
@@ -19,10 +19,9 @@ const LauncherSection = ({launcher, isFetching, isError, pagination}) => {
             isError={isError}
             pagination={pagination}
             contentConfig={contentConfig}
-            CardComponent={LauncherCard}
+            CardComponent={ProgramsCard}
             itemKeyExtractor={(item) => item.id}
         />
     );
 };
-
-export default LauncherSection;
+export default ProgramsSection;

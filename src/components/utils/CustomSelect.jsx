@@ -55,7 +55,7 @@ const CustomSelect = (
     const btnPlaceholder = selectedOption?.[field] || preSelected || placeholder;
     return (
         <div className="select" ref={dropdownRef}>
-            <div className={`select__btn ${btnClassName}`} onClick={() => selectedOption?.[field] && !isOpen ? handleClearance(field) : setIsOpen(!isOpen)}>
+            <div className={`select__btn shadow-scale shadow-scale--md ${btnClassName}`} onClick={() => selectedOption?.[field] && !isOpen ? handleClearance(field) : setIsOpen(!isOpen)}>
                 {
                     btnPlaceholder.length > OPTIONS_LENGTH
                         ?
