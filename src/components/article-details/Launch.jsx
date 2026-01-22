@@ -39,7 +39,7 @@ const Launch = ({ launches = {}, queryData= {}, navUrl= "", pagination, hasPagin
                 >
                     <div className="margin-block-5 margin-inline-4">
                         { (hasPagination && pagination?.totalItems > contentConfig?.count) && <StatePagination pagination={pagination}  {...queryData}/>}
-                        <div className="grid__landscape padding-block-2 margin-block-4">
+                        <div className="grid__layout grid__layout--landscape padding-block-2 margin-block-4">
                             <SkeletonLoader
                                 isPending={queryData?.isPending}
                                 isFetching={queryData?.isFetching}

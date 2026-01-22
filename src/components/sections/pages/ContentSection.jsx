@@ -1,13 +1,13 @@
 import React from "react";
-import LatestNews from "../../sidebars/LatestNews.jsx";
 import { SkeletonLoader } from "@/components/loader/SkeletonLoader.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
-import PreviousButton from "@/components/button/PreviousButton.jsx";
 import StarshipCard from "@/components/cards/StarshipCard.jsx"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import Pagination from "@/components/pagination/Pagination.jsx";
+import PreviousButton from "@/components/button/PreviousButton.jsx";
+import LatestNews from "@/components/sidebars/LatestNews.jsx";
 const ContentSection = (
     {
         items,
@@ -37,7 +37,7 @@ const ContentSection = (
     return (
         <section className={contentConfig?.styles?.section}>
             <div className="grid__container container margin-block-end-15" data-overflow="visible" data-type="full-bleed">
-                <div className="grid__layout">
+                <div className="grid__wrapper">
                     { options?.showPrevBtn && <div className="flex"><PreviousButton/></div>}
                     { (options?.showBackBtn || options?.showItemsLimit) &&
                         <div className="flex justify-space-between margin-block-end-4">
@@ -59,7 +59,7 @@ const ContentSection = (
                             }
                         </div>
                     }
-                    <div className={`grid__landscape ${contentConfig?.styles?.grid || ''}`}>
+                    <div className={`grid__layout grid__layout--landscape ${contentConfig?.styles?.grid || ''}`}>
                         <SkeletonLoader
                             isPending={isPending}
                             isFetching={isFetching}

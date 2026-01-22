@@ -26,7 +26,7 @@ const Crew = ({crew}) =>{
                      data-scroll={crew.length > contentConfig?.scroll ? "vertical" : undefined}
                 >
                     <div className="margin-block-5 margin-inline-4">
-                        <div className="grid__landscape padding-block-2">
+                        <div className="grid__layout grid__layout--landscape padding-block-2">
                             {crew.length > 0 &&
                                 crew.map(crew =>
                                     <AstronautLandScapeCard

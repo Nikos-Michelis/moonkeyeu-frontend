@@ -31,7 +31,7 @@ const RelatedNews = ({ queryData }) =>{
                      data-scroll={articles?.length > contentConfig?.scroll ? "vertical" : undefined}
                 >
                     <div className="margin-block-5 margin-inline-4">
-                        <div className="grid__landscape padding-block-2">
+                        <div className="grid__layout grid__layout--landscape padding-block-2">
                             <SkeletonLoader
                                 isPending={queryData?.isPending}
                                 isFetching={queryData?.isFetching}

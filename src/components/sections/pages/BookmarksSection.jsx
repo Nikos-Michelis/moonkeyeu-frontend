@@ -35,7 +35,7 @@ const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
     return(
         <section className="bookmarks-section">
             <div className={`grid__container container margin-block-end-15`} data-type="full-bleed">
-                <div className="grid__layout">
+                <div className="grid__wrapper">
                     <div className="flex justify-space-between margin-block-end-4">
                         { options?.showBackBtn &&
                             (
@@ -54,7 +54,7 @@ const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
                             )
                         }
                     </div>
-                    <div className={`${bookmarks.length > 0 || (isFetching || isPending) ? "grid__portrait" : ""}`}>
+                    <div className={`${bookmarks.length > 0 || (isFetching || isPending) ? "grid__layout" : ""}`}>
                         <SkeletonLoader
                             isFetching={isFetching}
                             isPending={isPending || status.isPending}

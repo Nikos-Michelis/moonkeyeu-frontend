@@ -3,7 +3,6 @@ import {useSpaceFlightNews} from "@/context/SpaceFlightNewsProvider.jsx";
 import NasaApod from "@/components/sidebars/NasaApod.jsx";
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
 import SkeletonSidebarLoader from "@/components/skeleton/SkeletonSidebarLoader.jsx";
-import {Link} from "react-router-dom";
 import {useNasaApod} from "@/context/NasaApodProvider.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-regular-svg-icons';

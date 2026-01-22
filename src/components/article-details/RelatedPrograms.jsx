@@ -24,7 +24,7 @@ const RelatedPrograms = ({programs}) =>{
                      data-spacing="none"
                      data-scroll={programs.length > contentConfig?.scroll  ? "vertical" : undefined}>
                     <div className="margin-block-5 margin-inline-4">
-                        <div className="grid__landscape padding-block-2">
+                        <div className="grid__layout grid__layout--landscape padding-block-2">
                             {programs?.length > 0 && (
                                 programs.map((program) => (
                                     <ProgramsCard
