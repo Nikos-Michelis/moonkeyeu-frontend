@@ -19,8 +19,16 @@
     width: 100%;
     max-width: 500px;
     overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+
     &--article-card{
       max-width: 850px;
+    }
+
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: $box-shadow-1;
     }
   }
 

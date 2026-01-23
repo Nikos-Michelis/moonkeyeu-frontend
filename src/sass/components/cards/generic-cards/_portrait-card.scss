@@ -1,12 +1,15 @@
 @use "../../../abstracts/index" as abs;
 @use "../../../abstracts/variables" as *;
+@use "../../../abstracts/colors" as *;
 
 .portrait-card {
   position: relative;
   word-wrap: break-word;
   box-sizing: inherit;
   width: 100%;
-  max-width: 500px;
+  &:not(.portrait-card--vehicle){
+    max-width: 500px;
+  }
 
   &__container {
     width: 100%;
@@ -15,8 +18,26 @@
     @include abs.cursive_border($border-width: $card-border-width, $border-radius: $card-border-radius);
     box-shadow: $card-shadow;
     color: var(--neutral-1000);
-    &:not([class*="bg-"]) {
-      background-color: var(--card-bg);;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+
+    &--vehicle {
+      min-height: 30rem;
+      background-position: center center;
+      background-size: cover;
+      background-color: $color-dark-overlay-400;
+      text-align: center;
+      padding: 1rem;
+      @include abs.font($font-size: var(--fs-medium-300), $color: $clr-secondary-300);
+    }
+
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: $box-shadow-1;
+    }
+
+    &:not([class*="bg-"]):not(.portrait-card__container--vehicle) {
+      background-color: var(--card-bg);
     }
   }
 
@@ -100,6 +121,12 @@
         padding: 0.625rem 0;
         max-width: 5rem;
       }
+    }
+  }
+
+  @include abs.mq(xxl) {
+    &--vehicle {
+      max-width: 600px;
     }
   }
 }

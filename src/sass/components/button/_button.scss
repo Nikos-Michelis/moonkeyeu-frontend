@@ -9,8 +9,8 @@
     @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
     @include abs.button-hover($color: var(--neutral-1000), $background-color: var(--primary-400), $border-color: var(--neutral-1000));
     box-shadow: $box-shadow-3;
-    transition: box-shadow 120ms cubic-bezier(.2,.8,.2,1), transform 120ms cubic-bezier(.2,.8,.2,1);
     padding: 5px 10px;
+    transition: ease-in-out 80ms;
 
     &:not([class*="margin-"]) {
       margin: 0.2rem;
@@ -45,10 +45,8 @@
     @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
     @include abs.button-hover($color: $clr-star-200, $background-color: $clr-yt-red-400, $border-color: var(--neutral-1000));
     box-shadow: $box-shadow-3;
-    transition:
-            box-shadow 120ms cubic-bezier(.2,.8,.2,1),
-            transform 120ms cubic-bezier(.2,.8,.2,1);
     padding: 5px 10px;
+    transition: ease-in-out 80ms;
     &:not([class*="margin-"]) {
       margin: 0.2rem;
     }
@@ -64,8 +62,8 @@
     @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
     @include abs.button-hover($color: var(--primary-300), $background-color: var(--twitter-black-500), $border-color: var(--neutral-1000));
      box-shadow: $box-shadow-3;
-    padding: 5px 10px;
-
+     padding: 5px 10px;
+     transition: ease-in-out 80ms;
     &:not([class*="margin-"]) {
       margin: 0.2rem;
     }
@@ -161,7 +159,6 @@
   &__donation {
     @include abs.cursive_border($border-radius: 1rem);
     box-shadow: $box-shadow-3;
-    transition: box-shadow 120ms cubic-bezier(.2,.8,.2,1), transform 120ms cubic-bezier(.2,.8,.2,1);
     width: 20rem;
 
     &:active {

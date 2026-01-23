@@ -7,6 +7,7 @@
 
   &:hover {
     transform: translate(-2px, -2px);
+    box-shadow: $box-shadow-1;
   }
 
   &--sm:hover {
