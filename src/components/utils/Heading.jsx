@@ -5,8 +5,8 @@ function Heading({ title, description }) {
         <section className="heading-section">
             <div>
                 <div className="container heading" data-type="full-bleed">
-                    <h1 className="heading__title clr-star-300">{title}</h1>
-                    <p className="heading__text clr-star-300">{description}</p>
+                    <h1 className="heading__title">{title}</h1>
+                    <p className="heading__text">{description}</p>
                 </div>
             </div>
         </section>

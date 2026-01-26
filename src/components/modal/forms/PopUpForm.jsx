@@ -214,12 +214,12 @@ const PopUpForm = () => {
         <div className={`form-popup-container${state.formState !== "login"  ? ' show-signup' : ""}`}>
             <Button
                 onClick={!signInWithGoogleMutation?.isPending ? handleClose : undefined}
-                className="btn--transparent pos-absolute top-2 right-1 clr-dark-cosmos-300"
+                className="btn--transparent pos-absolute top-2 right-1"
             >
                 <FontAwesomeIcon icon={faXmark} />
             </Button>
             {["register", "forgotPassword"].includes(state.formState) && (
-                <Button className="btn--transparent pos-absolute top-2 left-2 clr-dark-cosmos-300" onClick={() => handleSwitchForm("login")}>
+                <Button className="btn--transparent pos-absolute top-2 left-2" onClick={() => handleSwitchForm("login")}>
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </Button>)
             }
@@ -231,7 +231,7 @@ const PopUpForm = () => {
                         <p>Don’t you want to miss a single launch?</p>
                         <div className="text-center">
                             Become a member now!
-                            <Button className="btn--transparent clr-dark-cosmos-300" type="button" onClick={() => handleSwitchForm("register")}>Sign-up</Button>
+                            <Button className="btn--transparent" type="button" onClick={() => handleSwitchForm("register")}>Sign-up</Button>
                         </div>
                         <GoogleLoginButton onSuccess={handleOAuth2Response} />
                     </div>)
@@ -264,7 +264,7 @@ const PopUpForm = () => {
                             </div>
                             <div className="flex justify-center">
                                 <Button
-                                    className="btn btn--primary btn--big bg-secondary-300"
+                                    className="btn btn--primary btn--big"
                                     type="submit"
                                     disabled={otpVerificationMutation.isPending}>
                                     {(otpVerificationMutation.isPending)
@@ -297,7 +297,7 @@ const PopUpForm = () => {
                                 />
                             </div>
                             <PasswordField errors={errors} register={register} />
-                            <div className="flex justify-space-between align-center fs-small-100 clr-dark-cosmos-300 margin-block-end-4">
+                            <div className="flex justify-space-between align-center fs-medium-200 margin-block-end-4">
                                 <div className="flex justify-center align-center">
                                     <input
                                         name="rememberMe"
@@ -310,7 +310,7 @@ const PopUpForm = () => {
                                         <span>Remember me</span>
                                     </label>
                                 </div>
-                                <Button className="btn--transparent clr-dark-cosmos-300" type="button" onClick={() => handleSwitchForm("forgotPassword")}>Forgot password?</Button>
+                                <Button className="btn--transparent" type="button" onClick={() => handleSwitchForm("forgotPassword")}>Forgot password?</Button>
                             </div>
                             <div className="flex flex-wrap justify-center">
                                 <Button className="btn btn--primary btn--big" type="submit" disabled={signInWithGoogleMutation.isPending || credentialsMutation.isPending}>
@@ -349,7 +349,7 @@ const PopUpForm = () => {
                             </div>
                             <div className="flex justify-center">
                                 <Button
-                                    className="btn btn--primary btn--small bg-secondary-300"
+                                    className="btn btn--primary btn--small"
                                     type="submit"
                                     disabled={otpVerificationMutation.isPending}>
                                     {(otpVerificationMutation.isPending)
@@ -469,7 +469,7 @@ const PopUpForm = () => {
                                     {...register('policy', { required: 'You must agree to the privacy policy' })}
                                 />
                                 <label className="fs-small-200" htmlFor="policy">
-                                    I agree to the <Button className="btn--transparent clr-dark-cosmos-300" onClick={onNavigate}>Privacy Policy</Button>
+                                    I agree to the <Button className="btn--transparent" onClick={onNavigate}>Privacy Policy</Button>
                                 </label>
                             </div>
                             <div className="flex justify-center">

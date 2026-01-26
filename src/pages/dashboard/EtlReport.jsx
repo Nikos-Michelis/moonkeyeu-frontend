@@ -70,7 +70,7 @@ function EtlReport() {
                                 }, "prompt")
                             }
                         >
-                            <FontAwesomeIcon icon={faCircleExclamation} style={{ color: "var(--clr-warning-300)" }} />
+                            <FontAwesomeIcon icon={faCircleExclamation} style={{ color: "var(--warning-300)" }} />
                         </Button>
                     ) : (
                         "-"
@@ -125,7 +125,7 @@ function EtlReport() {
                     description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
                 />
                 <section className="members-section">
-                    <div className="container container--light-overlay padding-inline-5 rounded-sm" data-type="wide">
+                    <div className="container padding-inline-5" data-type="wide">
                         {!(queryData.isPending || queryData.isFetching) &&
                             <div className="flex justify-start margin-block-4">
                                 <Button className="btn--transparent" onClick={() => window.history.back()}>

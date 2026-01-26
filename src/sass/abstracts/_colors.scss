@@ -1,122 +1,236 @@
-$color-carbon-black: #232828;
-$color-white: #ffffff;
-$color-text-grey: #65676bff;
-$color-hover-blue: #00FFF74C;
-$color-red: #F44336;
-$color-darker-red: #AD291FFF;
-$color-yellow: #ffbe00;
-$color-darker-yellow: #C59201FF;
-$color-background:#f0f1f2;
-$color-light-font: #beb6b6;
-$color-border: #ccc;
-$color-promo-box: #e1e1e1;
-$color-input: #717171;
-$color-silver-white: #DADBDD;
-$color-yt-red: #d50501;
+/* secondary */
+$-clr-secondary-100: hsl(265, 38%, 100%);
+$-clr-secondary-200: hsl(265, 38%, 94%);
+$-clr-secondary-300: hsl(265, 38%, 89%);
+$-clr-secondary-400: hsl(265, 38%, 79%);
+$-clr-secondary-500: hsl(265, 38%, 69%);
+
+/* main */
+$-clr-main-100: hsl(25, 43%, 94%);
+$-clr-main-200: hsl(25, 43%, 84%);
+$-clr-main-300: hsl(25, 43%, 79%);
+$-clr-main-400: hsl(25, 43%, 69%);
+$-clr-main-500: hsl(25, 43%, 59%);
+
+/* dark-cosmos */
+$-clr-dark-cosmos-100: hsl(290, 34%, 20%);
+$-clr-dark-cosmos-200: hsl(290, 34%, 15%);
+$-clr-dark-cosmos-300: hsl(290, 34%, 10%);
+$-clr-dark-cosmos-400: hsl(290, 34%, 5%);
+$-clr-dark-cosmos-500: hsl(290, 34%, 0%);
+
+/* star */
+$-clr-star-100: hsl(272, 57%, 110%);
+$-clr-star-200: hsl(272, 57%, 100%);
+$-clr-star-300: hsl(272, 57%, 95%);
+$-clr-star-400: hsl(272, 57%, 85%);
+$-clr-star-500: hsl(272, 57%, 75%);
+
+/* warning */
+$-clr-warning-100: hsl(0, 53.1%, 85%);
+$-clr-warning-200: hsl(0, 53.1%, 58.1%);
+$-clr-warning-300: hsl(0, 53.1%, 53.1%);
+$-clr-warning-400: hsl(0, 53.1%, 43.1%);
+$-clr-warning-500: hsl(0, 53.1%, 33.1%);
+
+/* success */
+$-clr-success-100: hsl(149, 63.3%, 76.6%);
+$-clr-success-200: hsl(149, 63.3%, 66.6%);
+$-clr-success-300: hsl(149, 63.3%, 61.6%);
+$-clr-success-400: hsl(149, 63.3%, 56.6%);
+$-clr-success-500: hsl(149, 63.3%, 46.6%);
+
+/* btn-hover */
+$-clr-btn-hover-100: hsl(211, 15.5%, 73.3%);
+$-clr-btn-hover-200: hsl(211, 15.5%, 68.3%);
+$-clr-btn-hover-300: hsl(211, 15.5%, 63.3%);
+$-clr-btn-hover-400: hsl(211, 15.5%, 53.3%);
+$-clr-btn-hover-500: hsl(211, 15.5%, 43.3%);
+
+/* hr */
+$-clr-hr-100: rgba(28, 17, 38, 1);
+$-clr-hr-200: rgba(28, 17, 38, 0.2);
+$-clr-hr-400: rgba(28, 17, 38, 0.4);
+$-clr-hr-600: rgba(28, 17, 38, 0.6);
+$-clr-hr-800: rgba(28, 17, 38, 0.8);
+
+/* sky */
+$-clr-sky-100: hsl(196, 100%, 95%);
+$-clr-sky-200: hsl(196, 100%, 85%);
+$-clr-sky-300: hsl(196, 100%, 70%);
+$-clr-sky-400: hsl(196, 100%, 60%);
+$-clr-sky-500: hsl(196, 100%, 50%);
+
+/* yt-red */
+$-clr-yt-red-100: hsl(1, 100%, 70%);
+$-clr-yt-red-200: hsl(1, 100%, 60%);
+$-clr-yt-red-300: hsl(1, 99%, 42%);
+$-clr-yt-red-400: hsl(1, 104%, 34%);
+$-clr-yt-red-500: hsl(1, 109%, 27%);
+$-clr-yt-red-600: hsl(1, 114%, 20%);
+
+/* twitter-black */
+$-clr-twitter-black-100: hsl(210, 10%, 35%);
+$-clr-twitter-black-200: hsl(210, 10%, 25%);
+$-clr-twitter-black-500: hsl(210, 11%, 9%);
+$-clr-twitter-black-600: hsl(210, 11%, 7%);
+$-clr-twitter-black-700: hsl(210, 11%, 5%);
+
+$-clr-dark-overlay-100: hsl(0 0% 20% / 15%);
+$-clr-dark-overlay-200: hsl(0 0% 20% / 30%);
+$-clr-dark-overlay-300: hsl(0 0% 20% / 45%);
+$-clr-dark-overlay-400: hsl(0 0% 20% / 60%);
+$-clr-dark-overlay-500: hsl(0 0% 20% / 75%);
+$-clr-dark-overlay-600: hsl(0 0% 20% / 90%);
+
+$-clr-light-overlay-100: hsl(0 0% 100% / 15%);
+$-clr-light-overlay-200: hsl(0 0% 100% / 30%);
+$-clr-light-overlay-300: hsl(0 0% 100% / 45%);
+$-clr-light-overlay-400: hsl(0 0% 100% / 60%);
+$-clr-light-overlay-500: hsl(0 0% 100% / 75%);
+$-clr-light-overlay-600: hsl(0 0% 100% / 90%);
 
 
-$color-secondary: hsl(265, 38%, 89%);
-$color-main: hsl(25, 43%, 79%);
-$star-color: hsl(272, 57%, 95%);
-$color-warning: #bd4646;
-$color-success: #5fdb9b;
-$color-btn-hover: #93a1b0;
+
+$-color-wind-gray: #DCDCDC;
+$-color-sun-yellow: #FFDF22;
 
 
-$clr-dark-cosmos-100: var(--crl-dark-cosmos-100);
-$clr-dark-cosmos-200: var(--crl-dark-cosmos-200);
-$clr-dark-cosmos-300: var(--crl-dark-cosmos-300);
-$clr-dark-cosmos-400: var(--crl-dark-cosmos-400);
+$light: (
+  "neutral": (
+    "000": $-clr-secondary-300,
+    "500": $-clr-secondary-500,
+    "400": $-clr-secondary-400,
+    "300": $-clr-secondary-300,
+    "200": $-clr-secondary-200,
+    "100": $-clr-secondary-100,
+    "1000": $-clr-dark-cosmos-300,
+  ),
+  "secondary": (
+    "500": $-clr-star-500,
+    "400": $-clr-star-400,
+    "300": $-clr-star-300,
+    "200": $-clr-star-200,
+    "100": $-clr-star-100,
+  ),
+  "primary": (
+    "500": $-clr-main-500 ,
+    "400": $-clr-main-400,
+    "300": $-clr-main-300,
+    "200": $-clr-main-200,
+    "100": $-clr-main-100
+  ),
+  "card": (
+    "bg": $-clr-main-100,
+  ),
+  "nav": (
+    "300": $-clr-main-300
+  )
 
-$clr-star-100: var(--clr-star-300);
-$clr-star-200: var(--clr-star-200);
-$clr-star-300: var(--clr-star-300);
-$clr-star-400: var(--clr-star-400);
-$clr-star-500: var(--clr-star-500);
-
-
-
-
-$colors: (
-        secondary: (
-                100: hsl(265, 38%, 100%),
-                200: hsl(265, 38%, 94%),
-                300: hsl(265, 38%, 89%),  // Base color
-                400: hsl(265, 38%, 79%),
-                500: hsl(265, 38%, 69%)
-        ),
-        main: (
-                100: hsl(25, 43%, 94%),
-                200: hsl(25, 43%, 84%),
-                300: hsl(25, 43%, 79%), // base color
-                400: hsl(25, 43%, 69%),
-                500: hsl(25, 43%, 59%)
-        ),
-        dark-cosmos: (
-                100: hsl(290, 34%, 20%),
-                200: hsl(290, 34%, 15%),
-                300: hsl(290, 34%, 8%), // base color
-                400: hsl(290, 34%, 0%),
-        ),
-        star: (
-                100: hsl(272, 57%, 110%),
-                200: hsl(272, 57%, 100%),
-                300: hsl(272, 57%, 95%), // base color
-                400: hsl(272, 57%, 85%),
-                500: hsl(272, 57%, 75%)
-        ),
-        warning: (
-                100: hsl(0, 53.1%, 63.1%),
-                200: hsl(0, 53.1%, 58.1%),
-                300: hsl(0, 53.1%, 53.1%),// base color
-                400: hsl(0, 53.1%, 43.1%),
-                500: hsl(0, 53.1%, 33.1%)
-        ),
-        success: (
-                100: hsl(149, 63.3%, 76.6%),
-                200: hsl(149, 63.3%, 66.6%),
-                300: hsl(149, 63.3%, 61.6%),// base color
-                400: hsl(149, 63.3%, 56.6%),
-                500: hsl(149, 63.3%, 46.6%)
-        ),
-        btn-hover: (
-                100: hsl(211,15.5%,73.3%),
-                200: hsl(211,15.5%,68.3%),
-                300: hsl(211, 15.5%, 63.3%), // base color
-                400: hsl(211,15.5%,53.3%),
-                500: hsl(211,15.5%,43.3%)
-        ),
-        hr: (
-                200: rgba(28, 17, 38, 0.2),
-                400: rgba(28, 17, 38, 0.4),
-                600: rgba(28, 17, 38, 0.6),
-                800: rgba(28, 17, 38, 0.8),
-                100: rgba(28, 17, 38, 1)
-        ),
-        sky: (
-                100: hsl(196, 100%, 95%),
-                200: hsl(196, 100%, 85%),
-                300: hsl(196, 100%, 70%),
-                400: hsl(196, 100%, 60%),
-                500: hsl(196, 100%, 50%)
-        ),
-        yt-red: (
-                100: hsl(1, 100%, 70%),
-                200: hsl(1, 100%, 60%),
-                300: hsl(1, 99%, 42%), // base color
-                400: hsl(1, 104%, 34%),
-                500: hsl(1, 109%, 27%),
-                600: hsl(1, 114%, 20%),
-        ),
-        twitter-black: (
-                100: hsl(210, 10%, 35%),
-                200: hsl(210, 10%, 25%),
-                500: hsl(210, 11%, 9%), // base color
-                600: hsl(210, 11%, 7%),
-                700: hsl(210, 11%, 5%)
-        )
 );
 
-$constant-colors: (
-        yt-red: #d50501
+$dark: (
+  "neutral": (
+    "1000": $-clr-secondary-300,
+    "500": $-clr-secondary-100,
+    "400": $-clr-secondary-200,
+    "300": $-clr-secondary-300,
+    "200": $-clr-secondary-400,
+    "100": $-clr-secondary-500,
+    "000":  $-clr-dark-cosmos-300,
+  ),
+  "secondary": (
+    "500": $-clr-secondary-500 ,
+    "400": $-clr-secondary-400,
+    "300": $-clr-secondary-300,
+    "200": $-clr-secondary-200,
+    "100": $-clr-secondary-100
+  ),
+  "primary": (
+    "500": $-clr-dark-cosmos-500,
+    "400": $-clr-dark-cosmos-400,
+    "300": $-clr-dark-cosmos-300,
+    "200": $-clr-dark-cosmos-200,
+    "100": $-clr-dark-cosmos-100,
+  ),
+  "card": (
+    "bg": $-clr-dark-cosmos-300,
+  ),
+  "nav": (
+    "300": $-clr-secondary-300
+  ),
 );
+
+$clr-constants: (
+    yt-red: #d50501,
+);
+
+// contextual color tokens
+$clr-star-200: $-clr-star-200;
+$clr-secondary-300: $-clr-secondary-300;
+$clr-main-300: $-clr-main-300;
+$clr-yt-red-300: $-clr-yt-red-300;
+$clr-yt-red-400: $-clr-yt-red-400;
+$clr-dark-cosmos-300: $-clr-dark-cosmos-300;
+$clr-warning-300: $-clr-warning-300;
+$clr-warning-400: $-clr-warning-400;
+$clr-warning-100: $-clr-warning-100;
+$clr-success-300: $-clr-success-300;
+$clr-success-400: $-clr-success-400;
+$clr-sky-500: $-clr-sky-500;
+$clr-sky-500: $-clr-sky-500;
+$clr-sky-500: $-clr-sky-500;
+
+$color-neutral-000: var(--neutral-000);
+$color-neutral-100: var(--neutral-100);
+$color-neutral-200: var(--neutral-200);
+$color-neutral-300: var(--neutral-300);
+$color-neutral-400: var(--neutral-400);
+$color-neutral-500: var(--neutral-500);
+$color-neutral-600: var(--neutral-600);
+$color-neutral-700: var(--neutral-700);
+$color-neutral-800: var(--neutral-800);
+$color-neutral-900: var(--neutral-900);
+$color-neutral-1000: var(--neutral-1000);
+
+$color-primary-100: var(--primary-100);
+$color-primary-200: var(--primary-200);
+$color-primary-300: var(--primary-300);
+$color-primary-400: var(--primary-400);
+$color-primary-500: var(--primary-500);
+$color-primary-600: var(--primary-600);
+$color-primary-700: var(--primary-700);
+$color-primary-800: var(--primary-800);
+$color-primary-900: var(--primary-900);
+
+$color-secondary-100: var(--secondary-100);
+$color-secondary-200: var(--secondary-200);
+$color-secondary-300: var(--secondary-300);
+$color-secondary-400: var(--secondary-400);
+$color-secondary-500: var(--secondary-500);
+$color-secondary-600: var(--secondary-600);
+$color-secondary-700: var(--secondary-700);
+$color-secondary-800: var(--secondary-800);
+$color-secondary-900: var(--secondary-900);
+$color-card-bg: var(--card-bg);
+$color-nav-300: var(--nav-300);
+
+$color-dark-overlay-100: $-clr-dark-overlay-100;
+$color-dark-overlay-200: $-clr-dark-overlay-200;
+$color-dark-overlay-300: $-clr-dark-overlay-300;
+$color-dark-overlay-400: $-clr-dark-overlay-400;
+$color-dark-overlay-500: $-clr-dark-overlay-500;
+$color-dark-overlay-600: $-clr-dark-overlay-600;
+
+$color-light-overlay-100: $-clr-light-overlay-100;
+$color-light-overlay-200: $-clr-light-overlay-200;
+$color-light-overlay-300: $-clr-light-overlay-300;
+$color-light-overlay-400: $-clr-light-overlay-400;
+$color-light-overlay-500: $-clr-light-overlay-500;
+$color-light-overlay-600: $-clr-light-overlay-600;
+
+
+$color-wind-gray:$-color-wind-gray;
+$color-sun-yellow:$-color-sun-yellow;
+
+

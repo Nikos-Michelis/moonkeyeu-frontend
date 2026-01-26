@@ -59,7 +59,7 @@ const ContactForm = () => {
         <>
             <section className="contact-section">
                 <div className="container flex justify-center" data-type="medium" data-spacing="none">
-                    <div className="container container--light-overlay flex flex-column align-center padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
+                    <div className="container flex flex-column align-center padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
                         <div className="container flex justify-start padding-block-end-4">
                             <Button
                                 className="btn--transparent"
@@ -69,18 +69,18 @@ const ContactForm = () => {
                         </div>
                         <div className="container margin-block-8" data-type="narrow">
                             <div className="flex justify-center">
-                                <h2 className="heading-2"><FontAwesomeIcon icon={faBug}/> Report</h2>
+                                <h2 className="heading-3"><FontAwesomeIcon icon={faBug}/> Report</h2>
                             </div>
-                            <hr className="bg-hr-600"/>
-                            <p className="clr-star-300 fs-small-300">
+                            <hr/>
+                            <p className="fs-small-300">
                                 To help us organize bug reports more effectively, please create a new issue
                                 <LinkButton
                                     className="btn--transparent fw-bold" to="https://github.com/Nikos-Michelis/MoonkeyEU-Feedback/issues/new"
                                     isExternal={true}> here. </LinkButton>
                                 Thank you for your feedback — we're striving to make the platform better!
                             </p>
-                            <hr className="bg-hr-600"/>
-                            <p className="clr-star-300 margin-block-start-2 fs-small-300 text-center">You can email us at moonkeyeu@gmail.com</p>
+                            <hr/>
+                            <p className="margin-block-start-2 fs-small-300 text-center">You can email us at moonkeyeu@gmail.com</p>
                         </div>
                         <div className="container container--form margin-block-end-12 margin-inline-5" data-type="narrow">
                             <div className="form-content">

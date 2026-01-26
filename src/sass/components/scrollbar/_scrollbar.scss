@@ -6,14 +6,14 @@
   height: 0.5rem;
 }
 *::-webkit-scrollbar-thumb {
-  background-color: var(--clr-main-300);
-  border: 0.2rem solid var(--clr-dark-cosmos-300);
+  background-color: var(--primary-300);
+  border: 0.2rem solid var(--neutral-1000);
   border-radius: 0.5rem;
 }
 
 *::-webkit-scrollbar-track {
   display: block !important;
-  background: var(--clr-dark-cosmos-300);
+  background: var(--neutral-1000);
 }
 
 *::-webkit-scrollbar-button {
@@ -24,7 +24,7 @@
 @-moz-document url-prefix() {
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--clr-main-300) var(--clr-dark-cosmos-300);
+    scrollbar-color: var(--primary-300) var(--neutral-1000);
     -webkit-overflow-scrolling: touch;
   }
 
@@ -34,22 +34,22 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--clr-dark-cosmos-300);
+    background: var(--neutral-1000);
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: var(--clr-main-300);
-    border: 0.2rem solid var(--clr-dark-cosmos-300);
+    background-color: var(--primary-300);
+    border: 0.2rem solid var(--neutral-1000);
     border-radius: 0.5rem;
   }
 }
 
 @media (min-width: 768px) {
   *::-webkit-scrollbar-thumb {
-    background-color: var(--clr-main-300);
+    background-color: var(--primary-300);
   }
 
   *::-webkit-scrollbar-track {
-    background: var(--clr-dark-cosmos-300);
+    background: var(--neutral-1000);
   }
 }

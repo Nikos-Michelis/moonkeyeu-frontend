@@ -85,7 +85,7 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
 
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'large-wrapper'}`}>
-            <div className={`landscape-card__container ${cardStyles?.card_type || ''}`}>
+            <div className={`landscape-card__container lift lift--lg ${cardStyles?.card_type || ''}`}>
                 <div className="landscape-card__media">
                     <div className="landscape-card__btn-bookmark flex justify-center align-center">
                         {isBookmarked ?
@@ -144,10 +144,9 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                             </div>
                         }
                         { zonedDateTime > Date.now() && (
-                            <CountdownTimer net={zonedDateTime} timerStyle="margin-block-start-3" />
+                            <CountdownTimer net={zonedDateTime} timerStyle="margin-block-3" />
                         ) }
                     </div>
-                    <hr className="hr-100-sm bg-hr-600"/>
                     <div className="launch-card__actions flex flex-wrap justify-center padding-block-2" data-type="narrow">
                         {id ? (
                             <div className="launch-card__info">

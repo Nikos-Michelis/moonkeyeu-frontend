@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useParams, useSearchParams} from "react-router-dom";
 import Heading from "@/components/utils/Heading.jsx";
-import LaunchesSection from "@/components/sections/LaunchesSection.jsx";
+import LaunchesSection from "@/components/sections/pages/LaunchesSection.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import Pagination from "@/components/pagination/Pagination.jsx";

@@ -50,38 +50,38 @@ const RocketCard = (
                             <hr/>
                             <div className="panel__wrapper">
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Status</p>
                                         <p className="panel__text">{checkValue(status)}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text"></p>
                                         <p className="panel__text"></p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">flights</p>
                                         <p className="panel__text">{checkValue(flights)}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Flight Proven</p>
                                         <p className="panel__text">{checkValue(booleanConverter(flight_proven))}</p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Successful Landings</p>
                                         <p className="panel__text">{checkValue(successful_landings)}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Attempted Landings</p>
                                         <p className="panel__text">{checkValue(attempted_landings)}</p>
                                     </div>
                                 </div>
                                 <hr/>
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100">
+                                    <div className="panel__detail-box fs-medium-200">
                                         <p className="panel__text padding-block-2">{details}</p>
                                     </div>
                                 </div>

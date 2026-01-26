@@ -13,8 +13,8 @@ const NasaApod = ({nasaApod, isPendingNasaApod, isFetchingNasaApod, isErrorNasaA
     };
     return (
         <section className="nasa-apod">
-            <div className="flex flex-column justify-center align-center margin-4">
-                <div className="sidebar container flex flex-column justify-center align-center bg-secondary-300 padding-4" data-type="full-bleed">
+            <div className="flex flex-column justify-center align-center">
+                <div className="sidebar container flex flex-column justify-center align-center padding-4" data-type="full-bleed">
                     <div className="sidebar__heading-box">
                         <h3 className="ff-accent">Astronomy Picture of the Day</h3>
                     </div>

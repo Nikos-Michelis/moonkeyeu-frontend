@@ -36,13 +36,13 @@ const NewsArticle = (
                             <h3 className="title">{news_site}</h3>
                         </div>
                         <div className="landscape-card__detail-box">
-                            <small className="fw-semi-bold fs-small-100 margin-block-2">{formattedZonedDateTime}</small>
+                            <small className="fw-semi-bold fs-medium-200 margin-block-2">{formattedZonedDateTime}</small>
                         </div>
                         <div className="landscape-card__detail-box">
                             <p>{title}</p>
                         </div>
                     </div>
-                    <hr className="hr-100-sm bg-hr-600"/>
+                    <hr className="hr-100-sm"/>
                     <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
                         <a className="btn btn--primary" href={url} target="_blank"  rel="noopener noreferrer">
                             <FontAwesomeIcon icon={faNewspaper} /> Read Article

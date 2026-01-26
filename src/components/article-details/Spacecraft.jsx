@@ -10,26 +10,22 @@ import {
     faLocationDot
 } from '@fortawesome/free-solid-svg-icons';
 import { faWikipediaW } from '@fortawesome/free-brands-svg-icons';
+import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 
 const spacecraft = ({ stage }) =>{
+    const { handleValue, booleanConverter } = useDataFormatter();
     const spacecraft = stage.spacecraft || {}
     const configuration = stage.spacecraft?.configuration || {}
     const landing = stage.landing || {}
     const landingZone = stage.landing?.landing_zone || {}
     const landingType = stage.landing?.landing_type || {}
-    const checkValue = (value) => {
-        return (value ? value : "―");
-    }
-    const booleanConverter = (value) => {
-        return value ? value === true ? "Yes" : "No" : null;
-    }
     return(
         <section className="spacecraft-section">
             <div className="article__heading-box">
                 <FontAwesomeIcon icon={faShuttleSpace} />
                 <h2>Spacecraft</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="container flex flex-wrap justify-space-around align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__img-box margin-block-2">
                     <Img
@@ -40,58 +36,58 @@ const spacecraft = ({ stage }) =>{
                     />
                 </div>
                 <div className="panel panel--small">
-                    <h3 className="panel__title">{checkValue(configuration.name)}</h3>
-                    <hr className="hr-75-sm bg-hr-600" />
+                    <h3 className="panel__title">{handleValue(configuration.name)}</h3>
+                    <hr className="hr-75-sm" />
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Serial</p>
-                                <p className="panel__text">{checkValue(spacecraft.serial_number)}</p>
+                                <p className="panel__text">{handleValue(spacecraft.serial_number)}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Status</p>
-                                <p className="panel__text">{checkValue(spacecraft.status)}</p>
+                                <p className="panel__text">{handleValue(spacecraft.status)}</p>
                             </div>
                         </div>
                     </div>
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Crew Capacity</p>
-                                <p className="panel__text">{checkValue(configuration.crew_capacity)}</p>
+                                <p className="panel__text">{handleValue(configuration.crew_capacity)}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">flights</p>
-                                <p className="panel__text">{checkValue()}</p>
+                                <p className="panel__text">{handleValue(spacecraft.flights_count)}</p>
                             </div>
                         </div>
                     </div>
-                    <hr className="hr-75-sm bg-hr-600" />
+                    <hr className="hr-75-sm" />
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Landing Attempt</p>
-                                <p className="panel__text">{booleanConverter(checkValue(landing.attempt))}</p>
+                                <p className="panel__text">{booleanConverter(handleValue(landing.attempt))}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Type</p>
-                                <p className="panel__text">{checkValue(landingType.abbrev)}</p>
+                                <p className="panel__text">{handleValue(landingType.abbrev)}</p>
                             </div>
                         </div>
                     </div>
                     <div className="panel__wrapper">
                         <div className="panel__container">
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Landing Success</p>
-                                <p className="panel__text">{booleanConverter(checkValue(landing.success))}</p>
+                                <p className="panel__text">{booleanConverter(handleValue(landing.success))}</p>
                             </div>
-                            <div className="panel__detail-box fs-small-200 clr-star-300 padding-2">
+                            <div className="panel__detail-box fs-small-200 padding-2">
                                 <p className="panel__text">Location</p>
-                                <p className="panel__text">{checkValue(landingZone.abbrev)}</p>
+                                <p className="panel__text">{handleValue(landingZone.abbrev)}</p>
                             </div>
                         </div>
                     </div>
-                    <hr className="hr-75-sm bg-hr-600" />
+                    <hr className="hr-75-sm" />
                     <div className="flex justify-center flex-wrap padding-block-start-4">
                         {configuration?.id ? (
                             <div className="article__btn-info">

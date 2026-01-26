@@ -1,19 +1,24 @@
 @use "../../abstracts/index" as abs;
+@use "../../abstracts/index" as *;
 
 .panel {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  color: var(--neutral-1000);
+
+  &--shadow {
+    box-shadow: $box-shadow-2;
+    border: 0.1rem solid var(--neutral-1000);
+  }
 
   & hr {
     width: 100%;
     border: none;
     height: 0.125rem;
     margin-block: 0.2rem;
-    &:not([class*='bg-']) {
-      background-color: var(--clr-hr-600);
-    }
+    background-color: var(--neutral-1000);
   }
 
   &__wrapper {
@@ -48,7 +53,7 @@
     padding: 1rem 0;
 
     & a {
-      @include abs.font($font-size: var(--fs-500), $color: var(--clr-dark-cosmos-300));
+      @include abs.font($font-size: var(--fs-medium-500));
     }
   }
 

@@ -24,7 +24,7 @@ export function PromptModal({ modalId }) {
         <div className="form-popup-container bookmark-form-container">
             <Button
                 onClick={handleClose}
-                className="btn--transparent btn--close clr-dark-cosmos-300"
+                className="btn--transparent btn--close"
             >
                 <FontAwesomeIcon icon={faXmark} />
             </Button>
@@ -49,7 +49,7 @@ export function PromptModal({ modalId }) {
                 </Button>
                 {hasConfirmBtn &&
                     <Button
-                        className="btn btn--primary bg-warning-200"
+                        className="btn btn--primary btn--warning"
                         onClick={confirmFn}
                         disabled={modalStatus?.[modalId]?.isPending}
                     >

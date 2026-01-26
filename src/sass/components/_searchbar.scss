@@ -1,32 +1,39 @@
 @use "../abstracts/index" as abs;
+@use "../abstracts/variables" as *;
 
 .search {
   height: auto;
   width: 100%;
-  @include abs.font($font-size: var(--fs-100));
+  display: flex;
+  justify-content: center;
+  @include abs.font($font-size: var(--fs-medium-200));
   &__searchbar {
     box-sizing: inherit;
     height: 45px;
     width: 100%;
     padding: 0.8rem;
-    border: 1px solid transparent;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    background: var(--clr-star-200);
+    background-color: var(--primary-300);
     outline: none;
+    box-shadow: $box-shadow-2;
+    color: var(--neutral-1000);
+    @include abs.cursive_border($border-width: $button-border-width, $border-radius: $button-border-radius, $corners: (top-left-radius bottom-left-radius));
+    &::placeholder {
+      color: inherit;
+    }
     &--small{
       width: 250px;
     }
   }
 
   &__btn-search{
-    border: 1px solid transparent;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    padding: 0.8rem;
-    background-color: var(--clr-star-200);
+    padding: 0.75rem;
+    background-color: var(--primary-300);
     height: 45px;
+    box-shadow: $box-shadow-2;
+    @include abs.cursive_border($border-width: $button-border-width, $border-radius: $button-border-radius, $corners: (top-right-radius bottom-right-radius));
   }
+
+
   @include abs.mq(medium) {
     width: 250px;
   }

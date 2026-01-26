@@ -4,7 +4,7 @@ import Pagination from "@/components/pagination/Pagination.jsx";
 import {useSearchParams} from "react-router-dom";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
-import ProgramsSection from "@/components/sections/ProgramsSection.jsx";
+import ProgramsSection from "@/components/sections/pages/ProgramsSection.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";

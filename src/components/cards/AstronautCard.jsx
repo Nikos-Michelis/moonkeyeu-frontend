@@ -15,7 +15,8 @@ const AstronautCard = ({id, name, nationality, agency, images }) => {
         copyToClipboard(url);
     };
     return (
-        <article className="portrait-card portrait-card__container">
+        <article className="portrait-card">
+            <div className="portrait-card__container">
                 <div className="portrait-card__media">
                     <Img
                         src={images?.[0]?.image_url}
@@ -31,7 +32,7 @@ const AstronautCard = ({id, name, nationality, agency, images }) => {
                     </p>
                     <p className="portrait-card__text">{agency? agency.name : "Unknown"}</p>
                 </div>
-                <hr className="hr-100-sm bg-hr-600"/>
+                <hr className="hr-100-sm"/>
                 <div className="portrait-card__actions flex flex-wrap justify-center margin-block-2">
                     {id ? (
                         <div className="portrait-card__action">
@@ -60,6 +61,7 @@ const AstronautCard = ({id, name, nationality, agency, images }) => {
                         </Tooltip>
                     </div>
                 </div>
+            </div>
         </article>
     );
 };

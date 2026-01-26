@@ -43,7 +43,7 @@ const ProgramsCard = (
                     <div className="landscape-card__detail-box landscape-card--ellipsis">
                         <p>{description}</p>
                     </div>
-                    <hr className="hr-100-sm bg-hr-600"/>
+                    <hr className="hr-100-sm"/>
                     <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
                         {id ? (
                             <div className="launch-card__info">

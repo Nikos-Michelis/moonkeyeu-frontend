@@ -6,18 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding } from '@fortawesome/free-regular-svg-icons';
 import { faWikipediaW, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import {faCircleInfo} from "@fortawesome/free-solid-svg-icons";
+import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 
-const AstronautLandScapeCard = ({cardStyles, astronaut, role}) => {
+const AstronautLandScapeCard = ({ styles, astronaut, role }) => {
+    const { handleValue } = useDataFormatter();
     const socialMediaLinks = astronaut?.social_media?.length > 0 ? astronaut.social_media : [];
     const instagram = socialMediaLinks.find((sm) => sm.name === "Instagram")?.media_url;
     const twitter = socialMediaLinks.find((sm) => sm.name === "Twitter")?.media_url;
     const wiki = socialMediaLinks.find((sm) => sm.name === "Wiki")?.media_url;
-    const checkValue = (value) => {
-        return (value ? value : "―");
-    }
     return (
-        <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || "small-wrapper"}`}>
-            <div className={`landscape-card__container ${cardStyles?.card_type || ''}`}>
+        <article className={`landscape-card flex justify-center ${styles?.wrapper || "small-wrapper"}`}>
+            <div className={`landscape-card__container ${styles?.card_type || ''}`}>
                 <div className="landscape-card__media">
                     <Img
                         src={astronaut?.images?.[0]?.image_url}
@@ -35,21 +34,21 @@ const AstronautLandScapeCard = ({cardStyles, astronaut, role}) => {
                             <div className="panel__container">
                                 <div className="panel__detail-box fs-small-200 padding-1">
                                     <p className="panel__text">Nationality</p>
-                                    <p className="panel__text">{checkValue(astronaut.nationality[0].nationality_name)}</p>
+                                    <p className="panel__text">{handleValue(astronaut.nationality[0].nationality_name)}</p>
                                 </div>
                                 <div className="panel__detail-box fs-small-200 padding-1">
                                     <p className="panel__text">Status</p>
-                                    <p className="panel__text">{checkValue(astronaut.status)}</p>
+                                    <p className="panel__text">{handleValue(astronaut.status)}</p>
                                 </div>
                             </div>
                             <div className="panel__container">
                                 <div className="panel__detail-box fs-small-200 padding-1">
                                     <p className="panel__text">Date Of Birth</p>
-                                    <p className="panel__text">{checkValue(astronaut.date_of_birth)}</p>
+                                    <p className="panel__text">{handleValue(astronaut.date_of_birth)}</p>
                                 </div>
                                 <div className="panel__detail-box fs-small-200 padding-1">
                                     <p className="panel__text">Type</p>
-                                    <p className="panel__text">{checkValue(astronaut.agency.type)}</p>
+                                    <p className="panel__text">{handleValue(astronaut.agency.type)}</p>
                                 </div>
                             </div>
                         </div>

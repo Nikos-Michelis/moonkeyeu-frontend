@@ -1,0 +1,24 @@
+@use "../../abstracts/variables" as *;
+
+
+.lift {
+  cursor: pointer;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: $box-shadow-1;
+  }
+
+  &--sm:hover {
+    box-shadow: $box-shadow-3;
+  }
+
+  &--md:hover {
+    box-shadow: $box-shadow-2;
+  }
+
+  &--lg:hover {
+    box-shadow: $box-shadow-1;
+  }
+}

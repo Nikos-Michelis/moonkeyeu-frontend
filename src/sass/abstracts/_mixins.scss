@@ -1,8 +1,10 @@
 @use "colors" as *;
 @use "variables" as *;
-@mixin font($font-size: var(--fs-300),
+@use "sass:meta";
+
+@mixin font($font-size: var(--fs-medium-300),
           $font-weight: normal,
-          $color: var(--clr-dark-cosmos-300),
+          $color: var(--neutral-1000),
           $font-family: inherit,
           $font-variant: none) {
   font-size: $font-size;
@@ -23,14 +25,40 @@
   line-height: $heading-line-height;
 }
 
-@mixin cursive_border($border-width: 1px, $border-radius: 10px, $color: var(--clr-dark-cosmos-300)) {
-  border-radius: $border-radius;
-  border: $border-width $color solid;
+/*
+  @param {List}   $sides - Optional sides: top right bottom left
+  @param {List}   $corners - top-left top-right bottom-right bottom-left etc
+*/
+@mixin cursive_border(
+  $border-width: 0.2rem,
+  $border-radius: 0.2rem,
+  $color: var(--neutral-1000),
+  $style: solid,
+  $sides: null,
+  $corners: null
+) {
+
+  @if meta.type-of($corners) == 'list'  {
+    @each $corner in $corners {
+      border-#{$corner}: $border-radius;
+    }
+  } @else {
+    border-radius: $border-radius;
+  }
+
+  @if meta.type-of($sides) == 'list'  {
+    @each $side in $sides {
+      border-#{$side}: $border-width $style $color;
+    }
+  } @else {
+    border: $border-width $style $color;
+  }
 }
+
 
 // Base HR style
 @mixin hr-base(
-  $color: #ccc,
+  $color: var(--neutral-1000),
   $height: 1px,
   $margin-block: 0.5rem,
   $width: 100%

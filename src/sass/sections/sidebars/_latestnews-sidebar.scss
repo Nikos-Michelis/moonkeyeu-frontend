@@ -1,16 +1,17 @@
 @use "../../abstracts/index" as abs;
 
-
 .sidebar {
   width: 100%;
   max-width: 25rem;
-  box-shadow: 0 0.3rem 0 var(--clr-dark-cosmos-300);
-  @include abs.cursive_border($border-width: 0.2rem, $border-radius: 0.2rem, $color: var(--clr-dark-cosmos-300));
+  box-shadow: 0.25rem 0.35rem 0 var(--neutral-1000);
+  background-color: var(--card-bg);
+  @include abs.cursive_border($border-width: 0.2rem, $border-radius: 0.1rem, $color: var(--neutral-1000));
 
   &__heading-box {
     padding: .5rem;
     text-align: center;
-    font-variant: all-small-caps
+    font-variant: all-small-caps;
+    color: var(--neutral-1000);
   }
 }
 @include abs.mq(medium) {

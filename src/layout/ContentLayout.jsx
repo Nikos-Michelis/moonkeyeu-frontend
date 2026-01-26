@@ -3,9 +3,10 @@ const ContentLayout = (
         children,
         size = "base",
         overflow = "visible",
+        className=""
     }) => {
     return (
-        <div className="container flex flex-column" data-type={size} data-overflow={overflow}>
+        <div className={`${className} container flex flex-column`} data-type={size} data-overflow={overflow}>
             {children}
         </div>
     );

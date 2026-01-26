@@ -1,4 +1,4 @@
-@use "../../abstracts" as abs;
+@use "../../abstracts/index" as *;
 
 div.response-error-wrapper {
   display: flex;
@@ -16,38 +16,35 @@ div.response-error-wrapper {
     min-width: 100%;
     min-height: 5.5rem;
     max-width: fit-content;
-    background-color: #e9bfbf;
+    background-color: $clr-warning-100;
     position: relative;
       & ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         & span.response-error-message {
-          position: relative;
           display: flex;
           justify-content: start;
-          color: var(--clr-dark-cosmos-300);
+          position: relative;
           width: 100%;
-          font-size: 0.8rem;
-          font-weight: bold;
           padding: 0.2rem 1.125rem 0.2rem 4.875rem;
-      }
+          @include font($font-size: var(--fs-medium-100), $font-weight: bold, $color: $clr-dark-cosmos-300);
+        }
     }
     div.error-circle {
       display: flex;
       align-items: center;
       justify-content: center;
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
       margin-right: 0.625rem;
       width: 3.125rem;
       min-width: 3.125rem;
       height: 3.125rem;
       border-radius: 0.4375rem;
-      font-size: 1.625rem;
-      background-color: #ec0000;
-      position: absolute;
-      left: 1rem;
-      top: 1rem;
-      color: var(--clr-star-300);
+      background-color: $clr-warning-300;
+      @include font($font-size: var(--fs-small-700), $color: $clr-star-200);
     }
   }
 }

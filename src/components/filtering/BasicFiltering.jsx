@@ -73,17 +73,17 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
                         dropDownClassName="select__content--medium"
                     />
                 </div>
-                <div className="search flex justify-center">
+                <div className="search">
                     <input type="hidden" name="action" value="search" />
                     <input
-                        className="search__searchbar box-shadow-light"
+                        className="search__searchbar"
                         value={locaSearch || ""}
                         type="text"
                         name="search"
                         placeholder={searchPlaceHolder}
                         onChange={(e) => setLocalSearch(e.target.value)}
                     />
-                    <div className="search__btn-search box-shadow-light">
+                    <div className="search__btn-search">
                         <FontAwesomeIcon icon={faSearch} />
                     </div>
                 </div>

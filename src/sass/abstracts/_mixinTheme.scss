@@ -1,0 +1,9 @@
+@use "sass:meta";
+
+@mixin emit-theme($theme) {
+  @each $color, $shade-map in $theme {
+    @each $shade, $value in $shade-map {
+      --#{$color}-#{$shade}: #{$value};
+    }
+  }
+}

@@ -1,4 +1,3 @@
-@forward "cards/astronuat-card";
 @forward "cards/bookmark-card";
 @forward "cards/generic-cards/portrait-card";
 @forward "cards/generic-cards/landscape-card";
@@ -11,8 +10,9 @@
 @forward "heading/heading";
 @forward "heading/page-heading";
 @forward "button/button";
-@forward "button/btn-goTop";
-@forward "loader/card-loader";
+@forward "button/gotop-button";
+@forward "button/theme-button";
+@forward "loader/skeleton-card";
 @forward "loader/skeleton";
 @forward "panels/panel-info";
 @forward "tooltip/tooltip";
@@ -28,5 +28,7 @@
 @forward "animations/fade-transitions";
 @forward "animations/rotation-transition";
 @forward "animations/hover-transitions";
+@forward "animations/planet";
+@forward "animations/lift-transition";
 @forward "searchbar";
 @forward "marker";

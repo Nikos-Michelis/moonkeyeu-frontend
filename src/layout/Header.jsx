@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRocket, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faBookmark } from '@fortawesome/free-regular-svg-icons';
+import ThemeButton from "@/components/button/ThemeButton.jsx";
 
 const Header = () => {
     const { openModal } = useModal();
@@ -82,7 +83,7 @@ const Header = () => {
                                 )
                             ) : (
                                 <div>
-                                    <div className="skeleton skeleton--circle bg-dark-cosmos-300"></div>
+                                    <div className="skeleton skeleton--circle"></div>
                                 </div>
                             )}
 
@@ -103,9 +104,12 @@ const Header = () => {
                                 )
                             ) : (
                                 <div>
-                                    <div className="skeleton skeleton--circle bg-dark-cosmos-300"></div>
+                                    <div className="skeleton skeleton--circle"></div>
                                 </div>
                             )}
+                            <ThemeButton>
+
+                            </ThemeButton>
                         </div>
                     </ul>
                 </div>

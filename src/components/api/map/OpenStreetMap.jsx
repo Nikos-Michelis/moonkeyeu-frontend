@@ -7,7 +7,6 @@ import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleInfo, faLocationDot, faSearch} from '@fortawesome/free-solid-svg-icons';
 import { faWikipediaW } from '@fortawesome/free-brands-svg-icons';
-import SearchPopUp from "@/components/modal/SearchPopUp.jsx";
 import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {DivIcon} from "leaflet/src/layer/index.js";
 import MarkerClusterGroup from "react-leaflet-cluster";
@@ -136,13 +135,13 @@ const OpenStreetMap = (
                                         </div>
                                         <div className="map__info-box">
                                             <h3 className="map__title fs-small-200">{location?.name}</h3>
-                                            <span className="map__subtitle fs-small-100">{location.location?.name}</span>
+                                            <span className="map__subtitle fs-medium-200">{location.location?.name}</span>
                                         </div>
-                                        <hr className="hr-60-xs bg-hr-400"/>
+                                        <hr className="hr-60-xs"/>
                                         <div className="map__actions">
                                             {location.id ? (
                                                 <div className="map__info">
-                                                    <LinkButton className="btn btn--transparent hover scale-small" to={location.id.toString()} >
+                                                    <LinkButton className="btn btn--transparent-dark hover scale-small" to={location.id.toString()} >
                                                         <FontAwesomeIcon icon={faCircleInfo} />
                                                     </LinkButton>
                                                 </div>

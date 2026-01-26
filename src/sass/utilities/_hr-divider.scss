@@ -5,7 +5,7 @@
 @each $percentage-name, $percentage-value in $percentages {
   @each $height-name, $height-value in $hr-heights {
     .hr-#{$percentage-name}-#{$height-name} {
-      @include hr-base($color: var(--clr-star-300), $height: $height-value, $width: $percentage-value);
+      @include hr-base($color: var(--neutral-1000), $height: $height-value, $width: $percentage-value);
     }
   }
 }
@@ -18,7 +18,7 @@
   }
 }
 
-@each $color, $shade-map in $colors {
+@each $color, $shade-map in $light {
   @each $shade, $value in $shade-map {
     .hr-#{$color}-#{$shade} {
       background-color: var(--bg-#{$color}-#{$shade});

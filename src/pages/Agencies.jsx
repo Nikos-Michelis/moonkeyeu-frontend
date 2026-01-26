@@ -3,7 +3,7 @@ import Heading from "../components/utils/Heading.jsx";
 import { useSimpleQuery } from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import AgenciesSection from "@/components/sections/AgenciesSection.jsx";
+import AgenciesSection from "@/components/sections/pages/AgenciesSection.jsx";
 import ContentLayout from "@/layout/ContentLayout.jsx";
 
 function Agencies() {

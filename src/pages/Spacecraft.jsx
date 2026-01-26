@@ -3,7 +3,7 @@ import Heading from "../components/utils/Heading.jsx";
 import { useSearchParams } from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import Pagination from "@/components/pagination/Pagination.jsx";
-import SpacecraftSection from "@/components/sections/SpacecraftSection.jsx";
+import SpacecraftSection from "@/components/sections/pages/SpacecraftSection.jsx";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";

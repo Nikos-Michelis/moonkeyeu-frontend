@@ -1,5 +1,5 @@
 import Heading from "@/components/utils/Heading.jsx";
-import VehiclesSection from "@/components/sections/VehiclesSection.jsx";
+import VehiclesSection from "@/components/sections/pages/VehiclesSection.jsx";
 import Head from "@/components/seo/Head.jsx";
 import React from "react";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";

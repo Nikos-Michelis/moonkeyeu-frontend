@@ -1,3 +1,5 @@
+@use "../../abstracts/index" as *;
+
 .modal {
   position: absolute;
   width: 100%;
@@ -23,9 +25,8 @@ div.modal-container {
     -webkit-transition: -webkit-transform .3s ease;
     transition: -webkit-transform .3s ease;
     transition: transform .3s ease;
-    border: 0.2rem solid var(--clr-secondary-300);
-    border-radius: 0.8rem;
-    box-shadow: 0 0.35rem 0 var(--clr-secondary-300);
+    @include cursive_border();
+    box-shadow: $box-shadow-1;
     & div.youtube-embed{
       max-height: 919px;
     }
