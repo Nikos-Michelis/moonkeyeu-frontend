@@ -2,9 +2,10 @@ import {Button} from "@/components/button/Button.jsx";
 import {useModal} from "@/context/ModalProvider.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSpinner, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {useEffect} from "react";
 
-export function PromptModal({ modalId }) {
-    const { modals, closeModal, modalStatus } = useModal();
+export function PromptDialog({ modalId }) {
+    const { modals, closeModal } = useModal();
     const modal = modals[modalId] || { isOpen: false, data: {} };
     const {
         title = "Are you sure?",
@@ -18,29 +19,42 @@ export function PromptModal({ modalId }) {
 
     const handleClose = () => closeModal(modalId);
 
+    useEffect(() => {
+        if (modal?.data) {
+            if (modal.data.status?.isSuccess) {
+                handleClose(modalId)
+            }
+        }
+    }, [modal]);
+
+
+    useEffect(() => {
+        console.log(modal)
+    }, [modals]);
     if (!modal.isOpen) return null;
 
     return (
-        <div className="form-popup-container bookmark-form-container">
+        <div className="dialog__container">
             <Button
                 onClick={handleClose}
                 className="btn--transparent btn--close"
             >
                 <FontAwesomeIcon icon={faXmark} />
             </Button>
-            <div className="form-box small-form flex flex-column justify-center align-center">
-                <div className="modal-header">
+            <div className="dialog__content padding-block-start-8 padding-block-end-4">
+                <div className="dialog__title">
                     <h3>{title}</h3>
                 </div>
-                <div className="margin-inline-2 margin-block-8">
-                    <ul className="padding-0">
+                <hr className="hr-100-sm"/>
+                <div className="dialog__list margin-block-4">
+                    <ul>
                         {details.map((item, index) => (
                             <li key={index}>{item}</li>
                         ))}
                     </ul>
                 </div>
             </div>
-            <div className="flex flex-wrap justify-center">
+            <div className="dialog__actions">
                 <Button
                     className="btn btn--primary"
                     onClick={handleClose}
@@ -51,9 +65,9 @@ export function PromptModal({ modalId }) {
                     <Button
                         className="btn btn--primary btn--warning"
                         onClick={confirmFn}
-                        disabled={modalStatus?.[modalId]?.isPending}
+                        disabled={modal?.data?.status?.isPending}
                     >
-                        {modalStatus?.[modalId]?.isPending && <FontAwesomeIcon icon={faSpinner} spin />} {confirmLabel}
+                        {modal?.data?.status?.isPending && <FontAwesomeIcon icon={faSpinner} spin />} {confirmLabel}
                     </Button>
                 }
             </div>

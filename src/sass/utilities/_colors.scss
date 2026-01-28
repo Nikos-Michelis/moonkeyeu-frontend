@@ -12,12 +12,3 @@
     }
   }
 }
-
-@each $name in $clr-constants {
-  .clr-#{$name} {
-    color: var(--#{$name});
-  }
-  .bg-#{$name} {
-    background-color: var(--#{$name});
-  }
-}

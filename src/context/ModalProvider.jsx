@@ -1,6 +1,7 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 
 const ModalContext = createContext();
+
 export const ModalProvider = ({ children }) => {
     const [modals, setModals] = useState({});
     const [modalStatus, setModalStatus] = useState({});
@@ -28,8 +29,15 @@ export const ModalProvider = ({ children }) => {
         });
     };
 
+    const removeModal = (modalId) => {
+        setModals(prev => {
+            const { [modalId]: _, ...rest } = prev;
+            return rest;
+        });
+    };
+
     const closeModal = (modalId) => {
-        setModals(prev => (({ [modalId]: _, ...rest }) => rest)(prev));
+        setModals(prevState => ({...prevState, [modalId]: {...prevState[modalId], isOpen: false, data: null}}))
         if (currentModalId === modalId) {
             setCurrentModalId(null);
         }
@@ -40,32 +48,22 @@ export const ModalProvider = ({ children }) => {
         setCurrentModalId(null);
     };
 
-    const setStatus = (modalId, status) => {
-        setModalStatus((prev) => ({
+    const updateModalData = (modalId, value) => {
+        setModals(prev => ({
             ...prev,
             [modalId]: {
                 ...prev[modalId],
-                ...status,
-            },
+                data: {
+                    ...prev[modalId]?.data,
+                    ...value
+                }
+            }
         }));
     };
 
-    useEffect(() => {
-        const isAnyModalOpen = Object.values(modals).some(modal => modal?.isOpen && modal?.type !=="dropdown");
-
-        if (isAnyModalOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-        }
-
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [modals]);
 
     return (
-        <ModalContext.Provider value={{ modals, openModal, closeModal, clearAllModals, modalStatus, setStatus, currentModalId }}>
+        <ModalContext.Provider value={{ modals, openModal, removeModal, closeModal, clearAllModals, updateModalData, currentModalId }}>
             {children}
         </ModalContext.Provider>
     );

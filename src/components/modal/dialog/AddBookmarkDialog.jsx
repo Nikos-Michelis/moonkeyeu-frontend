@@ -16,10 +16,10 @@ import {
     faXmark,
     faEye,
     faSpinner,
-    faArrowRight,
+    faArrowRight, faFileCircleXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
-export function AddBookmarkForm() {
+export function AddBookmarkDialog() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const { modals, closeModal } = useModal();
     const navigate = useNavigate();
@@ -84,12 +84,12 @@ export function AddBookmarkForm() {
         );
     };
 
-     const handleRemoveFromBookmark = (data) => {
-         removeLaunchMutation.mutate(
-             {
-             url: baseUrl + `/user/bookmark/delete/${data.bookmark}/${data.id}`,
-             options: { withCredentials: true, Bearer: true }
-         })
+    const handleRemoveFromBookmark = (data) => {
+        removeLaunchMutation.mutate(
+            {
+                url: baseUrl + `/user/bookmark/delete/${data.bookmark}/${data.id}`,
+                options: { withCredentials: true, Bearer: true }
+            })
     };
 
     const onSubmit = (data) => {
@@ -141,25 +141,25 @@ export function AddBookmarkForm() {
     if (!modal.isOpen) return null;
 
     return(
-        <div className="form-popup-container bookmark-form-container">
+        <div className="dialog__container">
             <Button
                 onClick={handleClose}
                 className="btn--transparent btn--close"
             >
                 <FontAwesomeIcon icon={faXmark} className="fs-small-500"/>
             </Button>
-            <div className="form-box small-form flex flex-column justify-center align-center">
-                <div className="padding-block-end-6">
+            <div className="dialog__content padding-8">
+                <div className="padding-block-6">
                     <h3 className="margin-inline-2">Bookmark to...</h3>
                 </div>
-                <div className="container container--small-list padding-8"
+                <div className="container"
                      data-type="full-width"
                      data-scroll={queryData.data && queryData.data.length > 5 ? "vertical" : undefined}
                      data-height="small"
                 >
                     <div className="padding-inline-2">
                         { queryData.data && queryData.data.length > 0
-                            && queryData.data.map(bookmark =>
+                            ? queryData.data.map(bookmark =>
                                 <div className="container flex justify-space-between align-center margin-block-1 margin-inline-4" key={bookmark.id}>
                                     <input
                                         key={bookmark?.id}
@@ -178,7 +178,13 @@ export function AddBookmarkForm() {
                                         <FontAwesomeIcon icon={faEye} />
                                     </Button>
                                 </div>
-                            )}
+                            ) : (
+                                <div className="padding-8 text-center clr-neutral-1000">
+                                    <FontAwesomeIcon icon={faFileCircleXmark} className="fs-large-700 margin-block-end-6"/>
+                                    <p>There no any bookmarks yet, create a new bookmark</p>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
                 <div className="flex flex-wrap justify-center margin-block-4">

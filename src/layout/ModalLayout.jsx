@@ -1,28 +1,26 @@
 import { useModal } from "@/context/ModalProvider.jsx";
-import { PromptModal } from "@/components/modal/PromptModal.jsx";
-import {VideoModal} from "@/components/modal/VideoModal.jsx";
-import PopUpForm from "@/components/modal/forms/PopUpForm.jsx";
-import {AddBookmarkForm} from "@/components/modal/forms/AddBookmarkForm.jsx";
-import {EditBookmarkForm} from "@/components/modal/forms/EditBookmarkForm.jsx";
+import { PromptDialog } from "@/components/modal/dialog/PromptDialog.jsx";
+import {VideoDialog} from "@/components/modal/dialog/VideoDialog.jsx";
+import {AddBookmarkDialog} from "@/components/modal/dialog/AddBookmarkDialog.jsx";
+import {EditBookmarkDialog} from "@/components/modal/dialog/EditBookmarkDialog.jsx";
 import BookmarkDropdown from "@/components/modal/dropdown/BookmarkDropdown.jsx";
 import ToastPortal from "@/portals/ToastPortal.jsx";
 import React from "react";
-import ModalWrapper from "@/components/modal/ModalWrapper.jsx";
+import LoginDialog from "@/components/modal/dialog/LoginDialog.jsx";
+import LaunchDropdown from "@/components/modal/dropdown/LaunchDropdown.jsx";
 const ModalLayout = () => {
     const { currentModalId, modals } = useModal();
     const modal = modals[currentModalId] || {};
     return (
         <>
-            <ModalWrapper>
-                <VideoModal />
-                <PopUpForm />
-                <AddBookmarkForm />
-                <EditBookmarkForm />
-                {modal.type === "prompt" && <PromptModal key={currentModalId} modalId={currentModalId} /> }
-            </ModalWrapper>
+            <VideoDialog />
+            <LoginDialog />
+            <AddBookmarkDialog />
+            <EditBookmarkDialog />
+            {modal.type === "prompt" && <PromptDialog key={currentModalId} modalId={currentModalId} /> }
             <BookmarkDropdown />
+            <LaunchDropdown/>
             <ToastPortal />
-
         </>
     );
 };

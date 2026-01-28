@@ -39,7 +39,7 @@ function formReducer(state, action) {
     }
 }
 
-const PopUpForm = () => {
+const LoginDialog = () => {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const { modals, closeModal } = useModal();
     const navigate = useNavigate();
@@ -199,34 +199,28 @@ const PopUpForm = () => {
     }, [state?.user?.name, setValue]);
 
     useEffect(() => {
-        if (status.isSuccess) {
-            handleClose();
-        }
-    }, [status]);
-
-    useEffect(() => {
         dispatch({ type: "SET_API_ERROR", payload: authContextError?.response?.data });
     }, [authContextError]);
 
     if (!modal.isOpen) return null
 
     return (
-        <div className={`form-popup-container${state.formState !== "login"  ? ' show-signup' : ""}`}>
+        <div className={`dialog__container`}>
             <Button
                 onClick={!signInWithGoogleMutation?.isPending ? handleClose : undefined}
-                className="btn--transparent pos-absolute top-2 right-1"
+                className="btn--transparent btn--close"
             >
                 <FontAwesomeIcon icon={faXmark} />
             </Button>
             {["register", "forgotPassword"].includes(state.formState) && (
-                <Button className="btn--transparent pos-absolute top-2 left-2" onClick={() => handleSwitchForm("login")}>
+                <Button className="btn--transparent btn--back" onClick={() => handleSwitchForm("login")}>
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </Button>)
             }
-            <div className={`form-box${
-                (["otpVerify", "forgotPassword", "resetPassword"].includes(state.formState)) ? ' small-form' : ""} flex ${state.formState !== "login" ? "flex-column justify-center" :"flex-wrap justify-space-around"} align-center`}>
+            <div className={`dialog__content${
+                (["otpVerify", "forgotPassword", "resetPassword"].includes(state.formState)) ? ' small-form' : ""} `}>
                 {(state.formState === "login")  && (
-                    <div className="form-details flex flex-column justify-center align-center fs-small-300">
+                    <div className="dialog__info fs-small-300">
                         <h2>Create Account</h2>
                         <p>Don’t you want to miss a single launch?</p>
                         <div className="text-center">
@@ -240,7 +234,8 @@ const PopUpForm = () => {
                     <div className="form-content">
                         <h2>One more step!</h2>
                         {
-                            (errors && Object.keys(errors).length > 0 || state.apiError?.validationErrors) && <ErrorBox errors={errors} apiError={state.apiError}/>
+                            (errors && Object.keys(errors).length > 0 || state.apiError?.validationErrors)
+                            && <ErrorBox errors={errors} apiError={state.apiError}/>
                         }
                         <div className="margin-block-end-4">
                             <p>Oops! Looks like you forgot your username.</p>
@@ -260,7 +255,8 @@ const PopUpForm = () => {
                                             message:'Username must be between 7 and 16 characters long and cannot contain spaces.'
                                         }
                                     }}
-                                    errors={errors}/>
+                                    errors={errors}
+                                />
                             </div>
                             <div className="flex justify-center">
                                 <Button
@@ -277,7 +273,7 @@ const PopUpForm = () => {
                     </div>)
                 }
                 {state.formState === "login" && (
-                    <div className="form-content __login">
+                    <div className="form-content">
                         <h2>Do you already have an account?</h2>
                         {(errors && Object.keys(errors).length > 0 || state.state?.validationErrors)
                             && <ErrorBox errors={errors} apiError={state.apiError}/>}
@@ -407,9 +403,7 @@ const PopUpForm = () => {
                         <p>You will soon receive a link to reset your password via email. Don’t forget to check your inbox!</p>
                     </div>)
                 }
-            </div>
-            {state.formState === "register" && (
-                <div className="form-box register flex flex-column justify-center align-center">
+                {state.formState === "register" && (
                     <div className="form-content">
                         <h2>Register</h2>
                         {(errors && Object.keys(errors).length > 0 || state.apiError?.validationErrors) &&
@@ -481,10 +475,10 @@ const PopUpForm = () => {
                                 </Button>
                             </div>
                         </form>
-                    </div>
-                </div>)
-            }
+                    </div>)
+                }
+            </div>
         </div>
     );
 };
-export default PopUpForm;
+export default LoginDialog;

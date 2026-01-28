@@ -6,7 +6,9 @@ import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const BookmarkDropdown = () => {
     const { modals, openModal, closeModal, currentModalId } = useModal();
-    const modal = modals[currentModalId]?.type === "dropdown" ? modals[currentModalId] : {};
+    const hasValid = currentModalId.includes('BookmarkDropdown')
+    const modal = (hasValid && modals[currentModalId]?.type === "dropdown") ? modals[currentModalId] : {};
+
     const menus = [
         {
             name: "main",
@@ -37,12 +39,11 @@ const BookmarkDropdown = () => {
             menus={menus}
             style={
                 {
-                    position: 'absolute',
                     top: modal?.data?.position?.top,
                     left: modal?.data?.position?.left,
                 }
             }
-            className="bookmark-dropdown"
+            className="dropdown"
         />
     );
 };

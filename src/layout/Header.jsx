@@ -14,7 +14,7 @@ const Header = () => {
     const {user, status } = useAuth();
 
     const onBookmark = () => {
-        openModal("PopUpFormModal", null, "form");
+        openModal("PopUpFormModal", "form");
         toast(
             "You're almost there! Sign up or log in to bookmark your favorites launches.", {
                 icon: <FontAwesomeIcon icon={faRocket} />

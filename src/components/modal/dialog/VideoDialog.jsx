@@ -5,7 +5,7 @@ import {Button} from "@/components/button/Button.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
-export function VideoModal() {
+export function VideoDialog() {
     const { modals, closeModal } = useModal();
     const modal = modals["videoPlayerModal"] || { isOpen: false, data: null };
 

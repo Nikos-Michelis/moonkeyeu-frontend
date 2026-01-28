@@ -50,11 +50,13 @@ const ContactForm = () => {
             }
         );
     }
+
     useEffect(() => {
         if (user?.email) {
             setValue("email", user.email);
         }
     }, [user?.email, setValue]);
+
     return (
         <>
             <section className="contact-section">
@@ -76,7 +78,8 @@ const ContactForm = () => {
                                 To help us organize bug reports more effectively, please create a new issue
                                 <LinkButton
                                     className="btn--transparent fw-bold" to="https://github.com/Nikos-Michelis/MoonkeyEU-Feedback/issues/new"
-                                    isExternal={true}> here. </LinkButton>
+                                    isExternal={true}> here.
+                                </LinkButton>
                                 Thank you for your feedback — we're striving to make the platform better!
                             </p>
                             <hr/>
@@ -133,7 +136,7 @@ const ContactForm = () => {
                                             errors={errors}
                                         />
                                     </div>
-                                    <div className="container flex justify-center">
+                                    <div className="flex justify-center padding-2">
                                         <Button className="btn btn--primary btn--big" type="submit" disabled={contactFormMutation.isPending}>
                                             {contactFormMutation.isPending
                                                 ? <FontAwesomeIcon icon={faSpinner} spin />

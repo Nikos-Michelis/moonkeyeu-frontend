@@ -48,6 +48,7 @@ const CustomSelect = (
     };
 
     useClickOutside({ modalRef: dropdownRef, handler: handleClickOutside });
+
     const handleClearance = (field) => {
         setSelectedOption(prev => ({...prev, [field]: ""}));
         resetFilterByName(field);

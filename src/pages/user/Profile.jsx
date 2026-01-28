@@ -18,7 +18,7 @@ const Profile = () =>{
     const { logout, invalidateCredentials, user, status } = useAuth();
     const navigate = useNavigate();
     const { hasRole } = useHasRole();
-    const { openModal, closeModal, setStatus } = useModal();
+    const { openModal, closeModal, updateModalData } = useModal();
     const roles = ["DEVELOPER", "ADMIN", "MODERATOR"]
 
     const deleteAccount =
@@ -43,8 +43,8 @@ const Profile = () =>{
     };
 
     useEffect(() => {
-        setStatus("deleteAccountModal", { isPending: deleteAccount.isPending });
-    }, [deleteAccount.isPending]);
+        updateModalData("deleteAccountModal", { status: deleteAccount });
+    }, [deleteAccount.status]);
 
     const zonedDateTime = DateTime.fromISO(user?.createdAt).setZone(DateTime.local().zoneName);
     const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy');

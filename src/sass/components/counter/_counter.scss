@@ -23,7 +23,7 @@
   &__number {
     display: flex;
     flex-wrap: nowrap;
-    @include abs.font($font-size: var(--fs-medium-500), $color: var(--neutral-1000), $font-variant: all-small-caps);
+    @include abs.font($font-size: var(--fs-medium-400), $color: var(--neutral-1000));
     & > span {
       text-align: center;
       flex-wrap: nowrap;

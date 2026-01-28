@@ -11,7 +11,7 @@ const MessageCard = ({id, category, email, message, created_at}) => {
     const zonedDateTime = DateTime.fromISO(created_at).setZone(DateTime.local().zoneName);
     const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy - hh:mm a');
     const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/dashboard/contact/messages`;
-    const { openModal, closeModal, setStatus } = useModal();
+    const { openModal, closeModal, updateModalData } = useModal();
 
     const removeMessageMutation =
         useDeleteMutation({
@@ -34,8 +34,8 @@ const MessageCard = ({id, category, email, message, created_at}) => {
     };
 
     useEffect(() => {
-        setStatus("deleteMessage", { isPending: removeMessageMutation.isPending});
-    }, [removeMessageMutation.isPending]);
+        updateModalData("deleteMessage", { status: removeMessageMutation});
+    }, [removeMessageMutation.status]);
 
     return (
         <article className="landscape-card flex justify-center small-wrapper">

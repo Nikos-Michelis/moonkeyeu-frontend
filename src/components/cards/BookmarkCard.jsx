@@ -10,7 +10,6 @@ import toast from "react-hot-toast";
 
 const BookmarkCard = ({ id, bookmark, launches }) => {
     const { openModal } = useModal();
-    const cardRef = useRef();
     const triggerRef = useRef(null);
     const bookmarkUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/user/bookmark/delete/`;
     const removeBookmarkMutation =
@@ -36,19 +35,11 @@ const BookmarkCard = ({ id, bookmark, launches }) => {
     }, [bookmark]);
 
     const handleOpenDropdown = () => {
-        if (!cardRef.current) return;
-
-        const rect = cardRef.current.getBoundingClientRect();
-        const dropdownWidth = 140;
-        const left = rect.right + window.scrollX - dropdownWidth;
-        const top = rect.bottom + window.scrollY - 25;
-
         openModal(
-            `bookmarkDropdown-${id}`,
+            `bookmarkDropdown`,
             {
                 bookmark,
                 img: launches?.[0]?.image?.image_url,
-                position: { top, left },
                 status: {
                     isPending: removeBookmarkMutation.isPending,
                     isSuccess: removeBookmarkMutation.isSuccess,
@@ -57,11 +48,12 @@ const BookmarkCard = ({ id, bookmark, launches }) => {
                 handleRemove,
             },
             "dropdown",
-            triggerRef);
+            triggerRef
+        );
     };
 
     return (
-        <article ref={cardRef} className="bookmark-card container flex flex-column rounded-md" data-type="full-width" data-overflow="visible">
+        <article className="bookmark-card container flex flex-column rounded-md" data-type="full-width" data-overflow="visible">
             <div className="container" data-spacing="none">
                 <Img
                     src={launches?.[0]?.image?.image_url}

@@ -22,7 +22,7 @@
       @include abs.font($font-size: calc(var(--fs-medium-1000) * 4), $font-weight: bold);
     }
     &__message {
-      @include abs.font($font-size: calc(var(--fs-medium-900)), $font-weight: bold);
+      @include abs.font($font-size: calc(var(--fs-medium-700)), $font-weight: bold);
     }
   }
 }

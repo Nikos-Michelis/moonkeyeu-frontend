@@ -1,36 +1,30 @@
-import React, {useCallback, useRef} from "react";
-import { createPortal } from "react-dom";
+import React from "react";
 import {useModal} from "@/context/ModalProvider.jsx";
-import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
-
-const modalRoot = document.getElementById("portal");
+import {FloatingPortal} from "@floating-ui/react";
+import DropdownView from "@/components/modal/dropdown/DropdownView.jsx";
+import DialogView from "@/components/modal/dialog/DialogView.jsx";
 
 export const ModalPortal = ({ children }) => {
     const { closeModal, currentModalId, modals } = useModal();
-    const modalRef = useRef(null);
-    const modal = modals[currentModalId] || {};
+    const modal = modals[currentModalId];
 
-    const closeDropdown = useCallback(() => {
-        closeModal(currentModalId);
-    }, [closeModal, currentModalId]);
+    const handleClose = () => closeModal(currentModalId);
 
-    useClickOutside({ modalRef: modalRef, triggerRef: modal?.ref, handler: modal.type === "dropdown" ? closeDropdown : undefined });
-
-    return createPortal(
-        <div
-            style={
-            modal.type !== "dropdown" ? {
-                position: 'fixed',
-                zIndex: 9999,
-                inset: '12px',
-                pointerEvents: 'none'
-            } : undefined}
-            ref={modalRef}
-            onClick={(e) => e.stopPropagation()}
-        >
-            {children}
-        </div>,
-        modalRoot
+    return (
+        <FloatingPortal id="portal">
+            { modal &&
+                (
+                    modal.type === "dropdown" ? (
+                        <DropdownView modal={modal} onClose={handleClose}>
+                                {children}
+                        </DropdownView>
+                    ) : (
+                        <DialogView modal={modal} onClose={handleClose}>
+                            {children}
+                        </DialogView>
+                    )
+                )
+            }
+        </FloatingPortal>
     );
-
 };

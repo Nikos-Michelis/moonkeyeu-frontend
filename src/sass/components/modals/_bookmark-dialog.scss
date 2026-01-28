@@ -1,8 +1,6 @@
-@use "../abstracts/index" as abs;
+@use "../../abstracts/index" as abs;
 
-div.form-popup-container.bookmark-form-container {
-  padding: 2rem;
-  max-width: 500px;
+.dialog__container{
   & div.container {
     &.scrolling{
       max-height: 14rem;
@@ -22,5 +20,3 @@ div.form-popup-container.bookmark-form-container {
     }
   }
 }
-
-

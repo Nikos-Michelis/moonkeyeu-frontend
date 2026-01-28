@@ -147,13 +147,15 @@
     top: 12px;
     right: 12px;
     cursor: pointer;
+    z-index: 1;
   }
 
   &--back {
     position: absolute;
     top: 12px;
-    right: 12px;
+    left: 12px;
     cursor: pointer;
+    z-index: 1;
   }
 
   &__donation {

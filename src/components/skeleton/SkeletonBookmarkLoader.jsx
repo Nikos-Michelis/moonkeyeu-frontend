@@ -6,10 +6,10 @@ function SkeletonBookmarkLoader(){
 
     return(
     <div className="bookmark-card container flex flex-column rounded-md" data-type="full-width">
-        <div className="card-img-box skeleton opacity-6 skeleton-img">
+        <div className="card-img-box skeleton skeleton--img opacity-6">
             <div className="bookmark-card__thumbnail">
                 <div className="bookmark-card__icon flex justify-center align-center">
-                    <FontAwesomeIcon icon={faImage} className="fs-bog-600" />
+                    <FontAwesomeIcon icon={faImage} className="fs-big-600" />
                 </div>
             </div>
         </div>

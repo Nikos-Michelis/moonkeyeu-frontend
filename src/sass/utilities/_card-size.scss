@@ -1,7 +1,5 @@
 @use "../abstracts" as abs;
-/**
-* TODO maybe redundant code test the card
-***/
+
 @include abs.mq(medium) {
   .article-card {
     &--small-wrapper {

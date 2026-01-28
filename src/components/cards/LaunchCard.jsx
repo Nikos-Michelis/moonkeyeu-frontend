@@ -19,11 +19,9 @@ import {
     faCircleCheck,
     faTriangleExclamation,
     faRocket,
-    faTrash,
     faCalendarDays,
-    faLocationDot,
+    faLocationDot, faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
-import {faBookmark} from '@fortawesome/free-regular-svg-icons';
 import {faXTwitter, faYoutube} from '@fortawesome/free-brands-svg-icons';
 
 const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:launchStatus, video_urls, isBookmarked = false, cardStyles}) => {
@@ -57,11 +55,13 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
             successMessage: undefined,
             queryKeysToInvalidate: ["my-launches", "user-bookmarks"]
         });
+
     const askAiMutation =
         useCreateMutation({
             successMessage: undefined,
             showError: false
         });
+
     const handleRemove = async () => {
         await toast.promise(
             removeLaunchMutation.mutateAsync(
@@ -83,29 +83,23 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
         !user && toast("You're almost there! Sign up or log in to bookmark your favorites launches.", { icon: <FontAwesomeIcon icon={faRocket} />});
     }
 
+    const handleOpenDropdown = () => {
+        openModal(
+            `launchDropdown`,
+            {
+                isBookmarked,
+                handleRemove,
+                onBookmark,
+            },
+            "dropdown",
+            triggerRef
+        );
+    };
+
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'large-wrapper'}`}>
             <div className={`landscape-card__container lift lift--lg ${cardStyles?.card_type || ''}`}>
                 <div className="landscape-card__media">
-                    <div className="landscape-card__btn-bookmark flex justify-center align-center">
-                        {isBookmarked ?
-                            <Button
-                                type="submit"
-                                className="btn--transparent"
-                                onClick={() => handleRemove(id)}>
-                                <FontAwesomeIcon icon={faTrash} />
-                            </Button>
-                            :
-                            <Button
-                                ref={triggerRef}
-                                type="submit"
-                                className="btn--transparent"
-                                disabled={status.isPending}
-                                onClick={() => onBookmark()}>
-                                <FontAwesomeIcon icon={faBookmark} />
-                            </Button>
-                        }
-                    </div>
                     <Img
                         src={image?.image_url}
                         alt={image?.name || "default"}
@@ -115,7 +109,17 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                 </div>
                 <section className="landscape-card__content flex flex-column justify-space-evenly">
                     <div className="landscape-card__details">
-                        <h3 className="title">{fullname}</h3>
+                        <div className="flex justify-space-between align-center">
+                            <h3 className="fs-small-300">{fullname}</h3>
+                            <Button
+                                ref={triggerRef}
+                                type="button"
+                                className="btn--transparent"
+                                onClick={handleOpenDropdown}
+                            >
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </Button>
+                        </div>
                         <div className="landscape-card__detail-box">
                             <p><small className="fw-semi-bold">{agency}</small></p>
                         </div>
@@ -147,23 +151,7 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                             <CountdownTimer net={zonedDateTime} timerStyle="margin-block-3" />
                         ) }
                     </div>
-                    <div className="launch-card__actions flex flex-wrap justify-center padding-block-2" data-type="narrow">
-                        {id ? (
-                            <div className="launch-card__info">
-                                <LinkButton className="btn btn--primary" to={navUrl? navUrl + id: id} >
-                                    <FontAwesomeIcon icon={faCircleInfo} /> INFO
-                                </LinkButton>
-                            </div>
-                        ) : (
-                            <Tooltip message={tooltipInfoMessage}>
-                                <div className="launch-card__info">
-                                    <LinkButton className="btn btn--primary">
-                                        <FontAwesomeIcon icon={faCircleInfo} /> INFO
-                                    </LinkButton>
-                                </div>
-                            </Tooltip>
-                        )}
-
+                    <div className="launch-card__actions flex flex-wrap justify-center padding-block-4" data-type="narrow">
                         {item ? (
                             item?.source?.includes(xTwitterUrl) ? (
                                 <div className="launch-card__video">

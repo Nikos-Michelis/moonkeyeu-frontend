@@ -9,7 +9,7 @@ import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faArrowRight, faSpinner, faXmark} from '@fortawesome/free-solid-svg-icons';
 
-export function EditBookmarkForm() {
+export function EditBookmarkDialog() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const { modals, closeModal } = useModal();
     const modal = modals["editBookmarkModal"] || { isOpen: false, data: null };
@@ -60,14 +60,14 @@ export function EditBookmarkForm() {
     if (!modal.isOpen) return null;
 
     return (
-        <div className="form-popup-container bookmark-form-container">
+        <div className="dialog__container">
             <Button
                 onClick={handleClose}
                 className="btn--transparent btn--close">
                 <FontAwesomeIcon icon={faXmark} />
             </Button>
-            <div className="form-box small-form flex flex-column justify-center align-center">
-                <div className="form-content padding-block-start-4">
+            <div className="dialog__content">
+                <div className="form-content">
                     <h2>Edit Bookmark</h2>
                     {(errors && Object.keys(errors).length > 0 || apiError?.validationErrors)
                         && <ErrorBox errors={errors} apiError={apiError}/>}
