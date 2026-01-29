@@ -1,25 +1,10 @@
 import React from "react";
-import Dropdown from "@/components/modal/dropdown/DropDown.jsx";
-import {useModal} from "@/context/ModalProvider.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faBookmark, faPenToSquare, faTrash} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark, faEllipsisVertical, faTrash } from "@fortawesome/free-solid-svg-icons";
+import * as RadixDropdown from "@radix-ui/react-dropdown-menu";
+import DropdownMenu from "./DropdownMenu.jsx";
 
-const LaunchDropdown = () => {
-    const { modals, closeModal, currentModalId } = useModal();
-    const modal = modals[currentModalId]?.type === "dropdown" ? modals[currentModalId] : {};
-    const removeBookmarkOption = () => {
-        if (!modal?.data?.isBookmarked) return null;
-
-        return {
-            label: "Remove",
-            leftIcon: <FontAwesomeIcon icon={faTrash} />,
-            onClick: () => {
-                modal?.data?.handleRemove(modal?.data?.bookmark);
-                closeModal(currentModalId);
-            }
-        };
-    };
-
+const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove }) => {
     const menus = [
         {
             name: "main",
@@ -27,32 +12,31 @@ const LaunchDropdown = () => {
                 {
                     label: "Bookmark",
                     leftIcon: <FontAwesomeIcon icon={faBookmark} />,
-                    onClick: () => modal?.data?.onBookmark()
+                    onClick: () => onBookmark(),
                 },
-                removeBookmarkOption()
-            ].filter(Boolean)
+                isBookmarked
+                    ? {
+                        label: "Remove",
+                        leftIcon: <FontAwesomeIcon icon={faTrash} />,
+                        onClick: onRemove,
+                        danger: true,
+                    }
+                    : null,
+            ].filter(Boolean),
         },
     ];
 
-    console.log(menus)
-    if (!modal.isOpen) return null;
+    return (
+        <RadixDropdown.Root>
+            <RadixDropdown.Trigger asChild>
+                <button className="btn--transparent">
+                    <FontAwesomeIcon icon={faEllipsisVertical} />
+                </button>
+            </RadixDropdown.Trigger>
 
-    return(
-        <Dropdown
-            modalId={currentModalId}
-            status={modal?.data?.status}
-            menus={menus}
-            style={
-                {
-                    position: 'absolute',
-                    top: modal?.data?.position?.top,
-                    left: modal?.data?.position?.left,
-                }
-            }
-            className="dropdown"
-        />
+            <DropdownMenu status={status} menus={menus} className="dropdown" />
+        </RadixDropdown.Root>
     );
 };
 
 export default LaunchDropdown;
-

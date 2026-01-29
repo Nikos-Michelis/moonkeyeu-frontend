@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useReducer } from "react";
-import {useModal} from "@/context/ModalProvider.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import {useForm} from "react-hook-form";
 import {useAuth} from "@/context/AuthProvider.jsx";
@@ -39,12 +38,10 @@ function formReducer(state, action) {
     }
 }
 
-const LoginDialog = () => {
+const LoginForm = () => {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const { modals, closeModal } = useModal();
     const navigate = useNavigate();
     const { setToken, status, error: authContextError } = useAuth();
-    const modal = modals["PopUpFormModal"] || {};
     const [state, dispatch] = useReducer(formReducer, initialState);
 
     const {
@@ -167,7 +164,6 @@ const LoginDialog = () => {
 
     const handleClose = () => {
         dispatch({ type: "RESET" });
-        closeModal("PopUpFormModal");
         reset();
     };
     const onNavigate = ()=> {
@@ -202,16 +198,9 @@ const LoginDialog = () => {
         dispatch({ type: "SET_API_ERROR", payload: authContextError?.response?.data });
     }, [authContextError]);
 
-    if (!modal.isOpen) return null
 
     return (
-        <div className={`dialog__container`}>
-            <Button
-                onClick={!signInWithGoogleMutation?.isPending ? handleClose : undefined}
-                className="btn--transparent btn--close"
-            >
-                <FontAwesomeIcon icon={faXmark} />
-            </Button>
+        <>
             {["register", "forgotPassword"].includes(state.formState) && (
                 <Button className="btn--transparent btn--back" onClick={() => handleSwitchForm("login")}>
                     <FontAwesomeIcon icon={faArrowLeft} />
@@ -478,7 +467,7 @@ const LoginDialog = () => {
                     </div>)
                 }
             </div>
-        </div>
+        </>
     );
 };
-export default LoginDialog;
+export default LoginForm;

@@ -1,9 +1,8 @@
-import React, {useEffect} from "react";
+import React, {useState} from "react";
 import {Button} from "@/components/button/Button.jsx";
 import ScrollToTop from "@/components/utils/ScrollToTop.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
-import {useModal} from "@/context/ModalProvider.jsx";
 import {useHasRole} from "@/hooks/rbac/useHasRole.jsx";
 import {useNavigate} from "react-router-dom";
 import {DateTime} from "luxon";
@@ -12,19 +11,27 @@ import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserAstronaut, faChevronLeft, faSpinner, faTableColumns, faDoorOpen, faPenToSquare, faGear, faEraser } from '@fortawesome/free-solid-svg-icons';
+import AlertModal from "@/components/modal/dialog/AlertModal.jsx";
+import DataList from "@/components/utils/DataList.jsx";
 
 const Profile = () =>{
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+    const [open, setOpen] = useState(false);
     const { logout, invalidateCredentials, user, status } = useAuth();
     const navigate = useNavigate();
     const { hasRole } = useHasRole();
-    const { openModal, closeModal, updateModalData } = useModal();
     const roles = ["DEVELOPER", "ADMIN", "MODERATOR"]
+    const alertMessage = [
+        "This action is permanent.",
+        "This action cannot be reversed.",
+        "Your data will be deleted, including your bookmarks and other related data."
+    ]
 
     const deleteAccount =
         useDeleteMutation({
             successMessage: "You have successfully deleted your account. Your data will be permanently removed within 30 days.",
         });
+
     const handleDeleteAccount = () => {
         deleteAccount.mutate(
             {
@@ -35,17 +42,12 @@ const Profile = () =>{
             {
                 onSuccess: () => {
                     invalidateCredentials();
-                    closeModal("deleteAccountModal");
+                    setOpen(false);
                     navigate("/launches");
                 },
             }
         )
     };
-
-    useEffect(() => {
-        updateModalData("deleteAccountModal", { status: deleteAccount });
-    }, [deleteAccount.status]);
-
     const zonedDateTime = DateTime.fromISO(user?.createdAt).setZone(DateTime.local().zoneName);
     const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy');
 
@@ -118,30 +120,27 @@ const Profile = () =>{
                                         </LinkButton>
                                         <Button
                                             className="btn btn--primary btn--big-hg margin-2"
-                                            onClick={() => logout()}>
+                                            onClick={() => logout()}
+                                        >
                                             { status.isPending
                                                 ? <FontAwesomeIcon icon={faSpinner} spin />
                                                 : <FontAwesomeIcon icon={faDoorOpen} />
                                             } Logout
                                         </Button>
-                                        <Button
-                                            className="btn btn--primary btn--big-hg btn--warning margin-2"
-                                            onClick={() =>
-                                                openModal("deleteAccountModal", {
-                                                    title: "Delete Account - Are you sure?",
-                                                    details: [
-                                                        "This action is permanent.",
-                                                        "This action cannot be reversed.",
-                                                        "Your data will be deleted, including your bookmarks and other related data."
-                                                    ],
-                                                    confirmLabel: "Confirm Deletion",
-                                                    cancelLabel: "Cancel",
-                                                    confirmFn: handleDeleteAccount,
-                                                }, "prompt")
-                                            }
-                                        >
-                                            <FontAwesomeIcon icon={ faEraser } /> Delete Account
-                                        </Button>
+                                        <AlertModal open={open} onOpenChange={setOpen}>
+                                            <AlertModal.Button className="btn btn--primary btn--big-hg btn--warning margin-2">
+                                                <FontAwesomeIcon icon={faEraser}/> Delete Account
+                                            </AlertModal.Button>
+                                            <AlertModal.Content
+                                                classNames={{title: "padding-4"}}
+                                                title="Delete Account - Are you sure?"
+                                                okText="Yes, delete account"
+                                                onOk={() => handleDeleteAccount()}
+                                                status={deleteAccount}
+                                            >
+                                                <DataList data={alertMessage}/>
+                                            </AlertModal.Content>
+                                        </AlertModal>
                                     </div>
                                 </div>
                             </section>

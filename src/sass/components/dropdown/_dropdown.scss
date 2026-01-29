@@ -9,6 +9,7 @@
   z-index: 2;
   background-color: $card-background-default;
   @include abs.cursive_border();
+  padding: 0.5rem;
   &--youtube-video {
     width: 100%;
   }
@@ -23,6 +24,7 @@
     color: var(--neutral-1000);
     font-size: var(--fs-small-400);
     margin-block: 0.2rem;
+    outline: none;
     @include cursive_border($color: transparent);
     &:hover {
       background-color: var(--primary-200);

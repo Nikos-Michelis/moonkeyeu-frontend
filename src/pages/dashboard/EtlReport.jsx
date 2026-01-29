@@ -5,19 +5,19 @@ import { useSimpleQuery } from "@/services/queries.jsx";
 import BasicTable from "@/components/table/BasicTable.jsx";
 import { DateTime } from "luxon";
 import { Button } from "@/components/button/Button.jsx";
-import { useModal } from "@/context/ModalProvider.jsx";
 import {getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable} from "@tanstack/react-table";
 import Heading from "@/components/utils/Heading.jsx";
 import TablePagination from "@/components/pagination/TablePagination.jsx";
 import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faChevronLeft, faCircleExclamation} from '@fortawesome/free-solid-svg-icons';
+import {faBug, faChevronLeft, faCircleExclamation, faTrash} from '@fortawesome/free-solid-svg-icons';
 import ContentLayout from "@/layout/ContentLayout.jsx";
+import AlertModal from "@/components/modal/dialog/AlertModal.jsx";
+import DataList from "@/components/utils/DataList.jsx";
 
 function EtlReport() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const { openModal } = useModal();
     const { user } = useAuth();
     const [sorting, setSorting] = useState([]);
 
@@ -57,21 +57,20 @@ function EtlReport() {
             cell: ({ row }) => (
                 <div>
                     {row.original.exitMessage ? (
-                        <Button
-                            className="btn--transparent"
-                            onClick={() =>
-                                openModal("exceptionMessage", {
-                                    title: "Exception Message",
-                                    details: [row.original.exitMessage],
-                                    confirmLabel: undefined,
-                                    cancelLabel: "Exit",
-                                    confirmFn: undefined,
-                                    hasConfirmBtn: false
-                                }, "prompt")
-                            }
-                        >
-                            <FontAwesomeIcon icon={faCircleExclamation} style={{ color: "var(--warning-300)" }} />
-                        </Button>
+                        <AlertModal>
+                            <AlertModal.Button className="btn--transparent">
+                                <FontAwesomeIcon icon={faCircleExclamation}/>
+                            </AlertModal.Button>
+                            <AlertModal.Content
+                                classNames={{title: "padding-4"}}
+                                title={<><FontAwesomeIcon icon={faBug} /> Exception Message</>}
+                                okText="Welp, that's not good"
+                            >
+                                <div className="fs-small-100 padding-4 fw-bold log-wrap">
+                                    {row?.original?.exitMessage}
+                                </div>
+                            </AlertModal.Content>
+                        </AlertModal>
                     ) : (
                         "-"
                     )}
@@ -125,7 +124,7 @@ function EtlReport() {
                     description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
                 />
                 <section className="members-section">
-                    <div className="container padding-inline-5" data-type="wide">
+                    <div className="container margin-block-end-13 padding-5" data-type="wide">
                         {!(queryData.isPending || queryData.isFetching) &&
                             <div className="flex justify-start margin-block-4">
                                 <Button className="btn--transparent" onClick={() => window.history.back()}>

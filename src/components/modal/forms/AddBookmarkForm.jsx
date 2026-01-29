@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {useModal} from "@/context/ModalProvider.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import {useForm} from "react-hook-form";
 import {useAuth} from "@/context/AuthProvider.jsx";
@@ -13,17 +12,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faAngleUp,
     faAngleDown,
-    faXmark,
     faEye,
     faSpinner,
     faArrowRight, faFileCircleXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
-export function AddBookmarkDialog() {
+export function AddBookmarkForm({launchId}) {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const { modals, closeModal } = useModal();
     const navigate = useNavigate();
-    const modal = modals["bookmarkModal"] || {};
     const [toggle, setToggle] = useState(false)
     const [bookmark, setBookmark] = useState(null)
     const debouncedValue = useDebounce(bookmark, 500);
@@ -87,7 +83,7 @@ export function AddBookmarkDialog() {
     const handleRemoveFromBookmark = (data) => {
         removeLaunchMutation.mutate(
             {
-                url: baseUrl + `/user/bookmark/delete/${data.bookmark}/${data.id}`,
+                url: baseUrl + `/user/bookmark/delete/${data.bookmark}/${data.launchId}`,
                 options: { withCredentials: true, Bearer: true }
             })
     };
@@ -112,7 +108,6 @@ export function AddBookmarkDialog() {
     const handleClose = () => {
         setToggle(false)
         setApiError(null);
-        closeModal("bookmarkModal");
         reset();
     };
     const handleBookmarkChange = (e) => {
@@ -124,34 +119,22 @@ export function AddBookmarkDialog() {
         }));
     };
     const handleOnNavigate = (url) => {
-        closeModal("bookmarkModal");
         navigate(url);
     }
     useEffect(() => {
         if (debouncedValue?.name) {
             if (debouncedValue?.checked) {
-                handleAddToBookmark({bookmarkName: debouncedValue.name, launchId: modal.data});
+                handleAddToBookmark({bookmarkName: debouncedValue.name, launchId: launchId});
             } else {
-                handleRemoveFromBookmark({bookmark: debouncedValue.name, id: modal.data,});
+                handleRemoveFromBookmark({bookmark: debouncedValue.name, launchId: launchId,});
             }
         }
     }, [debouncedValue]);
 
 
-    if (!modal.isOpen) return null;
-
     return(
-        <div className="dialog__container">
-            <Button
-                onClick={handleClose}
-                className="btn--transparent btn--close"
-            >
-                <FontAwesomeIcon icon={faXmark} className="fs-small-500"/>
-            </Button>
+        <>
             <div className="dialog__content padding-8">
-                <div className="padding-block-6">
-                    <h3 className="margin-inline-2">Bookmark to...</h3>
-                </div>
                 <div className="container"
                      data-type="full-width"
                      data-scroll={queryData.data && queryData.data.length > 5 ? "vertical" : undefined}
@@ -167,7 +150,7 @@ export function AddBookmarkDialog() {
                                         name={bookmark?.bookmark}
                                         value={bookmark?.bookmark}
                                         defaultChecked={bookmark?.launches.length > 0
-                                            ? bookmark.launches.some(launch => launch.id === modal.data)
+                                            ? bookmark.launches.some(launch => launch.id === launchId)
                                             : false
                                         }
                                         onChange={handleBookmarkChange}
@@ -232,6 +215,6 @@ export function AddBookmarkDialog() {
                     </form>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

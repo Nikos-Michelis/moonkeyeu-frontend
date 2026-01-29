@@ -34,17 +34,15 @@ import FallbackComponent from "@/components/fallback/FallbackComponent.jsx";
 import { ProtectedRoutes } from "@/components/routes/ProtectedRoutes.jsx";
 import CookieConsent from "@/components/cookie/CookieConsent.jsx";
 import { useCookies } from "react-cookie";
-import ModalLayout from "@/layout/ModalLayout.jsx";
 import GoTop from "@/components/button/GoTop.jsx";
 import PageLayout from "@/layout/PageLayout.jsx";
-import { ModalPortal } from "@/portals/ModalPortal.jsx";
 import {AuthProvider} from "@/context/AuthProvider.jsx";
-import {ModalProvider} from "@/context/ModalProvider.jsx";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import {NasaApodProvider} from "@/context/NasaApodProvider.jsx";
 import {SpaceFlightNewsProvider} from "@/context/SpaceFlightNewsProvider.jsx";
 import BuildProviderTree from "@/context/BuildProviderTree.jsx";
 import {ThemeProvider} from "@/context/ThemeProvider.jsx";
+import ToastPortal from "@/portals/ToastPortal.jsx";
 
 function App() {
     const[cookies] = useCookies(["cookieConsent"])
@@ -53,7 +51,6 @@ function App() {
         [SpaceFlightNewsProvider],
         [NasaApodProvider],
         [GoogleOAuthProvider, { clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID}],
-        [ModalProvider],
         [AuthProvider],
     ]);
     return (
@@ -117,9 +114,7 @@ function App() {
                                 element={<FallbackComponent code={404} message="Oops! Somthing went wrong, try again later." error="404 Page Not Found"/>} />
                         </Route>
                     </Routes>
-                    <ModalPortal>
-                        <ModalLayout/>
-                    </ModalPortal>
+                    <ToastPortal />
                 {!cookies.cookieConsent && <CookieConsent/>}
                 <GoTop />
             </BrowserRouter>

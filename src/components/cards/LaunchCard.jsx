@@ -1,9 +1,8 @@
-import React, {useRef} from 'react';
+import React, {useCallback, useState} from 'react';
 import CountdownTimer from "../timers/CountdownTimer.jsx";
 import {DateTime} from "luxon";
 import Tooltip from "@/components/tooltip/Tooltip.jsx";
 import {Button} from "@/components/button/Button.jsx";
-import {useModal} from "@/context/ModalProvider.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import useClipboard from "@/hooks/util/useClipboard.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
@@ -15,23 +14,26 @@ import toast from "react-hot-toast";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faShareFromSquare,
-    faCircleInfo,
     faCircleCheck,
     faTriangleExclamation,
     faRocket,
     faCalendarDays,
-    faLocationDot, faEllipsisVertical,
+    faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import {faXTwitter, faYoutube} from '@fortawesome/free-brands-svg-icons';
+import LaunchDropdown from "@/components/modal/dropdown/LaunchDropdown.jsx";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import {AddBookmarkForm} from "@/components/modal/forms/AddBookmarkForm.jsx";
+import LoginForm from "@/components/modal/forms/LoginForm.jsx";
+import {YouTubeEmbed} from "@/components/api/youtube-window/YouTubeEmbed.jsx";
 
 const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:launchStatus, video_urls, isBookmarked = false, cardStyles}) => {
+    const [open, setOpen] = useState(false);
     const zonedDateTime = DateTime.fromISO(net).setZone(DateTime.local().zoneName);
     const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy - hh:mm a ZZZZ');
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const {name} = useParams();
-    const { openModal } = useModal();
     const { user, status } = useAuth();
-    const triggerRef = useRef(null);
     const youtubeVideos = video_urls?.filter(
         video => video.videoUrl.includes("youtube.com") || video.videoUrl.includes("youtu.be")
     );
@@ -44,7 +46,6 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
     );
     const { copied, copyToClipboard } = useClipboard();
     const tooltipVideoMessage = item?.videoUrl ? "" : "No Video Available";
-    const tooltipInfoMessage = id ? "" : "No Info Available";
     const xTwitterUrl = "x.com";
     const handleShare = () => {
         const url = `${window.location.origin}${navUrl || window.location.pathname}/${id}`;
@@ -78,23 +79,14 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
         );
     };
 
-    const onBookmark = () => {
-        openModal(user ? "bookmarkModal" : "PopUpFormModal", id, "form", triggerRef)
-        !user && toast("You're almost there! Sign up or log in to bookmark your favorites launches.", { icon: <FontAwesomeIcon icon={faRocket} />});
-    }
-
-    const handleOpenDropdown = () => {
-        openModal(
-            `launchDropdown`,
-            {
-                isBookmarked,
-                handleRemove,
-                onBookmark,
-            },
-            "dropdown",
-            triggerRef
+    const onBookmark = useCallback(() => {
+        setOpen(true);
+        toast(
+            "You're almost there! Sign up or log in to bookmark your favorites launches.",
+            { icon: <FontAwesomeIcon icon={faRocket} /> }
         );
-    };
+
+    }, []);
 
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'large-wrapper'}`}>
@@ -111,14 +103,20 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                     <div className="landscape-card__details">
                         <div className="flex justify-space-between align-center">
                             <h3 className="fs-small-300">{fullname}</h3>
-                            <Button
-                                ref={triggerRef}
-                                type="button"
-                                className="btn--transparent"
-                                onClick={handleOpenDropdown}
-                            >
-                                <FontAwesomeIcon icon={faEllipsisVertical} />
-                            </Button>
+                            <LaunchDropdown
+                                isBookmarked={isBookmarked}
+                                status={status}
+                                onBookmark={onBookmark}
+                                onRemove={handleRemove}
+                            />
+                            <Modal open={open} onOpenChange={setOpen}>
+                                <Modal.Content title={user && "Bookmark to..."}>
+                                    {user
+                                        ? <AddBookmarkForm launchId={id} status={status} />
+                                        : <LoginForm />
+                                    }
+                                </Modal.Content>
+                            </Modal>
                         </div>
                         <div className="landscape-card__detail-box">
                             <p><small className="fw-semi-bold">{agency}</small></p>
@@ -165,10 +163,18 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                                 </div>
                             ) : (
                                 <div className="launch-card__video">
-                                    <Button className="btn btn--yt"
-                                            onClick={() => openModal("videoPlayerModal", item.videoUrl, "video")}>
-                                        <FontAwesomeIcon icon={faYoutube}/> WATCH
-                                    </Button>
+                                    <Modal>
+                                        <Modal.Button
+                                            className="btn btn--yt"
+                                        >
+                                            <FontAwesomeIcon icon={faYoutube}/> WATCH
+                                        </Modal.Button>
+                                        <Modal.Content classNames={{content: 'dialog__container--youtube'}}>
+                                            <div className="modal-content">
+                                                <YouTubeEmbed videoUrl={item.videoUrl} />
+                                            </div>
+                                        </Modal.Content>
+                                    </Modal>
                                 </div>
                             )
                         ) : (

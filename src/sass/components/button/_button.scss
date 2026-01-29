@@ -90,8 +90,6 @@
   }
 
   &--transparent-dark {
-    cursor: pointer;
-    text-decoration: none;
     @include abs.button-color-variation($color: $clr-dark-cosmos-300, $background-color: transparent, $border-color: transparent);
   }
 

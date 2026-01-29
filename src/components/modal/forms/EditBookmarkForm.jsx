@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {useModal} from "@/context/ModalProvider.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import Input from "@/components/utils/Input.jsx";
 import {useForm} from "react-hook-form";
@@ -9,10 +8,8 @@ import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faArrowRight, faSpinner, faXmark} from '@fortawesome/free-solid-svg-icons';
 
-export function EditBookmarkDialog() {
+export function EditBookmarkForm({ bookmark, img, status }) {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const { modals, closeModal } = useModal();
-    const modal = modals["editBookmarkModal"] || { isOpen: false, data: null };
     const [apiError, setApiError] = useState(null);
     const {
         register,
@@ -47,33 +44,24 @@ export function EditBookmarkDialog() {
         );
     };
     useEffect(() => {
-        if (modal?.data?.bookmark) {
-            setValue("currentName", modal?.data?.bookmark);
+        if (bookmark) {
+            setValue("currentName", bookmark);
         }
-    }, [modal?.data]);
+    }, [bookmark]);
 
     const handleClose = () => {
-        closeModal("editBookmarkModal");
         reset();
     };
 
-    if (!modal.isOpen) return null;
-
     return (
-        <div className="dialog__container">
-            <Button
-                onClick={handleClose}
-                className="btn--transparent btn--close">
-                <FontAwesomeIcon icon={faXmark} />
-            </Button>
+        <>
             <div className="dialog__content">
                 <div className="form-content">
-                    <h2>Edit Bookmark</h2>
                     {(errors && Object.keys(errors).length > 0 || apiError?.validationErrors)
                         && <ErrorBox errors={errors} apiError={apiError}/>}
                     <div className="flex justify-center padding-block-start-4 padding-block-end-6">
                         <Img
-                            src={modal?.data?.img}
+                            src={img}
                             className="thumbnail rounded-lg"
                             defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`}
                         />
@@ -85,7 +73,7 @@ export function EditBookmarkDialog() {
                                 name="currentName"
                                 type="text"
                                 register={register}
-                                value={modal?.data?.bookmark}
+                                value={bookmark}
                                 rules={{
                                     required: "Name is required.",
                                     min:{ value: 1, message:'Bookmark name should be at least 1 character.'},
@@ -119,6 +107,6 @@ export function EditBookmarkDialog() {
                     </form>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

@@ -17,7 +17,6 @@ export const Button = React.forwardRef(
     }
 );
 
-Button.displayName = "Button";
 
 Button.propTypes = {
     onClick: PropTypes.func,

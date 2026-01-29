@@ -15,7 +15,7 @@ export const useCreateMutation = (
 
     return useMutation({
         mutationFn: ({ url, data, options }) => handlePost(url, data, options),
-        onSuccess: () => {
+        onSuccess: async () => {
             !!successMessage && toast.success(successMessage);
         },
         onError: (error) => {
