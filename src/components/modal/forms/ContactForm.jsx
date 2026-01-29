@@ -5,7 +5,6 @@ import {useForm} from "react-hook-form";
 import ErrorBox from "@/components/utils/ErrorBox.jsx";
 import Select from "@/components/utils/Select.jsx";
 import TextArea from "@/components/utils/TextArea.jsx";
-import {value} from "lodash/seq.js";
 import {useCreateMutation} from "@/services/mutations.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
