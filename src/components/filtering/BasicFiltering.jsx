@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {useBasicFilters} from "@/hooks/paging-filtering/useBasicFilters.jsx";
 import {Button} from "@/components/button/Button.jsx";
-import CustomSelect from "@/components/utils/CustomSelect.jsx";
+import CustomSelect from "@/components/utils/select/CustomSelect.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 

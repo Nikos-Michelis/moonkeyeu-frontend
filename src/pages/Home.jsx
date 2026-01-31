@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import LaunchesSection from "../components/sections/pages/LaunchesSection.jsx";
 import LaunchFiltering from "../components/filtering/LaunchFiltering.jsx";
-import Heading from "../components/utils/Heading.jsx";
+import Heading from "../components/utils/heading/Heading.jsx";
 import {useSearchParams} from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";

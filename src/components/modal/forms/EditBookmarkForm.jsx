@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button} from "@/components/button/Button.jsx";
-import Input from "@/components/utils/Input.jsx";
+import Input from "@/components/utils/fields/Input.jsx";
 import {useForm} from "react-hook-form";
 import ErrorBox from "@/components/utils/ErrorBox.jsx";
 import {useUpdateMutation} from "@/services/mutations.jsx";
@@ -35,7 +35,6 @@ export function EditBookmarkForm({ bookmark, img, status }) {
             {
                 onSuccess:() => {
                     reset();
-                    handleClose();
                 },
                 onError: (error) => {
                     setApiError(error.response?.data);
@@ -49,10 +48,6 @@ export function EditBookmarkForm({ bookmark, img, status }) {
         }
     }, [bookmark]);
 
-    const handleClose = () => {
-        reset();
-    };
-
     return (
         <>
             <div className="dialog__content">
@@ -62,7 +57,7 @@ export function EditBookmarkForm({ bookmark, img, status }) {
                     <div className="flex justify-center padding-block-start-4 padding-block-end-6">
                         <Img
                             src={img}
-                            className="thumbnail rounded-lg"
+                            className="dialog__thumbnail"
                             defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`}
                         />
                     </div>
@@ -97,7 +92,7 @@ export function EditBookmarkForm({ bookmark, img, status }) {
                                 }}
                                 errors={errors}/>
                         </div>
-                        <div className="flex flex-wrap justify-center">
+                        <div className="flex flex-wrap justify-center padding-2">
                             <Button className="btn btn--primary btn--big" type="submit">
                                 {updateBookmarkMutation.isPending
                                     ? <FontAwesomeIcon icon={faSpinner} spin />

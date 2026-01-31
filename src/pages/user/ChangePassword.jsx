@@ -6,7 +6,7 @@ import ScrollToTop from "@/components/utils/ScrollToTop.jsx";
 import {useCreateMutation} from "@/services/mutations.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import PasswordField from "@/components/utils/PasswordField.jsx";
+import PasswordField from "@/components/utils/fields/PasswordField.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight, faChevronLeft, faSpinner} from "@fortawesome/free-solid-svg-icons";
 

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthProvider.jsx";
 import toast from "react-hot-toast";
 import { useSimpleQuery } from "@/services/queries.jsx";
-import BasicTable from "@/components/table/BasicTable.jsx";
+import Table from "@/components/table/Table.jsx";
 import { DateTime } from "luxon";
 import { Button } from "@/components/button/Button.jsx";
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import TablePagination from "@/components/pagination/TablePagination.jsx";
 import {
     getCoreRowModel,
@@ -116,7 +116,7 @@ function MembersReport() {
                                 </Button>
                             </div>
                         }
-                        {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <BasicTable table={table} />}
+                        {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <Table table={table} />}
                         <TablePagination table={table} />
                     </div>
                 </section>

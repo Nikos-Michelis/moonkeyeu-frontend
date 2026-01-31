@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import Pagination from "@/components/pagination/Pagination.jsx";
 import {useSearchParams} from "react-router-dom";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";

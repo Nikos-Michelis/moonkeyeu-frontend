@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import BookmarksSection from "@/components/sections/pages/BookmarksSection.jsx";
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import toast from "react-hot-toast";
 import {useSimpleQuery} from "@/services/queries.jsx";

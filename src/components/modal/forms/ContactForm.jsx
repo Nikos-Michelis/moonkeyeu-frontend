@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {Button} from "@/components/button/Button.jsx";
-import Input from "@/components/utils/Input.jsx";
+import Input from "@/components/utils/fields/Input.jsx";
 import {useForm} from "react-hook-form";
 import ErrorBox from "@/components/utils/ErrorBox.jsx";
-import Select from "@/components/utils/Select.jsx";
-import TextArea from "@/components/utils/TextArea.jsx";
+import Select from "@/components/utils/select/Select.jsx";
+import TextArea from "@/components/utils/fields/TextArea.jsx";
 import {useCreateMutation} from "@/services/mutations.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,11 +26,13 @@ const ContactForm = () => {
 
         },
     });
+
     const contactFormMutation =
         useCreateMutation({
             successMessage: "We'll review your request shortly!",
             queryKeysToInvalidate: ["contact-messages"]
         });
+
     const onSubmit = (data) => {
         contactFormMutation.mutate(
             {

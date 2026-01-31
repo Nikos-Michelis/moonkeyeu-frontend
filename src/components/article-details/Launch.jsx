@@ -22,8 +22,9 @@ const Launch = ({ launches = {}, queryData= {}, navUrl= "", pagination, hasPagin
     const sortedLaunches =
         parsedLaunches && parsedLaunches.length > 0
             ? [...parsedLaunches].sort(
-                (a, b) => new Date(b.net).getTime() - new Date(a.net).getTime()
+                (b, a) => new Date(b.net).getTime() - new Date(a.net).getTime()
             ) : [];
+
     return (
         <section className="launches-section">
             <div className="article__heading-box">

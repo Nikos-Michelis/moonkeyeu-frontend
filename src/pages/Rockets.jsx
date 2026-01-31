@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Heading from "../components/utils/Heading.jsx";
+import Heading from "../components/utils/heading/Heading.jsx";
 import { useSearchParams } from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import RocketSection from "@/components/sections/pages/RocketSection.jsx";

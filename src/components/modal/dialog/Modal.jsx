@@ -38,7 +38,7 @@ function ModalContent(
                     className={`flex align-center justify-space-between${classNames.header || ''}`}
                     style={styles.header}
                 >
-                    <Dialog.Title className="dialog__title">{title}</Dialog.Title>
+                    {title && <Dialog.Title className="dialog__title">{title}</Dialog.Title>}
                     <Dialog.Description className="sr-only">
                         {description || "Details about " + title}
                     </Dialog.Description>

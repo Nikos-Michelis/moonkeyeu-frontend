@@ -1,4 +1,4 @@
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import VehiclesSection from "@/components/sections/pages/VehiclesSection.jsx";
 import Head from "@/components/seo/Head.jsx";
 import React from "react";

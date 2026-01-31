@@ -27,12 +27,12 @@ import {AddBookmarkForm} from "@/components/modal/forms/AddBookmarkForm.jsx";
 import LoginForm from "@/components/modal/forms/LoginForm.jsx";
 import {YouTubeEmbed} from "@/components/api/youtube-window/YouTubeEmbed.jsx";
 
-const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:launchStatus, video_urls, isBookmarked = false, cardStyles}) => {
+const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status:launchStatus, video_urls, isBookmarked = false, cardStyles }) => {
     const [open, setOpen] = useState(false);
     const zonedDateTime = DateTime.fromISO(net).setZone(DateTime.local().zoneName);
     const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy - hh:mm a ZZZZ');
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const {name} = useParams();
+    const { name } = useParams();
     const { user, status } = useAuth();
     const youtubeVideos = video_urls?.filter(
         video => video.videoUrl.includes("youtube.com") || video.videoUrl.includes("youtu.be")
@@ -81,25 +81,25 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
 
     const onBookmark = useCallback(() => {
         setOpen(true);
+        !user &&
         toast(
             "You're almost there! Sign up or log in to bookmark your favorites launches.",
             { icon: <FontAwesomeIcon icon={faRocket} /> }
         );
-
-    }, []);
+    }, [user]);
 
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'large-wrapper'}`}>
             <div className={`landscape-card__container lift lift--lg ${cardStyles?.card_type || ''}`}>
-                <div className="landscape-card__media">
-                    <Img
-                        src={image?.image_url}
-                        alt={image?.name || "default"}
-                        className="landscape-card__image"
-                        defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`}
-                    />
-                </div>
-                <section className="landscape-card__content flex flex-column justify-space-evenly">
+                    <LinkButton to={navUrl? navUrl + id: id} className="landscape-card__media landscape-card__media--link">
+                        <Img
+                            src={image?.image_url}
+                            alt={image?.name || "default"}
+                            className="landscape-card__image"
+                            defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`}
+                        />
+                    </LinkButton>
+                <section className="landscape-card__content flex flex-column justify-space-between">
                     <div className="landscape-card__details">
                         <div className="flex justify-space-between align-center">
                             <h3 className="fs-small-300">{fullname}</h3>
@@ -108,6 +108,8 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                                 status={status}
                                 onBookmark={onBookmark}
                                 onRemove={handleRemove}
+                                onShare={handleShare}
+                                copied={copied}
                             />
                             <Modal open={open} onOpenChange={setOpen}>
                                 <Modal.Content title={user && "Bookmark to..."}>
@@ -149,10 +151,10 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                             <CountdownTimer net={zonedDateTime} timerStyle="margin-block-3" />
                         ) }
                     </div>
-                    <div className="launch-card__actions flex flex-wrap justify-center padding-block-4" data-type="narrow">
+                    <div className="landscape-card__actions padding-block-start-6 padding-block-end-8" data-type="narrow">
                         {item ? (
                             item?.source?.includes(xTwitterUrl) ? (
-                                <div className="launch-card__video">
+                                <div className="landscape-card__video">
                                     <LinkButton
                                         to={item.videoUrl}
                                         isExternal={true}
@@ -162,7 +164,7 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                                     </LinkButton>
                                 </div>
                             ) : (
-                                <div className="launch-card__video">
+                                <div className="landscape-card__video">
                                     <Modal>
                                         <Modal.Button
                                             className="btn btn--yt"
@@ -178,21 +180,17 @@ const LaunchCard = ({navUrl, id, agency, fullname, net, location, image, status:
                                 </div>
                             )
                         ) : (
-                            <Tooltip message={tooltipVideoMessage}>
-                                <div className="launch-card__video">
-                                    <Button className="btn btn--yt" disabled={true}>
-                                        <FontAwesomeIcon icon={faYoutube} /> WATCH
-                                    </Button>
-                                </div>
+                            <Tooltip>
+                                <Tooltip.Button asChild>
+                                    <div className="landscape-card__video">
+                                        <Button className="btn btn--yt" disabled={true}>
+                                            <FontAwesomeIcon icon={faYoutube} /> WATCH
+                                        </Button>
+                                    </div>
+                                </Tooltip.Button>
+                                <Tooltip.Content>{tooltipVideoMessage}</Tooltip.Content>
                             </Tooltip>
                         )}
-                        <div className="launch-card__share">
-                            <Tooltip  message={copied ? "Copied!" : "Copied to clipboard!"}>
-                                <Button className="btn btn--primary" onClick={handleShare} disabled={copied}>
-                                    <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
-                                </Button>
-                            </Tooltip>
-                        </div>
                     </div>
                 </section>
             </div>

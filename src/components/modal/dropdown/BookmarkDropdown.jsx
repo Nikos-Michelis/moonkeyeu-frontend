@@ -12,12 +12,12 @@ const BookmarkDropdown = ({handleRemove, setOpen}) => {
                 {
                     label: "Edit",
                     leftIcon: <FontAwesomeIcon icon={faPenToSquare} />,
-                    onClick: setOpen
+                    onSelect: setOpen
                 },
                 {
                     label: "Remove",
                     leftIcon: <FontAwesomeIcon icon={faTrash} />,
-                    onClick: handleRemove,
+                    onSelect: handleRemove,
                     danger: true
                 },
 
@@ -32,7 +32,7 @@ const BookmarkDropdown = ({handleRemove, setOpen}) => {
                     <FontAwesomeIcon icon={faEllipsisVertical} />
                 </button>
             </RadixDropdown.Trigger>
-            <DropdownMenu menus={menus} className="dropdown" />
+            <DropdownMenu menus={menus} />
         </RadixDropdown.Root>
     );
 };

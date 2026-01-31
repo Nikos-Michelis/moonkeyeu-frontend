@@ -1,10 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark, faEllipsisVertical, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {faBookmark, faEllipsisVertical, faShareFromSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
 import * as RadixDropdown from "@radix-ui/react-dropdown-menu";
 import DropdownMenu from "./DropdownMenu.jsx";
 
-const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove }) => {
+const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove, onShare, copied }) => {
     const menus = [
         {
             name: "main",
@@ -12,16 +12,21 @@ const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove }) => {
                 {
                     label: "Bookmark",
                     leftIcon: <FontAwesomeIcon icon={faBookmark} />,
-                    onClick: () => onBookmark(),
+                    onSelect: () => onBookmark(),
                 },
-                isBookmarked
-                    ? {
+                {
+                    label: "Share",
+                    leftIcon: <FontAwesomeIcon icon={faShareFromSquare} />,
+                    tooltip: { open: copied, message: "Copied to clipboard!" },
+                    onSelect: () => onShare(),
+                },
+                isBookmarked ?
+                    {
                         label: "Remove",
                         leftIcon: <FontAwesomeIcon icon={faTrash} />,
-                        onClick: onRemove,
+                        onSelect: onRemove,
                         danger: true,
-                    }
-                    : null,
+                    } : null,
             ].filter(Boolean),
         },
     ];
@@ -34,7 +39,7 @@ const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove }) => {
                 </button>
             </RadixDropdown.Trigger>
 
-            <DropdownMenu status={status} menus={menus} className="dropdown" />
+            <DropdownMenu status={status} menus={menus} className="dropdown"  />
         </RadixDropdown.Root>
     );
 };

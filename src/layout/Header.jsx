@@ -16,6 +16,7 @@ const Header = () => {
 
     const onBookmark = () => {
         setOpen(true);
+        !user &&
         toast(
             "You're almost there! Sign up or log in to bookmark your favorites launches.", {
                 icon: <FontAwesomeIcon icon={faRocket} />
@@ -82,7 +83,7 @@ const Header = () => {
                                         <FontAwesomeIcon icon={faUser} />
                                     </Modal.Button>
                                     <Modal.Content>
-                                        <LoginForm />
+                                        <LoginForm setOpen={setOpen} />
                                     </Modal.Content>
                                 </Modal>
                                 )

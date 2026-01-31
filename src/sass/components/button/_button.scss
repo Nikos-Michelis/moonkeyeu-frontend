@@ -45,7 +45,8 @@
     @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
     @include abs.button-hover($color: $clr-star-200, $background-color: $clr-yt-red-400, $border-color: var(--neutral-1000));
     box-shadow: $box-shadow-3;
-    padding: 5px 10px;
+    width: 100%;
+    max-width: 20rem;
     transition: ease-in-out 80ms;
     &:not([class*="margin-"]) {
       margin: 0.2rem;

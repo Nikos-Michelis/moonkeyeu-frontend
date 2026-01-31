@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import MessagesSection from "@/components/sections/pages/MessagesSection.jsx";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";

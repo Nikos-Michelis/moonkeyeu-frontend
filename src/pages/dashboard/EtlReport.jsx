@@ -2,26 +2,27 @@ import React, {useEffect, useState} from "react";
 import { useAuth } from "@/context/AuthProvider.jsx";
 import toast from "react-hot-toast";
 import { useSimpleQuery } from "@/services/queries.jsx";
-import BasicTable from "@/components/table/BasicTable.jsx";
+import Table from "@/components/table/Table.jsx";
 import { DateTime } from "luxon";
 import { Button } from "@/components/button/Button.jsx";
 import {getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable} from "@tanstack/react-table";
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import TablePagination from "@/components/pagination/TablePagination.jsx";
 import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faBug, faChevronLeft, faCircleExclamation, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faBug, faChevronLeft, faCircleExclamation} from '@fortawesome/free-solid-svg-icons';
 import ContentLayout from "@/layout/ContentLayout.jsx";
 import AlertModal from "@/components/modal/dialog/AlertModal.jsx";
-import DataList from "@/components/utils/DataList.jsx";
+import {faCopy} from "@fortawesome/free-regular-svg-icons/faCopy";
+import useClipboard from "@/hooks/util/useClipboard.jsx";
+import Tooltip from "@/components/tooltip/Tooltip.jsx";
 
 function EtlReport() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const { user } = useAuth();
     const [sorting, setSorting] = useState([]);
-
-
+    const { copied, copyToClipboard } = useClipboard();
     const columns = [
         {
             header: "ID",
@@ -67,7 +68,23 @@ function EtlReport() {
                                 okText="Welp, that's not good"
                             >
                                 <div className="fs-small-100 padding-4 fw-bold log-wrap">
-                                    {row?.original?.exitMessage}
+                                    <div className="flex justify-end fs-medium-400">
+                                        <Tooltip>
+                                                <button
+                                                    className="btn--transparent pos-absolute top-8 right-1"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        copyToClipboard(row?.original?.exitMessage);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faCopy} />
+                                                </button>
+                                            <Tooltip.Content>{copied && "Copied!"}</Tooltip.Content>
+                                        </Tooltip>
+                                    </div>
+                                    <div className="padding-2">
+                                        {row?.original?.exitMessage}
+                                    </div>
                                 </div>
                             </AlertModal.Content>
                         </AlertModal>
@@ -132,7 +149,7 @@ function EtlReport() {
                                 </Button>
                             </div>
                         }
-                        {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <BasicTable table={table} />}
+                        {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <Table table={table} />}
                         <TablePagination table={table} />
                     </div>
                 </section>

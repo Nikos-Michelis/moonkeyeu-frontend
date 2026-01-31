@@ -1,16 +1,17 @@
 import React, { useCallback, useEffect, useReducer } from "react";
 import {Button} from "@/components/button/Button.jsx";
-import {useForm} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import ErrorBox from "@/components/utils/ErrorBox.jsx";
 import ResendButton from "@/components/button/ResendButton.jsx";
-import Input from "@/components/utils/Input.jsx";
+import Input from "@/components/utils/fields/Input.jsx";
 import {useNavigate} from "react-router-dom";
 import {useCreateMutation} from "@/services/mutations.jsx";
-import PasswordField from "@/components/utils/PasswordField.jsx";
+import PasswordField from "@/components/utils/fields/PasswordField.jsx";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowLeft, faArrowRight, faRightToBracket, faSpinner, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {faArrowLeft, faArrowRight, faRightToBracket, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import GoogleLoginButton from "@/components/button/GoogleLoginButton.jsx";
+import CustomCheckbox from "@/components/utils/CustomCheckbox.jsx";
 
 const initialState = {
     formState: "login",
@@ -38,7 +39,7 @@ function formReducer(state, action) {
     }
 }
 
-const LoginForm = () => {
+const LoginForm = ({ setOpen }) => {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const navigate = useNavigate();
     const { setToken, status, error: authContextError } = useAuth();
@@ -50,6 +51,7 @@ const LoginForm = () => {
         reset,
         setValue,
         watch,
+        control,
         formState: { errors }
     } = useForm({
         mode: "onChange",
@@ -122,7 +124,6 @@ const LoginForm = () => {
 
     const handleOAuth2Response = useCallback((response) => {
         const { credential: idToken } = response;
-
         signInWithGoogleMutation.mutate(
             { url: `${baseUrl}/oauth2/login/google`, data: { idToken } },
             {
@@ -163,6 +164,7 @@ const LoginForm = () => {
     };
 
     const handleClose = () => {
+        setOpen(false);
         dispatch({ type: "RESET" });
         reset();
     };
@@ -193,6 +195,12 @@ const LoginForm = () => {
             setValue("confirmUsername", state?.user?.name);
         }
     }, [state?.user?.name, setValue]);
+
+    useEffect(() => {
+        if (status.isSuccess) {
+            handleClose();
+        }
+    }, [status]);
 
     useEffect(() => {
         dispatch({ type: "SET_API_ERROR", payload: authContextError?.response?.data });
@@ -284,16 +292,21 @@ const LoginForm = () => {
                             <PasswordField errors={errors} register={register} />
                             <div className="flex justify-space-between align-center fs-medium-200 margin-block-end-4">
                                 <div className="flex justify-center align-center">
-                                    <input
+                                    <Controller
                                         name="rememberMe"
-                                        type="checkbox"
-                                        id="checkbox-remember"
-                                        disabled={credentialsMutation.isPending}
-                                        {...register('rememberMe')}
+                                        control={control}
+                                        render={({ field: { onChange, value, ref } }) => (
+                                            <CustomCheckbox
+                                                ref={ref}
+                                                id="checkbox-remember"
+                                                className={{root: "checkbox__root checkbox__root--small"}}
+                                                label="Remember me"
+                                                defaultChecked={value}
+                                                onCheckedChange={onChange}
+                                                disabled={credentialsMutation.isPending}
+                                            />
+                                        )}
                                     />
-                                    <label htmlFor="checkbox-remember">
-                                        <span>Remember me</span>
-                                    </label>
                                 </div>
                                 <Button className="btn--transparent" type="button" onClick={() => handleSwitchForm("forgotPassword")}>Forgot password?</Button>
                             </div>
@@ -443,19 +456,31 @@ const LoginForm = () => {
                                     validate: value => value === watch('password') || 'Passwords do not match.'
                                 }}
                             />
-                            <div className="flex align-center">
-                                <input
-                                    id="policy"
+                            <div className="flex justify-space-between align-center margin-block-end-4">
+                                <Controller
                                     name="policy"
-                                    type="checkbox"
-                                    disabled={credentialsMutation.isPending}
-                                    {...register('policy', { required: 'You must agree to the privacy policy' })}
+                                    control={control}
+                                    rules={{ required: 'You must agree to the privacy policy' }}
+                                    render={({ field: { onChange, value, ref } }) => (
+                                        <CustomCheckbox
+                                            ref={ref}
+                                            className={{root: "checkbox__root checkbox__root--small"}}
+                                            label={
+                                                <>
+                                                    I agree to the
+                                                    <Button type="button" className="btn--transparent" onClick={onNavigate}>
+                                                        Privacy Policy
+                                                    </Button>
+                                                </>
+                                            }
+                                            checked={value ?? false}
+                                            onCheckedChange={onChange}
+                                            disabled={credentialsMutation.isPending}
+                                        />
+                                    )}
                                 />
-                                <label className="fs-small-200" htmlFor="policy">
-                                    I agree to the <Button className="btn--transparent" onClick={onNavigate}>Privacy Policy</Button>
-                                </label>
                             </div>
-                            <div className="flex justify-center">
+                            <div className="flex justify-center margin-block-start-2">
                                 <Button
                                     className="btn btn--primary btn--big"
                                     type="submit"

@@ -1,10 +1,9 @@
 import React, {useEffect} from "react";
 import {useParams, useSearchParams} from "react-router-dom";
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import LaunchesSection from "@/components/sections/pages/LaunchesSection.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
-import Pagination from "@/components/pagination/Pagination.jsx";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import Head from "@/components/seo/Head.jsx";
