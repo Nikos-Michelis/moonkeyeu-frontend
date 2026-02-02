@@ -41,7 +41,7 @@ const AstronautCard = ({id, name, nationality, agency, images }) => {
                             </LinkButton>
                         </div>
                     ) : (
-                        <Tooltip message={tooltipInfoMessage}>
+                        <Tooltip content={tooltipInfoMessage}>
                             <div className="portrait-card__action">
                                 <LinkButton className="portrait-card__button btn btn0-primary">
                                     <FontAwesomeIcon icon={faCircleInfo} /> INFO
@@ -49,8 +49,8 @@ const AstronautCard = ({id, name, nationality, agency, images }) => {
                             </div>
                         </Tooltip>
                     )}
-                    <div className="portrait-card__action">
-                        <Tooltip copied={copied} message={copied ? "Copied!" :"Copied to clipboard!"}>
+                    <Tooltip copied={copied} content={copied ? "Copied!" :"Copied to clipboard!"}>
+                        <div className="portrait-card__action">
                             <Button
                                 className="btn btn--primary"
                                 onClick={handleShare}
@@ -58,8 +58,8 @@ const AstronautCard = ({id, name, nationality, agency, images }) => {
                             >
                                 <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
                             </Button>
-                        </Tooltip>
-                    </div>
+                        </div>
+                    </Tooltip>
                 </div>
             </div>
         </article>

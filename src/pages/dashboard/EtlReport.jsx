@@ -69,17 +69,13 @@ function EtlReport() {
                             >
                                 <div className="fs-small-100 padding-4 fw-bold log-wrap">
                                     <div className="flex justify-end fs-medium-400">
-                                        <Tooltip>
-                                                <button
-                                                    className="btn--transparent pos-absolute top-8 right-1"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        copyToClipboard(row?.original?.exitMessage);
-                                                    }}
-                                                >
-                                                    <FontAwesomeIcon icon={faCopy} />
-                                                </button>
-                                            <Tooltip.Content>{copied && "Copied!"}</Tooltip.Content>
+                                        <Tooltip content={copied && "Copied!"}>
+                                            <Button
+                                                className="btn--transparent pos-absolute top-8 right-1"
+                                                onClick={() => copyToClipboard(row?.original?.exitMessage)}
+                                            >
+                                                <FontAwesomeIcon icon={faCopy} />
+                                            </Button>
                                         </Tooltip>
                                     </div>
                                     <div className="padding-2">

@@ -151,7 +151,7 @@ const SpacecraftCard = (
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
+                            <Tooltip content="No Wiki Available">
                                 <div className="landscape-card__wiki">
                                     <LinkButton
                                         className="btn btn--primary"
@@ -162,13 +162,13 @@ const SpacecraftCard = (
                                 </div>
                             </Tooltip>
                         )}
-                        <div className="landscape-card__share">
-                            <Tooltip  message={copied ? "Copied!" : "Copied to clipboard!"}>
+                        <Tooltip content={copied ? "Copied!" : "Copied to clipboard!"}>
+                            <div className="landscape-card__share">
                                 <Button className="btn btn--primary" onClick={() => handleShare(`/vehicles/spacecraft/${id}`)} disabled={copied}>
                                     <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
                                 </Button>
-                            </Tooltip>
-                        </div>
+                            </div>
+                        </Tooltip>
                     </div>
                 </section>
             </div>

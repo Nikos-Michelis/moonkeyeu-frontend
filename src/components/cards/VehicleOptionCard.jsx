@@ -5,8 +5,8 @@ export const VehicleOptionCard = ({ disable, title, description, linkText, secti
     return (
         <>
             <article className="portrait-card portrait-card--vehicle">
-                <div className="portrait-card__container portrait-card__container--vehicle flex flex-column justify-center" >
-                    <div style={{backgroundImage: `url(${sectionImage})`}}>
+                <div className="flex flex-column justify-center">
+                    <div className="portrait-card__container portrait-card__container--vehicle flex flex-column justify-center" style={{backgroundImage: `url(${sectionImage})`}}>
                         <h1>{title}</h1>
                         <p>{description}</p>
                         <div className="flex flex-wrap justify-center margin-block-4">

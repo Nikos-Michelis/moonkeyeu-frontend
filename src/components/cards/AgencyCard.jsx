@@ -87,7 +87,7 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                                 </Link>
                             </div>
                         ) : (
-                            <Tooltip message={tooltipInfoMessage}>
+                            <Tooltip content={tooltipInfoMessage}>
                                 <div className="landscape-card__info">
                                     <Link className="btn btn--primary" to="#" >
                                         <FontAwesomeIcon icon={faCircleInfo} /> INFO
@@ -106,7 +106,7 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
+                            <Tooltip content="No Wiki Available">
                                 <div className="landscape-card__wiki">
                                     <LinkButton
                                         className="btn btn--primary"
@@ -118,13 +118,13 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                                 </div>
                             </Tooltip>
                         )}
-                        <div className="landscape-card__share">
-                            <Tooltip copied={copied} message={copied ? "Copied!" :"Copied to clipboard!"}>
+                        <Tooltip copied={copied} content={copied ? "Copied!" :"Copied to clipboard!"}>
+                            <div className="landscape-card__share">
                                 <Button className="btn btn--primary" onClick={handleShare} disabled={copied}>
                                     <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
                                 </Button>
-                            </Tooltip>
-                        </div>
+                            </div>
+                        </Tooltip>
                     </div>
                 </section>
             </div>

@@ -126,7 +126,7 @@ const RocketCard = (
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message={tooltipInfoMessage}>
+                            <Tooltip content={tooltipInfoMessage}>
                                 <div className="landscape-card__info">
                                     <LinkButton className="btn btn--primary">
                                         <FontAwesomeIcon icon={faShuttleSpace} /> View Launch
@@ -134,13 +134,13 @@ const RocketCard = (
                                 </div>
                             </Tooltip>
                         )}
-                        <div className="landscape-card__share">
-                            <Tooltip  message={copied ? "Copied!" : "Copied to clipboard!"}>
+                        <Tooltip content={copied ? "Copied!" : "Copied to clipboard!"}>
+                            <div className="landscape-card__share">
                                 <Button className="btn btn--primary" onClick={() => handleShare(`launches?page=1&limit=12&rocketConfig=${id.toString()}&upcoming=all`)} disabled={copied}>
                                     <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
                                 </Button>
-                            </Tooltip>
-                        </div>
+                            </div>
+                        </Tooltip>
                     </div>
                 </section>
             </div>

@@ -85,7 +85,7 @@ const LaunchArticleContent = ({ data }) => {
                     </div>
                     <hr className="hr-100-xs hr-my-xs"/>
                     <div className="container flex justify-space-evenly align-center padding-block-2" data-type="full-bleed" data-overflow="visible">
-                        <Tooltip message={copied ? "Copied!" :"Copied to clipboard!"}>
+                        <Tooltip content={copied ? "Copied!" :"Copied to clipboard!"}>
                             <Button className="btn--transparent" onClick={handleShare} disabled={copied}>
                                 <FontAwesomeIcon icon={faShareFromSquare} />
                             </Button>

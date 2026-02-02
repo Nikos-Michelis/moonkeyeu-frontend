@@ -1,6 +1,6 @@
 import ScrollToTop from "@/components/utils/ScrollToTop.jsx";
 import React from "react";
-import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
+import { SkeletonLoader } from "@/components/loader/SkeletonLoader.jsx";
 import ContentLayout from "@/layout/ContentLayout.jsx";
 
 const ArticleContentSection = (

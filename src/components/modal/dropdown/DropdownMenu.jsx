@@ -9,11 +9,8 @@ const DropdownMenu = ({ status, menus, className }) => {
 
     const addTooltip = (tooltip, key, children) => {
         return (
-            <Tooltip key={key}>
-                <Tooltip.Button asChild>
-                    {children}
-                </Tooltip.Button>
-                <Tooltip.Content>{tooltip?.message}</Tooltip.Content>
+            <Tooltip key={key} content={tooltip?.message}>
+                {children}
             </Tooltip>
         );
     }

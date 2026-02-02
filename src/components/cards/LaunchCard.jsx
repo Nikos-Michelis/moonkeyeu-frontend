@@ -13,7 +13,6 @@ import {useCreateMutation, useDeleteMutation} from "@/services/mutations.jsx";
 import toast from "react-hot-toast";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faShareFromSquare,
     faCircleCheck,
     faTriangleExclamation,
     faRocket,
@@ -26,6 +25,7 @@ import Modal from "@/components/modal/dialog/Modal.jsx";
 import {AddBookmarkForm} from "@/components/modal/forms/AddBookmarkForm.jsx";
 import LoginForm from "@/components/modal/forms/LoginForm.jsx";
 import {YouTubeEmbed} from "@/components/api/youtube-window/YouTubeEmbed.jsx";
+import ShareContent from "@/components/modal/ShareContent.jsx";
 
 const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status:launchStatus, video_urls, isBookmarked = false, cardStyles }) => {
     const [open, setOpen] = useState(false);
@@ -45,11 +45,15 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
         (a, b) => a.priority > b.priority
     );
     const { copied, copyToClipboard } = useClipboard();
+    const [shareOpen, setShareOpen] = useState(false);
     const tooltipVideoMessage = item?.videoUrl ? "" : "No Video Available";
     const xTwitterUrl = "x.com";
+    const url = `${window.location.origin}${navUrl || window.location.pathname}/${id}`;
+
     const handleShare = () => {
         const url = `${window.location.origin}${navUrl || window.location.pathname}/${id}`;
         copyToClipboard(url);
+        setShareOpen(true)
     };
     const removeLaunchMutation =
         useDeleteMutation({
@@ -102,7 +106,12 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
                 <section className="landscape-card__content flex flex-column justify-space-between">
                     <div className="landscape-card__details">
                         <div className="flex justify-space-between align-center">
-                            <h3 className="fs-small-300">{fullname}</h3>
+                            <LinkButton
+                                to={navUrl? navUrl + id: id}
+                                className="landscape-card__title"
+                            >
+                                <h3 className="fs-small-300">{fullname}</h3>
+                            </LinkButton>
                             <LaunchDropdown
                                 isBookmarked={isBookmarked}
                                 status={status}
@@ -117,6 +126,11 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
                                         ? <AddBookmarkForm launchId={id} status={status} />
                                         : <LoginForm />
                                     }
+                                </Modal.Content>
+                            </Modal>
+                            <Modal open={shareOpen} onOpenChange={setShareOpen}>
+                                <Modal.Content title="Share">
+                                    <ShareContent url={url} title={fullname} />
                                 </Modal.Content>
                             </Modal>
                         </div>
@@ -151,7 +165,7 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
                             <CountdownTimer net={zonedDateTime} timerStyle="margin-block-3" />
                         ) }
                     </div>
-                    <div className="landscape-card__actions padding-block-start-6 padding-block-end-8" data-type="narrow">
+                    <div className="landscape-card__actions padding-block-start-6 padding-block-end-8">
                         {item ? (
                             item?.source?.includes(xTwitterUrl) ? (
                                 <div className="landscape-card__video">
@@ -180,16 +194,13 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
                                 </div>
                             )
                         ) : (
-                            <Tooltip>
-                                <Tooltip.Button asChild>
+                                <Tooltip content={tooltipVideoMessage}>
                                     <div className="landscape-card__video">
                                         <Button className="btn btn--yt" disabled={true}>
                                             <FontAwesomeIcon icon={faYoutube} /> WATCH
                                         </Button>
                                     </div>
-                                </Tooltip.Button>
-                                <Tooltip.Content>{tooltipVideoMessage}</Tooltip.Content>
-                            </Tooltip>
+                                </Tooltip>
                         )}
                     </div>
                 </section>

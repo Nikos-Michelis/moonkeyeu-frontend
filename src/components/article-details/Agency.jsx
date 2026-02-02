@@ -44,7 +44,7 @@ const Agency = ({ launchProvider }) =>{
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Info Available">
+                            <Tooltip content="No Info Available">
                                 <div className="info">
                                     <LinkButton
                                         className="btn btn--primary"
@@ -66,7 +66,7 @@ const Agency = ({ launchProvider }) =>{
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="There is no official page available.">
+                            <Tooltip content="There is no official page available.">
                                 <div className="info">
                                     <LinkButton
                                         className="btn btn--primary"
@@ -89,7 +89,7 @@ const Agency = ({ launchProvider }) =>{
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
+                            <Tooltip content="No Wiki Available">
                                 <div className="wiki">
                                     <LinkButton
                                         className="btn btn--primary"

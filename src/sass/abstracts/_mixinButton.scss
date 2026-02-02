@@ -3,7 +3,7 @@
 @use "variables" as *;
 
 @mixin button {
-  display: inline-block;
+  display: block;
   box-sizing: border-box;
   padding: $button-padding-y $button-padding-x;
   line-height: $button-line-height;

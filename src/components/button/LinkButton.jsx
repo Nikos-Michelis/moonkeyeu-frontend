@@ -1,40 +1,48 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import React from "react";
 
-export function LinkButton(
+export const LinkButton = React.forwardRef((
     {
-        children,
         to,
-        disabled = false,
         isExternal = false,
-        target = "_blank",
-        rel = "noopener noreferrer",
-        className = "btn btn--primary",
-        onClick
-    }) {
-    return isExternal ? (
-        <a
-            href={to}
+        children,
+        className,
+        disabled = false,
+        onClick,
+        ...props
+    }, ref) => {
+    const Component = isExternal ? 'a' : Link;
+
+    const handleClick = (e) => {
+        if (disabled) {
+            e.preventDefault();
+            return;
+        }
+        if (onClick) onClick(e);
+    };
+
+    const linkProps = isExternal
+        ? { href: to, target: "_blank", rel: "noopener noreferrer" }
+        : { to: to };
+
+    return (
+        <Component
+            ref={ref}
             className={`${className}${disabled ? " btn--disabled" : ""}`}
-            target={target}
-            rel={rel}
-            onClick={disabled ? (e) => e.preventDefault() : onClick}
+            onClick={handleClick}
+            {...linkProps}
+            {...props}
         >
             {children}
-        </a>
-    ) : (
-        <Link
-            to={to}
-            className={`${className}${disabled ? " btn--disabled" : ""}`}
-            onClick={disabled ? (e) => e.preventDefault() : undefined}
-        >
-            {children}
-        </Link>
+        </Component>
     );
-}
+});
 
 LinkButton.propTypes = {
     children: PropTypes.node,
+    onClick: PropTypes.func,
+    to: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     isExternal: PropTypes.bool,
     target: PropTypes.string,

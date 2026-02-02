@@ -41,7 +41,13 @@
       height: 100%;
     }
   }
-
+  &__title {
+    width: fit-content;
+    &--nasa-apod {
+      border-bottom: 2px solid var(--neutral-1000);
+      transform: skew(-18deg, 0deg);
+    }
+  }
   &__title-box{
     @include abs.font($font-size: var(--fs-small-400), $color: var(--neutral-1000));
   }

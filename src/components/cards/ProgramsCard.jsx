@@ -36,37 +36,47 @@ const ProgramsCard = (
                         defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`}
                     />
                 </div>
-                <section className="landscape-card__content flex flex-column justify-space-evenly">
-                    <div className="landscape-card__detail-box">
-                        <h3 className="title">{name}</h3>
+                <section className="landscape-card__content flex flex-column justify-space-between">
+                    <div className="landscape-card__details">
+                        <div className="landscape-card__detail-box">
+                            <h3 className="title">{name}</h3>
+                        </div>
+                        <div className="flex justify-space-between">
+                            <div className="landscape-card__detail-box">
+                                <small className="fw-semi-bold fs-medium-200">{type}</small>
+                            </div>
+                            <div className="landscape-card__detail-box">
+                                <small className="fw-semi-bold fs-medium-200">{start_date}</small>
+                            </div>
+                        </div>
                     </div>
                     <div className="landscape-card__detail-box landscape-card--ellipsis">
                         <p>{description}</p>
                     </div>
                     <hr className="hr-100-sm"/>
-                    <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
+                    <div className="landscape-card__actions padding-block-start-2 padding-block-end-6">
                         {id ? (
-                            <div className="launch-card__info">
+                            <div className="launch-card__action">
                                 <Link className="btn btn--primary" to={segment ? `/${segment}/${id.toString()}` : id.toString()} >
                                     <FontAwesomeIcon icon={faCircleInfo} /> INFO
                                 </Link>
                             </div>
                         ) : (
-                            <Tooltip message={tooltipInfoMessage}>
-                                <div className="launch-card__info">
+                            <Tooltip content={tooltipInfoMessage}>
+                                <div className="launch-card__action">
                                     <Link className="btn btn--primary" to="#" >
                                         <FontAwesomeIcon icon={faCircleInfo} /> INFO
                                     </Link>
                                 </div>
                             </Tooltip>
                         )}
-                        <div className="launch-card__share">
-                            <Tooltip copied={copied} message={copied ? "Copied!" :"Copied to clipboard!"}>
+                        <Tooltip copied={copied} content={copied ? "Copied!" :"Copied to clipboard!"}>
+                            <div className="launch-card__action">
                                 <Button className="btn btn--primary" onClick={handleShare} disabled={copied}>
                                     <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
                                 </Button>
-                            </Tooltip>
-                        </div>
+                            </div>
+                        </Tooltip>
                     </div>
                 </section>
             </div>

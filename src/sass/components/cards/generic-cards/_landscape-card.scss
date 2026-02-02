@@ -59,6 +59,25 @@
     }
   }
 
+  &__title{
+    font-size: var(--fs-small-400);
+    text-decoration: none;
+    color: var(--neutral-1000);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &:has(.landscape-card__media--link:hover),
+  &:has(.landscape-card__title:hover) {
+    .landscape-card__media--link::after {
+      opacity: 1;
+    }
+    .landscape-card__title {
+      text-decoration: underline;
+    }
+  }
+
   &__image {
     width: 100%;
     height: 100%;
@@ -87,10 +106,6 @@
     width: 100%;
     height: 100%;
     padding: 1rem 1rem 0 1rem;
-  }
-
-  & .title{
-    font-size: var(--fs-small-400);
   }
 
   &__assistance {

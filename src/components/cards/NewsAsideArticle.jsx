@@ -18,7 +18,7 @@ const NewsAsideArticle = ({imageSrc, title, author, date, url, isExternalUrl}) =
                 </div>
                 <div className="flex justify-space-between align-center padding-block-start-6 padding-block-end-2 padding-inline-2">
                     <div>
-                        <p className="fs-small-100 text-end fw-regular">{date}</p>
+                        <p className="fs-small-100 text-start fw-regular">{date}</p>
                     </div>
                     <div>
                         <p className="fs-medium-200 text-end fw-regular">{author}</p>

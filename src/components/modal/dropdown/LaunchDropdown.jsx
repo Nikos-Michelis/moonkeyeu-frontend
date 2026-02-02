@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faBookmark, faEllipsisVertical, faShareFromSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
 import * as RadixDropdown from "@radix-ui/react-dropdown-menu";
 import DropdownMenu from "./DropdownMenu.jsx";
+import {Button} from "@/components/button/Button.jsx";
 
 const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove, onShare, copied }) => {
     const menus = [
@@ -34,11 +35,10 @@ const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove, onShare, c
     return (
         <RadixDropdown.Root>
             <RadixDropdown.Trigger asChild>
-                <button className="btn--transparent">
+                <Button className="btn--transparent">
                     <FontAwesomeIcon icon={faEllipsisVertical} />
-                </button>
+                </Button>
             </RadixDropdown.Trigger>
-
             <DropdownMenu status={status} menus={menus} className="dropdown"  />
         </RadixDropdown.Root>
     );

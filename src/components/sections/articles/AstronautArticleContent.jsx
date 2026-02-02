@@ -84,7 +84,7 @@ const AstronautArticleContent = ({ data }) => {
                                   </LinkButton>
                               </div>
                           ) : (
-                              <Tooltip message="No Instagram Available">
+                              <Tooltip content="No Instagram Available">
                                   <div className="instagram">
                                       <LinkButton
                                           className="btn--transparent"
@@ -107,7 +107,7 @@ const AstronautArticleContent = ({ data }) => {
                                   </LinkButton>
                               </div>
                           ) : (
-                              <Tooltip message="No Twitter Available">
+                              <Tooltip content="No Twitter Available">
                                   <div className="x-twitter">
                                       <LinkButton
                                           className="btn--transparent"
@@ -130,7 +130,7 @@ const AstronautArticleContent = ({ data }) => {
                                   </LinkButton>
                               </div>
                           ) : (
-                              <Tooltip message="No Wiki Available">
+                              <Tooltip content="No Wiki Available">
                                   <div className="wiki">
                                       <LinkButton
                                           className="btn--transparent"
@@ -153,7 +153,7 @@ const AstronautArticleContent = ({ data }) => {
                                   </LinkButton>
                               </div>
                           ) : (
-                              <Tooltip message="No agency available">
+                              <Tooltip content="No agency available">
                                   <div className="agency">
                                       <LinkButton
                                           className="btn--transparent"
@@ -164,13 +164,13 @@ const AstronautArticleContent = ({ data }) => {
                                   </div>
                               </Tooltip>
                           )}
-                          <div>
-                              <Tooltip message={copied ? "Copied!" :"Copied to clipboard!"}>
+                          <Tooltip content={copied ? "Copied!" :"Copied to clipboard!"}>
+                              <div className="share">
                                   <Button className="btn--transparent" onClick={handleShare} disabled={copied}>
                                       <FontAwesomeIcon icon={faShareFromSquare} />
                                   </Button>
-                              </Tooltip>
-                          </div>
+                              </div>
+                          </Tooltip>
                       </div>
                   </div>
               </div>

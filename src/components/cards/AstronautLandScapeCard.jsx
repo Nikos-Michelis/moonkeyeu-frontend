@@ -65,7 +65,7 @@ const AstronautLandScapeCard = ({ styles, astronaut, role }) => {
                                     </LinkButton>
                                 </div>
                             ) : (
-                                <Tooltip message="No Instagram Available">
+                                <Tooltip content="No Instagram Available">
                                     <div className="panel__instagram">
                                         <LinkButton
                                             className="btn-instragram"
@@ -88,7 +88,7 @@ const AstronautLandScapeCard = ({ styles, astronaut, role }) => {
                                     </LinkButton>
                                 </div>
                             ) : (
-                                <Tooltip message="No Twitter Available">
+                                <Tooltip content="No Twitter Available">
                                     <div className="panel__x-twitter">
                                         <LinkButton
                                             className="btn-x-twitter"
@@ -111,7 +111,7 @@ const AstronautLandScapeCard = ({ styles, astronaut, role }) => {
                                     </LinkButton>
                                 </div>
                             ) : (
-                                <Tooltip message="No Wiki Available">
+                                <Tooltip content="No Wiki Available">
                                     <div className="panel__wiki">
                                         <LinkButton
                                             className="btn-wiki"
@@ -134,7 +134,7 @@ const AstronautLandScapeCard = ({ styles, astronaut, role }) => {
                                     </LinkButton>
                                 </div>
                             ) : (
-                                <Tooltip message="No agency available">
+                                <Tooltip content="No agency available">
                                     <div className="panel__agency">
                                         <LinkButton
                                             className="btn-agency"
@@ -156,7 +156,7 @@ const AstronautLandScapeCard = ({ styles, astronaut, role }) => {
                                     </LinkButton>
                                 </div>
                             ) : (
-                                <Tooltip message="No agency available">
+                                <Tooltip content="No agency available">
                                     <div className="panel__astroanut">
                                         <LinkButton
                                             className="btn-agency"

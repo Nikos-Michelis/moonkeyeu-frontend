@@ -93,11 +93,6 @@ const OpenStreetMap = (
                                 position={[location.latitude, location.longitude]}
                                 icon={createCustomIcon(location)}
                                 title={location.name}
-                                eventHandlers={{
-                                    click: (e) =>{
-                                        e.target.openPopup();
-                                    }
-                                }}
                             >
                                 <Popup>
                                     <div className="leaflet-popup-container">
@@ -126,12 +121,12 @@ const OpenStreetMap = (
                                         <div className="map__actions">
                                             {location.id ? (
                                                 <div className="map__info">
-                                                    <LinkButton className="btn btn--transparent-dark hover scale-small" to={location.id.toString()} >
+                                                    <LinkButton className="btn btn--transparent hover scale-small" to={location.id.toString()} >
                                                         <FontAwesomeIcon icon={faCircleInfo} />
                                                     </LinkButton>
                                                 </div>
                                             ) : (
-                                                <Tooltip message="No Info Available">
+                                                <Tooltip content="No Info Available">
                                                     <div className="map__info">
                                                         <LinkButton className="btn btn--transparent">
                                                             <FontAwesomeIcon icon={faCircleInfo} />
@@ -150,7 +145,7 @@ const OpenStreetMap = (
                                                     </LinkButton>
                                                 </div>
                                             ) : (
-                                                <Tooltip message="No Wiki Available">
+                                                <Tooltip content="No Wiki Available">
                                                     <div className="map__wiki">
                                                         <LinkButton
                                                             className="btn btn--transparent"

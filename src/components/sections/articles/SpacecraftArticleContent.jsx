@@ -102,7 +102,7 @@ const SpacecraftArticleContent = ({data}) => {
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Info Available">
+                            <Tooltip content="No Info Available">
                                 <div className="info">
                                     <LinkButton
                                         className="btn--transparent btn-instragram"
@@ -124,7 +124,7 @@ const SpacecraftArticleContent = ({data}) => {
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
+                            <Tooltip content="No Wiki Available">
                                 <div className="wiki">
                                     <LinkButton
                                         className="btn--transparent btn-wikipedia"
@@ -135,13 +135,13 @@ const SpacecraftArticleContent = ({data}) => {
                                 </div>
                             </Tooltip>
                         )}
-                        <div>
-                            <Tooltip message={copied ? "Copied!" :"Copied to clipboard!"}>
+                        <Tooltip content={copied ? "Copied!" :"Copied to clipboard!"}>
+                            <div className="share">
                                 <Button className="btn--transparent" onClick={handleShare} disabled={copied}>
                                     <FontAwesomeIcon icon={faShareFromSquare} />
                                 </Button>
-                            </Tooltip>
-                        </div>
+                            </div>
+                        </Tooltip>
                     </div>
                 </div>
             </div>

@@ -60,7 +60,7 @@ const CustomSelect = (
                 {
                     btnPlaceholder.length > OPTIONS_LENGTH
                         ?
-                        <Tooltip message={btnPlaceholder}>
+                        <Tooltip content={btnPlaceholder}>
                             <div className="select__btn--ellipsis">
                                 {btnPlaceholder}
                             </div>
@@ -91,7 +91,7 @@ const CustomSelect = (
                                     <li className={`${defaultValue === option.id? "selected" : ""}`} key={option.id} onClick={() => handleOnSelect(option)}>
                                         { option?.name.length > OPTIONS_LENGTH
                                             ?
-                                            <Tooltip message={option.name}>
+                                            <Tooltip content={option.name}>
                                                 <div className="select__options--ellipsis">{option.name}</div>
                                             </Tooltip>
                                             : <div>{option.name}</div>

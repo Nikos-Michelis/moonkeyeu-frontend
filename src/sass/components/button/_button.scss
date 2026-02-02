@@ -131,11 +131,11 @@
 
   &--disabled {
     pointer-events: none;
-    cursor: not-allowed;
-    &:is([class*="btn--primary"], [class*="btn--yt"]) {
+    opacity: 0.6;
+    &:is([class*="btn--yt"]) {
       @include abs.button-color-variation(
-              $color: var(--neutral-1000),
-              $background-color: var(--primary-400),
+              $color: $clr-star-200,
+              $background-color: $clr-yt-red-400,
               $border-color: var(--neutral-1000)
       );
     }

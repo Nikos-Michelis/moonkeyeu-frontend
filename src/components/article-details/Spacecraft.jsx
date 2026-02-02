@@ -96,7 +96,7 @@ const spacecraft = ({ stage }) =>{
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Info Available">
+                            <Tooltip content="No Info Available">
                                 <div className="article__btn-info">
                                     <LinkButton className="btn btn--primary">
                                         <FontAwesomeIcon icon={faCircleInfo} />
@@ -115,7 +115,7 @@ const spacecraft = ({ stage }) =>{
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
+                            <Tooltip content="No Wiki Available">
                                 <div className="article__wiki">
                                     <LinkButton
                                         className="btn btn--primary"
