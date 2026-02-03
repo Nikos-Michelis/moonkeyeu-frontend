@@ -7,7 +7,7 @@ const CustomCheckbox = React.forwardRef((
     {
         id,
         name = "",
-        label = {},
+        label = null,
         value = "",
         checked,
         onCheckedChange, // Remove the = {}

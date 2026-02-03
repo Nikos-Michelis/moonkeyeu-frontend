@@ -1,6 +1,6 @@
 import React from "react";
 import * as RadixDropdown from "@radix-ui/react-dropdown-menu";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 
 const DropdownMenu = ({ status, menus, className }) => {
     const handleItemClick = (item) => {

@@ -9,7 +9,7 @@
   min-width: 260px;
   overflow: hidden;
   background-color: var(--nav-300);
-  padding: 0.5rem 2rem 0.5rem 2rem;
+  padding: 0.5rem 2rem;
   border-bottom: 1px solid var(--primary-300);
 
   &__brand-box {
@@ -138,7 +138,7 @@
     padding: 0.625rem;
     text-decoration: none;
     width: 100%;
-    margin-inline: 0.5rem;
+    margin-inline: 0.25rem;
     @include abs.font($font-size: var(--fs-medium-300), $color: $clr-dark-cosmos-300);
     &:hover {
       box-shadow: $box-shadow-nav-1;
@@ -215,6 +215,18 @@
   .navbar {
     flex-flow: row;
     justify-content: flex-start;
+
+    &__image-link {
+      width: 60px;
+      height: 60px;
+    }
+
+    &__brand-title {
+      padding: 0.5rem;
+      & h1 {
+        font-size: var(--fs-medium-500);
+      }
+    }
 
     &__hamburger-label {
       display: none;

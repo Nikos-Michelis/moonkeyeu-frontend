@@ -5,7 +5,7 @@ import * as RadixDropdown from "@radix-ui/react-dropdown-menu";
 import DropdownMenu from "./DropdownMenu.jsx";
 import {Button} from "@/components/button/Button.jsx";
 
-const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove, onShare, copied }) => {
+const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove, onShare }) => {
     const menus = [
         {
             name: "main",
@@ -18,7 +18,6 @@ const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove, onShare, c
                 {
                     label: "Share",
                     leftIcon: <FontAwesomeIcon icon={faShareFromSquare} />,
-                    tooltip: { open: copied, message: "Copied to clipboard!" },
                     onSelect: () => onShare(),
                 },
                 isBookmarked ?

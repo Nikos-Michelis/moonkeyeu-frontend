@@ -1,6 +1,7 @@
 import React from "react";
 import Img from "@/components/utils/Img.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
+
 const NewsAsideArticle = ({imageSrc, title, author, date, url, isExternalUrl}) => {
     return (
         <article className="portrait-card margin-block-4">

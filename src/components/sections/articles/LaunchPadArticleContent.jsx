@@ -3,23 +3,23 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faCircleInfo, faShareFromSquare} from "@fortawesome/free-solid-svg-icons";
 import Img from "@/components/utils/Img.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {faWikipediaW} from "@fortawesome/free-brands-svg-icons";
 import UpcomingLaunch from "@/components/article-details/UpcomingLaunch.jsx";
 import Agencies from "@/components/article-details/Agencies.jsx";
 import Launch from "@/components/article-details/Launch.jsx";
-import React from "react";
-import useClipboard from "@/hooks/util/useClipboard.jsx";
+import React, {useState} from "react";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import ShareContent from "@/components/modal/ShareContent.jsx";
 
 const LaunchPadArticleContent = ({queryData, pagination}) => {
+    const [shareOpen, setShareOpen] = useState(false);
+    const {handleValue, booleanConverter} = useDataFormatter();
     const data = queryData?.launchPadQuery?.data;
     const launchesQuery = queryData?.launchesQuery;
-    const {handleValue, booleanConverter} = useDataFormatter();
-    const { copied, copyToClipboard } = useClipboard();
-    const handleShare = () => {
-        copyToClipboard(window.location.href)
-    };
+    const url = window.location.href;
+
     return (
         <>
             <div className="container flex justify-start padding-block-start-7 padding-block-end-2">
@@ -114,13 +114,19 @@ const LaunchPadArticleContent = ({queryData, pagination}) => {
                                 </div>
                             </Tooltip>
                         )}
-                        <Tooltip content={copied ? "Copied!" :"Copied to clipboard!"}>
-                            <div className="share">
-                                <Button className="btn--transparent" onClick={handleShare} disabled={copied}>
-                                    <FontAwesomeIcon icon={faShareFromSquare} />
-                                </Button>
-                            </div>
-                        </Tooltip>
+                        <div className="landscape-card__action">
+                            <Button
+                                className="btn--transparent"
+                                onClick={() => setShareOpen(true)}
+                            >
+                                <FontAwesomeIcon icon={faShareFromSquare} />
+                            </Button>
+                        </div>
+                        <Modal open={shareOpen} onOpenChange={setShareOpen}>
+                            <Modal.Content title="Share">
+                                <ShareContent url={url} title={data?.name} />
+                            </Modal.Content>
+                        </Modal>
                     </div>
                 </div>
             </div>

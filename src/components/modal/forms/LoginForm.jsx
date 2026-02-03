@@ -465,7 +465,7 @@ const LoginForm = ({ setOpen }) => {
                                         <CustomCheckbox
                                             ref={ref}
                                             className={{root: "checkbox__root checkbox__root--small"}}
-                                            label={
+                                            label= {
                                                 <>
                                                     I agree to the
                                                     <Button type="button" className="btn--transparent" onClick={onNavigate}>

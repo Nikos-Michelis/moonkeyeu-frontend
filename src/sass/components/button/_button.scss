@@ -58,7 +58,7 @@
     }
   }
 
-   &--Xtwitter {
+  &--Xtwitter {
     @include abs.button-color-variation($color: var(--primary-300), $background-color: var(--twitter-black-200), $border-color: var(--neutral-1000));
     @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
     @include abs.button-hover($color: var(--primary-300), $background-color: var(--twitter-black-500), $border-color: var(--neutral-1000));

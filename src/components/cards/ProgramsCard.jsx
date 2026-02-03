@@ -1,17 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import useClipboard from "@/hooks/util/useClipboard.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import Img from "@/components/utils/Img.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleInfo, faShareFromSquare} from "@fortawesome/free-solid-svg-icons";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import ShareContent from "@/components/modal/ShareContent.jsx";
+
 const ProgramsCard = (
     {
         segment,
         id,
         name,
-        info_url,
         wiki_url,
         description,
         start_date,
@@ -19,12 +20,10 @@ const ProgramsCard = (
         images,
         cardStyles
     }) => {
-    const { copied, copyToClipboard } = useClipboard();
+    const [shareOpen, setShareOpen] = useState(false);
     const tooltipInfoMessage = id ? "" : "No Info Available";
-    const handleShare = () => {
-        const url =  segment ? `${window.location.origin}/${segment}/${id}` : `${window.location.origin}/${window.location.pathname}/${id}`;
-        copyToClipboard(url);
-    };
+    const url =  segment ? `${window.location.origin}/${segment}/${id}` : `${window.location.origin}/${window.location.pathname}/${id}`;
+
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'small-wrapper'}`}>
             <div className={`landscape-card__container ${cardStyles?.card_type || ''}`}>
@@ -70,13 +69,19 @@ const ProgramsCard = (
                                 </div>
                             </Tooltip>
                         )}
-                        <Tooltip copied={copied} content={copied ? "Copied!" :"Copied to clipboard!"}>
-                            <div className="launch-card__action">
-                                <Button className="btn btn--primary" onClick={handleShare} disabled={copied}>
-                                    <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
-                                </Button>
-                            </div>
-                        </Tooltip>
+                        <div className="portrait-card__action">
+                            <Button
+                                className="btn btn--primary"
+                                onClick={() => setShareOpen(true)}
+                            >
+                                <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
+                            </Button>
+                        </div>
+                        <Modal open={shareOpen} onOpenChange={setShareOpen}>
+                            <Modal.Content title="Share">
+                                <ShareContent url={url} title={name} />
+                            </Modal.Content>
+                        </Modal>
                     </div>
                 </section>
             </div>

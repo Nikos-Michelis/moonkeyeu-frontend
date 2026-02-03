@@ -1,10 +1,9 @@
 import React, {useCallback, useState} from 'react';
 import CountdownTimer from "../timers/CountdownTimer.jsx";
 import {DateTime} from "luxon";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import useClipboard from "@/hooks/util/useClipboard.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import {useParams} from "react-router-dom";
 import useComparator from "@/hooks/util/useComparator.jsx";
@@ -28,10 +27,11 @@ import {YouTubeEmbed} from "@/components/api/youtube-window/YouTubeEmbed.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";
 
 const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status:launchStatus, video_urls, isBookmarked = false, cardStyles }) => {
-    const [open, setOpen] = useState(false);
+    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const zonedDateTime = DateTime.fromISO(net).setZone(DateTime.local().zoneName);
     const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy - hh:mm a ZZZZ');
-    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+    const [open, setOpen] = useState(false);
+    const [shareOpen, setShareOpen] = useState(false);
     const { name } = useParams();
     const { user, status } = useAuth();
     const youtubeVideos = video_urls?.filter(
@@ -44,17 +44,9 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
         youtubeVideos?.length > 0 ? youtubeVideos : xVideos,
         (a, b) => a.priority > b.priority
     );
-    const { copied, copyToClipboard } = useClipboard();
-    const [shareOpen, setShareOpen] = useState(false);
     const tooltipVideoMessage = item?.videoUrl ? "" : "No Video Available";
     const xTwitterUrl = "x.com";
     const url = `${window.location.origin}${navUrl || window.location.pathname}/${id}`;
-
-    const handleShare = () => {
-        const url = `${window.location.origin}${navUrl || window.location.pathname}/${id}`;
-        copyToClipboard(url);
-        setShareOpen(true)
-    };
     const removeLaunchMutation =
         useDeleteMutation({
             successMessage: undefined,
@@ -117,8 +109,7 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
                                 status={status}
                                 onBookmark={onBookmark}
                                 onRemove={handleRemove}
-                                onShare={handleShare}
-                                copied={copied}
+                                onShare={() => setShareOpen(true)}
                             />
                             <Modal open={open} onOpenChange={setOpen}>
                                 <Modal.Content title={user && "Bookmark to..."}>
@@ -194,13 +185,13 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
                                 </div>
                             )
                         ) : (
-                                <Tooltip content={tooltipVideoMessage}>
-                                    <div className="landscape-card__video">
-                                        <Button className="btn btn--yt" disabled={true}>
-                                            <FontAwesomeIcon icon={faYoutube} /> WATCH
-                                        </Button>
-                                    </div>
-                                </Tooltip>
+                            <Tooltip content={tooltipVideoMessage}>
+                                <div className="landscape-card__video">
+                                    <Button className="btn btn--yt" disabled={true}>
+                                        <FontAwesomeIcon icon={faYoutube} /> WATCH
+                                    </Button>
+                                </div>
+                            </Tooltip>
                         )}
                     </div>
                 </section>

@@ -1,9 +1,9 @@
+import React from "react";
 import {Button} from "@/components/button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faExpand} from "@fortawesome/free-solid-svg-icons";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import Img from "@/components/utils/Img.jsx";
-import React from "react";
 
 const NasaApodArticleContent = ({data}) => {
     return (

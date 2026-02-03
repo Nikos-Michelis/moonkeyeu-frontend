@@ -16,7 +16,7 @@ import ContentLayout from "@/layout/ContentLayout.jsx";
 import AlertModal from "@/components/modal/dialog/AlertModal.jsx";
 import {faCopy} from "@fortawesome/free-regular-svg-icons/faCopy";
 import useClipboard from "@/hooks/util/useClipboard.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 
 function EtlReport() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;

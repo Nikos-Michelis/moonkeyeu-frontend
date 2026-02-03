@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {DateTime} from "luxon";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
-import useClipboard from "@/hooks/util/useClipboard.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,11 +12,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faWikipediaW } from '@fortawesome/free-brands-svg-icons';
+import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import ShareContent from "@/components/modal/ShareContent.jsx";
 
 const SpacecraftCard = (
     {
         showPanel = false,
-        url,
+        navUrl,
         id,
         name,
         in_use,
@@ -32,21 +34,14 @@ const SpacecraftCard = (
         wiki_url,
         cardStyles
     }) => {
+    const [shareOpen, setShareOpen] = useState(false);
+    const { handleValue, booleanConverter } = useDataFormatter();
     const zonedDateTime = DateTime.fromISO(maiden_flight || "");
     const formattedZonedDateTime = zonedDateTime.isValid
         ? zonedDateTime.toFormat('MMMM dd, yyyy')
         : undefined;
-    const { copied, copyToClipboard } = useClipboard();
-    const handleShare = (url) => {
-        const copiedUrl = url ? window.location.origin + url : window.location.origin + window.location.pathname + "/" + id;
-        copyToClipboard(copiedUrl);
-    };
-    const checkValue = (value, metric= "") => {
-        return (value ? `${value} ${metric}` : "―");
-    }
-    const booleanConverter = (value) => {
-        return value && value === true ? "Yes" : "No";
-    }
+    const spacecraftUrl = `/vehicles/spacecraft/${id}`;
+    const url = navUrl ? window.location.origin + spacecraftUrl : window.location.origin + window.location.pathname + "/" + id;
 
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'medium-wrapper'}`}>
@@ -92,27 +87,27 @@ const SpacecraftCard = (
                                 <div className="panel__container">
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Active</p>
-                                        <p className="panel__text">{checkValue(booleanConverter(in_use))}</p>
+                                        <p className="panel__text">{handleValue(booleanConverter(in_use))}</p>
                                     </div>
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Human Rated</p>
-                                        <p className="panel__text">{checkValue(booleanConverter(human_rated))}</p>
+                                        <p className="panel__text">{handleValue(booleanConverter(human_rated))}</p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Height</p>
-                                        <p className="panel__text">{checkValue(length, "Meters")}</p>
+                                        <p className="panel__text">{handleValue(length, "Meters")}</p>
                                     </div>
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Diameter</p>
-                                        <p className="panel__text">{checkValue(diameter, "Meters")}</p>
+                                        <p className="panel__text">{handleValue(diameter, "Meters")}</p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Maiden Flight</p>
-                                        <p className="panel__text">{checkValue(maiden_flight)}</p>
+                                        <p className="panel__text">{handleValue(maiden_flight)}</p>
                                     </div>
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text"></p>
@@ -124,7 +119,7 @@ const SpacecraftCard = (
                         </div>
                     }
                     <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
-                        {(!url && id) && (
+                        {(!navUrl && id) && (
                             <div className="landscape-card__info">
                                 <LinkButton className="btn btn--primary" to={id.toString()} >
                                     <FontAwesomeIcon icon={faCircleInfo} /> INFO
@@ -132,13 +127,14 @@ const SpacecraftCard = (
                             </div>
                         )}
 
-                        {url && (
+                        {navUrl && (
                             <div className="landscape-card__info">
                                 <LinkButton className="btn btn--primary" to={url} >
                                     <FontAwesomeIcon icon={faShuttleSpace} /> View Launch
                                 </LinkButton>
                             </div>)
                         }
+
 
                         { wiki_url ? (
                             <div className="landscape-card__wiki">
@@ -162,13 +158,19 @@ const SpacecraftCard = (
                                 </div>
                             </Tooltip>
                         )}
-                        <Tooltip content={copied ? "Copied!" : "Copied to clipboard!"}>
-                            <div className="landscape-card__share">
-                                <Button className="btn btn--primary" onClick={() => handleShare(`/vehicles/spacecraft/${id}`)} disabled={copied}>
-                                    <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
-                                </Button>
-                            </div>
-                        </Tooltip>
+                        <div className="landscape-card__action">
+                            <Button
+                                className="btn btn--primary"
+                                onClick={() => setShareOpen(true)}
+                            >
+                                <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
+                            </Button>
+                        </div>
+                        <Modal open={shareOpen} onOpenChange={setShareOpen}>
+                            <Modal.Content title="Share">
+                                <ShareContent url={url} title={name} />
+                            </Modal.Content>
+                        </Modal>
                     </div>
                 </section>
             </div>

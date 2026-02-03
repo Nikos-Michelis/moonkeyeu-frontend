@@ -3,24 +3,23 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faCircleInfo, faShareFromSquare} from "@fortawesome/free-solid-svg-icons";
 import Img from "@/components/utils/Img.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {faWikipediaW} from "@fortawesome/free-brands-svg-icons";
 import UpcomingLaunch from "@/components/article-details/UpcomingLaunch.jsx";
 import Agencies from "@/components/article-details/Agencies.jsx";
 import Launch from "@/components/article-details/Launch.jsx";
-import React from "react";
-import useClipboard from "@/hooks/util/useClipboard.jsx";
+import React, {useState} from "react";
 import {DateTime} from "luxon";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import ShareContent from "@/components/modal/ShareContent.jsx";
 
 const ProgramsArticleContent = ({queryData, pagination}) => {
+    const [shareOpen, setShareOpen] = useState(false);
     const programsData = queryData?.programsData?.data;
     const launchesQuery = queryData?.launchesData;
-    const { copied, copyToClipboard } = useClipboard();
     const zonedDateTime = DateTime.fromISO(programsData?.start_date).setZone(DateTime.local().zoneName);
     const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy');
-    const handleShare = () => {
-        copyToClipboard(window.location.href)
-    };
+    const url = window.location.href;
 
     return (
         <>
@@ -98,13 +97,19 @@ const ProgramsArticleContent = ({queryData, pagination}) => {
                                 </div>
                             </Tooltip>
                         )}
-                        <Tooltip content={copied ? "Copied!" :"Copied to clipboard!"}>
-                            <div className="share">
-                                <Button className="btn--transparent" onClick={handleShare} disabled={copied}>
-                                    <FontAwesomeIcon icon={faShareFromSquare} />
-                                </Button>
-                            </div>
-                        </Tooltip>
+                        <div className="landscape-card__action">
+                            <Button
+                                className="btn--transparent"
+                                onClick={() => setShareOpen(true)}
+                            >
+                                <FontAwesomeIcon icon={faShareFromSquare} />
+                            </Button>
+                        </div>
+                        <Modal open={shareOpen} onOpenChange={setShareOpen}>
+                            <Modal.Content title="Share">
+                                <ShareContent url={url} title={programsData?.name} />
+                            </Modal.Content>
+                        </Modal>
                     </div>
                 </div>
             </div>
