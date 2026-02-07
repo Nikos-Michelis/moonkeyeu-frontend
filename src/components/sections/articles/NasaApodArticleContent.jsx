@@ -1,9 +1,9 @@
+import React from "react";
 import {Button} from "@/components/button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faExpand} from "@fortawesome/free-solid-svg-icons";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import Img from "@/components/utils/Img.jsx";
-import React from "react";
 
 const NasaApodArticleContent = ({data}) => {
     return (
@@ -32,7 +32,10 @@ const NasaApodArticleContent = ({data}) => {
             <div className="article__info-container container flex flex-column" data-type="full-bleed">
                 <section className="nasa-description-section">
                     <div className="article__info-box">
-                        <h2>{data?.title}</h2>
+                        <div className="article__title--nasa-apod flex justify-space-between">
+                            <h2>{data?.title}</h2>
+                            <p className="fs-small-200">{data?.date}</p>
+                        </div>
                         <p>{data?.explanation}</p>
                     </div>
                 </section>

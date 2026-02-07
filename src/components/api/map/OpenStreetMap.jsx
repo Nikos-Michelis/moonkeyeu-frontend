@@ -1,13 +1,12 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCircleInfo, faLocationDot, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faCircleInfo, faLocationDot} from '@fortawesome/free-solid-svg-icons';
 import { faWikipediaW } from '@fortawesome/free-brands-svg-icons';
-import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {DivIcon} from "leaflet/src/layer/index.js";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
@@ -20,8 +19,6 @@ const OpenStreetMap = (
 ) => {
     const data = locations?.data;
     const defaultCenter = [45, 50];
-    const [searchValue, setSearchValue] = useState('');
-    const debounceSearch = useDebounce(searchValue);
     const markerRefs = useRef({});
     const createCustomIcon = (location) => {
         return new DivIcon({
@@ -50,18 +47,6 @@ const OpenStreetMap = (
             className: 'cluster',
         });
     };
-
-    useEffect(() => {
-        const match = data?.pads?.find(loc =>
-            (
-                loc?.location?.name
-            )?.toLowerCase().includes(debounceSearch.toLowerCase())
-        );
-        if (match && markerRefs.current[match.id]) {
-            const marker = markerRefs.current[match.id];
-            marker.openPopup();
-        }
-    }, [debounceSearch]);
 
     return (
         <div className="map__container">
@@ -99,7 +84,7 @@ const OpenStreetMap = (
                         removeOutsideVisibleBounds={true}
                         iconCreateFunction={createClusterCustomIcon}
                     >
-                        {data?.pads?.map((location) => (
+                        {data?.pads.map((location) => (
                             <Marker
                                 key={location.id}
                                 ref={(ref) => {
@@ -108,11 +93,6 @@ const OpenStreetMap = (
                                 position={[location.latitude, location.longitude]}
                                 icon={createCustomIcon(location)}
                                 title={location.name}
-                                eventHandlers={{
-                                    click: (e) =>{
-                                        e.target.openPopup();
-                                    }
-                                }}
                             >
                                 <Popup>
                                     <div className="leaflet-popup-container">
@@ -141,12 +121,12 @@ const OpenStreetMap = (
                                         <div className="map__actions">
                                             {location.id ? (
                                                 <div className="map__info">
-                                                    <LinkButton className="btn btn--transparent-dark hover scale-small" to={location.id.toString()} >
+                                                    <LinkButton className="btn btn--transparent hover scale-small" to={location.id.toString()} >
                                                         <FontAwesomeIcon icon={faCircleInfo} />
                                                     </LinkButton>
                                                 </div>
                                             ) : (
-                                                <Tooltip message="No Info Available">
+                                                <Tooltip content="No Info Available">
                                                     <div className="map__info">
                                                         <LinkButton className="btn btn--transparent">
                                                             <FontAwesomeIcon icon={faCircleInfo} />
@@ -165,7 +145,7 @@ const OpenStreetMap = (
                                                     </LinkButton>
                                                 </div>
                                             ) : (
-                                                <Tooltip message="No Wiki Available">
+                                                <Tooltip content="No Wiki Available">
                                                     <div className="map__wiki">
                                                         <LinkButton
                                                             className="btn btn--transparent"

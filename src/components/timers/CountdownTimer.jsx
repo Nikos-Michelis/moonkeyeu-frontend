@@ -1,5 +1,5 @@
 import React from 'react';
-import {useCountDown} from "@/hooks/timer/useCountDown.jsx";
+import {useCountDown} from "@/hooks/time/useCountDown.jsx";
 
 const CountdownTimer = ({net, timerStyle = ""}) => {
     const targetTimeInMillis = new Date(net).getTime();

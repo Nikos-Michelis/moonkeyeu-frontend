@@ -4,7 +4,7 @@ import SkeletonArticleLoader from "@/components/skeleton/SkeletonArticleLoader.j
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdPerson from "@/components/seo/jsonld/JsonLdPerson.jsx";
-import ArticleContentSection from "@/components/sections/articles/ArticleContentSection.jsx";
+import ArticleContentSection from "@/layout/ArticleContentSection.jsx";
 import AstronautArticleContent from "@/components/sections/articles/AstronautArticleContent.jsx";
 
 function AstronautArticle(){

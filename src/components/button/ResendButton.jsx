@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {Button} from "@/components/button/Button.jsx";
-import {useSimpleTimer} from "@/hooks/timer/useSimpleTimer.jsx";
+import {useSimpleTimer} from "@/hooks/time/useSimpleTimer.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faRotateRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 

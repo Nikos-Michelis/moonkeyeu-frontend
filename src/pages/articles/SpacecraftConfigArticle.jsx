@@ -4,7 +4,7 @@ import SkeletonArticleLoader from "@/components/skeleton/SkeletonArticleLoader.j
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import ArticleContentSection from "@/components/sections/articles/ArticleContentSection.jsx";
+import ArticleContentSection from "@/layout/ArticleContentSection.jsx";
 import SpacecraftArticleContent from "@/components/sections/articles/SpacecraftArticleContent.jsx";
 
 function SpacecraftConfigArticle(){

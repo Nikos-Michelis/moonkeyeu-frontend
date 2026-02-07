@@ -1,7 +1,5 @@
 import {useCallback, useLayoutEffect} from "react";
 import {useSearchParams} from "react-router-dom";
-import {value} from "lodash/seq.js";
-import log from "eslint-plugin-react/lib/util/log.js";
 
 const defaultFilters = {
     page: 1,

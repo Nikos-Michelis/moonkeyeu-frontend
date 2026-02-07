@@ -1,7 +1,5 @@
 @use "../abstracts" as abs;
-/**
-* TODO maybe redundant code test the card
-***/
+
 @include abs.mq(medium) {
   .article-card {
     &--small-wrapper {
@@ -11,7 +9,7 @@
       height: 18.5rem;
     }
     &--large-wrapper {
-      height: 21rem;
+      height: 20rem;
     }
   }
   .small-wrapper {
@@ -21,7 +19,7 @@
     height: 24rem;
   }
   .large-wrapper {
-    height: 26.6rem;
+    height: 20rem;
   }
 }
 
@@ -30,7 +28,7 @@
     height: 20rem;
   }
   .large-wrapper {
-    height: 22rem;
+    height: 21rem;
   }
 }
 

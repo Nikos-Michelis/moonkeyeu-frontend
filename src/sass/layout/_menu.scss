@@ -9,7 +9,7 @@
   min-width: 260px;
   overflow: hidden;
   background-color: var(--nav-300);
-  padding: 0.5rem 2rem 0.5rem 2rem;
+  padding: 0.5rem 2rem;
   border-bottom: 1px solid var(--primary-300);
 
   &__brand-box {
@@ -41,7 +41,7 @@
   &__brand-title {
     display: inline-block;
     text-align: center;
-    padding: 1rem;
+    padding: 1rem 0.65rem;
 
     & h1 {
       @include abs.font($font-size: var(--fs-small-400), $font-weight: 900, $color: $clr-dark-cosmos-300, $font-family: $font-family-orbitron);
@@ -135,10 +135,10 @@
 
   &__nav-link {
     display: block;
-    padding: 0.625rem;
+    padding: 0.325rem;
     text-decoration: none;
     width: 100%;
-    margin-inline: 0.5rem;
+    margin-inline: 0.25rem;
     @include abs.font($font-size: var(--fs-medium-300), $color: $clr-dark-cosmos-300);
     &:hover {
       box-shadow: $box-shadow-nav-1;
@@ -165,7 +165,7 @@
   &__user-button {
     display: flex;
     justify-content: center;
-    padding: 0.625rem;
+    padding: 0.325rem;
     text-decoration: none;
     transition: ease-in-out 0.2s;
     margin: 1px 5px;
@@ -197,8 +197,8 @@
 @include abs.mq(small) {
   .navbar {
     &__image-link {
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
     }
 
     &__brand-title h1 {
@@ -215,6 +215,12 @@
   .navbar {
     flex-flow: row;
     justify-content: flex-start;
+
+    &__brand-title {
+      & h1 {
+        @include abs.font($font-size: var(--fs-medium-400), $font-weight: 900, $color: $clr-dark-cosmos-300, $font-family: $font-family-orbitron);
+      }
+    }
 
     &__hamburger-label {
       display: none;
@@ -238,3 +244,16 @@
   }
 }
 
+@include abs.mq(xxl) {
+  .navbar {
+    &__image-link {
+      width: 70px;
+      height: 70px;
+    }
+    &__brand-title {
+      & h1 {
+        @include abs.font($font-size: var(--fs-medium-600), $font-weight: 900, $color: $clr-dark-cosmos-300, $font-family: $font-family-orbitron);
+      }
+    }
+  }
+}

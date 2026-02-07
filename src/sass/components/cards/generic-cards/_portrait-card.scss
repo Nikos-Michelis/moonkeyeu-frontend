@@ -10,7 +10,6 @@
   &:not(.portrait-card--vehicle){
     max-width: 500px;
   }
-
   &__container {
     width: 100%;
     height: 100%;
@@ -22,13 +21,28 @@
     transition: box-shadow 0.25s ease, transform 0.25s ease;
 
     &--vehicle {
+      position: relative;
+      isolation: isolate;
       min-height: 30rem;
+      text-align: center;
       background-position: center center;
       background-size: cover;
-      background-color: $color-dark-overlay-400;
-      text-align: center;
       padding: 1rem;
       @include abs.font($font-size: var(--fs-medium-300), $color: $clr-secondary-300);
+
+      &::after {
+        content: '';
+        background-color: $color-dark-overlay-400;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        display: block;
+        opacity: 1;
+        transition: opacity 0.3s ease-out;
+      }
     }
 
     &:hover {
@@ -75,7 +89,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-   // min-height: 20rem;
     outline: 0.1rem solid var(--neutral-1000);
     display: block;
     pointer-events: none;
@@ -91,7 +104,7 @@
 
   &__info {
     text-align: center;
-    height: 7rem;
+    height: 8rem;
     padding: 0.2rem;
 
     & > h2, & > h5 {
@@ -100,28 +113,26 @@
     }
   }
 
+  &__title {
+    @include abs.font($font-size: var(--fs-medium-300), $font-weight: 600, $color: var(--neutral-1000));
+  }
+
   &__text {
     width: 100%;
     margin: 0;
     @include abs.font($font-size: var(--fs-small-200), $font-weight: 400, $color: var(--neutral-1000));
   }
-
-  &__title {
-    @include abs.font($font-size: var(--fs-medium-300), $font-weight: 600, $color: var(--neutral-1000));
-  }
-
-  &__details-span {
-    display: inline-block;
+  &__subtitle {
+    @include abs.font($font-size: var(--fs-medium-200), $font-weight: 600, $color: var(--neutral-1000));
   }
 
 
-  @include abs.mq(small) {
-    &__container {
-      &__details-span {
-        padding: 0.625rem 0;
-        max-width: 5rem;
-      }
-    }
+  &__detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
   }
 
   @include abs.mq(xxl) {

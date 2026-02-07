@@ -5,12 +5,16 @@ import SkeletonSidebarLoader from "@/components/skeleton/SkeletonSidebarLoader.j
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 const NasaApod = ({nasaApod, isPendingNasaApod, isFetchingNasaApod, isErrorNasaApod}) => {
     const contentConfig = {
         count:1,
         component: SkeletonSidebarLoader,
     };
+    const { getZonedAndFormattedDateTime } = useLuxonDateTime();
+    const formattedZonedDateTime = getZonedAndFormattedDateTime(nasaApod?.date, 'MMMM dd, yyyy');
+
     return (
         <section className="nasa-apod">
             <div className="flex flex-column justify-center align-center">
@@ -26,9 +30,10 @@ const NasaApod = ({nasaApod, isPendingNasaApod, isFetchingNasaApod, isErrorNasaA
                         {nasaApod ? (
                             <NewsArticle
                                 imageSrc={nasaApod.url}
+                                url="/nasa-apod"
                                 title={nasaApod.title}
                                 author="NASA"
-                                date={nasaApod.date}
+                                date={formattedZonedDateTime}
                             />
                             ) : (
                                 <div>No image available at the moment.</div>

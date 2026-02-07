@@ -1,7 +1,7 @@
-import ScrollToTop from "@/components/utils/ScrollToTop.jsx";
 import React from "react";
-import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ScrollToTop from "@/components/utils/ScrollToTop.jsx";
+import { SkeletonLoader } from "@/components/loader/SkeletonLoader.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 
 const ArticleContentSection = (
     {
@@ -24,9 +24,9 @@ const ArticleContentSection = (
                 contentConfig={contentConfig}>
                 <section className="article">
                     <div className="container flex justify-center" data-type="wide" data-spacing="none">
-                        <ContentLayout className="article__content" size="medium">
+                        <ContentContainer className="article__content" size="medium">
                             <ArticleComponent data={data} queryData={queryData} pagination={pagination}/>
-                        </ContentLayout>
+                        </ContentContainer>
                     </div>
                 </section>
             </SkeletonLoader>

@@ -3,7 +3,7 @@ import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleInfo, faLocationDot} from '@fortawesome/free-solid-svg-icons';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {faWikipediaW} from "@fortawesome/free-brands-svg-icons";
 
 const Location = ({pad}) => {
@@ -40,7 +40,7 @@ const Location = ({pad}) => {
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Info Available">
+                            <Tooltip content="No Info Available">
                                 <div className="article__btn-info">
                                     <LinkButton
                                         className="btn btn--primary"
@@ -62,7 +62,7 @@ const Location = ({pad}) => {
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
+                            <Tooltip content="No Wiki Available">
                                 <div className="article__wiki">
                                     <LinkButton
                                         className="btn btn--primary"

@@ -9,11 +9,14 @@
     left: 0;
     z-index: 0;
     & div.leaflet-popup-content-wrapper{
-      overflow: hidden;
       padding: 0;
+      @include cursive_border();
+      background-color: var(--primary-300);
+      color: var(--neutral-1000);
+      box-shadow: $box-shadow-3;
     }
     & a.leaflet-popup-close-button{
-      color: var(--neutral-300);
+      color: var(--neutral-1000);
       &:hover{
         color: var(--neutral-1000);
       }
@@ -23,7 +26,12 @@
       max-width: 14rem;
       margin: 0;
     }
+
+    & .leaflet-popup-tip {
+      background-color: var(--primary-300);
+    }
   }
+
 
   &__media{
     display: flex;
@@ -48,7 +56,7 @@
     justify-content: center;
     align-content: center;
     & a {
-      color: $clr-dark-cosmos-300;
+      color: var(--neutral-1000);
     }
   }
   &__launch-pad{

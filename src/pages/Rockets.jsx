@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Heading from "../components/utils/Heading.jsx";
+import Heading from "../components/utils/heading/Heading.jsx";
 import { useSearchParams } from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import RocketSection from "@/components/sections/pages/RocketSection.jsx";
@@ -7,7 +7,7 @@ import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 
 const defaultFilters = {
     page: 1,
@@ -44,7 +44,7 @@ function Rockets() {
                 title="Rockets"
                 description="Explore the latest and historic rocket vehicles that shaped space exploration."
             />
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title="Rockets"
                     description="Explore the latest and historic rocket vehicles that shaped space exploration."
@@ -60,7 +60,7 @@ function Rockets() {
                     isError={queryData.isError}
                     pagination={pagination}
                 />
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

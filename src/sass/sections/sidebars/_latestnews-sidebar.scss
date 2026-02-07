@@ -3,8 +3,9 @@
 .sidebar {
   width: 100%;
   max-width: 25rem;
-  box-shadow: 0.25rem 0.35rem 0 var(--neutral-1000);
+  box-shadow: abs.$box-shadow-2;
   background-color: var(--card-bg);
+  transition: box-shadow 0.25s ease;
   @include abs.cursive_border($border-width: 0.2rem, $border-radius: 0.1rem, $color: var(--neutral-1000));
 
   &__heading-box {

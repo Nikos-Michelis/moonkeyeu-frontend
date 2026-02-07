@@ -7,24 +7,25 @@
 :root {
   color-scheme: light dark;
 
+  @include abs.emit-theme($light);
+
+  @media (prefers-color-scheme: dark) {
+    &:not([data-theme="light"]) {
+      @include abs.emit-theme($dark);
+    }
+  }
+
   &[data-theme="light"] {
-    color-scheme: light;
     @include abs.emit-theme($light);
+    color-scheme: light;
   }
 
   &[data-theme="dark"] {
-    color-scheme: dark;
     @include abs.emit-theme($dark);
+    color-scheme: dark;
   }
 
 
-  @media (prefers-color-scheme: dark) {
-    @each $color, $shade-map in $dark {
-      @each $shade, $value in $shade-map {
-        --#{$color}-#{$shade}: #{$value};
-      }
-    }
-  }
 
   @each $font-size, $property in $font-sizes {
     @if $font-size == small {

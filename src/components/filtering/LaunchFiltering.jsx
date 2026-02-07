@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import {useLaunchFilters} from "@/hooks/paging-filtering/useLaunchFilters.jsx";
 import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {Button} from "@/components/button/Button.jsx";
-import CustomSelect from "@/components/utils/CustomSelect.jsx";
+import CustomSelect from "@/components/utils/select/CustomSelect.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faAngleDown, faArrowsRotate, faFilter, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faArrowsRotate, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
 
 LaunchFiltering.propTypes = {
@@ -13,7 +13,7 @@ LaunchFiltering.propTypes = {
     launcher: PropTypes.number,
     agency: PropTypes.number,
     upcoming: PropTypes.bool,
-    rocketConfing: PropTypes.number,
+    rocketConfig: PropTypes.number,
     spacecraftConf: PropTypes.number,
     astronaut: PropTypes.number,
     search: PropTypes.string,
@@ -27,7 +27,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
     const optionsRef = useRef(null);
     const triggerRef = useRef(null);
     const maxLimit = 50;
-    const sheduled =
+    const scheduled =
         [
             { id: "true", name: "Upcoming" },
             { id: "false", name: "Previous" }
@@ -135,7 +135,7 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                         <div className="toolbar__title"><span>Filter by...</span></div>
                         <div className="toolbar__option">
                             <CustomSelect
-                                options={sheduled || []}
+                                options={scheduled || []}
                                 field="upcoming"
                                 setFilters={setFilters}
                                 resetFilterByName={resetFilterByName}

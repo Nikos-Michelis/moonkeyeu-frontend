@@ -1,13 +1,13 @@
 import React, {useEffect} from "react";
 import LaunchesSection from "../components/sections/pages/LaunchesSection.jsx";
 import LaunchFiltering from "../components/filtering/LaunchFiltering.jsx";
-import Heading from "../components/utils/Heading.jsx";
+import Heading from "../components/utils/heading/Heading.jsx";
 import {useSearchParams} from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 
 const options = {
     showPrevBtn: true,
@@ -53,7 +53,7 @@ function Home() {
                 updatedAt={queryData?.data?.window_end}
             />
 
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title={`${searchParams.get("upcoming") === "true" ? "Upcoming" : "Previous"} Launches`}
                     description={
@@ -79,7 +79,7 @@ function Home() {
                     options={options}
                     pagination={pagination}
                 />
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

@@ -8,7 +8,7 @@ const getInitialTheme = () => {
 
     if (storedTheme !== null) return storedTheme;
 
-    if (systemTheme !== null) return systemTheme.matches ? "dark" : "light";
+    return systemTheme.matches ? "dark" : "light";
 };
 
 export const ThemeProvider = ({ children }) => {

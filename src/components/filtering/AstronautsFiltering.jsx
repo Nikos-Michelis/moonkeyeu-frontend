@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {useAstronautsFilters} from "@/hooks/paging-filtering/useAstronautsFilters.jsx";
 import {Button} from "@/components/button/Button.jsx";
-import CustomSelect from "@/components/utils/CustomSelect.jsx";
+import CustomSelect from "@/components/utils/select/CustomSelect.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faArrowsRotate, faFilter, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faArrowsRotate, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
 
 AstronautsFiltering.propTypes = {
@@ -138,7 +138,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                             <CustomSelect
                                 options={filters?.data?.nationalities || []}
                                 field="nationality"
-                                placeholder={"Νationality"}
+                                placeholder={"Nationality"}
                                 setFilters={setFilters}
                                 searchValue={searchValue}
                                 setSearchValue={setSearchValue}
@@ -187,7 +187,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                     </div>
                     <div className="toolbar__actions">
                         <Button
-                            className="btn--transparent fs-medium-200"
+                            className="btn--transparent rotation fs-medium-200"
                             onClick={ handleReset }>
                             <FontAwesomeIcon icon={faArrowsRotate} />
                         </Button>

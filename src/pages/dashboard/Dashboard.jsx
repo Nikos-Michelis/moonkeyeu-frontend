@@ -51,7 +51,6 @@ const Dashboard = () =>{
                                             <LinkButton
                                                 className="btn btn--primary btn--big-hg"
                                                 to="etl-report"
-                                                disabled={true}
                                             >
                                                 <FontAwesomeIcon icon={faDatabase} /> ETL Tasks
                                             </LinkButton>

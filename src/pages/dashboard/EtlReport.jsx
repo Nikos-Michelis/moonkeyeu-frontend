@@ -2,25 +2,38 @@ import React, {useEffect, useState} from "react";
 import { useAuth } from "@/context/AuthProvider.jsx";
 import toast from "react-hot-toast";
 import { useSimpleQuery } from "@/services/queries.jsx";
-import BasicTable from "@/components/table/BasicTable.jsx";
+import Table from "@/components/table/Table.jsx";
 import { DateTime } from "luxon";
 import { Button } from "@/components/button/Button.jsx";
-import { useModal } from "@/context/ModalProvider.jsx";
 import {getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable} from "@tanstack/react-table";
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import TablePagination from "@/components/pagination/TablePagination.jsx";
 import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faChevronLeft, faCircleExclamation} from '@fortawesome/free-solid-svg-icons';
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import {faBug, faChevronLeft, faCircleExclamation, faLink} from '@fortawesome/free-solid-svg-icons';
+import ContentContainer from "@/layout/ContentContainer.jsx";
+import AlertModal from "@/components/modal/dialog/AlertModal.jsx";
+import {faCopy} from "@fortawesome/free-regular-svg-icons/faCopy";
+import useClipboard from "@/hooks/util/useClipboard.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 
 function EtlReport() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const { openModal } = useModal();
     const { user } = useAuth();
     const [sorting, setSorting] = useState([]);
+    const { copied, copyToClipboard } = useClipboard();
 
+    const handleShare = (message) => {
+        copyToClipboard(message);
+    };
+
+    useEffect(() => {
+        copied &&  toast(
+            "Error message was copied to the clipboard.",
+            { icon: <FontAwesomeIcon icon={faLink} /> }
+        );
+    }, [copied]);
 
     const columns = [
         {
@@ -57,21 +70,30 @@ function EtlReport() {
             cell: ({ row }) => (
                 <div>
                     {row.original.exitMessage ? (
-                        <Button
-                            className="btn--transparent"
-                            onClick={() =>
-                                openModal("exceptionMessage", {
-                                    title: "Exception Message",
-                                    details: [row.original.exitMessage],
-                                    confirmLabel: undefined,
-                                    cancelLabel: "Exit",
-                                    confirmFn: undefined,
-                                    hasConfirmBtn: false
-                                }, "prompt")
-                            }
-                        >
-                            <FontAwesomeIcon icon={faCircleExclamation} style={{ color: "var(--warning-300)" }} />
-                        </Button>
+                        <AlertModal>
+                            <AlertModal.Button className="btn--transparent">
+                                <FontAwesomeIcon icon={faCircleExclamation}/>
+                            </AlertModal.Button>
+                            <AlertModal.Content
+                                classNames={{title: "padding-4"}}
+                                title={<><FontAwesomeIcon icon={faBug} /> Exception Message</>}
+                                okText="Welp, that's not good"
+                            >
+                                <div className="fs-small-100 padding-4 fw-bold log-wrap">
+                                    <div className="flex justify-end fs-medium-400">
+                                        <Button
+                                            className="btn--transparent pos-absolute top-8 right-1"
+                                            onClick={() => handleShare(row?.original?.exitMessage)}
+                                        >
+                                            <FontAwesomeIcon icon={faCopy} />
+                                        </Button>
+                                    </div>
+                                    <div className="padding-2">
+                                        {row?.original?.exitMessage}
+                                    </div>
+                                </div>
+                            </AlertModal.Content>
+                        </AlertModal>
                     ) : (
                         "-"
                     )}
@@ -114,7 +136,7 @@ function EtlReport() {
 
     return (
         <>
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title="ETL Tasks"
                     description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
@@ -125,7 +147,7 @@ function EtlReport() {
                     description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
                 />
                 <section className="members-section">
-                    <div className="container padding-inline-5" data-type="wide">
+                    <div className="container margin-block-end-13 padding-5" data-type="wide">
                         {!(queryData.isPending || queryData.isFetching) &&
                             <div className="flex justify-start margin-block-4">
                                 <Button className="btn--transparent" onClick={() => window.history.back()}>
@@ -133,11 +155,11 @@ function EtlReport() {
                                 </Button>
                             </div>
                         }
-                        {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <BasicTable table={table} />}
+                        {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <Table table={table} />}
                         <TablePagination table={table} />
                     </div>
                 </section>
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {useModal} from "@/context/ModalProvider.jsx";
+import React, {useCallback, useEffect, useState} from 'react';
 import {Button} from "@/components/button/Button.jsx";
 import {useForm} from "react-hook-form";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import ErrorBox from "@/components/utils/ErrorBox.jsx";
-import Input from "@/components/utils/Input.jsx";
+import Input from "@/components/utils/fields/Input.jsx";
 import {useNavigate} from "react-router-dom";
 import {useCreateMutation, useDeleteMutation} from "@/services/mutations.jsx";
 import {useSimpleQuery} from "@/services/queries.jsx";
@@ -13,17 +12,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faAngleUp,
     faAngleDown,
-    faXmark,
     faEye,
     faSpinner,
-    faArrowRight,
+    faArrowRight, faFileCircleXmark,
 } from '@fortawesome/free-solid-svg-icons';
+import CustomScrollArea from "@/components/utils/CustomScrollArea.jsx";
+import CustomCheckbox from "@/components/utils/CustomCheckbox.jsx";
+import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
+import toast from "react-hot-toast";
 
-export function AddBookmarkForm() {
+export function AddBookmarkForm({launchId}) {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const { modals, closeModal } = useModal();
     const navigate = useNavigate();
-    const modal = modals["bookmarkModal"] || {};
     const [toggle, setToggle] = useState(false)
     const [bookmark, setBookmark] = useState(null)
     const debouncedValue = useDebounce(bookmark, 500);
@@ -47,49 +47,57 @@ export function AddBookmarkForm() {
 
     const createBookmarkMutation =
         useCreateMutation({
-            successMessage: "Bookmark added!",
+            successMessage: "Bookmark created successfully!",
             queryKeysToInvalidate: ["user-bookmarks"],
             retry: 1
         });
 
     const addToBookmarkMutation =
         useCreateMutation({
-            successMessage: "Launch added successfully!",
             queryKeysToInvalidate: ["user-bookmarks", "my-launches"],
             retry: 1
         });
 
     const removeLaunchMutation =
         useDeleteMutation({
-            successMessage: "Launch removed successfully!",
             queryKeysToInvalidate: ["user-bookmarks", "my-launches"],
             retry: 1
         });
 
-    const handleAddToBookmark = (data) => {
-        addToBookmarkMutation.mutate(
-            {
+    const handleAddToBookmark = async (data) => {
+        await toast.promise(
+            addToBookmarkMutation.mutateAsync({
                 data: data,
                 url: baseUrl + "/user/bookmark/add",
                 options: { withCredentials: true, Bearer: true }
-            },
-            {
+            }, {
                 onSuccess: () => {
                     reset();
                 },
                 onError: (error) => {
                     setApiError(error.response?.data);
                 },
+            }),
+            {
+                loading: 'Adding launch to your bookmark...',
+                success: <b>Launch added successfully!</b>,
+                error: (err) => <b>{err.message || 'Oops! Something went wrong.'}</b>,
             }
-        );
+        )
     };
 
-     const handleRemoveFromBookmark = (data) => {
-         removeLaunchMutation.mutate(
-             {
-             url: baseUrl + `/user/bookmark/delete/${data.bookmark}/${data.id}`,
-             options: { withCredentials: true, Bearer: true }
-         })
+    const handleRemoveFromBookmark = async (data) => {
+        await toast.promise(
+            removeLaunchMutation.mutateAsync({
+                url: baseUrl + `/user/bookmark/delete/${data.bookmark}/${data.launchId}`,
+                options: { withCredentials: true, Bearer: true }
+            }),
+            {
+                loading: 'Removing launch from your bookmark...',
+                success: <b>Launch removed successfully!</b>,
+                error: (err) => <b>{err.message || 'Oops! Something went wrong.'}</b>,
+            }
+        );
     };
 
     const onSubmit = (data) => {
@@ -109,12 +117,7 @@ export function AddBookmarkForm() {
             }
         );
     };
-    const handleClose = () => {
-        setToggle(false)
-        setApiError(null);
-        closeModal("bookmarkModal");
-        reset();
-    };
+
     const handleBookmarkChange = (e) => {
         const { name, checked } = e.target;
         setBookmark((prevBookmark) => ({
@@ -123,64 +126,65 @@ export function AddBookmarkForm() {
             checked: checked
         }));
     };
+
     const handleOnNavigate = (url) => {
-        closeModal("bookmarkModal");
         navigate(url);
     }
+
     useEffect(() => {
+        if (addToBookmarkMutation.isPending || removeLaunchMutation.isPending) {
+            return;
+        }
+
         if (debouncedValue?.name) {
             if (debouncedValue?.checked) {
-                handleAddToBookmark({bookmarkName: debouncedValue.name, launchId: modal.data});
+                void handleAddToBookmark({ bookmarkName: debouncedValue.name, launchId: launchId });
             } else {
-                handleRemoveFromBookmark({bookmark: debouncedValue.name, id: modal.data,});
+                void handleRemoveFromBookmark({ bookmark: debouncedValue.name, launchId: launchId });
             }
         }
-    }, [debouncedValue]);
-
-
-    if (!modal.isOpen) return null;
+    }, [debouncedValue, launchId]);
 
     return(
-        <div className="form-popup-container bookmark-form-container">
-            <Button
-                onClick={handleClose}
-                className="btn--transparent btn--close"
-            >
-                <FontAwesomeIcon icon={faXmark} className="fs-small-500"/>
-            </Button>
-            <div className="form-box small-form flex flex-column justify-center align-center">
-                <div className="padding-block-end-6">
-                    <h3 className="margin-inline-2">Bookmark to...</h3>
-                </div>
-                <div className="container container--small-list padding-8"
-                     data-type="full-width"
-                     data-scroll={queryData.data && queryData.data.length > 5 ? "vertical" : undefined}
-                     data-height="small"
-                >
+        <>
+            <div className="dialog__content padding-8">
+                <CustomScrollArea>
                     <div className="padding-inline-2">
-                        { queryData.data && queryData.data.length > 0
-                            && queryData.data.map(bookmark =>
-                                <div className="container flex justify-space-between align-center margin-block-1 margin-inline-4" key={bookmark.id}>
-                                    <input
-                                        key={bookmark?.id}
-                                        type="checkbox"
+                        {queryData.isPending && <SpinnerLoader/>}
+                        {!queryData.isPending && queryData.data?.length > 0 && (
+                            queryData.data.map(bookmark => (
+                                <div className="flex justify-space-between align-center margin-block-1 margin-inline-4" key={bookmark.id}>
+                                    <CustomCheckbox
+                                        id={bookmark?.id}
                                         name={bookmark?.bookmark}
                                         value={bookmark?.bookmark}
-                                        defaultChecked={bookmark?.launches.length > 0
-                                            ? bookmark.launches.some(launch => launch.id === modal.data)
-                                            : false
+                                        defaultChecked={bookmark?.launches?.some(launch => launch.id === launchId) ?? false}
+                                        onCheckedChange={(checked) => handleBookmarkChange({
+                                            target: {
+                                                name: bookmark.bookmark,
+                                                value: bookmark.bookmark,
+                                                checked: checked
+                                            }
+                                        })
                                         }
-                                        onChange={handleBookmarkChange}
                                         disabled={addToBookmarkMutation.isPending || removeLaunchMutation.isPending}
                                     />
                                     <p className="margin-inline-8 fw-regular ellipsis-single-md fs-small-200">{bookmark?.bookmark}</p>
-                                    <Button className="btn btn--transparent" onClick={() => handleOnNavigate(`bookmarks/${bookmark.bookmark}`)}>
+                                    <Button className="btn btn--transparent" onClick={() => handleOnNavigate(`/bookmarks/${bookmark?.bookmark}`)}>
                                         <FontAwesomeIcon icon={faEye} />
                                     </Button>
                                 </div>
-                            )}
+                            ))
+                        )}
+
+                        {!queryData.isPending && (!queryData.data || queryData.data.length === 0) && (
+                            <div className="padding-8 text-center clr-neutral-1000">
+                                <FontAwesomeIcon icon={faFileCircleXmark} className="fs-large-700 margin-block-end-6"/>
+                                <p>There are no bookmarks yet, create a new bookmark</p>
+                            </div>
+                        )}
                     </div>
-                </div>
+                </CustomScrollArea>
                 <div className="flex flex-wrap justify-center margin-block-4">
                     <Button onClick={() => setToggle(!toggle)}
                             className="btn--transparent btn--big--transparent">
@@ -211,7 +215,7 @@ export function AddBookmarkForm() {
                                 errors={errors}
                                 disabled={createBookmarkMutation.isPending || addToBookmarkMutation.isPending || removeLaunchMutation.isPending}/>
                         </div>
-                        <div className="flex flex-wrap justify-center">
+                        <div className="flex flex-wrap justify-center padding-2">
                             <Button
                                 className="btn btn--primary btn--big"
                                 type="submit"
@@ -226,6 +230,6 @@ export function AddBookmarkForm() {
                     </form>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

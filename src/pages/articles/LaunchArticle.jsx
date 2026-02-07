@@ -4,7 +4,7 @@ import React from "react";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdEvent from "@/components/seo/jsonld/JsonLdEvent.jsx";
-import ArticleContentSection from "@/components/sections/articles/ArticleContentSection.jsx";
+import ArticleContentSection from "@/layout/ArticleContentSection.jsx";
 import LaunchArticleContent from "@/components/sections/articles/LaunchArticleContent.jsx";
 
 function LaunchArticle() {

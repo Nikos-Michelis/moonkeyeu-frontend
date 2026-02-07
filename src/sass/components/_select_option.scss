@@ -46,7 +46,7 @@
   &__content {
     display: block;
     margin-top: 0.9375rem;
-    background-color: var(--primary-100);
+    background-color: var(--card-bg);
     @include abs.cursive_border($border-width: 0.13rem, $border-radius: 0.2rem);
     width: 14rem;
     z-index: 1;

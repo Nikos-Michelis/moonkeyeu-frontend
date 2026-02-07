@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import {Button} from "@/components/button/Button.jsx";
-import Input from "@/components/utils/Input.jsx";
+import Input from "@/components/utils/fields/Input.jsx";
 import {useForm} from "react-hook-form";
 import ErrorBox from "@/components/utils/ErrorBox.jsx";
-import Select from "@/components/utils/Select.jsx";
-import TextArea from "@/components/utils/TextArea.jsx";
-import {value} from "lodash/seq.js";
+import Select from "@/components/utils/select/Select.jsx";
+import TextArea from "@/components/utils/fields/TextArea.jsx";
 import {useCreateMutation} from "@/services/mutations.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,11 +26,13 @@ const ContactForm = () => {
 
         },
     });
+
     const contactFormMutation =
         useCreateMutation({
             successMessage: "We'll review your request shortly!",
             queryKeysToInvalidate: ["contact-messages"]
         });
+
     const onSubmit = (data) => {
         contactFormMutation.mutate(
             {
@@ -50,11 +51,13 @@ const ContactForm = () => {
             }
         );
     }
+
     useEffect(() => {
         if (user?.email) {
             setValue("email", user.email);
         }
     }, [user?.email, setValue]);
+
     return (
         <>
             <section className="contact-section">
@@ -76,7 +79,8 @@ const ContactForm = () => {
                                 To help us organize bug reports more effectively, please create a new issue
                                 <LinkButton
                                     className="btn--transparent fw-bold" to="https://github.com/Nikos-Michelis/MoonkeyEU-Feedback/issues/new"
-                                    isExternal={true}> here. </LinkButton>
+                                    isExternal={true}> here.
+                                </LinkButton>
                                 Thank you for your feedback — we're striving to make the platform better!
                             </p>
                             <hr/>
@@ -133,7 +137,7 @@ const ContactForm = () => {
                                             errors={errors}
                                         />
                                     </div>
-                                    <div className="container flex justify-center">
+                                    <div className="flex justify-center padding-2">
                                         <Button className="btn btn--primary btn--big" type="submit" disabled={contactFormMutation.isPending}>
                                             {contactFormMutation.isPending
                                                 ? <FontAwesomeIcon icon={faSpinner} spin />

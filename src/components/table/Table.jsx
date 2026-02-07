@@ -3,7 +3,7 @@ import { flexRender } from "@tanstack/react-table";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 
-const BasicTable = ({ table }) => {
+const Table = ({ table }) => {
     const rows = table.getRowModel().rows;
     const asc = (
         <div className="table__sorting">
@@ -70,4 +70,4 @@ const BasicTable = ({ table }) => {
 };
 
 
-export default BasicTable;
+export default Table;

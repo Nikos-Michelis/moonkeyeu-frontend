@@ -6,7 +6,7 @@ import showErrorToast from "@/components/utils/ShowErrorToast.jsx";
 export const useCreateMutation = (
     {
         successMessage = undefined,
-        errorMessage = "Opps! Something went wrong...",
+        errorMessage = "Oops! Something went wrong...",
         showError = true,
         queryKeysToInvalidate = [],
         mutationOptions = {}
@@ -36,7 +36,7 @@ export const useCreateMutation = (
 export const useDeleteMutation = (
     {
         successMessage = undefined,
-        errorMessage = "Opps! Something went wrong...",
+        errorMessage = "Oops! Something went wrong...",
         showError = true,
         queryKeysToInvalidate = [],
         mutationOptions = {}
@@ -67,7 +67,7 @@ export const useDeleteMutation = (
 export const useUpdateMutation = (
     {
         successMessage = "Operation successful!",
-        errorMessage = "Opps! Something went wrong...",
+        errorMessage = "Oops! Something went wrong...",
         showError = true,
         queryKeysToInvalidate = [],
         mutationOptions = {}

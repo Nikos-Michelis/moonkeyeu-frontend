@@ -1,22 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
-import useClipboard from "@/hooks/util/useClipboard.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import Img from "@/components/utils/Img.jsx";
 import { Button } from "@/components/button/Button.jsx";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo, faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { faWikipediaW } from '@fortawesome/free-brands-svg-icons';
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import ShareContent from "@/components/modal/ShareContent.jsx";
+import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 
 const AgencyCard = ({id, name, type, administrator, description, spacecraft, launchers, wiki_url, images, country, isDetailed = false, cardStyles}) => {
-    const { copied, copyToClipboard } = useClipboard();
+    const [shareOpen, setShareOpen] = useState(false);
     const tooltipInfoMessage = id ? "" : "No Info Available";
-    const handleShare = () => {
-        const url = window.location.origin + window.location.pathname + "/" + id;
-        copyToClipboard(url);
-    };
-    const checkValue = (value) => { return (value ? value : "―"); }
+    const url = window.location.origin + window.location.pathname + "/" + id;
+    const { handleValue} = useDataFormatter();
 
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || ''}`}>
@@ -46,13 +45,13 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                     }
                     {isDetailed &&
                         <div className="panel">
-                            <h4 className="panel__title">{checkValue(name)}</h4>
+                            <h4 className="panel__title">{handleValue(name)}</h4>
                             <hr/>
                             <div className="panel__wrapper">
                                 <div className="panel__container">
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Type</p>
-                                        <p className="panel__text">{checkValue(type)}</p>
+                                        <p className="panel__text">{handleValue(type)}</p>
                                     </div>
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">CountryCode</p>
@@ -62,33 +61,33 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                                 <div className="panel__container">
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Spacecraft</p>
-                                        <p className="panel__text">{checkValue(spacecraft)}</p>
+                                        <p className="panel__text">{handleValue(spacecraft)}</p>
                                     </div>
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Launchers</p>
-                                        <p className="panel__text">{checkValue(launchers)}</p>
+                                        <p className="panel__text">{handleValue(launchers)}</p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
                                     <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Administrator</p>
-                                        <p className="panel__text">{checkValue(administrator)}</p>
+                                        <p className="panel__text">{handleValue(administrator)}</p>
                                     </div>
                                 </div>
                             </div>
                             <hr/>
                         </div>
                     }
-                    <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
+                    <div className="landscape-card__actions">
                         {id ? (
-                            <div className="landscape-card__info-box">
+                            <div className="landscape-card__action">
                                 <Link className="btn btn--primary" to={`/agencies/${id.toString()}`} >
                                     <FontAwesomeIcon icon={faCircleInfo} /> INFO
                                 </Link>
                             </div>
                         ) : (
-                            <Tooltip message={tooltipInfoMessage}>
-                                <div className="landscape-card__info">
+                            <Tooltip content={tooltipInfoMessage}>
+                                <div className="landscape-card__action">
                                     <Link className="btn btn--primary" to="#" >
                                         <FontAwesomeIcon icon={faCircleInfo} /> INFO
                                     </Link>
@@ -96,7 +95,7 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                             </Tooltip>
                         )}
                         { wiki_url ? (
-                            <div className="landscape-card__wiki">
+                            <div className="landscape-card__action">
                                 <LinkButton
                                     className="btn btn--primary"
                                     to={wiki_url}
@@ -106,8 +105,8 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
-                                <div className="landscape-card__wiki">
+                            <Tooltip content="No Wiki Available">
+                                <div className="landscape-card__action">
                                     <LinkButton
                                         className="btn btn--primary"
                                         isExternal={true}
@@ -118,13 +117,19 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                                 </div>
                             </Tooltip>
                         )}
-                        <div className="landscape-card__share">
-                            <Tooltip copied={copied} message={copied ? "Copied!" :"Copied to clipboard!"}>
-                                <Button className="btn btn--primary" onClick={handleShare} disabled={copied}>
-                                    <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
-                                </Button>
-                            </Tooltip>
+                        <div className="landscape-card__action">
+                            <Button
+                                className="btn btn--primary"
+                                onClick={() => setShareOpen(true)}
+                            >
+                                <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
+                            </Button>
                         </div>
+                        <Modal open={shareOpen} onOpenChange={setShareOpen}>
+                            <Modal.Content title="Share">
+                                <ShareContent url={url} title={name} />
+                            </Modal.Content>
+                        </Modal>
                     </div>
                 </section>
             </div>

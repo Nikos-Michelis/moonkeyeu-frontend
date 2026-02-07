@@ -29,7 +29,7 @@ const SpacecraftConfig = ({ spacecraftConfigs }) =>{
                                 spacecraftConfigs.map((config) => (
                                     <SpacecraftCard
                                         showPanel={true}
-                                        url={`/launches?page=1&limit=12&spacecraftConfig=${config?.id.toString()}&upcoming=all`}
+                                        navUrl={`/launches?page=1&limit=12&spacecraftConfig=${config?.id.toString()}&upcoming=all`}
                                         key={config.id}
                                         {...config}
                                         cardStyles={contentConfig?.styles}

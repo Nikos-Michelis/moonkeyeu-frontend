@@ -2,12 +2,8 @@ import React from 'react';
 import BookmarkCard from "@/components/cards/BookmarkCard.jsx";
 import SkeletonBookmarkLoader from "@/components/skeleton/SkeletonBookmarkLoader.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
-import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
-import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
-import LatestNews from "@/components/sidebars/LatestNews.jsx";
-import {Button} from "@/components/button/Button.jsx";
-import { faChevronLeft, faBookmark } from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faBookmark } from '@fortawesome/free-solid-svg-icons';
+import ContentSection from "@/layout/ContentSection.jsx";
 
 const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
     const { status } = useAuth();
@@ -15,8 +11,8 @@ const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
     const contentConfig = {
         component: SkeletonBookmarkLoader,
         styles: {
-            wrapper: "small-wrapper",
-            section: "bookmark-section"
+            section: "bookmark-section",
+            wrapper: "small-wrapper"
         },
     };
 
@@ -27,60 +23,23 @@ const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
     }
 
     const options = {
+        showPrevBtn: false,
         showBackBtn: true,
         showItemsLimit: true,
         maxItems: 20
     }
-
-    return(
-        <section className="bookmarks-section">
-            <div className={`grid__container container margin-block-end-15`} data-type="full-bleed">
-                <div className="grid__wrapper">
-                    <div className="flex justify-space-between margin-block-end-4">
-                        { options?.showBackBtn &&
-                            (
-                                <Button className="btn--transparent margin-block-2" onClick={() => window.history.back()}>
-                                    <FontAwesomeIcon icon={faChevronLeft} /> Back
-                                </Button>
-                            )
-                        }
-                        { options?.showItemsLimit &&
-                            (
-                                <div className="fs-small-300 fw-bold">
-                                    <span>{items.length >= 0 ? items.length : 0}</span>
-                                    <span> / </span>
-                                    <span>{options?.maxItems}</span>
-                                </div>
-                            )
-                        }
-                    </div>
-                    <div className={`${bookmarks.length > 0 || (isFetching || isPending) ? "grid__layout" : ""}`}>
-                        <SkeletonLoader
-                            isFetching={isFetching}
-                            isPending={isPending || status.isPending}
-                            isError={isError}
-                            contentConfig={contentConfig}>
-                            {bookmarks.length > 0 ?
-                                bookmarks.map(bookmark => (
-                                <BookmarkCard
-                                    key={bookmark?.id}
-                                    {...bookmark}
-                                />
-                            )) :
-                                <div className="padding-8 text-center">
-                                    <h2>{emptyList.heading}</h2>
-                                    <p>{emptyList.message} <FontAwesomeIcon icon={emptyList.icon} /></p>
-                                </div>
-                            }
-                        </SkeletonLoader>
-                    </div>
-                </div>
-                <aside>
-                    <BuyMeACoffee />
-                    <LatestNews />
-                </aside>
-            </div>
-        </section>
-    );
+    return (
+        <ContentSection
+            itemKeyExtractor={(item) => item.id}
+            items={items || {}}
+            isPending={isPending}
+            isFetching={isFetching}
+            isError={isError}
+            contentConfig={contentConfig}
+            CardComponent={BookmarkCard}
+            options={options}
+            emptyList={emptyList}
+        />
+    )
 }
 export default BookmarksSection;

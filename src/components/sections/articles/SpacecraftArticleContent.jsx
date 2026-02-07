@@ -9,18 +9,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Img from "@/components/utils/Img.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {faWikipediaW} from "@fortawesome/free-brands-svg-icons";
-import React from "react";
-import useClipboard from "@/hooks/util/useClipboard.jsx";
+import React, {useState} from "react";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import ShareContent from "@/components/modal/ShareContent.jsx";
 
 const SpacecraftArticleContent = ({data}) => {
     const {handleValue, booleanConverter} = useDataFormatter();
-    const { copied, copyToClipboard } = useClipboard();
-    const handleShare = () => {
-        copyToClipboard(window.location.href)
-    };
+    const [shareOpen, setShareOpen] = useState(false);
+    const url = window.location.href;
 
     return (
         <>
@@ -102,7 +101,7 @@ const SpacecraftArticleContent = ({data}) => {
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Info Available">
+                            <Tooltip content="No Info Available">
                                 <div className="info">
                                     <LinkButton
                                         className="btn--transparent btn-instragram"
@@ -124,7 +123,7 @@ const SpacecraftArticleContent = ({data}) => {
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
+                            <Tooltip content="No Wiki Available">
                                 <div className="wiki">
                                     <LinkButton
                                         className="btn--transparent btn-wikipedia"
@@ -135,13 +134,19 @@ const SpacecraftArticleContent = ({data}) => {
                                 </div>
                             </Tooltip>
                         )}
-                        <div>
-                            <Tooltip message={copied ? "Copied!" :"Copied to clipboard!"}>
-                                <Button className="btn--transparent" onClick={handleShare} disabled={copied}>
-                                    <FontAwesomeIcon icon={faShareFromSquare} />
-                                </Button>
-                            </Tooltip>
+                        <div className="landscape-card__action">
+                            <Button
+                                className="btn--transparent"
+                                onClick={() => setShareOpen(true)}
+                            >
+                                <FontAwesomeIcon icon={faShareFromSquare} />
+                            </Button>
                         </div>
+                        <Modal open={shareOpen} onOpenChange={setShareOpen}>
+                            <Modal.Content title="Share">
+                                <ShareContent url={url} title={data?.name} />
+                            </Modal.Content>
+                        </Modal>
                     </div>
                 </div>
             </div>

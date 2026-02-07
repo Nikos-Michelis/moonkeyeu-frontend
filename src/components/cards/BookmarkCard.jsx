@@ -1,17 +1,16 @@
-import React, {useCallback, useRef} from "react";
-import { Button } from "@/components/button/Button.jsx";
+import React, {useCallback, useState} from "react";
 import { LinkButton } from "@/components/button/LinkButton.jsx";
 import {useDeleteMutation} from "@/services/mutations.jsx";
 import Img from "@/components/utils/Img.jsx";
-import {useModal} from "@/context/ModalProvider.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisVertical, faList  } from '@fortawesome/free-solid-svg-icons';
+import { faList  } from '@fortawesome/free-solid-svg-icons';
 import toast from "react-hot-toast";
+import BookmarkDropdown from "@/components/modal/dropdown/BookmarkDropdown.jsx";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import {EditBookmarkForm} from "@/components/modal/forms/EditBookmarkForm.jsx";
 
 const BookmarkCard = ({ id, bookmark, launches }) => {
-    const { openModal } = useModal();
-    const cardRef = useRef();
-    const triggerRef = useRef(null);
+    const [open, setOpen] = useState(false);
     const bookmarkUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/user/bookmark/delete/`;
     const removeBookmarkMutation =
         useDeleteMutation({
@@ -19,7 +18,7 @@ const BookmarkCard = ({ id, bookmark, launches }) => {
             queryKeysToInvalidate: ["user-bookmarks"]
         });
 
-    const handleRemove = useCallback(async (bookmark) => {
+    const handleRemove = useCallback(async () => {
         await toast.promise(
             removeBookmarkMutation.mutateAsync(
                 {
@@ -35,33 +34,8 @@ const BookmarkCard = ({ id, bookmark, launches }) => {
         );
     }, [bookmark]);
 
-    const handleOpenDropdown = () => {
-        if (!cardRef.current) return;
-
-        const rect = cardRef.current.getBoundingClientRect();
-        const dropdownWidth = 140;
-        const left = rect.right + window.scrollX - dropdownWidth;
-        const top = rect.bottom + window.scrollY - 25;
-
-        openModal(
-            `bookmarkDropdown-${id}`,
-            {
-                bookmark,
-                img: launches?.[0]?.image?.image_url,
-                position: { top, left },
-                status: {
-                    isPending: removeBookmarkMutation.isPending,
-                    isSuccess: removeBookmarkMutation.isSuccess,
-                    isError: removeBookmarkMutation.isError,
-                },
-                handleRemove,
-            },
-            "dropdown",
-            triggerRef);
-    };
-
     return (
-        <article ref={cardRef} className="bookmark-card container flex flex-column rounded-md" data-type="full-width" data-overflow="visible">
+        <article className="bookmark-card container flex flex-column rounded-md" data-type="full-width" data-overflow="visible">
             <div className="container" data-spacing="none">
                 <Img
                     src={launches?.[0]?.image?.image_url}
@@ -73,14 +47,23 @@ const BookmarkCard = ({ id, bookmark, launches }) => {
             <div className="padding-2">
                 <div className="flex justify-space-between align-center">
                     <h3 className="fs-small-300">{bookmark}</h3>
-                    <Button
-                        ref={triggerRef}
-                        type="button"
-                        className="btn--transparent"
-                        onClick={handleOpenDropdown}
-                    >
-                        <FontAwesomeIcon icon={faEllipsisVertical} />
-                    </Button>
+                    <BookmarkDropdown
+                        handleRemove={handleRemove}
+                        setOpen={() => setOpen(true)}
+                    />
+                    <Modal open={open} onOpenChange={setOpen}>
+                        <Modal.Content title="Edit Bookmark">
+                            <EditBookmarkForm
+                                bookmark={bookmark}
+                                img={launches?.[0]?.image?.image_url}
+                                status={{
+                                    isPending: removeBookmarkMutation.isPending,
+                                    isSuccess: removeBookmarkMutation.isSuccess,
+                                    isError: removeBookmarkMutation.isError
+                                }}
+                            />
+                        </Modal.Content>
+                    </Modal>
                 </div>
                 <div className="flex">
                     <LinkButton className="btn--transparent" to={bookmark}>

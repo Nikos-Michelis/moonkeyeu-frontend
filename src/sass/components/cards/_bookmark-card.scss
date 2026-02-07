@@ -4,6 +4,7 @@
   position: relative;
   box-shadow: $box-shadow-1;
   @include cursive_border();
+  background: var(--card-bg);
   & h3 {
     @include singleLine-ellipsis(15rem);
   }
@@ -23,6 +24,7 @@
     right: 5px;
     background: rgba(0, 0, 0, 0.7);
     padding: 4px 6px;
+    color: $clr-star-200;
     font-size: var(--fs-small-200);
     border-radius: 4px;
   }

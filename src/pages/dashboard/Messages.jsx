@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import MessagesSection from "@/components/sections/pages/MessagesSection.jsx";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
@@ -9,7 +9,7 @@ import {useSearchParams} from "react-router-dom";
 import { useParameterizedQuery } from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 
 const defaultFilters = {
     page: 1,
@@ -54,7 +54,7 @@ function Messages() {
                 title="Messages"
                 description="View and manage community messages."
             />
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title="Contact Messages"
                     description="View and manage community messages."
@@ -70,7 +70,7 @@ function Messages() {
                     isError={queryData.isError}
                     pagination={pagination}
                 />
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

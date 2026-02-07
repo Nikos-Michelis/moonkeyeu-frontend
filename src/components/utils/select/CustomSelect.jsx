@@ -2,7 +2,7 @@ import React, {useState, useRef} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAngleDown, faAngleUp, faMagnifyingGlass, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 
 const CustomSelect = (
     {
@@ -48,6 +48,7 @@ const CustomSelect = (
     };
 
     useClickOutside({ modalRef: dropdownRef, handler: handleClickOutside });
+
     const handleClearance = (field) => {
         setSelectedOption(prev => ({...prev, [field]: ""}));
         resetFilterByName(field);
@@ -59,7 +60,7 @@ const CustomSelect = (
                 {
                     btnPlaceholder.length > OPTIONS_LENGTH
                         ?
-                        <Tooltip message={btnPlaceholder}>
+                        <Tooltip content={btnPlaceholder}>
                             <div className="select__btn--ellipsis">
                                 {btnPlaceholder}
                             </div>
@@ -90,7 +91,7 @@ const CustomSelect = (
                                     <li className={`${defaultValue === option.id? "selected" : ""}`} key={option.id} onClick={() => handleOnSelect(option)}>
                                         { option?.name.length > OPTIONS_LENGTH
                                             ?
-                                            <Tooltip message={option.name}>
+                                            <Tooltip content={option.name}>
                                                 <div className="select__options--ellipsis">{option.name}</div>
                                             </Tooltip>
                                             : <div>{option.name}</div>

@@ -11,7 +11,7 @@ export default function CookieConsent(){
         setCookie("cookieConsent", true, { path: "/", expires: expirationDate });
     };
     return(
-        <div className="container pos-fixed bottom-0 left-0 flex flex-wrap justify-space-between align-center border-t-xs border-star-300 z-overlay" data-type="full-width">
+        <div className="container pos-fixed bottom-0 left-0 flex flex-wrap justify-space-between align-center bg-primary-300 border-top-xs z-overlay" data-type="full-width">
             <div className="container flex flex-wrap justify-space-between align-center margin-inline-4" data-type="full-bleed">
                 <div>
                     <FontAwesomeIcon icon={faCookieBite} className="fs-medium-900 margin-4" />

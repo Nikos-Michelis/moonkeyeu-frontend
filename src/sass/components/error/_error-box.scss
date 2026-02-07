@@ -1,0 +1,61 @@
+@use "../../abstracts/index" as *;
+@use "../../abstracts/index" as abs;
+
+.error {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__container {
+    box-sizing: inherit;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem 2rem 2rem;
+    width: 100%;
+    min-width: 100%;
+    min-height: 5.5rem;
+    max-width: fit-content;
+    background-color: $clr-warning-100;
+    position: relative;
+    @include abs.cursive_border($border-width: 0.1rem, $color: $clr-warning-300);
+    box-shadow: $box-shadow-warning-1;
+
+  }
+
+  &__list {
+    @include abs.font($font-size: var(--fs-medium-100), $font-weight: bold, $color: $clr-dark-cosmos-300);
+    margin-block: 0.5rem;
+    margin-left: 4rem;
+  }
+
+  &__text {
+    display: flex;
+    justify-content: start;
+    position: relative;
+    width: 100%;
+    padding: 0.2rem 0;
+  }
+
+  &__circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    margin-right: 0.625rem;
+    width: 3.125rem;
+    min-width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 0.4375rem;
+    background-color: $clr-warning-300;
+    @include font($font-size: var(--fs-small-700), $color: $clr-star-200);
+  }
+}
+
+

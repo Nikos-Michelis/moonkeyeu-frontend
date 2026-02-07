@@ -22,26 +22,26 @@ const ErrorBox = ({ errors, apiError }) => {
     const renderMessages = (messages) =>
         messages.map((message, index) => (
             <li key={index}>
-                <span className="response-error-message">{message}</span>
+                <span className="error__text">{message}</span>
             </li>
         ));
 
     return (
-        <div className="response-error-wrapper">
-            <div className="response-error-container">
-                <div className="error-circle">
+        <div className="error__wrapper">
+            <div className="error__container">
+                <div className="error__circle">
                     <FontAwesomeIcon icon={faCircleExclamation} />
                 </div>
-                <ul>
+                <ol className="error__list">
                     {renderMessages(formErrorMessages)}
                     {apiValidationErrorMessages.flatMap((error, index) =>
                         Object.entries(error).map(([field, errorMessage]) => (
                             <li key={`${field}-${index}`}>
-                                <span className="response-error-message">{errorMessage}</span>
+                                <span className="error__text">{errorMessage}</span>
                             </li>
                         ))
                     )}
-                </ul>
+                </ol>
             </div>
         </div>
     );

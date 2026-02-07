@@ -1,14 +1,15 @@
 import React from 'react';
 import SpacecraftCard from "@/components/cards/SpacecraftCard.jsx";
-import ContentSection from "@/components/sections/pages/ContentSection.jsx";
+import ContentSection from "@/layout/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
 const SpacecraftSection = ({ spacecraft, isFetching, isError, pagination }) => {
     const items = spacecraft._embedded?.spacecraftConfigSummarizedDTOes || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
         styles: {
-            wrapper: "medium-wrapper",
             section: "spacecraft-articles",
+            wrapper: "medium-wrapper",
+            grid: "grid__layout--landscape"
         },
     };
     return (

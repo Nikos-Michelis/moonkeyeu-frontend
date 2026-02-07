@@ -4,25 +4,25 @@ import {faBook, faChevronLeft, faShareFromSquare} from "@fortawesome/free-solid-
 import Img from "@/components/utils/Img.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import {faInstagram, faWikipediaW, faXTwitter} from "@fortawesome/free-brands-svg-icons";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {faBuilding} from "@fortawesome/free-regular-svg-icons";
 import Launch from "@/components/article-details/Launch.jsx";
-import React from "react";
-import useClipboard from "@/hooks/util/useClipboard.jsx";
+import React, {useState} from "react";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import ShareContent from "@/components/modal/ShareContent.jsx";
 
 const AstronautArticleContent = ({ data }) => {
+    const [shareOpen, setShareOpen] = useState(false);
+    const { handleValue } = useDataFormatter();
     const agency = data?.agency || {};
     const socialMediaLinks = data?.social_media?.length > 0 ? data.social_media : [];
     const launches = data?.crew || [];
     const instagram = socialMediaLinks.find((sm) => sm.name === "Instagram")?.media_url;
     const twitter = socialMediaLinks.find((sm) => sm.name === "Twitter")?.media_url;
     const wiki = socialMediaLinks.find((sm) => sm.name === "Wiki")?.media_url;
-    const { handleValue } = useDataFormatter();
-    const { copied, copyToClipboard } = useClipboard();
-    const handleShare = () => {
-        copyToClipboard(window.location.href)
-    };
+    const url = window.location.href;
+
     return (
           <>
               <div className="container flex justify-start padding-block-start-7 padding-block-end-2">
@@ -84,7 +84,7 @@ const AstronautArticleContent = ({ data }) => {
                                   </LinkButton>
                               </div>
                           ) : (
-                              <Tooltip message="No Instagram Available">
+                              <Tooltip content="No Instagram Available">
                                   <div className="instagram">
                                       <LinkButton
                                           className="btn--transparent"
@@ -107,7 +107,7 @@ const AstronautArticleContent = ({ data }) => {
                                   </LinkButton>
                               </div>
                           ) : (
-                              <Tooltip message="No Twitter Available">
+                              <Tooltip content="No Twitter Available">
                                   <div className="x-twitter">
                                       <LinkButton
                                           className="btn--transparent"
@@ -130,7 +130,7 @@ const AstronautArticleContent = ({ data }) => {
                                   </LinkButton>
                               </div>
                           ) : (
-                              <Tooltip message="No Wiki Available">
+                              <Tooltip content="No Wiki Available">
                                   <div className="wiki">
                                       <LinkButton
                                           className="btn--transparent"
@@ -153,7 +153,7 @@ const AstronautArticleContent = ({ data }) => {
                                   </LinkButton>
                               </div>
                           ) : (
-                              <Tooltip message="No agency available">
+                              <Tooltip content="No agency available">
                                   <div className="agency">
                                       <LinkButton
                                           className="btn--transparent"
@@ -164,13 +164,19 @@ const AstronautArticleContent = ({ data }) => {
                                   </div>
                               </Tooltip>
                           )}
-                          <div>
-                              <Tooltip message={copied ? "Copied!" :"Copied to clipboard!"}>
-                                  <Button className="btn--transparent" onClick={handleShare} disabled={copied}>
-                                      <FontAwesomeIcon icon={faShareFromSquare} />
-                                  </Button>
-                              </Tooltip>
+                          <div className="landscape-card__action">
+                              <Button
+                                  className="btn--transparent"
+                                  onClick={() => setShareOpen(true)}
+                              >
+                                  <FontAwesomeIcon icon={faShareFromSquare} />
+                              </Button>
                           </div>
+                          <Modal open={shareOpen} onOpenChange={setShareOpen}>
+                              <Modal.Content title="Share">
+                                  <ShareContent url={url} title={data?.name} />
+                              </Modal.Content>
+                          </Modal>
                       </div>
                   </div>
               </div>

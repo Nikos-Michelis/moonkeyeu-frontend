@@ -3,22 +3,22 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAlignLeft, faChevronLeft, faCircleInfo, faShareFromSquare} from "@fortawesome/free-solid-svg-icons";
 import Img from "@/components/utils/Img.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import UpcomingLaunch from "@/components/article-details/UpcomingLaunch.jsx";
 import RocketConfig from "@/components/article-details/RocketConfig.jsx";
 import SpacecraftConfig from "@/components/article-details/SpacecraftConfig.jsx";
-import React from "react";
-import useClipboard from "@/hooks/util/useClipboard.jsx";
+import React, {useState} from "react";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import ShareContent from "@/components/modal/ShareContent.jsx";
 
 const AgencyArticleContent = ({queryData, pagination}) => {
-    const { copied, copyToClipboard } = useClipboard();
+    const [shareOpen, setShareOpen] = useState(false);
     const { handleValue } = useDataFormatter();
     const agenciesData = queryData?.agenciesQuery?.data;
     const country = agenciesData?.country || [];
-    const handleShare = () => {
-        copyToClipboard(window.location.href)
-    };
+    const url = window.location.href;
+
     return (
           <>
               <div className="container flex justify-start padding-block-start-7 padding-block-end-2">
@@ -81,7 +81,7 @@ const AgencyArticleContent = ({queryData, pagination}) => {
                                   </LinkButton>
                               </div>
                           ) : (
-                              <Tooltip message="No Info Available">
+                              <Tooltip content="No Info Available">
                                   <div className="info">
                                       <LinkButton
                                           className="btn--transparent btn-wikipedia"
@@ -93,13 +93,19 @@ const AgencyArticleContent = ({queryData, pagination}) => {
                                   </div>
                               </Tooltip>
                           )}
-                          <div>
-                              <Tooltip message={copied ? "Copied!" :"Copied to clipboard!"}>
-                                  <Button className="btn--transparent" onClick={handleShare} disabled={copied}>
-                                      <FontAwesomeIcon icon={faShareFromSquare} />
-                                  </Button>
-                              </Tooltip>
+                          <div className="landscape-card__action">
+                              <Button
+                                  className="btn--transparent"
+                                  onClick={() => setShareOpen(true)}
+                              >
+                                  <FontAwesomeIcon icon={faShareFromSquare} />
+                              </Button>
                           </div>
+                          <Modal open={shareOpen} onOpenChange={setShareOpen}>
+                              <Modal.Content title="Share">
+                                  <ShareContent url={url} title={agenciesData?.name} />
+                              </Modal.Content>
+                          </Modal>
                       </div>
                   </div>
               </div>

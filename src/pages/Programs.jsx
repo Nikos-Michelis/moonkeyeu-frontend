@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import Pagination from "@/components/pagination/Pagination.jsx";
 import {useSearchParams} from "react-router-dom";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
@@ -8,7 +8,7 @@ import ProgramsSection from "@/components/sections/pages/ProgramsSection.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 
 const defaultFilters = {
     page: 1,
@@ -45,7 +45,7 @@ function Programs() {
                 title="Programs"
                 description="Uncover the full spectrum of space programs, past and present."
             />
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                      title="Programs"
                      description="Uncover the full spectrum of space programs, past and present."
@@ -61,7 +61,7 @@ function Programs() {
                      isError={queryData.isError}
                      pagination={pagination}
                  />
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

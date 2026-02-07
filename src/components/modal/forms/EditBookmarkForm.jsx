@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {useModal} from "@/context/ModalProvider.jsx";
 import {Button} from "@/components/button/Button.jsx";
-import Input from "@/components/utils/Input.jsx";
+import Input from "@/components/utils/fields/Input.jsx";
 import {useForm} from "react-hook-form";
 import ErrorBox from "@/components/utils/ErrorBox.jsx";
 import {useUpdateMutation} from "@/services/mutations.jsx";
@@ -9,10 +8,8 @@ import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faArrowRight, faSpinner, faXmark} from '@fortawesome/free-solid-svg-icons';
 
-export function EditBookmarkForm() {
+export function EditBookmarkForm({ bookmark, img, status }) {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const { modals, closeModal } = useModal();
-    const modal = modals["editBookmarkModal"] || { isOpen: false, data: null };
     const [apiError, setApiError] = useState(null);
     const {
         register,
@@ -38,7 +35,6 @@ export function EditBookmarkForm() {
             {
                 onSuccess:() => {
                     reset();
-                    handleClose();
                 },
                 onError: (error) => {
                     setApiError(error.response?.data);
@@ -47,34 +43,21 @@ export function EditBookmarkForm() {
         );
     };
     useEffect(() => {
-        if (modal?.data?.bookmark) {
-            setValue("currentName", modal?.data?.bookmark);
+        if (bookmark) {
+            setValue("currentName", bookmark);
         }
-    }, [modal?.data]);
-
-    const handleClose = () => {
-        closeModal("editBookmarkModal");
-        reset();
-    };
-
-    if (!modal.isOpen) return null;
+    }, [bookmark]);
 
     return (
-        <div className="form-popup-container bookmark-form-container">
-            <Button
-                onClick={handleClose}
-                className="btn--transparent btn--close">
-                <FontAwesomeIcon icon={faXmark} />
-            </Button>
-            <div className="form-box small-form flex flex-column justify-center align-center">
-                <div className="form-content padding-block-start-4">
-                    <h2>Edit Bookmark</h2>
+        <>
+            <div className="dialog__content">
+                <div className="form-content">
                     {(errors && Object.keys(errors).length > 0 || apiError?.validationErrors)
                         && <ErrorBox errors={errors} apiError={apiError}/>}
                     <div className="flex justify-center padding-block-start-4 padding-block-end-6">
                         <Img
-                            src={modal?.data?.img}
-                            className="thumbnail rounded-lg"
+                            src={img}
+                            className="dialog__thumbnail"
                             defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`}
                         />
                     </div>
@@ -85,7 +68,7 @@ export function EditBookmarkForm() {
                                 name="currentName"
                                 type="text"
                                 register={register}
-                                value={modal?.data?.bookmark}
+                                value={bookmark}
                                 rules={{
                                     required: "Name is required.",
                                     min:{ value: 1, message:'Bookmark name should be at least 1 character.'},
@@ -109,7 +92,7 @@ export function EditBookmarkForm() {
                                 }}
                                 errors={errors}/>
                         </div>
-                        <div className="flex flex-wrap justify-center">
+                        <div className="flex flex-wrap justify-center padding-2">
                             <Button className="btn btn--primary btn--big" type="submit">
                                 {updateBookmarkMutation.isPending
                                     ? <FontAwesomeIcon icon={faSpinner} spin />
@@ -119,6 +102,6 @@ export function EditBookmarkForm() {
                     </form>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useReducer } from "react";
-import {useModal} from "@/context/ModalProvider.jsx";
 import {Button} from "@/components/button/Button.jsx";
-import {useForm} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import ErrorBox from "@/components/utils/ErrorBox.jsx";
 import ResendButton from "@/components/button/ResendButton.jsx";
-import Input from "@/components/utils/Input.jsx";
+import Input from "@/components/utils/fields/Input.jsx";
 import {useNavigate} from "react-router-dom";
 import {useCreateMutation} from "@/services/mutations.jsx";
-import PasswordField from "@/components/utils/PasswordField.jsx";
+import PasswordField from "@/components/utils/fields/PasswordField.jsx";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowLeft, faArrowRight, faRightToBracket, faSpinner, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {faArrowLeft, faArrowRight, faRightToBracket, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import GoogleLoginButton from "@/components/button/GoogleLoginButton.jsx";
+import CustomCheckbox from "@/components/utils/CustomCheckbox.jsx";
 
 const initialState = {
     formState: "login",
@@ -39,12 +39,10 @@ function formReducer(state, action) {
     }
 }
 
-const PopUpForm = () => {
+const LoginForm = ({ setOpen }) => {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const { modals, closeModal } = useModal();
     const navigate = useNavigate();
     const { setToken, status, error: authContextError } = useAuth();
-    const modal = modals["PopUpFormModal"] || {};
     const [state, dispatch] = useReducer(formReducer, initialState);
 
     const {
@@ -53,6 +51,7 @@ const PopUpForm = () => {
         reset,
         setValue,
         watch,
+        control,
         formState: { errors }
     } = useForm({
         mode: "onChange",
@@ -125,7 +124,6 @@ const PopUpForm = () => {
 
     const handleOAuth2Response = useCallback((response) => {
         const { credential: idToken } = response;
-
         signInWithGoogleMutation.mutate(
             { url: `${baseUrl}/oauth2/login/google`, data: { idToken } },
             {
@@ -166,8 +164,8 @@ const PopUpForm = () => {
     };
 
     const handleClose = () => {
+        setOpen(false);
         dispatch({ type: "RESET" });
-        closeModal("PopUpFormModal");
         reset();
     };
     const onNavigate = ()=> {
@@ -208,25 +206,18 @@ const PopUpForm = () => {
         dispatch({ type: "SET_API_ERROR", payload: authContextError?.response?.data });
     }, [authContextError]);
 
-    if (!modal.isOpen) return null
 
     return (
-        <div className={`form-popup-container${state.formState !== "login"  ? ' show-signup' : ""}`}>
-            <Button
-                onClick={!signInWithGoogleMutation?.isPending ? handleClose : undefined}
-                className="btn--transparent pos-absolute top-2 right-1"
-            >
-                <FontAwesomeIcon icon={faXmark} />
-            </Button>
+        <>
             {["register", "forgotPassword"].includes(state.formState) && (
-                <Button className="btn--transparent pos-absolute top-2 left-2" onClick={() => handleSwitchForm("login")}>
+                <Button className="btn--transparent btn--back" onClick={() => handleSwitchForm("login")}>
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </Button>)
             }
-            <div className={`form-box${
-                (["otpVerify", "forgotPassword", "resetPassword"].includes(state.formState)) ? ' small-form' : ""} flex ${state.formState !== "login" ? "flex-column justify-center" :"flex-wrap justify-space-around"} align-center`}>
+            <div className={`dialog__content${
+                (["otpVerify", "forgotPassword", "resetPassword"].includes(state.formState)) ? ' small-form' : ""} `}>
                 {(state.formState === "login")  && (
-                    <div className="form-details flex flex-column justify-center align-center fs-small-300">
+                    <div className="dialog__info fs-small-300">
                         <h2>Create Account</h2>
                         <p>Don’t you want to miss a single launch?</p>
                         <div className="text-center">
@@ -240,7 +231,8 @@ const PopUpForm = () => {
                     <div className="form-content">
                         <h2>One more step!</h2>
                         {
-                            (errors && Object.keys(errors).length > 0 || state.apiError?.validationErrors) && <ErrorBox errors={errors} apiError={state.apiError}/>
+                            (errors && Object.keys(errors).length > 0 || state.apiError?.validationErrors)
+                            && <ErrorBox errors={errors} apiError={state.apiError}/>
                         }
                         <div className="margin-block-end-4">
                             <p>Oops! Looks like you forgot your username.</p>
@@ -260,7 +252,8 @@ const PopUpForm = () => {
                                             message:'Username must be between 7 and 16 characters long and cannot contain spaces.'
                                         }
                                     }}
-                                    errors={errors}/>
+                                    errors={errors}
+                                />
                             </div>
                             <div className="flex justify-center">
                                 <Button
@@ -277,7 +270,7 @@ const PopUpForm = () => {
                     </div>)
                 }
                 {state.formState === "login" && (
-                    <div className="form-content __login">
+                    <div className="form-content">
                         <h2>Do you already have an account?</h2>
                         {(errors && Object.keys(errors).length > 0 || state.state?.validationErrors)
                             && <ErrorBox errors={errors} apiError={state.apiError}/>}
@@ -299,16 +292,21 @@ const PopUpForm = () => {
                             <PasswordField errors={errors} register={register} />
                             <div className="flex justify-space-between align-center fs-medium-200 margin-block-end-4">
                                 <div className="flex justify-center align-center">
-                                    <input
+                                    <Controller
                                         name="rememberMe"
-                                        type="checkbox"
-                                        id="checkbox-remember"
-                                        disabled={credentialsMutation.isPending}
-                                        {...register('rememberMe')}
+                                        control={control}
+                                        render={({ field: { onChange, value, ref } }) => (
+                                            <CustomCheckbox
+                                                ref={ref}
+                                                id="checkbox-remember"
+                                                className={{root: "checkbox__root checkbox__root--small"}}
+                                                label="Remember me"
+                                                defaultChecked={value}
+                                                onCheckedChange={onChange}
+                                                disabled={credentialsMutation.isPending}
+                                            />
+                                        )}
                                     />
-                                    <label htmlFor="checkbox-remember">
-                                        <span>Remember me</span>
-                                    </label>
                                 </div>
                                 <Button className="btn--transparent" type="button" onClick={() => handleSwitchForm("forgotPassword")}>Forgot password?</Button>
                             </div>
@@ -407,9 +405,7 @@ const PopUpForm = () => {
                         <p>You will soon receive a link to reset your password via email. Don’t forget to check your inbox!</p>
                     </div>)
                 }
-            </div>
-            {state.formState === "register" && (
-                <div className="form-box register flex flex-column justify-center align-center">
+                {state.formState === "register" && (
                     <div className="form-content">
                         <h2>Register</h2>
                         {(errors && Object.keys(errors).length > 0 || state.apiError?.validationErrors) &&
@@ -460,19 +456,31 @@ const PopUpForm = () => {
                                     validate: value => value === watch('password') || 'Passwords do not match.'
                                 }}
                             />
-                            <div className="flex align-center">
-                                <input
-                                    id="policy"
+                            <div className="flex justify-space-between align-center margin-block-end-4">
+                                <Controller
                                     name="policy"
-                                    type="checkbox"
-                                    disabled={credentialsMutation.isPending}
-                                    {...register('policy', { required: 'You must agree to the privacy policy' })}
+                                    control={control}
+                                    rules={{ required: 'You must agree to the privacy policy' }}
+                                    render={({ field: { onChange, value, ref } }) => (
+                                        <CustomCheckbox
+                                            ref={ref}
+                                            className={{root: "checkbox__root checkbox__root--small"}}
+                                            label= {
+                                                <>
+                                                    I agree to the
+                                                    <Button type="button" className="btn--transparent" onClick={onNavigate}>
+                                                        Privacy Policy
+                                                    </Button>
+                                                </>
+                                            }
+                                            checked={value ?? false}
+                                            onCheckedChange={onChange}
+                                            disabled={credentialsMutation.isPending}
+                                        />
+                                    )}
                                 />
-                                <label className="fs-small-200" htmlFor="policy">
-                                    I agree to the <Button className="btn--transparent" onClick={onNavigate}>Privacy Policy</Button>
-                                </label>
                             </div>
-                            <div className="flex justify-center">
+                            <div className="flex justify-center margin-block-start-2">
                                 <Button
                                     className="btn btn--primary btn--big"
                                     type="submit"
@@ -481,10 +489,10 @@ const PopUpForm = () => {
                                 </Button>
                             </div>
                         </form>
-                    </div>
-                </div>)
-            }
-        </div>
+                    </div>)
+                }
+            </div>
+        </>
     );
 };
-export default PopUpForm;
+export default LoginForm;
