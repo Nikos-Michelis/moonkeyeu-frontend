@@ -5,7 +5,7 @@ import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import {useStatePagination} from "@/hooks/paging-filtering/useStatePagination.jsx";
-import ArticleContentSection from "@/components/sections/articles/ArticleContentSection.jsx";
+import ArticleContentSection from "@/layout/ArticleContentSection.jsx";
 import LaunchPadArticleContent from "@/components/sections/articles/LaunchPadArticleContent.jsx";
 
 const LIMIT = 4;

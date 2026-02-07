@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-regular-svg-icons';
 import NewsAsideArticle from "../cards/NewsAsideArticle.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import {DateTime} from "luxon";
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 const LatestNews = () => {
     const { data: newsData, isPending: isPendingNews, isFetching: isFetchingNews, isError: isErrorNews } = useSpaceFlightNews();
@@ -18,10 +18,8 @@ const LatestNews = () => {
         component: SkeletonSidebarLoader,
     };
     const format = 'MMM dd, yyyy - hh:mm';
-    const handleDateFormat = (date) => {
-        const zonedDateTime = DateTime.fromISO(date).setZone(DateTime.local().zoneName);
-        return zonedDateTime.toFormat(format);
-    }
+    const { getZonedAndFormattedDateTime } = useLuxonDateTime();
+
     return (
         <>
             <section className="latest-news">
@@ -43,7 +41,7 @@ const LatestNews = () => {
                                                 imageSrc={article.image_url}
                                                 title={article.title}
                                                 author={article.news_site}
-                                                date={handleDateFormat(article.published_at)}
+                                                date={getZonedAndFormattedDateTime(article?.published_at, format)}
                                                 url={article.url}
                                                 isExternalUrl={true}
                                             />

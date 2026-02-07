@@ -7,7 +7,10 @@ import AstronautsFiltering from "@/components/filtering/AstronautsFiltering.jsx"
 import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
+import ContentSection from "@/layout/ContentSection.jsx";
+import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
+import SkeletonPortraitLoader from "@/components/skeleton/SkeletonPortraitLoader.jsx";
 
 function Astronauts() {
     const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/astronauts`;
@@ -47,7 +50,7 @@ function Astronauts() {
                 description="Meet the astronauts from different missions and backgrounds, apply filters to find those that align with your interests."
             />
 
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title="Astronauts"
                     description={
@@ -72,7 +75,7 @@ function Astronauts() {
                     isError={queryData.isError}
                     pagination={pagination}
                 />
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

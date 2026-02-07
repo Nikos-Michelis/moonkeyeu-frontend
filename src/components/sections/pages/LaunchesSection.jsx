@@ -1,7 +1,7 @@
 import React from "react";
 import LaunchCard from "@/components/cards/LaunchCard.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
-import ContentSection from "@/components/sections/pages/ContentSection.jsx";
+import ContentSection from "@/layout/ContentSection.jsx";
 
 const LaunchesSection = (
     {
@@ -16,11 +16,13 @@ const LaunchesSection = (
         navUrl = undefined
     }) => {
     const items =  launches._embedded?.launchNormalDTOes || launches || [];
+
     const contentConfig = {
         component: SkeletonLandscapeLoader,
         styles: {
+            section: "launches-section",
             wrapper: "large-wrapper",
-            section: "launches-articles",
+            grid: "grid__layout--landscape"
         },
     };
 

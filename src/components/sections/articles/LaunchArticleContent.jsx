@@ -21,25 +21,26 @@ import Boosters from "@/components/article-details/Boosters.jsx";
 import RelatedPrograms from "@/components/article-details/RelatedPrograms.jsx";
 import RelatedNews from "@/components/article-details/RelatedNews.jsx";
 import React, {useState} from "react";
-import {DateTime} from "luxon";
 import useComparator from "@/hooks/util/useComparator.jsx";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 const LaunchArticleContent = ({ data }) => {
     const [shareOpen, setShareOpen] = useState(false);
+    const { getNow, getZonedDateTime, getFormattedDateTime } = useLuxonDateTime();
+    const url = window.location.href;
     const launchData = data?.launchData?.data;
     const launcherStage = launchData?.rocket?.launcher_stage || [];
     const spacecraftStage = launchData.rocket?.spacecraft_stage || [];
     const programs = launchData?.programs || [];
     const rocketConfig = launchData.rocket?.configuration || {};
-    const zonedDateTime = DateTime.fromISO(launchData.net).setZone(DateTime.local().zoneName);
-    const formattedZonedDateTime = zonedDateTime.invalid === null? zonedDateTime.toFormat('MMMM dd, yyyy - hh:mm a ZZZZ') : null;
+    const zonedDateTime = getZonedDateTime(launchData.net);
+    const formattedZonedDateTime = getFormattedDateTime(zonedDateTime, 'MMMM dd, yyyy - hh:mm a ZZZZ');
     const recommendedVideo = useComparator(
-        launchData?.video_urls?.filter(video =>
-            video.videoUrl.includes("youtube.com") || video.videoUrl.includes("youtu.be")
+        launchData?.video_urls?.filter(
+            video => video.videoUrl.includes("youtube.com") || video.videoUrl.includes("youtu.be")
         ), (a, b) => a.priority > b.priority);
-    const url = window.location.href;
 
     return (
         <>
@@ -52,7 +53,7 @@ const LaunchArticleContent = ({ data }) => {
                 </Button>
             </div>
             <div className="container article__overview flex flex-column justify-center align-center" data-type="full-bleed">
-                {zonedDateTime.invalid === null && zonedDateTime > Date.now()
+                {zonedDateTime.invalid === null && zonedDateTime > getNow()
                     && (<CountdownTimer net={zonedDateTime} timerStyle="counter--container"/>)
                 }
                 <div className="article__image-box">

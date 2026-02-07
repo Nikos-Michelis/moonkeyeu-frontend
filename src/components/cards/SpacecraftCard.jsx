@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {DateTime} from "luxon";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {Button} from "@/components/button/Button.jsx";
@@ -15,6 +14,7 @@ import { faWikipediaW } from '@fortawesome/free-brands-svg-icons';
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 const SpacecraftCard = (
     {
@@ -36,10 +36,8 @@ const SpacecraftCard = (
     }) => {
     const [shareOpen, setShareOpen] = useState(false);
     const { handleValue, booleanConverter } = useDataFormatter();
-    const zonedDateTime = DateTime.fromISO(maiden_flight || "");
-    const formattedZonedDateTime = zonedDateTime.isValid
-        ? zonedDateTime.toFormat('MMMM dd, yyyy')
-        : undefined;
+    const { getZonedAndFormattedDateTime } = useLuxonDateTime();
+    const formattedZonedDateTime = getZonedAndFormattedDateTime(maiden_flight, 'MMMM dd, yyyy');
     const spacecraftUrl = `/vehicles/spacecraft/${id}`;
     const url = navUrl ? window.location.origin + spacecraftUrl : window.location.origin + window.location.pathname + "/" + id;
 
@@ -118,9 +116,9 @@ const SpacecraftCard = (
                             <hr/>
                         </div>
                     }
-                    <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
+                    <div className="landscape-card__actions">
                         {(!navUrl && id) && (
-                            <div className="landscape-card__info">
+                            <div className="landscape-card__action">
                                 <LinkButton className="btn btn--primary" to={id.toString()} >
                                     <FontAwesomeIcon icon={faCircleInfo} /> INFO
                                 </LinkButton>
@@ -128,16 +126,15 @@ const SpacecraftCard = (
                         )}
 
                         {navUrl && (
-                            <div className="landscape-card__info">
+                            <div className="landscape-card__action">
                                 <LinkButton className="btn btn--primary" to={url} >
                                     <FontAwesomeIcon icon={faShuttleSpace} /> View Launch
                                 </LinkButton>
                             </div>)
                         }
 
-
                         { wiki_url ? (
-                            <div className="landscape-card__wiki">
+                            <div className="landscape-card__action">
                                 <LinkButton
                                     className="btn btn--primary"
                                     to={wiki_url}
@@ -148,7 +145,7 @@ const SpacecraftCard = (
                             </div>
                         ) : (
                             <Tooltip content="No Wiki Available">
-                                <div className="landscape-card__wiki">
+                                <div className="landscape-card__action">
                                     <LinkButton
                                         className="btn btn--primary"
                                         isExternal={true}

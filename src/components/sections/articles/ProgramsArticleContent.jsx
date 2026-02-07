@@ -9,17 +9,17 @@ import UpcomingLaunch from "@/components/article-details/UpcomingLaunch.jsx";
 import Agencies from "@/components/article-details/Agencies.jsx";
 import Launch from "@/components/article-details/Launch.jsx";
 import React, {useState} from "react";
-import {DateTime} from "luxon";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 const ProgramsArticleContent = ({queryData, pagination}) => {
     const [shareOpen, setShareOpen] = useState(false);
+    const { getZonedAndFormattedDateTime } = useLuxonDateTime();
+    const url = window.location.href;
     const programsData = queryData?.programsData?.data;
     const launchesQuery = queryData?.launchesData;
-    const zonedDateTime = DateTime.fromISO(programsData?.start_date).setZone(DateTime.local().zoneName);
-    const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy');
-    const url = window.location.href;
+    const formattedZonedDateTime = getZonedAndFormattedDateTime(programsData?.start_date, 'MMMM dd, yyyy');
 
     return (
         <>

@@ -4,27 +4,27 @@ const ThemeButton = () => {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <div className="btn-theme-wrapper">
+        <div className="theme__content">
             <div
                 data-theme-picker
-                className="btn-theme"
+                className="theme__container"
                 id="theme"
                 onClick={toggleTheme}
             >
                 <div
-                    className={`moon-wrapper ${theme === "dark" ? "moon-wrapper--active" : ""}`}
+                    className={`theme__moon-wrapper ${theme === "dark" ? "theme__moon-wrapper--active" : ""}`}
                     data-theme="dark"
                 >
                     <div className="moon" />
                 </div>
                 <div
-                    className={`sun-wrapper ${theme === "light" ? "sun-wrapper--active" : ""}`}
+                    className={`theme__sun-wrapper ${theme === "light" ? "theme__sun-wrapper--active" : ""}`}
                     data-theme="light"
                 >
                     <div className="sun" />
                 </div>
             </div>
-            <div className="btn-text">
+            <div className="theme__text">
                 {theme.toUpperCase()}
             </div>
         </div>

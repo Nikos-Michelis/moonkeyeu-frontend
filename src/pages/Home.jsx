@@ -7,7 +7,7 @@ import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 
 const options = {
     showPrevBtn: true,
@@ -53,7 +53,7 @@ function Home() {
                 updatedAt={queryData?.data?.window_end}
             />
 
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title={`${searchParams.get("upcoming") === "true" ? "Upcoming" : "Previous"} Launches`}
                     description={
@@ -79,7 +79,7 @@ function Home() {
                     options={options}
                     pagination={pagination}
                 />
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

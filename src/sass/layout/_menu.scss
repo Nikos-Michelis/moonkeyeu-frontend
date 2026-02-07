@@ -41,7 +41,7 @@
   &__brand-title {
     display: inline-block;
     text-align: center;
-    padding: 1rem;
+    padding: 1rem 0.65rem;
 
     & h1 {
       @include abs.font($font-size: var(--fs-small-400), $font-weight: 900, $color: $clr-dark-cosmos-300, $font-family: $font-family-orbitron);
@@ -135,7 +135,7 @@
 
   &__nav-link {
     display: block;
-    padding: 0.625rem;
+    padding: 0.325rem;
     text-decoration: none;
     width: 100%;
     margin-inline: 0.25rem;
@@ -165,7 +165,7 @@
   &__user-button {
     display: flex;
     justify-content: center;
-    padding: 0.625rem;
+    padding: 0.325rem;
     text-decoration: none;
     transition: ease-in-out 0.2s;
     margin: 1px 5px;
@@ -197,8 +197,8 @@
 @include abs.mq(small) {
   .navbar {
     &__image-link {
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
     }
 
     &__brand-title h1 {
@@ -216,15 +216,9 @@
     flex-flow: row;
     justify-content: flex-start;
 
-    &__image-link {
-      width: 60px;
-      height: 60px;
-    }
-
     &__brand-title {
-      padding: 0.5rem;
       & h1 {
-        font-size: var(--fs-medium-500);
+        @include abs.font($font-size: var(--fs-medium-400), $font-weight: 900, $color: $clr-dark-cosmos-300, $font-family: $font-family-orbitron);
       }
     }
 
@@ -250,3 +244,16 @@
   }
 }
 
+@include abs.mq(xxl) {
+  .navbar {
+    &__image-link {
+      width: 70px;
+      height: 70px;
+    }
+    &__brand-title {
+      & h1 {
+        @include abs.font($font-size: var(--fs-medium-600), $font-weight: 900, $color: $clr-dark-cosmos-300, $font-family: $font-family-orbitron);
+      }
+    }
+  }
+}

@@ -2,8 +2,8 @@
 @use "mixins" as *;
 @use "variables" as *;
 
-@mixin button {
-  display: block;
+@mixin button($display: inline-block) {
+  display: $display;
   box-sizing: border-box;
   padding: $button-padding-y $button-padding-x;
   line-height: $button-line-height;
@@ -15,17 +15,20 @@
   cursor: pointer;
   transition: $button-transition;
   user-select: none;
+
   @include font(
           $font-size: $button-font-size,
           $font-weight: $button-font-weight,
           $color: var(--neutral-1000)
   );
+
   @include cursive_border(
                   $button-border-width,
                   $button-border-radius,
                   $button-default-border-color
   );
 }
+
 
 @mixin button-color-variation(
   $color: var(--neutral-1000),

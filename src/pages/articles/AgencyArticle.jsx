@@ -6,7 +6,7 @@ import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import {useStatePagination} from "@/hooks/paging-filtering/useStatePagination.jsx";
 import AgencyArticleContent from "@/components/sections/articles/AgencyArticleContent.jsx";
-import ArticleContentSection from "@/components/sections/articles/ArticleContentSection.jsx";
+import ArticleContentSection from "@/layout/ArticleContentSection.jsx";
 
 const LIMIT = 4;
 function AgencyArticle(){

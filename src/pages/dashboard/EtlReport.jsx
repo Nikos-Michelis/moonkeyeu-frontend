@@ -11,8 +11,8 @@ import TablePagination from "@/components/pagination/TablePagination.jsx";
 import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faBug, faChevronLeft, faCircleExclamation} from '@fortawesome/free-solid-svg-icons';
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import {faBug, faChevronLeft, faCircleExclamation, faLink} from '@fortawesome/free-solid-svg-icons';
+import ContentContainer from "@/layout/ContentContainer.jsx";
 import AlertModal from "@/components/modal/dialog/AlertModal.jsx";
 import {faCopy} from "@fortawesome/free-regular-svg-icons/faCopy";
 import useClipboard from "@/hooks/util/useClipboard.jsx";
@@ -23,6 +23,18 @@ function EtlReport() {
     const { user } = useAuth();
     const [sorting, setSorting] = useState([]);
     const { copied, copyToClipboard } = useClipboard();
+
+    const handleShare = (message) => {
+        copyToClipboard(message);
+    };
+
+    useEffect(() => {
+        copied &&  toast(
+            "Error message was copied to the clipboard.",
+            { icon: <FontAwesomeIcon icon={faLink} /> }
+        );
+    }, [copied]);
+
     const columns = [
         {
             header: "ID",
@@ -69,14 +81,12 @@ function EtlReport() {
                             >
                                 <div className="fs-small-100 padding-4 fw-bold log-wrap">
                                     <div className="flex justify-end fs-medium-400">
-                                        <Tooltip content={copied && "Copied!"}>
-                                            <Button
-                                                className="btn--transparent pos-absolute top-8 right-1"
-                                                onClick={() => copyToClipboard(row?.original?.exitMessage)}
-                                            >
-                                                <FontAwesomeIcon icon={faCopy} />
-                                            </Button>
-                                        </Tooltip>
+                                        <Button
+                                            className="btn--transparent pos-absolute top-8 right-1"
+                                            onClick={() => handleShare(row?.original?.exitMessage)}
+                                        >
+                                            <FontAwesomeIcon icon={faCopy} />
+                                        </Button>
                                     </div>
                                     <div className="padding-2">
                                         {row?.original?.exitMessage}
@@ -126,7 +136,7 @@ function EtlReport() {
 
     return (
         <>
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title="ETL Tasks"
                     description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
@@ -149,7 +159,7 @@ function EtlReport() {
                         <TablePagination table={table} />
                     </div>
                 </section>
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

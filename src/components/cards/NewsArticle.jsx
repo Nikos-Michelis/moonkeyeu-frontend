@@ -1,10 +1,11 @@
 import React from 'react';
-import {DateTime} from "luxon";
 import {Link} from "react-router-dom";
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShuttleSpace } from '@fortawesome/free-solid-svg-icons';
 import { faNewspaper } from '@fortawesome/free-regular-svg-icons';
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
+import {LinkButton} from "@/components/button/LinkButton.jsx";
 
 const NewsArticle = (
     {
@@ -17,8 +18,10 @@ const NewsArticle = (
         published_at,
         launches,
     }) => {
-    const zonedDateTime = DateTime.fromISO(published_at).setZone(DateTime.local().zoneName);
-    const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy - hh:mm a ZZZZ');
+
+    const { getZonedAndFormattedDateTime } = useLuxonDateTime();
+    const formattedZonedDateTime = getZonedAndFormattedDateTime(published_at, 'MMMM dd, yyyy - hh:mm a');
+
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || "small-wrapper"}`}>
             <div className={`landscape-card__container ${cardStyles?.card_type || ''}`}>
@@ -43,14 +46,18 @@ const NewsArticle = (
                         </div>
                     </div>
                     <hr className="hr-100-sm"/>
-                    <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
-                        <a className="btn btn--primary" href={url} target="_blank"  rel="noopener noreferrer">
-                            <FontAwesomeIcon icon={faNewspaper} /> Read Article
-                        </a>
+                    <div className="landscape-card__actions">
+                        <div className="landscape-card__action">
+                            <LinkButton className="btn btn--primary" to={url} isExternal={true}>
+                                <FontAwesomeIcon icon={faNewspaper} /> Read Article
+                            </LinkButton>
+                        </div>
                         {soLaunchBtn && launches.length > 0 &&
-                            <Link className="btn btn--primary" to={`/launches/${launches[0].launch_id}`} replace={true}>
-                                <FontAwesomeIcon icon={faShuttleSpace} /> View Launch
-                            </Link>
+                            <div className="landscape-card__action">
+                                <LinkButton className="btn btn--primary" to={`/launches/${launches[0].launch_id}`}>
+                                    <FontAwesomeIcon icon={faShuttleSpace} /> View Launch
+                                </LinkButton>
+                            </div>
                         }
                     </div>
                 </section>

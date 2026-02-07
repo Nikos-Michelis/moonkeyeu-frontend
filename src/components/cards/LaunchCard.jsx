@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from 'react';
 import CountdownTimer from "../timers/CountdownTimer.jsx";
-import {DateTime} from "luxon";
 import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
@@ -25,15 +24,17 @@ import {AddBookmarkForm} from "@/components/modal/forms/AddBookmarkForm.jsx";
 import LoginForm from "@/components/modal/forms/LoginForm.jsx";
 import {YouTubeEmbed} from "@/components/api/youtube-window/YouTubeEmbed.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status:launchStatus, video_urls, isBookmarked = false, cardStyles }) => {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    const zonedDateTime = DateTime.fromISO(net).setZone(DateTime.local().zoneName);
-    const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy - hh:mm a ZZZZ');
     const [open, setOpen] = useState(false);
     const [shareOpen, setShareOpen] = useState(false);
     const { name } = useParams();
     const { user, status } = useAuth();
+    const { getNow, getZonedDateTime, getFormattedDateTime } = useLuxonDateTime();
+    const zonedDateTime = getZonedDateTime(net);
+    const formattedZonedDateTime = getFormattedDateTime(zonedDateTime, 'MMMM dd, yyyy - hh:mm a ZZZZ');
     const youtubeVideos = video_urls?.filter(
         video => video.videoUrl.includes("youtube.com") || video.videoUrl.includes("youtu.be")
     );
@@ -87,14 +88,14 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'large-wrapper'}`}>
             <div className={`landscape-card__container lift lift--lg ${cardStyles?.card_type || ''}`}>
-                    <LinkButton to={navUrl? navUrl + id: id} className="landscape-card__media landscape-card__media--link">
-                        <Img
-                            src={image?.image_url}
-                            alt={image?.name || "default"}
-                            className="landscape-card__image"
-                            defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`}
-                        />
-                    </LinkButton>
+                <LinkButton to={navUrl? navUrl + id: id} className="landscape-card__media landscape-card__media--link">
+                    <Img
+                        src={image?.image_url}
+                        alt={image?.name || "default"}
+                        className="landscape-card__image"
+                        defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`}
+                    />
+                </LinkButton>
                 <section className="landscape-card__content flex flex-column justify-space-between">
                     <div className="landscape-card__details">
                         <div className="flex justify-space-between align-center">
@@ -152,11 +153,11 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
                                 <p className="fw-regular"><small>{location?.name}</small></p>
                             </div>
                         }
-                        { zonedDateTime > Date.now() && (
+                        { zonedDateTime > getNow() && (
                             <CountdownTimer net={zonedDateTime} timerStyle="margin-block-3" />
                         ) }
                     </div>
-                    <div className="landscape-card__actions padding-block-start-6 padding-block-end-8">
+                    <div className="landscape-card__actions">
                         {item ? (
                             item?.source?.includes(xTwitterUrl) ? (
                                 <div className="landscape-card__video">

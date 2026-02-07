@@ -78,16 +78,16 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                             <hr/>
                         </div>
                     }
-                    <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
+                    <div className="landscape-card__actions">
                         {id ? (
-                            <div className="landscape-card__info-box">
+                            <div className="landscape-card__action">
                                 <Link className="btn btn--primary" to={`/agencies/${id.toString()}`} >
                                     <FontAwesomeIcon icon={faCircleInfo} /> INFO
                                 </Link>
                             </div>
                         ) : (
                             <Tooltip content={tooltipInfoMessage}>
-                                <div className="landscape-card__info">
+                                <div className="landscape-card__action">
                                     <Link className="btn btn--primary" to="#" >
                                         <FontAwesomeIcon icon={faCircleInfo} /> INFO
                                     </Link>
@@ -95,7 +95,7 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                             </Tooltip>
                         )}
                         { wiki_url ? (
-                            <div className="landscape-card__wiki">
+                            <div className="landscape-card__action">
                                 <LinkButton
                                     className="btn btn--primary"
                                     to={wiki_url}
@@ -106,7 +106,7 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                             </div>
                         ) : (
                             <Tooltip content="No Wiki Available">
-                                <div className="landscape-card__wiki">
+                                <div className="landscape-card__action">
                                     <LinkButton
                                         className="btn btn--primary"
                                         isExternal={true}
@@ -117,7 +117,7 @@ const AgencyCard = ({id, name, type, administrator, description, spacecraft, lau
                                 </div>
                             </Tooltip>
                         )}
-                        <div className="portrait-card__action">
+                        <div className="landscape-card__action">
                             <Button
                                 className="btn btn--primary"
                                 onClick={() => setShareOpen(true)}

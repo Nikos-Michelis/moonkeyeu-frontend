@@ -8,7 +8,7 @@ import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 
 const defaultFilters = {
     page: 1,
@@ -55,7 +55,7 @@ function MyLaunches() {
                 title="Members"
                 description="Manage and view all registered members from your dashboard."
             />
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title={`My Launches - ${name}`}
                     description="View and manage your bookmarked space launches."
@@ -74,7 +74,7 @@ function MyLaunches() {
                     options={options}
                     navUrl="/launches/"
                 />
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

@@ -1,4 +1,4 @@
-const ContentLayout = (
+const ContentContainer = (
     {
         children,
         size = "base",
@@ -11,4 +11,4 @@ const ContentLayout = (
         </div>
     );
 }
-export default ContentLayout;
+export default ContentContainer;

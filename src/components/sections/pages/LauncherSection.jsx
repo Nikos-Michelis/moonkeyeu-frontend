@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentSection from "@/components/sections/pages/ContentSection.jsx";
+import ContentSection from "@/layout/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
 import LauncherCard from "@/components/cards/LauncherCard.jsx";
 
@@ -8,8 +8,9 @@ const LauncherSection = ({launcher, isFetching, isError, pagination}) => {
     const contentConfig = {
         component: SkeletonLandscapeLoader,
         styles: {
+            section: "launcher-section",
             wrapper: "medium-wrapper",
-            section: "launcher-articles",
+            grid: "grid__layout--landscape"
         },
     };
     return (

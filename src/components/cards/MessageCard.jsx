@@ -1,17 +1,17 @@
 import React, {useCallback, useState} from 'react';
 import {useDeleteMutation} from "@/services/mutations.jsx";
 import toast from "react-hot-toast";
-import {DateTime} from "luxon";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTrash} from '@fortawesome/free-solid-svg-icons';
 import AlertModal from "@/components/modal/dialog/AlertModal.jsx";
 import DataList from "@/components/utils/DataList.jsx";
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 const MessageCard = ({id, category, email, message, created_at}) => {
-    const [open, setOpen] = useState(false);
-    const zonedDateTime = DateTime.fromISO(created_at).setZone(DateTime.local().zoneName);
-    const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy - hh:mm a');
     const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/dashboard/contact/messages`;
+    const [open, setOpen] = useState(false);
+    const { getZonedAndFormattedDateTime } = useLuxonDateTime();
+    const formattedZonedDateTime = getZonedAndFormattedDateTime(created_at, 'MMMM dd, yyyy - hh:mm a');
     const alertMessage = ["This action is permanent.", "This action cannot be reversed.",];
     const removeMessageMutation =
         useDeleteMutation({

@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentSection from "@/components/sections/pages/ContentSection.jsx";
+import ContentSection from "@/layout/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
 import AgencyCard from "@/components/cards/AgencyCard.jsx";
 const AgenciesSection = ({ agencies, isFetching, isError}) => {
@@ -7,8 +7,9 @@ const AgenciesSection = ({ agencies, isFetching, isError}) => {
     const contentConfig = {
         component: SkeletonLandscapeLoader,
         styles: {
-            wrapper: "small-wrapper",
             section: "spacecraft-articles",
+            wrapper: "small-wrapper",
+            grid: "grid__layout--landscape"
         },
     };
     return (

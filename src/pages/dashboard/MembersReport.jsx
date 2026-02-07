@@ -17,7 +17,7 @@ import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 
 function MembersReport() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -97,7 +97,7 @@ function MembersReport() {
 
     return (
         <>
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title="Members"
                     description="Manage and view all registered members from your dashboard."
@@ -120,7 +120,7 @@ function MembersReport() {
                         <TablePagination table={table} />
                     </div>
                 </section>
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

@@ -1,13 +1,11 @@
 import React from "react";
 import { SkeletonLoader } from "@/components/loader/SkeletonLoader.jsx";
 import {Button} from "@/components/button/Button.jsx";
-import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
-import StarshipCard from "@/components/cards/StarshipCard.jsx"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import Pagination from "@/components/pagination/Pagination.jsx";
 import PreviousButton from "@/components/button/PreviousButton.jsx";
-import LatestNews from "@/components/sidebars/LatestNews.jsx";
+import Aside from "@/components/sidebars/Aside.jsx";
 const ContentSection = (
     {
         items,
@@ -59,7 +57,7 @@ const ContentSection = (
                             }
                         </div>
                     }
-                    <div className={`grid__layout grid__layout--landscape ${contentConfig?.styles?.grid || ''}`}>
+                    <div className={`grid__layout ${contentConfig?.styles?.grid || ''}`}>
                         <SkeletonLoader
                             isPending={isPending}
                             isFetching={isFetching}
@@ -84,20 +82,16 @@ const ContentSection = (
                                 </div>
                             )}
                         </SkeletonLoader>
-                        {(items.length > 0 && pagination) &&
-                            <Pagination
-                                {...pagination}
-                                isPending={isPending}
-                                isFetching={isFetching}
-                            />
-                        }
                     </div>
+                    {(items.length > 0 && pagination) &&
+                        <Pagination
+                            {...pagination}
+                            isPending={isPending}
+                            isFetching={isFetching}
+                        />
+                    }
                 </div>
-                <aside>
-                    <BuyMeACoffee />
-                    <StarshipCard/>
-                    <LatestNews />
-                </aside>
+                <Aside/>
             </div>
         </section>
     );

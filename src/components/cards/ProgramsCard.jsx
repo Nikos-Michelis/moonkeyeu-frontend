@@ -55,21 +55,21 @@ const ProgramsCard = (
                     <hr className="hr-100-sm"/>
                     <div className="landscape-card__actions padding-block-start-2 padding-block-end-6">
                         {id ? (
-                            <div className="launch-card__action">
+                            <div className="landscape-card__action">
                                 <Link className="btn btn--primary" to={segment ? `/${segment}/${id.toString()}` : id.toString()} >
                                     <FontAwesomeIcon icon={faCircleInfo} /> INFO
                                 </Link>
                             </div>
                         ) : (
                             <Tooltip content={tooltipInfoMessage}>
-                                <div className="launch-card__action">
+                                <div className="landscape-card__action">
                                     <Link className="btn btn--primary" to="#" >
                                         <FontAwesomeIcon icon={faCircleInfo} /> INFO
                                     </Link>
                                 </div>
                             </Tooltip>
                         )}
-                        <div className="portrait-card__action">
+                        <div className="landscape-card__action">
                             <Button
                                 className="btn btn--primary"
                                 onClick={() => setShareOpen(true)}

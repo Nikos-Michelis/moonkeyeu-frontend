@@ -82,16 +82,16 @@ const RocketCard = (
                                 </div>
                             </div>
                         </div>
-                        <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
+                        <div className="landscape-card__actions">
                             {id ? (
-                                <div className="landscape-card__info">
+                                <div className="landscape-card__action">
                                     <LinkButton className="btn btn--primary" to={`/launches?page=1&limit=12&launcher=${id.toString()}&upcoming=all`} >
                                         <FontAwesomeIcon icon={faShuttleSpace} /> View Launch
                                     </LinkButton>
                                 </div>
                             ) : (
                                 <Tooltip content={tooltipInfoMessage}>
-                                    <div className="landscape-card__info">
+                                    <div className="landscape-card__action">
                                         <LinkButton className="btn btn--primary" >
                                             <FontAwesomeIcon icon={faShuttleSpace} /> View Launch
                                         </LinkButton>

@@ -113,16 +113,16 @@ const RocketCard = (
                         </div>
                         <hr/>
                     </div>
-                    <div className="landscape-card__actions flex flex-wrap justify-center padding-block-start-2 padding-block-end-4">
+                    <div className="landscape-card__actions">
                         {id ? (
-                            <div className="landscape-card__info">
+                            <div className="landscape-card__action">
                                 <LinkButton className="btn btn--primary" to={`/launches?page=1&limit=12&rocketConfig=${id.toString()}&upcoming=all`}>
                                     <FontAwesomeIcon icon={faShuttleSpace} /> View Launch
                                 </LinkButton>
                             </div>
                         ) : (
                             <Tooltip content={tooltipInfoMessage}>
-                                <div className="landscape-card__info">
+                                <div className="landscape-card__action">
                                     <LinkButton className="btn btn--primary">
                                         <FontAwesomeIcon icon={faShuttleSpace} /> View Launch
                                     </LinkButton>

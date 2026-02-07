@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserAstronaut, faChevronLeft, faSpinner, faTableColumns, faDoorOpen, faPenToSquare, faGear, faEraser } from '@fortawesome/free-solid-svg-icons';
 import AlertModal from "@/components/modal/dialog/AlertModal.jsx";
 import DataList from "@/components/utils/DataList.jsx";
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 const Profile = () =>{
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -48,8 +49,9 @@ const Profile = () =>{
             }
         )
     };
-    const zonedDateTime = DateTime.fromISO(user?.createdAt).setZone(DateTime.local().zoneName);
-    const formattedZonedDateTime = zonedDateTime.toFormat('MMMM dd, yyyy');
+
+    const { getZonedAndFormattedDateTime } = useLuxonDateTime();
+    const formattedZonedDateTime = getZonedAndFormattedDateTime(user?.createdAt, 'MMMM dd, yyyy');
 
     return(
         <>
