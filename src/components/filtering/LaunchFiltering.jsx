@@ -5,7 +5,7 @@ import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import CustomSelect from "@/components/utils/select/CustomSelect.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faArrowsRotate, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faArrowsRotate, faPlus, faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
 
 LaunchFiltering.propTypes = {
@@ -81,6 +81,11 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
         }
     };
 
+    const handleClearance = (field) => {
+        setLocalSearch("");
+        resetFilterByName(field);
+    };
+
     useClickOutside({
         modalRef: optionsRef,
         triggerRef: triggerRef,
@@ -125,8 +130,8 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
                             placeholder={searchPlaceHolder}
                             onChange={(e) => setLocalSearch(e.target.value)}
                         />
-                        <div className="search__btn-search">
-                            <FontAwesomeIcon icon={faSearch} />
+                        <div className="search__btn-search" onClick={() => localSearch && handleClearance('search')}>
+                            <FontAwesomeIcon icon={localSearch ? faXmark : faSearch} />
                         </div>
                     </div>
                 </div>

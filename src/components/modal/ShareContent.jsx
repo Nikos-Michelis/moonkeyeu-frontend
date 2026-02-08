@@ -39,7 +39,7 @@ const ShareContent = ({ url, title }) => {
 
                 <div className="share__option">
                     <TwitterShareButton url={url} title={title}>
-                        <XIcon size={62} round />
+                        <XIcon size={60} round />
                         <span className="share__text">X</span>
                     </TwitterShareButton>
                 </div>

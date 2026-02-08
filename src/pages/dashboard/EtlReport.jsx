@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthProvider.jsx";
 import toast from "react-hot-toast";
 import { useSimpleQuery } from "@/services/queries.jsx";
@@ -16,17 +16,12 @@ import ContentContainer from "@/layout/ContentContainer.jsx";
 import AlertModal from "@/components/modal/dialog/AlertModal.jsx";
 import {faCopy} from "@fortawesome/free-regular-svg-icons/faCopy";
 import useClipboard from "@/hooks/util/useClipboard.jsx";
-import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 
 function EtlReport() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const { user } = useAuth();
     const [sorting, setSorting] = useState([]);
     const { copied, copyToClipboard } = useClipboard();
-
-    const handleShare = (message) => {
-        copyToClipboard(message);
-    };
 
     useEffect(() => {
         copied &&  toast(
@@ -71,7 +66,7 @@ function EtlReport() {
                 <div>
                     {row.original.exitMessage ? (
                         <AlertModal>
-                            <AlertModal.Button className="btn--transparent">
+                            <AlertModal.Button disabled={copied} className="btn--transparent">
                                 <FontAwesomeIcon icon={faCircleExclamation}/>
                             </AlertModal.Button>
                             <AlertModal.Content
@@ -83,7 +78,7 @@ function EtlReport() {
                                     <div className="flex justify-end fs-medium-400">
                                         <Button
                                             className="btn--transparent pos-absolute top-8 right-1"
-                                            onClick={() => handleShare(row?.original?.exitMessage)}
+                                            onClick={() => copyToClipboard(row?.original?.exitMessage)}
                                         >
                                             <FontAwesomeIcon icon={faCopy} />
                                         </Button>

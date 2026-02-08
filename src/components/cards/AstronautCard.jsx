@@ -4,8 +4,9 @@ import {Button} from "@/components/button/Button.jsx";
 import Img from "@/components/utils/Img.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
+    faCakeCandles,
     faChartSimple,
-    faGlobe, faHourglassEnd,
+    faGlobe,
     faShareFromSquare
 } from "@fortawesome/free-solid-svg-icons";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
@@ -18,13 +19,12 @@ const AstronautCard = ({id, name, nationality, status, agency, images, social_me
     const socialMediaLinks = social_media?.length > 0 ? social_media : [];
     const instagram = socialMediaLinks.find((sm) => sm.name === "Instagram")?.media_url;
     const twitter = socialMediaLinks.find((sm) => sm.name === "Twitter")?.media_url;
-    const tooltipInfoMessage = id ? "" : "No Info Available";
     const url = window.location.origin + window.location.pathname + "/" + id;
 
     return (
         <article className="portrait-card">
             <div className="portrait-card__container">
-                <LinkButton to={id.toString()} className="portrait-card__media landscape-card__media--link">
+                <LinkButton to={id.toString()} className="portrait-card__media portrait-card__media--link">
                     <Img
                         src={images?.[0]?.image_url}
                         alt={images?.[0]?.name || "default"}
@@ -34,7 +34,12 @@ const AstronautCard = ({id, name, nationality, status, agency, images, social_me
                 </LinkButton>
                 <div className="portrait-card__info flex flex-column justify-space-evenly margin-block-4">
                     <div>
-                        <h2 className="portrait-card__title">{name}</h2>
+                        <LinkButton
+                            to={id.toString()}
+                            className="landscape-card__title"
+                        >
+                            <h3 className="fs-small-300">{name}</h3>
+                        </LinkButton>
                         <p className="portrait-card__subtitle">{agency? agency.name : "Unknown"}</p>
                     </div>
                     <div className="flex justify-space-around align-center margin-block-2">
@@ -51,7 +56,7 @@ const AstronautCard = ({id, name, nationality, status, agency, images, social_me
                             </p>
                         </div>
                          <div className="portrait-card__detail fs-small-200">
-                             <FontAwesomeIcon icon={faHourglassEnd} size="lg"/>
+                             <FontAwesomeIcon icon={faCakeCandles} size="lg" />
                              <p className="portrait-card__text fw-bold">
                                 {age}
                             </p>

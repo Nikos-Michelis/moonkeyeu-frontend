@@ -26,6 +26,7 @@ const CustomSelect = (
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     const preSelected = options?.find?.((item) => item.id === defaultValue)?.name || null;
+
     const handleOnSelect = (value) => {
         if (!value) return;
         setFilters({[field]: value.id });

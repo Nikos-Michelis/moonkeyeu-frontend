@@ -35,7 +35,7 @@ export default function Pagination({ page, totalPages, totalElements, nextPage, 
                     <span> {totalPages} </span>
                     of
                     <span> {totalElements} </span>
-                    items
+                    results
                 </span>
                 <div className="forward-arrows">
                     <Button className="btn btn--primary margin-inline-2" disabled={page === totalPages || (isPending || isFetching)} onClick={nextPage}>
