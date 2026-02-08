@@ -22,7 +22,7 @@ const UpcomingLaunch = ({launch}) => {
                     <LaunchCard
                         key={launch?.id}
                         {...(launch)}
-                        navUrl={'/launches/'}
+                        navUrl={'/launches'}
                         cardStyles={contentConfig?.styles}
                     />
                 </div>

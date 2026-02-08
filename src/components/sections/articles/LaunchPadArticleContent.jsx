@@ -142,7 +142,7 @@ const LaunchPadArticleContent = ({queryData, pagination}) => {
                 }
                 {data?.upcoming_launch && <UpcomingLaunch launch={data?.upcoming_launch}/>}
                 {data?.agencies.length > 0 && <Agencies agencies={data?.agencies}/>}
-                <Launch queryData={launchesQuery} navUrl={'/launches/'} pagination={pagination} hasPagination={true}/>
+                <Launch queryData={launchesQuery} navUrl={'/launches'} pagination={pagination} hasPagination={true}/>
                 <div className="padding-block-end-4">
                     <hr className="hr-90-md"/>
                 </div>

@@ -13,9 +13,9 @@ import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 
 const AgencyCard = ({id, name, type, administrator, description, spacecraft, launchers, wiki_url, images, country, isDetailed = false, cardStyles}) => {
     const [shareOpen, setShareOpen] = useState(false);
+    const {handleValue} = useDataFormatter();
     const tooltipInfoMessage = id ? "" : "No Info Available";
     const url = window.location.origin + window.location.pathname + "/" + id;
-    const { handleValue} = useDataFormatter();
 
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || ''}`}>
