@@ -29,7 +29,7 @@ const TablePagination = ({table}) => {
                     <span> {table.getPageCount()} </span>
                     of
                     <span> {table.getPrePaginationRowModel().rows.length} </span>
-                    items
+                    results
                 </span>
                 <div className="forward-arrows">
                     <Button className="btn btn--primary" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>

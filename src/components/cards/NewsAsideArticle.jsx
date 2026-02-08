@@ -6,7 +6,7 @@ const NewsAsideArticle = ({imageSrc, title, author, date, url, isExternalUrl}) =
     return (
         <article className="portrait-card margin-block-4">
             <div className="portrait-card__container portrait-card__container--small flex flex-column">
-                <LinkButton to={url} className="portrait-card__image-link" isExternal={isExternalUrl}>
+                <LinkButton to={url} className="portrait-card__media portrait-card__media--link" isExternal={isExternalUrl}>
                     <Img
                         src={imageSrc}
                         alt={title || "default"}

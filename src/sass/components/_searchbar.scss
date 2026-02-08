@@ -35,6 +35,7 @@
     box-shadow: $box-shadow-2;
     transition: box-shadow 0.25s ease;
     @include abs.cursive_border($border-width: $button-border-width, $border-radius: $button-border-radius, $corners: (top-right-radius bottom-right-radius));
+    cursor: pointer;
   }
 
   @include abs.mq(medium) {
