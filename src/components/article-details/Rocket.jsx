@@ -1,27 +1,40 @@
 import React from "react";
-import useNumberFormatter from "@/hooks/util/useNumberFormatter.jsx";
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faRocket, faGear, faSatellite, faShuttleSpace} from '@fortawesome/free-solid-svg-icons';
+import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 
 const Rocket = (
     {
-        name, variant, fullname, active,
-        description, alias, min_stage, max_stage, maiden_flight,
-        length, diameter, launch_cost, launch_mass, leo_capacity,
-        gto_capacity, geo_capacity, sso_capacity, to_thrust, images,
+        name,
+        variant,
+        fullname,
+        active,
+        description,
+        alias,
+        min_stage,
+        max_stage,
+        maiden_flight,
+        length,
+        diameter,
+        launch_cost,
+        launch_mass,
+        leo_capacity,
+        gto_capacity,
+        geo_capacity,
+        sso_capacity,
+        to_thrust,
+        images,
     }) =>{
-    const checkValue = (value, metric= "") => {
-        return (value ? `${value} ${metric}` : "―");
-    }
-    const formattedNumber = checkValue(useNumberFormatter(launch_cost));
+    const { handleValue, handleNumberLocale} = useDataFormatter();
+    const formattedNumber = handleValue(handleNumberLocale(launch_cost));
     return(
         <section className="rocket-section">
             <div className="article__heading-box">
                 <FontAwesomeIcon icon={faRocket} />
                 <h2>Rocket</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__img-box margin-block-start-5">
                     <Img
@@ -31,13 +44,13 @@ const Rocket = (
                         defaultSrc={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo-transparent.svg`}
                     />
                     <div className="flex flex-wrap">
-                        <div className="badge--pill">Configuration: {checkValue(variant)}</div>
-                        <div className="badge--pill">Maiden Flight: {checkValue(maiden_flight)}</div>
+                        <div className="badge--pill">Configuration: {handleValue(variant)}</div>
+                        <div className="badge--pill">Maiden Flight: {handleValue(maiden_flight)}</div>
                         { active
                             ?
-                            <div className="badge--pill bg-success-400">Active</div>
+                            <div className="badge--pill badge--success">Active</div>
                             :
-                            <div className="badge--pill bg-warning-200">Retired</div>}
+                            <div className="badge--pill badge--warning">Retired</div>}
                     </div>
                 </div>
                 <div className="article__info-box article__info-box--col">
@@ -49,7 +62,7 @@ const Rocket = (
                         <div>
                             <FontAwesomeIcon
                                 icon={faGear}
-                                className="padding-block-end-6 fs-small-800 clr-dark-cosmos-300"
+                                className="padding-block-end-6 fs-medium-700"
                             />
                             <h1 className="heading-4">Specifications</h1>
                         </div>
@@ -57,70 +70,70 @@ const Rocket = (
                             <>
                                 <div className="info-box-col">
                                     <p>Min Stage</p>
-                                    <span>{checkValue(min_stage)}</span>
+                                    <span>{handleValue(min_stage)}</span>
                                 </div>
-                                <hr className="hr-75-sm bg-hr-600" />
+                                <hr className="hr-75-sm" />
                                 <div className="info-box-col">
                                     <p>Max Stage</p>
-                                    <span>{checkValue(max_stage)}</span>
+                                    <span>{handleValue(max_stage)}</span>
                                 </div>
                             </>}
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Length</p>
-                            <span>{checkValue(length, "m")}</span>
+                            <span>{handleValue(length, "m")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Diameter</p>
-                            <span>{checkValue(diameter, "m")}</span>
+                            <span>{handleValue(diameter, "m")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Launch Mass</p>
-                            <span>{checkValue(launch_mass, "Tons")}</span>
+                            <span>{handleValue(launch_mass, "Tons")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Thrust</p>
-                            <span>{checkValue(to_thrust, "kN")}</span>
+                            <span>{handleValue(to_thrust, "kN")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                     </div>
                     <div className="info-col container fs-small-200 text-center padding-2 margin-block-10">
                         <div>
                             <FontAwesomeIcon
                                 icon={faShuttleSpace}
-                                className="padding-block-end-6 fs-small-800 clr-dark-cosmos-300"
+                                className="padding-block-end-6 fs-medium-700"
                             />
                             <h1 className="heading-4">Family</h1>
                         </div>
                         <div className="info-box-col">
                             <p>Name</p>
-                            <span>{checkValue(name)}</span>
+                            <span>{handleValue(name)}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Variant</p>
-                            <span>{checkValue(variant)}</span>
+                            <span>{handleValue(variant)}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Alias</p>
-                            <span>{checkValue(alias)}</span>
+                            <span>{handleValue(alias)}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Full Name</p>
-                            <span>{checkValue(fullname)}</span>
+                            <span>{handleValue(fullname)}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                     </div>
                     <div className="info-col container fs-small-200 text-center padding-2 margin-block-10">
                         <div>
                             <FontAwesomeIcon
                                 icon={faSatellite}
-                                className="padding-block-end-6 fs-small-800 clr-dark-cosmos-300"
+                                className="padding-block-end-6 fs-medium-700"
                             />
                             <h1 className="heading-4">Payload Capacity</h1>
                         </div>
@@ -128,27 +141,27 @@ const Rocket = (
                             <p>Launch Cost</p>
                             <span>{formattedNumber}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Low Earth Orbit</p>
-                            <span>{checkValue(leo_capacity, "kg")}</span>
+                            <span>{handleValue(leo_capacity, "kg")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Geostationary Transfer Orbit</p>
-                            <span>{checkValue(gto_capacity, "kg")}</span>
+                            <span>{handleValue(gto_capacity, "kg")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Direct Geostationary</p>
-                            <span>{checkValue(geo_capacity, "kg")}</span>
+                            <span>{handleValue(geo_capacity, "kg")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                         <div className="info-box-col">
                             <p>Sun-Synchronous Capacity</p>
-                            <span>{checkValue(sso_capacity, "kg")}</span>
+                            <span>{handleValue(sso_capacity, "kg")}</span>
                         </div>
-                        <hr className="hr-75-sm bg-hr-600" />
+                        <hr className="hr-75-sm" />
                     </div>
                 </div>
             </div>

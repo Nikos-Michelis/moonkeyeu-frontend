@@ -1,0 +1,21 @@
+.break-all {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.log-wrap {
+  word-break: break-word;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clamp-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}

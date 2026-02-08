@@ -1,4 +1,4 @@
-@use "../abstracts/index" as abs;
+@use "../abstracts/index" as *;
 
 .toolbar {
   &__container {
@@ -19,9 +19,9 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    background-color: var(--clr-star-200);
-    border-radius: 0.3rem;
-    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+    background-color: var(--primary-300);
+    @include cursive_border($border-width: 0.12rem);
+    box-shadow: $box-shadow-2;
     z-index: 1;
     position: absolute;
     top: 23rem;
@@ -36,22 +36,22 @@
     justify-content: center;
     height: auto;
     gap: 10px;
-    padding: 1rem 0.5rem 0.5rem 0.5rem;
+    padding: 1rem;
 
   }
 
   &__title {
-    font-size: 0.9rem;
-    font-weight: bold;
     margin-inline: 0.5rem;
+    @include font($font-size: var(--fs-small-200), $font-weight: bold);
   }
 
   &__actions{
     display: flex;
     width: 100%;
+    margin: 0.25rem;
   }
 
-  @include abs.mq(medium) {
+  @include mq(medium) {
     &__container {
       justify-content: space-between;
     }

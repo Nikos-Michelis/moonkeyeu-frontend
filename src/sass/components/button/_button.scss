@@ -1,31 +1,66 @@
 @use "../../abstracts" as abs;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/variables" as *;
 
 .btn {
   @include abs.button;
   &--primary {
-    @include abs.button-color-variation($color: var(--clr-dark-cosmos-300), $background-color: var(--clr-secondary-300), $border-color: var(--clr-dark-cosmos-300));
-    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-100));
-    @include abs.button-hover($color: var(--clr-dark-cosmos-300), $background-color: var(--clr-btn-hover-300), $border-color: var(--clr-dark-cosmos-300));
-    box-shadow: 0 0.2rem 0 var(--clr-dark-cosmos-300);
+    @include abs.button-color-variation($color: var(--neutral-1000), $background-color: var(--primary-300), $border-color: var(--neutral-1000));
+    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
+    @include abs.button-hover($color: var(--neutral-1000), $background-color: var(--primary-400), $border-color: var(--neutral-1000));
+    box-shadow: $box-shadow-3;
     padding: 5px 10px;
-
     &:not([class*="margin-"]) {
       margin: 0.2rem;
     }
 
     &:active {
-      transform: translateY(2px);
-      box-shadow: 0 0 0;
+      box-shadow: 0 0 0 var(--neutral-1000);
+      transform: translate(0.22rem, 0.22rem);
     }
+  }
+
+  &--warning {
+    @include abs.button-color-variation($color: $clr-dark-cosmos-300, $background-color: $clr-warning-300, $border-color: var(--neutral-1000));
+    @include abs.button-hover($color: $clr-secondary-300, $background-color: $clr-warning-400, $border-color: var(--neutral-1000));
+  }
+
+  &--success {
+    @include abs.button-color-variation($color: $clr-dark-cosmos-300, $background-color: $clr-success-300, $border-color: var(--neutral-1000));
+    @include abs.button-hover($color: $clr-secondary-300, $background-color: $clr-success-400, $border-color: var(--neutral-1000));
+  }
+
+  &--google {
+    color-scheme: auto;
+    box-shadow: $box-shadow-3;
+    @include abs.cursive_border($border-radius: 0.5rem);
+    padding: 0;
+    background-color: var(--neutral-1000);
   }
 
   &--yt {
-    @include abs.button-color-variation($color: var(--clr-star-300), $background-color: var(--clr-yt-red-300), $border-color: var(--clr-dark-cosmos-300));
-    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-100));
-    @include abs.button-hover($color: var(--clr-star-300), $background-color: var(--clr-yt-red-400), $border-color: var(--clr-dark-cosmos-300));
-    box-shadow: 0 0.2rem 0 var(--clr-dark-cosmos-300);
-    padding: 5px 10px;
+    @include abs.button-color-variation($color: $clr-star-200, $background-color: $clr-yt-red-300, $border-color: var(--neutral-1000));
+    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
+    @include abs.button-hover($color: $clr-star-200, $background-color: $clr-yt-red-400, $border-color: var(--neutral-1000));
+    box-shadow: $box-shadow-3;
+    width: 100%;
+    max-width: 20rem;
+    &:not([class*="margin-"]) {
+      margin: 0.2rem;
+    }
 
+    &:active {
+      box-shadow: 0 0 0 var(--neutral-1000);
+      transform: translate(0.22rem, 0.22rem);
+    }
+  }
+
+  &--Xtwitter {
+    @include abs.button-color-variation($color: var(--primary-300), $background-color: var(--twitter-black-200), $border-color: var(--neutral-1000));
+    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
+    @include abs.button-hover($color: var(--primary-300), $background-color: var(--twitter-black-500), $border-color: var(--neutral-1000));
+     box-shadow: $box-shadow-3;
+     padding: 5px 10px;
     &:not([class*="margin-"]) {
       margin: 0.2rem;
     }
@@ -35,29 +70,11 @@
       box-shadow: 0 0 0;
     }
   }
-   &--Xtwitter {
-    @include abs.button-color-variation($color: var(--clr-star-300), $background-color: var(--clr-twitter-black-200), $border-color: var(--clr-dark-cosmos-300));
-    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-100));
-    @include abs.button-hover($color: var(--clr-star-300), $background-color: var(--clr-twitter-black-500), $border-color: var(--clr-dark-cosmos-300));
-    box-shadow: 0 0.2rem 0 var(--clr-dark-cosmos-300);
-    padding: 5px 10px;
-
-    &:not([class*="margin-"]) {
-      margin: 0.2rem;
-    }
-
-    &:active {
-      transform: translateY(2px);
-      box-shadow: 0 0 0;
-    }
-  }
-
-
 
   &--overlay {
     @include abs.button-size($padding-y: 8px, $padding-x: 8px);
-    @include abs.button-color-variation($color: var(--clr-dark-cosmos-300));
-    @include abs.button-hover($color: var(--clr-main-300), $background-color: transparent, $border-color: var(--clr-main-300));
+    @include abs.button-color-variation($color: var(--neutral-1000));
+    @include abs.button-hover($color: var(--primary-300), $background-color: transparent, $border-color: var(--primary-300));
     &:active {
       transform: scale(1.1);
     }
@@ -66,8 +83,13 @@
   &--transparent {
     cursor: pointer;
     text-decoration: none;
-    @include abs.button-color-variation($color: var(--clr-star-300), $background-color: transparent, $border-color: transparent);
+    @include abs.button-color-variation($color: var(--neutral-1000), $background-color: transparent, $border-color: transparent);
   }
+
+  &--transparent-dark {
+    @include abs.button-color-variation($color: $clr-dark-cosmos-300, $background-color: transparent, $border-color: transparent);
+  }
+
   &--assisance {
     display: flex;
     place-items: center;
@@ -76,24 +98,23 @@
   }
 
   &--small {
-    @include abs.button-color-variation($color: var(--clr-dark-cosmos-300), $background-color: var(--clr-main-300), $border-color: var(--clr-dark-cosmos-300));
-    @include abs.button-size($padding-y: 10px, $padding-x: 10px, $font-size: var(--fs-200));
+    @include abs.button-color-variation($color: var(--neutral-1000), $background-color: var(--primary-300), $border-color: var(--neutral-1000));
+    @include abs.button-size($padding-y: 10px, $padding-x: 10px, $font-size: var(--fs-small-200));
   }
 
   &--big {
-    @include abs.button-size($padding-y: 0.6rem, $padding-x: 0.6rem, $font-size: 0.9rem);
+    @include abs.button-size($padding-y: 0.6rem, $padding-x: 0.6rem, $font-size: var(--fs-small-200));
     width: 100%;
     margin-top: 1rem;
     margin-bottom: 2rem;
     text-transform: uppercase;
-
     &--transparent {
-      font-size: 2rem;
+      font-size: var(--fs-medium-900);
     }
   }
 
   &--big-hg {
-    @include abs.button-size($padding-y: 1.5rem, $padding-x: 0.6rem, $font-size: 0.9rem);
+    @include abs.button-size($padding-y: 1.5rem, $padding-x: 0.6rem, $font-size: var(--fs-small-200));
     width: 100%;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
@@ -106,18 +127,14 @@
 
   &--disabled {
     pointer-events: none;
-    cursor: not-allowed;
-    &:is([class*="btn--primary"], [class*="btn--yt"]) {
+    opacity: 0.6;
+    &:is([class*="btn--yt"]) {
       @include abs.button-color-variation(
-              $color: var(--clr-dark-cosmos-300),
-              $background-color: var(--clr-btn-hover-200),
-              $border-color: var(--clr-dark-cosmos-300)
+              $color: $clr-star-200,
+              $background-color: $clr-yt-red-400,
+              $border-color: var(--neutral-1000)
       );
     }
-  }
-
-  &--dark-cosmos {
-    @include abs.button-color-variation($color: var(--clr-dark-cosmos-300), $background-color: transparent, $border-color: transparent);
   }
 
   &--close {
@@ -125,24 +142,25 @@
     top: 12px;
     right: 12px;
     cursor: pointer;
+    z-index: 1;
   }
 
   &--back {
     position: absolute;
     top: 12px;
-    right: 12px;
+    left: 12px;
     cursor: pointer;
+    z-index: 1;
   }
 
   &__donation {
-    border: 0.2rem solid var(--clr-dark-cosmos-300);
-    border-radius: 1rem;
-    box-shadow: 0 0.25rem 0 var(--clr-dark-cosmos-300);
+    @include abs.cursive_border($border-radius: 1rem);
+    box-shadow: $box-shadow-3;
     width: 20rem;
 
     &:active {
-      transform: translateY(2px);
-      box-shadow: 0 0 0;
+      box-shadow: 0 0 0 var(--neutral-1000);
+      transform: translate(0.22rem, 0.22rem);
     }
   }
 }

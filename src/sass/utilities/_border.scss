@@ -1,0 +1,31 @@
+@use "../abstracts/index" as *;
+
+@each $key, $value in $common-values  {
+  .border-#{$key} {
+    border: $value solid currentColor;
+  }
+
+  .border-top-#{$key} {
+    border-top: $value solid currentColor;
+  }
+
+  .border-end-#{$key} {
+    border-right: $value solid currentColor;
+  }
+
+  .border-bottom-#{$key} {
+    border-bottom: $value solid currentColor;
+  }
+
+  .border-start-#{$key} {
+    border-left: $value solid currentColor;
+  }
+}
+
+@each $color, $shade-map in $active-theme {
+  @each $shade, $value in $shade-map {
+    .border-#{$color}-#{$shade} {
+      border-color: $color;
+    }
+  }
+}

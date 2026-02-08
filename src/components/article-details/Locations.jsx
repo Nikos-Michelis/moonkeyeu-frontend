@@ -3,7 +3,7 @@ import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleInfo, faLocationDot} from '@fortawesome/free-solid-svg-icons';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {faWikipediaW} from "@fortawesome/free-brands-svg-icons";
 
 const Location = ({pad}) => {
@@ -15,7 +15,7 @@ const Location = ({pad}) => {
                 <FontAwesomeIcon icon={faLocationDot} />
                 <h2>Location</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__info-box article__info-box--col">
                     <h3>{pad.name}</h3>
@@ -40,7 +40,7 @@ const Location = ({pad}) => {
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Info Available">
+                            <Tooltip content="No Info Available">
                                 <div className="article__btn-info">
                                     <LinkButton
                                         className="btn btn--primary"
@@ -62,7 +62,7 @@ const Location = ({pad}) => {
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
+                            <Tooltip content="No Wiki Available">
                                 <div className="article__wiki">
                                     <LinkButton
                                         className="btn btn--primary"

@@ -1,8 +1,6 @@
-import React from 'react';
-import {DateTime} from "luxon";
+import React, {useState} from 'react';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
-import useClipboard from "@/hooks/util/useClipboard.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,11 +11,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faWikipediaW } from '@fortawesome/free-brands-svg-icons';
+import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import ShareContent from "@/components/modal/ShareContent.jsx";
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 const SpacecraftCard = (
     {
         showPanel = false,
-        url,
+        navUrl,
         id,
         name,
         in_use,
@@ -32,21 +34,12 @@ const SpacecraftCard = (
         wiki_url,
         cardStyles
     }) => {
-    const zonedDateTime = DateTime.fromISO(maiden_flight || "");
-    const formattedZonedDateTime = zonedDateTime.isValid
-        ? zonedDateTime.toFormat('MMMM dd, yyyy')
-        : undefined;
-    const { copied, copyToClipboard } = useClipboard();
-    const handleShare = (url) => {
-        const copiedUrl = url ? window.location.origin + url : window.location.origin + window.location.pathname + "/" + id;
-        copyToClipboard(copiedUrl);
-    };
-    const checkValue = (value, metric= "") => {
-        return (value ? `${value} ${metric}` : "―");
-    }
-    const booleanConverter = (value) => {
-        return value && value === true ? "Yes" : "No";
-    }
+    const [shareOpen, setShareOpen] = useState(false);
+    const { handleValue, booleanConverter } = useDataFormatter();
+    const { getZonedAndFormattedDateTime } = useLuxonDateTime();
+    const formattedZonedDateTime = getZonedAndFormattedDateTime(maiden_flight, 'MMMM dd, yyyy');
+    const spacecraftUrl = `/vehicles/spacecraft/${id}`;
+    const url = navUrl ? window.location.origin + spacecraftUrl : window.location.origin + window.location.pathname + "/" + id;
 
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'medium-wrapper'}`}>
@@ -79,7 +72,7 @@ const SpacecraftCard = (
                                 <div className="landscape-card__detail-box landscape-card--ellipsis">
                                     <p className="capability">{capability.endsWith('.') ? capability : capability + '.'} {history}</p>
                                 </div>
-                                <hr className="hr-100-sm bg-hr-600"/>
+                                <hr className="hr-100-sm"/>
                             </div>
                         </>
                     }
@@ -90,31 +83,31 @@ const SpacecraftCard = (
                             <hr/>
                             <div className="panel__wrapper">
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Active</p>
-                                        <p className="panel__text">{checkValue(booleanConverter(in_use))}</p>
+                                        <p className="panel__text">{handleValue(booleanConverter(in_use))}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Human Rated</p>
-                                        <p className="panel__text">{checkValue(booleanConverter(human_rated))}</p>
+                                        <p className="panel__text">{handleValue(booleanConverter(human_rated))}</p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Height</p>
-                                        <p className="panel__text">{checkValue(length, "Meters")}</p>
+                                        <p className="panel__text">{handleValue(length, "Meters")}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Diameter</p>
-                                        <p className="panel__text">{checkValue(diameter, "Meters")}</p>
+                                        <p className="panel__text">{handleValue(diameter, "Meters")}</p>
                                     </div>
                                 </div>
                                 <div className="panel__container">
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text">Maiden Flight</p>
-                                        <p className="panel__text">{checkValue(maiden_flight)}</p>
+                                        <p className="panel__text">{handleValue(maiden_flight)}</p>
                                     </div>
-                                    <div className="panel__detail-box fs-small-100 padding-1">
+                                    <div className="panel__detail-box fs-medium-200 padding-1">
                                         <p className="panel__text"></p>
                                         <p className="panel__text"></p>
                                     </div>
@@ -123,17 +116,17 @@ const SpacecraftCard = (
                             <hr/>
                         </div>
                     }
-                    <div className="landscape-card__actions flex flex-wrap justify-center padding-block-2">
-                        {(!url && id) && (
-                            <div className="landscape-card__info">
+                    <div className="landscape-card__actions">
+                        {(!navUrl && id) && (
+                            <div className="landscape-card__action">
                                 <LinkButton className="btn btn--primary" to={id.toString()} >
                                     <FontAwesomeIcon icon={faCircleInfo} /> INFO
                                 </LinkButton>
                             </div>
                         )}
 
-                        {url && (
-                            <div className="landscape-card__info">
+                        {navUrl && (
+                            <div className="landscape-card__action">
                                 <LinkButton className="btn btn--primary" to={url} >
                                     <FontAwesomeIcon icon={faShuttleSpace} /> View Launch
                                 </LinkButton>
@@ -141,7 +134,7 @@ const SpacecraftCard = (
                         }
 
                         { wiki_url ? (
-                            <div className="landscape-card__wiki">
+                            <div className="landscape-card__action">
                                 <LinkButton
                                     className="btn btn--primary"
                                     to={wiki_url}
@@ -151,8 +144,8 @@ const SpacecraftCard = (
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
-                                <div className="landscape-card__wiki">
+                            <Tooltip content="No Wiki Available">
+                                <div className="landscape-card__action">
                                     <LinkButton
                                         className="btn btn--primary"
                                         isExternal={true}
@@ -162,13 +155,19 @@ const SpacecraftCard = (
                                 </div>
                             </Tooltip>
                         )}
-                        <div className="landscape-card__share">
-                            <Tooltip  message={copied ? "Copied!" : "Copied to clipboard!"}>
-                                <Button className="btn btn--primary" onClick={() => handleShare(`/vehicles/spacecraft/${id}`)} disabled={copied}>
-                                    <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
-                                </Button>
-                            </Tooltip>
+                        <div className="landscape-card__action">
+                            <Button
+                                className="btn btn--primary"
+                                onClick={() => setShareOpen(true)}
+                            >
+                                <FontAwesomeIcon icon={faShareFromSquare} /> SHARE
+                            </Button>
                         </div>
+                        <Modal open={shareOpen} onOpenChange={setShareOpen}>
+                            <Modal.Content title="Share">
+                                <ShareContent url={url} title={name} />
+                            </Modal.Content>
+                        </Modal>
                     </div>
                 </section>
             </div>

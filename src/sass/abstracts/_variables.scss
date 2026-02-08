@@ -2,45 +2,72 @@
 @use "../abstracts/sizes" as *;
 @use "../abstracts/typography" as *;
 
+/*Theme*/
+$active-theme: $light;
+$enable-media-query-dark-mode: false;
+
 $section-padding-block: clamp(5rem, 10vh, 6rem);
 $letter-spacing-loose: 0;
 
-/* box shadows */
+/* box shadows *
+/*
 $box-shadow-1: 0px 6px 5px rgb(0, 0, 0, 0.012),
 0px 22px 18px rgb(0, 0, 0, 0.018), 0px 100px 80px rgb(0, 0, 0, 0.03);
 
 $box-shadow-2: 0px 6px 5px rgb(0, 0, 0, 0.016),
 0px 22px 18px rgb(0, 0, 0, 0.024), 0px 100px 80px rgb(0, 0, 0, 0.04);
+*/
 
-$box-shadow-3: 0 0.3rem var(--clr-dark-cosmos-300);
+$box-shadow-1: 0.45rem 0.45rem var(--neutral-1000);
+$box-shadow-2: 0.35rem 0.35rem var(--neutral-1000);
+$box-shadow-3: 0.25rem 0.25rem var(--neutral-1000);
+$box-shadow-4: 0.15rem 0.15rem var(--neutral-1000);
+$box-shadow-5: 0.05rem 0.05rem var(--neutral-1000);
 
-/* container variables */
+$box-shadow-warning-1: 0.35rem 0.35rem $clr-warning-300;
+$box-shadow-nav-1: 0 0.25rem $clr-dark-cosmos-300;
+$box-shadow-nav-2: 0.25rem 0.25rem $clr-dark-cosmos-300;
+
+/* layout */
+$grid-col-size: 100%;
+$grid-col-count: auto-fill;
+$grid-gap: $size-4;
 $container-min-margin-inline: $size-4;
 $container-max-width: 64rem;
 $container-max-width-narrow: 40rem;
-$container-max-width-medium: 55rem;
+$container-max-width-medium: 60rem;
 $container-max-width-base: 70rem;
 $container-max-width-wide: 75rem;
 $container-fit-content: fit-content;
-/* grid layout */
-$grid-col-size: 100%;
-$grid-col-count: auto-fill;
-$grid-gap: $size-3;
+
 /* default button variables */
-$button-padding-y:10px;
-$button-padding-x:10px;
-$button-default-font-color:var(--clr-dark-cosmos-300);
-$button-font-weight:normal;
-$button-font-size:var(--fs-300);
-$button-line-height:1.2;
-$button-default-bg-color:var(--clr-star-300);
-$button-border-width:2px;
-$button-default-border-color:var(--clr-dark-cosmos-300);
-$button-border-radius:5px;
-$button-transition:all 0.1s ease;
+$button-padding-y: 10px;
+$button-padding-x: 10px;
+$button-default-font-color: var(--neutral-1000);
+$button-font-weight: normal;
+$button-font-size: var(--fs-medium-300);
+$button-line-height: 1.2;
+$button-default-bg-color: var(--primary-300);
+$button-border-width: 0.1rem;
+$button-default-border-color: var(--neutral-1000);
+$button-border-radius: 0.15rem;
+$button-transition: all 80ms ease;
+
+// cards
+$card-flow-spacing: $size-2;
+$card-padding: $size-8;
+$card-shadow: $box-shadow-2;
+$card-border-radius: 0.15rem;
+$card-border-width: 0.15rem;
+$card-background-default: $color-card-bg;
+$card-color-default: $color-neutral-1000;
+$card-line-height: 1.25;
+$card-heading-color-default: $card-color-default;
+$card-heading-font-size: $font-size-600;
+
 /* heading */
 $heading-font-family: $font-family-base;
-$heading-color-default: $clr-star-300;
+$heading-color-default: var(--neutral-1000);
 $heading-font-weight: $font-weight-bold;
 $heading-letter-spacing: $letter-spacing-loose;
 $heading-line-height: 1.1;
@@ -51,5 +78,5 @@ $heading-2-font-size: $font-size-800;
 $heading-2-color: $heading-color-default;
 $heading-3-font-size: $font-size-700;
 $heading-3-color: $heading-color-default;
-$heading-4-font-size: $font-size-300;
+$heading-4-font-size: $font-size-500;
 $heading-4-color: $heading-color-default;

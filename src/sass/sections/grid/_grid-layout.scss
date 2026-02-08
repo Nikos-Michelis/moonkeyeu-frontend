@@ -11,7 +11,7 @@
 
   &__wrapper {
     width: 100%;
-    padding: 1rem;
+    margin-inline-end: 1.5rem;
   }
 
   &__layout {
@@ -33,7 +33,7 @@
       flex-direction: row;
     }
     &__layout:not(.grid__layout--vehicle) {
-      --col-size: 12.5rem;
+      --col-size: 13.5rem;
     }
   }
 

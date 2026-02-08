@@ -1,0 +1,28 @@
+import React from 'react';
+import SpacecraftCard from "@/components/cards/SpacecraftCard.jsx";
+import ContentSection from "@/layout/ContentSection.jsx";
+import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
+const SpacecraftSection = ({ spacecraft, isFetching, isError, pagination }) => {
+    const items = spacecraft._embedded?.spacecraftConfigSummarizedDTOes || [];
+    const contentConfig = {
+        component: SkeletonLandscapeLoader,
+        styles: {
+            section: "spacecraft-articles",
+            wrapper: "medium-wrapper",
+            grid: "grid__layout--landscape"
+        },
+    };
+    return (
+        <ContentSection
+            items={items}
+            isFetching={isFetching}
+            isError={isError}
+            pagination={pagination}
+            contentConfig={contentConfig}
+            CardComponent={SpacecraftCard}
+            itemKeyExtractor={(item) => item.id}
+        />
+    );
+};
+export default SpacecraftSection;
+

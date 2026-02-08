@@ -1,0 +1,56 @@
+@use "../abstracts/index" as *;
+
+.share {
+  &__content {
+    padding: 1rem;
+  }
+  &__options {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__option {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__text {
+    font-size: var(--fs-medium-200);
+  }
+
+  &__copy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: $box-shadow-2;
+    @include cursive_border($border-width: 0.15rem);
+    margin-block: 2rem;
+    overflow: hidden;
+    padding: 0.5rem;
+  }
+
+  &__input {
+    display: block;
+    padding: 0.5rem;
+    height: 3rem;
+    width: 100%;
+    max-width: 25rem;
+    font-family: inherit;
+    background: none;
+    outline: none;
+    resize: none;
+    border: none;
+  }
+
+  &__btn-copy {
+    background: var(--primary-300);
+    width: 100%;
+    max-width: 4rem;
+    &:hover {
+      background: var(--primary-400);
+    }
+  }
+}

@@ -8,11 +8,10 @@
   &--container{
     position: absolute;
     top: 27.5rem;
-    background-color: var(--clr-secondary-300);
+    background-color: var(--primary-300);
     padding: 0.8rem;
-    border: 2px solid var(--clr-dark-cosmos-300);
-    border-radius: 0.3rem;
-    box-shadow: 0 0.3rem 0 var(--clr-dark-cosmos-300);
+    box-shadow: $box-shadow-2;
+    @include abs.cursive_border($border-width: $card-border-width, $border-radius: $card-border-radius);
   }
 
   &__digit-box {
@@ -24,8 +23,7 @@
   &__number {
     display: flex;
     flex-wrap: nowrap;
-    color: var(--clr-dark-cosmos-300);
-    font-size: 1rem;
+    @include abs.font($font-size: var(--fs-medium-400), $color: var(--neutral-1000));
     & > span {
       text-align: center;
       flex-wrap: nowrap;
@@ -34,7 +32,7 @@
   }
 
   &__label {
-    @include abs.font($font-size: var(--fs-300), $font-weight: 800, $color: var(--clr-dark-cosmos-300), $font-variant: all-small-caps);
+    @include abs.font($font-size: var(--fs-medium-300), $font-weight: 800, $color: var(--neutral-1000), $font-variant: all-small-caps);
     text-align: center;
   }
 }

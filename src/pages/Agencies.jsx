@@ -1,10 +1,10 @@
 import React from "react";
-import Heading from "../components/utils/Heading.jsx";
+import Heading from "../components/utils/heading/Heading.jsx";
 import { useSimpleQuery } from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import AgenciesSection from "@/components/sections/AgenciesSection.jsx";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import AgenciesSection from "@/components/sections/pages/AgenciesSection.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 
 function Agencies() {
     const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/agencies`;
@@ -25,7 +25,7 @@ function Agencies() {
                 title="Agencies"
                 description="Explore key space agencies that have shaped space exploration."
             />
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title="Agencies"
                     description="Explore key space agencies that have shaped space exploration."
@@ -36,7 +36,7 @@ function Agencies() {
                     isFetching={queryData.isFetching}
                     isError={queryData.isError}
                 />
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

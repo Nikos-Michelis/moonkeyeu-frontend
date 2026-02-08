@@ -6,7 +6,7 @@ import ScrollToTop from "@/components/utils/ScrollToTop.jsx";
 import {useCreateMutation} from "@/services/mutations.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import PasswordField from "@/components/utils/PasswordField.jsx";
+import PasswordField from "@/components/utils/fields/PasswordField.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight, faChevronLeft, faSpinner} from "@fortawesome/free-solid-svg-icons";
 
@@ -48,7 +48,7 @@ const ChangePassword = () =>{
             <ScrollToTop behavior="auto" />
             <section className="reset-password-section">
                 <div className="container flex justify-center" data-height="full" data-type="medium" data-spacing="none">
-                    <div className="container container--light-overlay flex flex-column align-center padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
+                    <div className="container flex flex-column align-center padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
                         <div className="container flex justify-start padding-block-end-4">
                             <Button className="btn--transparent" onClick={() => window.history.back()}>
                                 <FontAwesomeIcon icon={faChevronLeft} /> Back

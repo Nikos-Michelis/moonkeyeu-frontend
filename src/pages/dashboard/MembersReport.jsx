@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthProvider.jsx";
 import toast from "react-hot-toast";
 import { useSimpleQuery } from "@/services/queries.jsx";
-import BasicTable from "@/components/table/BasicTable.jsx";
+import Table from "@/components/table/Table.jsx";
 import { DateTime } from "luxon";
 import { Button } from "@/components/button/Button.jsx";
-import Heading from "@/components/utils/Heading.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
 import TablePagination from "@/components/pagination/TablePagination.jsx";
 import {
     getCoreRowModel,
@@ -17,7 +17,7 @@ import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 
 function MembersReport() {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -97,7 +97,7 @@ function MembersReport() {
 
     return (
         <>
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title="Members"
                     description="Manage and view all registered members from your dashboard."
@@ -108,7 +108,7 @@ function MembersReport() {
                     description="Manage and view all registered members from your dashboard."
                 />
                 <section className="members-section">
-                    <div className="container container--light-overlay margin-block-end-13 padding-5 rounded-sm" data-type="wide">
+                    <div className="container margin-block-end-13 padding-5" data-type="wide">
                         {!(queryData.isPending || queryData.isFetching) &&
                             <div className="flex justify-start margin-block-4">
                                 <Button className="btn--transparent" onClick={() => window.history.back()}>
@@ -116,11 +116,11 @@ function MembersReport() {
                                 </Button>
                             </div>
                         }
-                        {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <BasicTable table={table} />}
+                        {(queryData.isPending || queryData.isFetching) ? <SpinnerLoader/> : <Table table={table} />}
                         <TablePagination table={table} />
                     </div>
                 </section>
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

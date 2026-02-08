@@ -4,6 +4,7 @@ import {faClipboardList} from "@fortawesome/free-solid-svg-icons";
 
 const RelatedPrograms = ({programs}) =>{
     const contentConfig = {
+        scroll: 2,
         styles: {
             wrapper: "article-card--small-wrapper",
             section: "launches-articles",
@@ -16,12 +17,12 @@ const RelatedPrograms = ({programs}) =>{
                 <FontAwesomeIcon icon={faClipboardList} />
                 <h2>Related Programs</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container"
                      data-type="full-width"
                      data-spacing="none"
-                     data-scroll={programs.length > 2  ? "vertical" : undefined}>
+                     data-scroll={programs.length > contentConfig?.scroll  ? "vertical" : undefined}>
                     <div className="margin-block-5 margin-inline-4">
                         <div className="grid__layout grid__layout--landscape padding-block-2">
                             {programs?.length > 0 && (

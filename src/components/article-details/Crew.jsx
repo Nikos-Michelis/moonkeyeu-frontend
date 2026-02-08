@@ -5,6 +5,7 @@ import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 
 const Crew = ({crew}) =>{
     const contentConfig = {
+        scroll: 2,
         styles: {
             wrapper: "article-card--small-wrapper",
             section: "launches-articles",
@@ -17,22 +18,23 @@ const Crew = ({crew}) =>{
                 <FontAwesomeIcon icon={faUserAstronaut} />
                 <h2>Crew</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container"
                      data-type="full-width"
                      data-spacing="none"
-                     data-scroll={crew.length > 2 ? "vertical" : undefined}
+                     data-scroll={crew.length > contentConfig?.scroll ? "vertical" : undefined}
                 >
                     <div className="margin-block-5 margin-inline-4">
                         <div className="grid__layout grid__layout--landscape padding-block-2">
                             {crew.length > 0 &&
-                                    crew.map(crew =>
-                                        <AstronautLandScapeCard
-                                            key={crew.id}
-                                            cardStyles={contentConfig?.styles}
-                                            {...crew} />
-                                    )
+                                crew.map(crew =>
+                                    <AstronautLandScapeCard
+                                        key={crew.id}
+                                        styles={contentConfig?.styles}
+                                        {...crew}
+                                    />
+                                )
                             }
                         </div>
                     </div>

@@ -1,0 +1,16 @@
+@use "../abstracts/index" as abs;
+
+.container {
+  &--form {
+    border: 0.2rem solid var(--neutral-1000);
+    border-radius: .2rem;
+    background-color: var(--primary-300);
+    box-shadow: abs.$box-shadow-1;
+  }
+
+  @include abs.mq(medium) {
+    &--form {
+      max-width: 55%;
+    }
+  }
+}

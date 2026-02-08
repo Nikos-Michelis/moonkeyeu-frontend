@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {useAstronautsFilters} from "@/hooks/paging-filtering/useAstronautsFilters.jsx";
 import {Button} from "@/components/button/Button.jsx";
-import CustomSelect from "@/components/utils/CustomSelect.jsx";
+import CustomSelect from "@/components/utils/select/CustomSelect.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faArrowsRotate, faFilter, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faArrowsRotate, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
 
 AstronautsFiltering.propTypes = {
@@ -48,8 +48,8 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
         setFilters,
         resetFilters,
     } = useAstronautsFilters();
-    const [locaSearch, setLocalSearch] = useState(search);
-    const debounceSearch = useDebounce(locaSearch);
+    const [localSearch, setLocalSearch] = useState(search);
+    const debounceSearch = useDebounce(localSearch);
 
     useEffect(() => {
         setFilters({ search: debounceSearch });
@@ -81,10 +81,10 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
         <section className="toolbar">
             <div className="container toolbar__container margin-block-4" data-type="full-bleed">
                 <div className="toolbar__tools">
-                    <div>
+                    <div className="margin-inline-end-2">
                         <Button
                             ref={triggerRef}
-                            className="btn btn--overlay fw-bold fs-small-100"
+                            className="btn btn--primary btn--big fw-bold fs-medium-200"
                             onClick={() => toggleOptions(true)}
                             disabled={isFetching || isPending || isError}
                         >
@@ -107,14 +107,14 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                 <div className="search flex justify-center">
                     <input type="hidden" name="action" value="search" />
                     <input
-                        className="search__searchbar box-shadow-light"
-                        value={locaSearch || ""}
+                        className="search__searchbar"
+                        value={localSearch || ""}
                         type="text"
                         name="search"
                         placeholder={searchPlaceHolder}
                         onChange={(e) => setLocalSearch(e.target.value)}
                     />
-                    <div className="search__btn-search box-shadow-light">
+                    <div className="search__btn-search">
                         <FontAwesomeIcon icon={faSearch} />
                     </div>
                 </div>
@@ -138,7 +138,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                             <CustomSelect
                                 options={filters?.data?.nationalities || []}
                                 field="nationality"
-                                placeholder={"Νationality"}
+                                placeholder={"Nationality"}
                                 setFilters={setFilters}
                                 searchValue={searchValue}
                                 setSearchValue={setSearchValue}
@@ -187,7 +187,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                     </div>
                     <div className="toolbar__actions">
                         <Button
-                            className="btn--transparent fs-small-100 clr-dark-cosmos-300"
+                            className="btn--transparent rotation fs-medium-200"
                             onClick={ handleReset }>
                             <FontAwesomeIcon icon={faArrowsRotate} />
                         </Button>

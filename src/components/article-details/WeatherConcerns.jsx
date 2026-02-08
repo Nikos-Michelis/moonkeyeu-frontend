@@ -8,7 +8,7 @@ const WeatherConcerns = ({weather_concerns}) => {
                 <FontAwesomeIcon icon={faChartLine} />
                 <h2>Weather</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="flex flex-column">
                 <div className="article__info-box">
                     <>
@@ -20,7 +20,7 @@ const WeatherConcerns = ({weather_concerns}) => {
                         }
                     </>
                 </div>
-                <div className="flex justify-end clr-dark-cosmos-300 margin-block-start-4">
+                <div className="flex justify-end margin-block-start-4">
                     <small>Weather data powered by <a href="https://openweathermap.org/" target="_blank">OpenWeather</a></small>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 @use "../../../abstracts/index" as abs;
+@use "../../../abstracts/variables" as *;
 
 .landscape-card {
   position: relative;
@@ -12,14 +13,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--clr-main-300);
-    border: 0.2rem solid var(--clr-dark-cosmos-300);
-    border-radius: 0.2rem;
-    box-shadow: 0 0.35rem 0 var(--clr-dark-cosmos-300);
+    background-color: $card-background-default;
+    @include abs.cursive_border($border-width: $card-border-width, $border-radius: $card-border-radius);
+    box-shadow: $card-shadow;
     width: 100%;
     max-width: 500px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+
     &--article-card{
       max-width: 850px;
+    }
+
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: $box-shadow-1;
     }
   }
 
@@ -28,6 +37,45 @@
     width: 100%;
     height: 100%;
     max-height: 18rem;
+    &--link {
+      position: relative;
+      display: block;
+      &::after {
+        content: '';
+        background-color: rgba(224, 218, 239, 0.2980392157);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        opacity: 0;
+        transition: opacity 0.3s ease-out;
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__title{
+    font-size: var(--fs-small-400);
+    text-decoration: none;
+    color: var(--neutral-1000);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &:has(.landscape-card__media--link:hover),
+  &:has(.landscape-card__title:hover) {
+    .landscape-card__media--link::after {
+      opacity: 1;
+    }
+    .landscape-card__title {
+      text-decoration: underline;
+    }
   }
 
   &__image {
@@ -37,8 +85,8 @@
     background-position: center;
     object-fit: cover;
     display: block;
-    outline: 0.18rem solid var(--clr-dark-cosmos-300);
-    background-color: var(--clr-star-300);
+    outline: 0.1rem solid var(--neutral-1000);
+    background-color: var(--card-bg);
     pointer-events: none;
     -webkit-user-drag: none;
     user-select: none;
@@ -54,14 +102,10 @@
   }
 
   &__content {
-    color: var(--clr-dark-cosmos-300);
+    color: var(--neutral-1000);
     width: 100%;
     height: 100%;
     padding: 1rem 1rem 0 1rem;
-  }
-
-  & .title{
-      font-size: var(--fs-400);
   }
 
   &__assistance {
@@ -76,12 +120,25 @@
     flex-wrap: nowrap;
 
     & .title{
-      font-size: var(--fs-400);
+      font-size: var(--fs-small-400);
     }
 
     & svg {
       margin: 0 0.5rem;
     }
+  }
+
+  &__actions, &__video {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  &__action {
+    display: inline-flex;
   }
 
   &--ellipsis {
@@ -91,28 +148,6 @@
   &--scrolling {
     max-height: 5rem;
     overflow-y: scroll;
-  }
-
-  &__btn-bookmark {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    z-index: 0;
-    top: 1rem;
-    right: 0.5rem;
-    @include abs.font($font-size: var(--fs-600), $color: var(--clr-star-300));
-    background-color: rgba(2, 0, 60, 0.15);
-    border-radius: 3.125rem;
-
-    & button {
-      &:hover, &:active {
-        cursor: pointer;
-        & svg {
-          color: var(--clr-main-300);
-          transition: color 0.2s ease;
-        }
-      }
-    }
   }
 
   @include abs.mq(medium) {

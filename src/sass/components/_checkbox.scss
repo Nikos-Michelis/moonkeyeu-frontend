@@ -1,0 +1,42 @@
+@use "../abstracts/index" as abs;
+@use "../abstracts/variables" as *;
+
+.checkbox {
+  &__root {
+    all: unset;
+    border-radius: 4px;
+    padding: 0.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: abs.$box-shadow-5;
+    @include abs.cursive_border();
+
+    &:hover {
+      background-color: var(--neutral-1000);
+      .checkbox__indicator {
+        color: var(--neutral-000);
+      }
+    }
+
+    &:not(.checkbox__root--small):not(.checkbox__root--medium):not(.checkbox__root--large){
+      width: 15px;
+      height: 15px;
+    }
+
+    &--small {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  &__indicator {
+    color: var(--neutral-1000);
+    transition: color 0.2s ease;
+  }
+
+  &__label {
+    padding-left: 0.4rem;
+    font-size: 0.9rem;
+  }
+}

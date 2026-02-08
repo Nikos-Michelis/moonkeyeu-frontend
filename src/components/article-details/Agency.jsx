@@ -1,6 +1,6 @@
 import React from "react";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
-import Tooltip from "@/components/tooltip/Tooltip.jsx";
+import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBuilding, faCircleInfo} from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ const Agency = ({ launchProvider }) =>{
                 <FontAwesomeIcon icon={faBuilding} />
                 <h2>Agency</h2>
             </div>
-            <hr className="hr-100-sm bg-hr-600" />
+            <hr className="hr-100-sm" />
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__img-box margin-block-start-5">
                     <Img
@@ -25,8 +25,8 @@ const Agency = ({ launchProvider }) =>{
                     <div className="article__badge flex flex-wrap">
                         {launchProvider?.administrator? <span className="badge--pill">President: {launchProvider?.administrator}</span> : null}
                         <div className="badge--pill">Founded: {launchProvider?.founding_year}</div>
-                        <div className="badge--pill bg-success-400">Successes: {launchProvider?.successful_launches}</div>
-                        <div className="badge--pill bg-warning-200">Failures: {launchProvider?.failed_launches}</div>
+                        <div className="badge--pill badge--success">Successes: {launchProvider?.successful_launches}</div>
+                        <div className="badge--pill badge--warning">Failures: {launchProvider?.failed_launches}</div>
                         <div className="badge--pill">Pending: {launchProvider?.pending_launches}</div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ const Agency = ({ launchProvider }) =>{
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Info Available">
+                            <Tooltip content="No Info Available">
                                 <div className="info">
                                     <LinkButton
                                         className="btn btn--primary"
@@ -55,7 +55,7 @@ const Agency = ({ launchProvider }) =>{
                                 </div>
                             </Tooltip>
                         )}
-                        { launchProvider.info_url ? (
+                        { launchProvider?.info_url ? (
                             <div className="info">
                                 <LinkButton
                                     className="btn btn--primary"
@@ -66,7 +66,7 @@ const Agency = ({ launchProvider }) =>{
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="There is no official page available.">
+                            <Tooltip content="There is no official page available.">
                                 <div className="info">
                                     <LinkButton
                                         className="btn btn--primary"
@@ -78,7 +78,7 @@ const Agency = ({ launchProvider }) =>{
                                 </div>
                             </Tooltip>
                         )}
-                        { launchProvider.wiki_url ? (
+                        { launchProvider?.wiki_url ? (
                             <div className="wiki">
                                 <LinkButton
                                     className="btn btn--primary"
@@ -89,7 +89,7 @@ const Agency = ({ launchProvider }) =>{
                                 </LinkButton>
                             </div>
                         ) : (
-                            <Tooltip message="No Wiki Available">
+                            <Tooltip content="No Wiki Available">
                                 <div className="wiki">
                                     <LinkButton
                                         className="btn btn--primary"

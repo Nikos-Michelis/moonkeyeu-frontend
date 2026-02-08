@@ -28,9 +28,9 @@ export function SkeletonLoader(
     if (isError) {
         return (
             <>
-                <div className="flex flex-column padding-block-12">
-                    <FontAwesomeIcon icon={faGears} className="fs-small-800 margin-block-start-8"/>
-                    <p>Currently unavailable...</p>
+                <div className="flex flex-column padding-block-12 text-center">
+                    <FontAwesomeIcon icon={faGears} className="fs-large-800 margin-block-end-6"/>
+                    <p>Oops! Something went wrong try again later...</p>
                 </div>
             </>
         )

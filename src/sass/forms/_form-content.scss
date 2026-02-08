@@ -1,0 +1,74 @@
+@use "../abstracts" as *;
+@use "../abstracts/index" as abs;
+@use "../abstracts/variables" as *;
+
+div.form-content {
+  width: 100%;
+  &:not([class*="padding-"]){
+    padding: 2.1875rem;
+  }
+  & h2 {
+    text-align: center;
+    margin-bottom: 1.8rem;
+    font-size: var(--fs-small-400);
+  }
+  & div.input-field {
+    position: relative;
+    margin-bottom: 1rem;
+    & input[type="text"], input[type="email"],
+    input[type="tel"], input[type="number"],
+    input[type="password"], select, textarea {
+      display: block;
+      box-sizing: border-box;
+      padding: 0.5rem;
+      height: 3.7rem;
+      width: 100%;
+      outline: none;
+      box-shadow: $box-shadow-2;
+      font-family: inherit;
+      background: none;
+      resize: none;
+      @include abs.cursive_border($border-width: 0.15rem);
+      &.input-error {
+        @include abs.cursive_border($color: $clr-warning-300);
+        box-shadow: $box-shadow-warning-1;
+        &:focus {
+          @include abs.cursive_border($color: $clr-warning-300);
+        }
+      }
+    }
+    & textarea{
+      height: 8rem;
+    }
+    & .floating-label {
+      & label {
+        position: absolute;
+        left: 10px;
+        top: 20px;
+        transition: all 0.15s;
+        padding: 0 0.25rem;
+        pointer-events: none;
+      }
+
+      &.active label {
+        font-size: var(--fs-medium-100);
+        color: var(--primary-300);
+        background-color: var(--neutral-1000);
+        transform: translateY(-200%);
+      }
+    }
+    & p.error-message{
+      position: relative;
+      transform: translateY(5px);
+      font-size: var(--fs-medium-100);
+      color: $clr-warning-300;
+    }
+    & span.visibility {
+      position: absolute;
+      right: 1.25rem;
+      top: 1.1875rem;
+      cursor: pointer;
+      color: var(--dark-cosmos-200);
+    }
+  }
+}

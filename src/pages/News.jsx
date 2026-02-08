@@ -1,13 +1,13 @@
 import React, {useEffect} from "react";
-import Heading from "@/components/utils/Heading.jsx";
-import NewsSection from "@/components/sections/NewsSection.jsx";
+import Heading from "@/components/utils/heading/Heading.jsx";
+import NewsSection from "@/components/sections/pages/NewsSection.jsx";
 import {useSearchParams} from "react-router-dom";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import ContentLayout from "@/layout/ContentLayout.jsx";
+import ContentContainer from "@/layout/ContentContainer.jsx";
 function News() {
     const baseUrl = import.meta.env.VITE_NEWS_API_URL;
     const defaultFilters = {limit: 12, offset: 0, ordering:"-published_at"};
@@ -41,7 +41,7 @@ function News() {
                 title="News"
                 description="Stay up to date by exploring the latest space news."
             />
-            <ContentLayout>
+            <ContentContainer>
                 <Heading
                     title="News"
                     description="Stay up to date by exploring the latest space news."
@@ -58,7 +58,7 @@ function News() {
                     isError={queryData.isError}
                     pagination={pagination}
                 />
-            </ContentLayout>
+            </ContentContainer>
         </>
     );
 }

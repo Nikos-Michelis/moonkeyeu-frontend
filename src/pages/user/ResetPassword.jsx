@@ -7,7 +7,7 @@ import ScrollToTop from "@/components/utils/ScrollToTop.jsx";
 import {useCreateMutation} from "@/services/mutations.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
-import PasswordField from "@/components/utils/PasswordField.jsx";
+import PasswordField from "@/components/utils/fields/PasswordField.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight, faSpinner} from "@fortawesome/free-solid-svg-icons";
 
@@ -53,7 +53,7 @@ const ResetPassword = () =>{
             <ScrollToTop behavior="auto" />
             <section className="reset-password-section">
                 <div className="container flex justify-center" data-height="full" data-type="medium" data-spacing="none">
-                    <div className="container container--light-overlay flex flex-column align-center  padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
+                    <div className="container flex flex-column align-center  padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
                         <div className="container container--form margin-5" data-type="narrow">
                             <div className="form-content">
                                 <h2>Reset Password</h2>

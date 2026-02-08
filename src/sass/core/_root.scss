@@ -1,22 +1,46 @@
 @use "../abstracts/colors" as *;
 @use "../abstracts/typography" as *;
 @use "../abstracts/breakpoints" as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/index" as abs;
 
-:root{
-  @each $color, $shades in $colors {
-    @each $shade, $value in $shades{
-      --clr-#{$color}-#{$shade}:#{$value};
+:root {
+  color-scheme: light dark;
+
+  @include abs.emit-theme($light);
+
+  @media (prefers-color-scheme: dark) {
+    &:not([data-theme="light"]) {
+      @include abs.emit-theme($dark);
     }
   }
 
-  @each $name, $value in $constant-colors {
-    --clr-#{$name}: #{$value};
+  &[data-theme="light"] {
+    @include abs.emit-theme($light);
+    color-scheme: light;
   }
 
-  @each $screen-size, $property in $font-sizes {
-    @if $screen-size == small {
+  &[data-theme="dark"] {
+    @include abs.emit-theme($dark);
+    color-scheme: dark;
+  }
+
+  @each $font-size, $property in $font-sizes {
+    @if $font-size == small {
       @each $prop, $value in $property {
-        --fs-#{$prop}: #{$value};
+        --fs-#{$font-size}-#{$prop}: #{$value};
+      }
+    }
+
+    @if $font-size == medium {
+      @each $prop, $value in $property {
+        --fs-#{$font-size}-#{$prop}: #{$value};
+      }
+    }
+
+    @if $font-size == large {
+      @each $prop, $value in $property {
+        --fs-#{$font-size}-#{$prop}: #{$value};
       }
     }
   }

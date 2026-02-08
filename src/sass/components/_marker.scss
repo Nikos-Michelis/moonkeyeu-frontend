@@ -1,3 +1,6 @@
+@use "../abstracts/index" as abs;
+@use "../abstracts/index" as *;
+
 .marker {
   display: flex;
   flex-direction: column;
@@ -8,8 +11,7 @@
     left: 0;
     width: max-content;
     white-space: nowrap;
-    font-size: 0.67rem;
-    font-weight: 600;
+    @include abs.font($font-size: var(--fs-medium-100), $font-weight: 600, $color: $clr-dark-cosmos-300);
   }
 }
 
@@ -17,10 +19,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.8);
+  background: $color-light-overlay-600;
   border-radius: 5rem;
   padding: 1rem;
   &__count {
-    font-weight: 600;
+    @include abs.font($font-size: var(--fs-medium-100), $font-weight: 600, $color: $clr-dark-cosmos-300);
   }
 }

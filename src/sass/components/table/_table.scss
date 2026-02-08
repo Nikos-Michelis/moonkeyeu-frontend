@@ -8,24 +8,24 @@
 
   & table {
     border-collapse: collapse;
-    border: 0.2rem solid var(--clr-star-300);
+    border: 0.2rem solid var(--neutral-1000);
 
     & tr {
-      border: 0.2rem solid var(--clr-star-300);
+      border: 0.2rem solid var(--neutral-1000);
 
       & th, td {
-        border-color: var(--clr-star-300);
+        border-color: var(--neutral-1000);
         padding: 12px 10px;
         vertical-align: middle;
         text-align: center;
-        font-size: var(--fs-100);
-        color: var(--clr-star-300);
+        font-size: var(--fs-medium-100);
+        color: var(--neutral-1000);
       }
     }
 
     & tbody {
       tr:hover {
-        background: var(--clr-dark-cosmos-200);
+        background: var(--primary-200);
         cursor: pointer;
       }
     }
@@ -38,7 +38,7 @@
       & table {
         & tr {
           & th, td {
-            font-size: var(--fs-200);
+            font-size: var(--fs-small-200);
           }
         }
       }

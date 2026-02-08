@@ -3,12 +3,12 @@ import {useSpaceFlightNews} from "@/context/SpaceFlightNewsProvider.jsx";
 import NasaApod from "@/components/sidebars/NasaApod.jsx";
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
 import SkeletonSidebarLoader from "@/components/skeleton/SkeletonSidebarLoader.jsx";
-import {Link} from "react-router-dom";
 import {useNasaApod} from "@/context/NasaApodProvider.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-regular-svg-icons';
 import NewsAsideArticle from "../cards/NewsAsideArticle.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 const LatestNews = () => {
     const { data: newsData, isPending: isPendingNews, isFetching: isFetchingNews, isError: isErrorNews } = useSpaceFlightNews();
@@ -17,12 +17,14 @@ const LatestNews = () => {
         count:4,
         component: SkeletonSidebarLoader,
     };
+    const format = 'MMM dd, yyyy - hh:mm';
+    const { getZonedAndFormattedDateTime } = useLuxonDateTime();
 
     return (
         <>
             <section className="latest-news">
-                <div className="flex flex-column justify-center align-center margin-4">
-                    <div className="sidebar container flex flex-column justify-center align-center bg-secondary-300 padding-4" data-type="full-bleed">
+                <div className="flex flex-column justify-center align-center margin-block-4">
+                    <div className="sidebar container flex flex-column justify-center align-center padding-4" data-type="full-bleed">
                         <div className="sidebar__heading-box">
                             <h3 className="ff-accent">Latest News</h3>
                         </div>
@@ -39,7 +41,9 @@ const LatestNews = () => {
                                                 imageSrc={article.image_url}
                                                 title={article.title}
                                                 author={article.news_site}
+                                                date={getZonedAndFormattedDateTime(article?.published_at, format)}
                                                 url={article.url}
+                                                isExternalUrl={true}
                                             />
                                         )))
                                     }

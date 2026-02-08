@@ -33,7 +33,7 @@ const Dashboard = () =>{
             <ScrollToTop behavior="auto" />
                 <section className="dashboard">
                     <div className="container flex justify-center" data-height="auto" data-type="medium" data-spacing="none">
-                        <div className="container container--light-overlay padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
+                        <div className="container padding-inline-8 padding-block-10" data-type="fixed-inherit" data-spacing="none">
                             <div className="container flex justify-start padding-block-end-4">
                                 <Button className="btn--transparent" onClick={() => window.history.back()}>
                                     <FontAwesomeIcon icon={faChevronLeft} /> Back
@@ -41,7 +41,7 @@ const Dashboard = () =>{
                             </div>
                             <div className="container flex flex-column padding-block-12" data-spacing="none">
                                 <section className="account-managment-section">
-                                    <div className="flex align-center clr-star-300">
+                                    <div className="flex align-center">
                                         <FontAwesomeIcon icon={faTableColumns} className="fs-small-700" />
                                         <h2 className="padding-1">Dashboard</h2>
                                     </div>
@@ -51,7 +51,6 @@ const Dashboard = () =>{
                                             <LinkButton
                                                 className="btn btn--primary btn--big-hg"
                                                 to="etl-report"
-                                                disabled={true}
                                             >
                                                 <FontAwesomeIcon icon={faDatabase} /> ETL Tasks
                                             </LinkButton>
@@ -88,7 +87,7 @@ const Dashboard = () =>{
                                     </div>
                                 </section>
                             </div>
-                            <hr className="hr-90-sm bg-hr-600"/>
+                            <hr className="hr-90-sm"/>
                         </div>
                     </div>
                 </section>

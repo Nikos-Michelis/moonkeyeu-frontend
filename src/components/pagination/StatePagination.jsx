@@ -34,7 +34,7 @@ const StatePagination = ({ pagination, isPending, isFetching}) => {
                 <div className="flex">
                     of
                     <span className="margin-inline-1"> {pagination?.totalItems} </span>
-                    items
+                    results
                 </div>
             </span>
             <Button

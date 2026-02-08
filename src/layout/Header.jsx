@@ -1,5 +1,4 @@
-import React from "react";
-import {useModal} from "@/context/ModalProvider.jsx";
+import React, {useState} from "react";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import {Link, NavLink} from "react-router-dom";
@@ -7,13 +6,17 @@ import toast from "react-hot-toast";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRocket, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faBookmark } from '@fortawesome/free-regular-svg-icons';
+import ThemeButton from "@/components/button/ThemeButton.jsx";
+import Modal from "@/components/modal/dialog/Modal.jsx";
+import LoginForm from "@/components/modal/forms/LoginForm.jsx";
 
 const Header = () => {
-    const { openModal } = useModal();
+    const [open, setOpen] = useState(false)
     const {user, status } = useAuth();
 
     const onBookmark = () => {
-        openModal("PopUpFormModal", null, "form");
+        setOpen(true);
+        !user &&
         toast(
             "You're almost there! Sign up or log in to bookmark your favorites launches.", {
                 icon: <FontAwesomeIcon icon={faRocket} />
@@ -73,16 +76,20 @@ const Header = () => {
                                         <FontAwesomeIcon icon={faUserAstronaut} />
                                     </NavLink>
                                 ) : (
-                                    <Button
-                                        type="button"
-                                        className="navbar__user-button btn--transparent"
-                                        onClick={() => openModal("PopUpFormModal", null, "form")}>
+                                <Modal open={open} onOpenChange={setOpen}>
+                                    <Modal.Button
+                                        className="navbar__user-link btn--transparent"
+                                    >
                                         <FontAwesomeIcon icon={faUser} />
-                                    </Button>
+                                    </Modal.Button>
+                                    <Modal.Content>
+                                        <LoginForm setOpen={setOpen} />
+                                    </Modal.Content>
+                                </Modal>
                                 )
                             ) : (
                                 <div>
-                                    <div className="skeleton skeleton--circle bg-dark-cosmos-300"></div>
+                                    <div className="skeleton skeleton--circle"></div>
                                 </div>
                             )}
 
@@ -103,9 +110,10 @@ const Header = () => {
                                 )
                             ) : (
                                 <div>
-                                    <div className="skeleton skeleton--circle bg-dark-cosmos-300"></div>
+                                    <div className="skeleton skeleton--circle"></div>
                                 </div>
                             )}
+                            <ThemeButton/>
                         </div>
                     </ul>
                 </div>
