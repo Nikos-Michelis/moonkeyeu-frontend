@@ -191,7 +191,7 @@ const AstronautArticleContent = ({ data }) => {
                           <p>{data?.bio}</p>
                       </div>
                   </section>
-                  <Launch launches={launches} navUrl={'/launches/'}/>
+                  <Launch launches={launches} navUrl={'/launches'}/>
                   <div className="padding-block-end-4">
                       <hr className="hr-90-md"/>
                   </div>

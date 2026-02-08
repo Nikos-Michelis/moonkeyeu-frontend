@@ -72,7 +72,7 @@ function MyLaunches() {
                     pagination={pagination}
                     isBookmarked={true}
                     options={options}
-                    navUrl="/launches/"
+                    navUrl="/launches"
                 />
             </ContentContainer>
         </>

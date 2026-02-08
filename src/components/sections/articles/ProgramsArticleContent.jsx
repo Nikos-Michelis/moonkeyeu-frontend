@@ -116,7 +116,7 @@ const ProgramsArticleContent = ({queryData, pagination}) => {
             <div className="article__info-container container flex flex-column" data-type="full-bleed">
                 {launchesQuery?.data?.upcoming_launch && <UpcomingLaunch launch={launchesQuery?.data?.upcoming_launch}/>}
                 {programsData?.agencies.length > 0 && <Agencies agencies={programsData?.agencies}/>}
-                <Launch queryData={launchesQuery} navUrl={'/launches/'} pagination={pagination} hasPagination={true}/>
+                <Launch queryData={launchesQuery} navUrl={'/launches'} pagination={pagination} hasPagination={true}/>
                 <div className="padding-block-end-4">
                     <hr className="hr-90-md"/>
                 </div>
