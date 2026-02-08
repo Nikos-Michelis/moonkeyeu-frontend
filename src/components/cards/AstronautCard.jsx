@@ -13,9 +13,11 @@ import {LinkButton} from "@/components/button/LinkButton.jsx";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";
 import {faInstagram, faXTwitter} from "@fortawesome/free-brands-svg-icons";
+import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 
 const AstronautCard = ({id, name, nationality, status, agency, images, social_media, age }) => {
     const [shareOpen, setShareOpen] = useState(false);
+    const { handleValue } = useDataFormatter();
     const socialMediaLinks = social_media?.length > 0 ? social_media : [];
     const instagram = socialMediaLinks.find((sm) => sm.name === "Instagram")?.media_url;
     const twitter = socialMediaLinks.find((sm) => sm.name === "Twitter")?.media_url;
@@ -58,7 +60,7 @@ const AstronautCard = ({id, name, nationality, status, agency, images, social_me
                          <div className="portrait-card__detail fs-small-200">
                              <FontAwesomeIcon icon={faCakeCandles} size="lg" />
                              <p className="portrait-card__text fw-bold">
-                                {age}
+                                {handleValue(age)}
                             </p>
                         </div>
 
