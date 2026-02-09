@@ -57,7 +57,7 @@ const ContentSection = (
                             }
                         </div>
                     }
-                    <div className={`grid__layout ${contentConfig?.styles?.grid || ''}`}>
+                    <div className={(items.length > 0 || (isFetching || isPending)) && `grid__layout ${contentConfig?.styles?.grid || ''}`}>
                         <SkeletonLoader
                             isPending={isPending}
                             isFetching={isFetching}
