@@ -1,0 +1,10 @@
+.prev {
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__title {
+    min-width: 4.5rem;
+  }
+}

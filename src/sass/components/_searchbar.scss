@@ -4,6 +4,7 @@
 .search {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: auto;
   width: 100%;
   @include abs.font($font-size: var(--fs-medium-200));

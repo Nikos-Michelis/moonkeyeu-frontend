@@ -1,17 +1,12 @@
 .rotation {
-  transition: transform ease 0.1s;
   svg {
     transform: rotateZ(0deg);
     transition: transform ease 0.3s;
   }
   &:active {
-    transform: scale(1.1);
     svg {
       transform: rotateZ(-360deg);
     }
-  }
-  &:hover {
-    transform: scale(1.1);
   }
 }
 

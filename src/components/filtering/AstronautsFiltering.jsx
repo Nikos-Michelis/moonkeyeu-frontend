@@ -5,7 +5,7 @@ import {useAstronautsFilters} from "@/hooks/paging-filtering/useAstronautsFilter
 import {Button} from "@/components/button/Button.jsx";
 import CustomSelect from "@/components/utils/select/CustomSelect.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faArrowsRotate, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faArrowsRotate, faPlus, faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
 
 AstronautsFiltering.propTypes = {
@@ -47,6 +47,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
         ordering,
         setFilters,
         resetFilters,
+        resetFilterByName
     } = useAstronautsFilters();
     const [localSearch, setLocalSearch] = useState(search);
     const debounceSearch = useDebounce(localSearch);
@@ -69,6 +70,11 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
         if (optionsRef.current && !optionsRef.current.contains(event.target)) {
             setShowOptions(false);
         }
+    };
+
+    const handleClearance = (field) => {
+        setLocalSearch("");
+        resetFilterByName(field);
     };
 
     useClickOutside({
@@ -104,7 +110,7 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                          dropDownClassName="select__content--medium"
                     />
                 </div>
-                <div className="search flex justify-center">
+                <div className="search">
                     <input type="hidden" name="action" value="search" />
                     <input
                         className="search__searchbar"
@@ -114,8 +120,8 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                         placeholder={searchPlaceHolder}
                         onChange={(e) => setLocalSearch(e.target.value)}
                     />
-                    <div className="search__btn-search">
-                        <FontAwesomeIcon icon={faSearch} />
+                    <div className="search__btn-search" onClick={() => localSearch && handleClearance('search')}>
+                        <FontAwesomeIcon icon={localSearch ? faXmark : faSearch} />
                     </div>
                 </div>
                 <div ref={optionsRef} className={`toolbar__wrapper height-fade ${ showOptions ? "show md" : ""}`}>
