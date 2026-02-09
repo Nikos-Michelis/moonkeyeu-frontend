@@ -43,6 +43,17 @@ export function useAstronautsFilters() {
         setSearchParams(defaultFilters, {replace: true});
     }, [filterParams]);
 
+    const resetFilterByName = useCallback((name) => {
+        setSearchParams(prev => {
+            if (defaultFilters?.[name] != null) {
+                prev.set(name, defaultFilters[name]);
+            } else {
+                prev.delete(name);
+            }
+            return prev;
+        }, { replace: true });
+    }, [setSearchParams]);
+
     return {
         search,
         agency,
@@ -52,5 +63,6 @@ export function useAstronautsFilters() {
         ordering,
         setFilters,
         resetFilters,
+        resetFilterByName
     };
 }
