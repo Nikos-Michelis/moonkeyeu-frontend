@@ -42,6 +42,8 @@ import {SpaceFlightNewsProvider} from "@/context/SpaceFlightNewsProvider.jsx";
 import BuildProviderTree from "@/context/BuildProviderTree.jsx";
 import {ThemeProvider} from "@/context/ThemeProvider.jsx";
 import ToastPortal from "@/portals/ToastPortal.jsx";
+import {ChatBotProvider} from "@/context/ChatBotProvider.jsx";
+import ChatBot from "@/components/modal/chat/ChatBot.jsx";
 
 function App() {
     const[cookies] = useCookies(["cookieConsent"])
@@ -51,6 +53,7 @@ function App() {
         [NasaApodProvider],
         [GoogleOAuthProvider, { clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID}],
         [AuthProvider],
+        [ChatBotProvider],
     ]);
     const NOT_FOUND = 404;
     return (
@@ -116,6 +119,7 @@ function App() {
                 <ToastPortal />
                 {!cookies.cookieConsent && <CookieConsent/>}
                 <GoTop />
+                <ChatBot/>
             </BrowserRouter>
         </ProvidersTree>
     )

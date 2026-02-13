@@ -1,15 +1,20 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faBookmark, faEllipsisVertical, faShareFromSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faBookmark, faEllipsisVertical, faRobot, faShareFromSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
 import * as RadixDropdown from "@radix-ui/react-dropdown-menu";
 import DropdownMenu from "./DropdownMenu.jsx";
 import {Button} from "@/components/button/Button.jsx";
 
-const LaunchDropdown = ({ isBookmarked, status, onBookmark, onRemove, onShare }) => {
+const LaunchDropdown = ({ isBookmarked, status, onAskAi, onBookmark, onRemove, onShare }) => {
     const menus = [
         {
             name: "main",
             items: [
+                {
+                    label: "CosmicBot",
+                    leftIcon: <FontAwesomeIcon icon={faRobot} />,
+                    onSelect: () => onAskAi()
+                },
                 {
                     label: "Bookmark",
                     leftIcon: <FontAwesomeIcon icon={faBookmark} />,

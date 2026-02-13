@@ -164,6 +164,23 @@
       transform: translate(0.22rem, 0.22rem);
     }
   }
+
+  &--chatbot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: var(--primary-300);
+    width: 2.5rem;
+    height: 2.5rem;
+    @include abs.cursive_border($border-width: 0.15rem, $border-radius:1.5625rem);
+    bottom: 5%;
+    left: 92%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1.875rem;
+    z-index: 10;
+  }
 }
 
 @include abs.mq(medium) {
