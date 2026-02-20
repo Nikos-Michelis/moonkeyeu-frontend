@@ -38,9 +38,7 @@ const SpacecraftCard = (
     const { handleValue, booleanConverter } = useDataFormatter();
     const { getZonedAndFormattedDateTime } = useLuxonDateTime();
     const formattedZonedDateTime = getZonedAndFormattedDateTime(maiden_flight, 'MMMM dd, yyyy');
-    const spacecraftUrl = `/vehicles/spacecraft/${id}`;
-    const url = navUrl ? window.location.origin + spacecraftUrl : window.location.origin + window.location.pathname + "/" + id;
-
+    const url = navUrl ? window.location.origin + navUrl : window.location.origin + window.location.pathname + "/" + id;
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'medium-wrapper'}`}>
             <div className={`landscape-card__container ${cardStyles?.card_type || ''}`}>
