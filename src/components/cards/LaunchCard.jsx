@@ -88,7 +88,7 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'large-wrapper'}`}>
             <div className={`landscape-card__container lift lift--lg ${cardStyles?.card_type || ''}`}>
-                <LinkButton to={navUrl? navUrl + id: id} className="landscape-card__media landscape-card__media--link">
+                <LinkButton to={navUrl? `${navUrl}/` + id: id} className="landscape-card__media landscape-card__media--link">
                     <Img
                         src={image?.image_url}
                         alt={image?.name || "default"}
