@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@/components/button/Button.jsx";
 import { useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

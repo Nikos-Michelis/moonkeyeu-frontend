@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useEffect, useMemo} from "react";
+import {createContext, useContext, useEffect, useMemo} from "react";
 import toast from "react-hot-toast";
 import {useSimpleQuery} from "@/services/queries.jsx";
 

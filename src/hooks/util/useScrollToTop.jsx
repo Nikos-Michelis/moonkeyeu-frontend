@@ -8,7 +8,7 @@ const useScrollToTop = (behavior="smooth") => {
             window.scrollTo({ top: 0, behavior: behavior});
             setShouldScrollToTop(false);
         }
-    }, [shouldScrollToTop]);
+    }, [behavior, shouldScrollToTop]);
 
     return setShouldScrollToTop;
 };

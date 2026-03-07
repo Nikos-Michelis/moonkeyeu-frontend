@@ -1,9 +1,9 @@
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import {forwardRef} from "react";
 
-const CustomCheckbox = React.forwardRef((
+const CustomCheckbox = forwardRef(function(
     {
         id,
         name = "",
@@ -17,7 +17,7 @@ const CustomCheckbox = React.forwardRef((
         className={},
         styles = {},
         ...props
-    }, ref) => {
+    }, ref) {
     return (
         <div className="flex align-center">
             <Checkbox.Root

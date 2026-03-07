@@ -1,12 +1,9 @@
-import React from 'react';
 import BookmarkCard from "@/components/cards/BookmarkCard.jsx";
 import SkeletonBookmarkLoader from "@/components/skeleton/SkeletonBookmarkLoader.jsx";
-import {useAuth} from "@/context/AuthProvider.jsx";
 import {faBookmark } from '@fortawesome/free-solid-svg-icons';
 import ContentSection from "@/layout/ContentSection.jsx";
 
 const BookmarksSection = ({ bookmarks, isPending, isFetching, isError }) =>{
-    const { status } = useAuth();
     const items = bookmarks || [];
     const contentConfig = {
         component: SkeletonBookmarkLoader,

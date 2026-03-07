@@ -1,4 +1,3 @@
-import React from "react";
 const TextAreaElement = ({ name, register, rules, onFocus, onBlur, disabled, ...props }) => {
     return (
         <textarea

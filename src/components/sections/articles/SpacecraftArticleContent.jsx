@@ -11,7 +11,7 @@ import Img from "@/components/utils/Img.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {faWikipediaW} from "@fortawesome/free-brands-svg-icons";
-import React, {useState} from "react";
+import {useState} from "react";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";

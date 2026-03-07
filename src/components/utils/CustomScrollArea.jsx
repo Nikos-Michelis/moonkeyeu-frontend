@@ -1,5 +1,4 @@
 import * as RadixScrollArea from "@radix-ui/react-scroll-area";
-import React from "react";
 
 export default function CustomScrollArea({ children, className = "" }) {
     return (

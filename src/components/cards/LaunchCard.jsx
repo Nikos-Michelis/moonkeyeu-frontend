@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import {useCallback, useState} from 'react';
 import CountdownTimer from "../timers/CountdownTimer.jsx";
 import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {Button} from "@/components/button/Button.jsx";
@@ -54,11 +54,11 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
             queryKeysToInvalidate: ["my-launches", "user-bookmarks"]
         });
 
-    const askAiMutation =
+    /*const askAiMutation =
         useCreateMutation({
             successMessage: undefined,
             showError: false
-        });
+        });*/
 
     const handleRemove = async () => {
         await toast.promise(

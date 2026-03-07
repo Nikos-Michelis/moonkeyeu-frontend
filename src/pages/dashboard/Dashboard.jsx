@@ -1,4 +1,3 @@
-import React from "react";
 import {Button} from "@/components/button/Button.jsx";
 import ScrollToTop from "@/components/utils/ScrollToTop.jsx";
 import {LinkButton} from "@/components/button/LinkButton.jsx";

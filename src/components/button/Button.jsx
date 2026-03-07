@@ -1,29 +1,30 @@
-import React from "react";
+import {forwardRef} from "react";
 import PropTypes from "prop-types";
 
-export const Button = React.forwardRef((
-        {
-            children,
-            onClick,
-            type = "button",
-            disabled = false,
-            className = "btn btn--primary",
-            ...props
-        }, ref) => {
-        return (
-            <button
-                ref={ref}
-                type={type}
-                className={`${className}${disabled ? " btn--disabled" : ""}`}
-                onClick={onClick}
-                disabled={disabled}
-                {...props}
-            >
-                {children}
-            </button>
-        );
-    }
-);
+export const Button = forwardRef(function Button(
+    {
+        children,
+        onClick,
+        type = "button",
+        disabled = false,
+        className = "btn btn--primary",
+        ...props
+    },
+    ref
+) {
+    return (
+        <button
+            ref={ref}
+            type={type}
+            disabled={disabled}
+            onClick={onClick}
+            className={className}
+            {...props}
+        >
+            {children}
+        </button>
+    );
+});
 
 
 Button.propTypes = {

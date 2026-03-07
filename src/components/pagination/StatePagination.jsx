@@ -1,4 +1,3 @@
-import React from "react";
 import {Button} from "@/components/button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faAngleRight, faAnglesLeft, faAnglesRight} from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +15,7 @@ const StatePagination = ({ pagination, isPending, isFetching}) => {
                     <FontAwesomeIcon icon={faAnglesLeft} />
                 </Button>
             }
-             <Button
+            <Button
                 className="btn btn--primary btn--no-ellipsis"
                 disabled={pagination?.page === FIRST_PAGE || (isPending || isFetching)}
                 onClick={pagination?.prevPage}

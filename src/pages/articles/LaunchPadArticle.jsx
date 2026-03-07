@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import SkeletonArticleLoader from "@/components/skeleton/SkeletonArticleLoader.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
@@ -25,7 +25,7 @@ function LaunchPadArticle(){
         cacheKey: "launch-pads-article"
     });
     const queryData = { launchPadQuery: launchPadQuery || [], launchesQuery: launchesQuery || [] }
-    const data = queryData?.data || [];
+    const data = launchPadQuery?.data || [];
     const contentConfig = {
         component: SkeletonArticleLoader,
         count: 1
@@ -35,7 +35,7 @@ function LaunchPadArticle(){
         if (total) {
             pagination.setTotalItems(total);
         }
-    }, [launchesQuery]);
+    }, [launchesQuery, pagination]);
 
     return(
         <>

@@ -1,4 +1,3 @@
-import React from "react";
 import RocketCard from "@/components/cards/RocketCard.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faFileCircleXmark, faGear} from '@fortawesome/free-solid-svg-icons';

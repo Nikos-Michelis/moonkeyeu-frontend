@@ -1,4 +1,3 @@
-import React from 'react';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import Img from "@/components/utils/Img.jsx";

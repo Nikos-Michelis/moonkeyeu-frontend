@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import {useParams, useSearchParams} from "react-router-dom";
 import Heading from "@/components/utils/heading/Heading.jsx";
 import LaunchesSection from "@/components/sections/pages/LaunchesSection.jsx";

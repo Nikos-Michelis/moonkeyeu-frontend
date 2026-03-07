@@ -1,4 +1,3 @@
-import React from "react";
 import useComparator from "@/hooks/util/useComparator.jsx";
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

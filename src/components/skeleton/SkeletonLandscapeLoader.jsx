@@ -1,6 +1,6 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
+
 const SkeletonLandscapeLoader = ({wrapper, img, card_type}) => {
     return (
         <article className={`landscape-card flex justify-center ${wrapper}`}>
