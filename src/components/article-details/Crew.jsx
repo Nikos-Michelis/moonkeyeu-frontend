@@ -1,4 +1,3 @@
-import React from "react";
 import AstronautLandScapeCard from "@/components/cards/AstronautLandScapeCard.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';

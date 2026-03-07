@@ -1,7 +1,6 @@
 import Heading from "@/components/utils/heading/Heading.jsx";
 import VehiclesSection from "@/components/sections/pages/VehiclesSection.jsx";
 import Head from "@/components/seo/Head.jsx";
-import React from "react";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import ContentContainer from "@/layout/ContentContainer.jsx";
 

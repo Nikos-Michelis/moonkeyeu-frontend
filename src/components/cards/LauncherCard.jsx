@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {Button} from "@/components/button/Button.jsx";

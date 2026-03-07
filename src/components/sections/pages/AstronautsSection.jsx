@@ -1,4 +1,3 @@
-import React from 'react';
 import SkeletonPortraitLoader from "@/components/skeleton/SkeletonPortraitLoader.jsx";
 import AstronautCard from "@/components/cards/AstronautCard.jsx";
 import ContentSection from "@/layout/ContentSection.jsx";

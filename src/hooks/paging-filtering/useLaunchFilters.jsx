@@ -40,11 +40,11 @@ export function useLaunchFilters() {
             });
             return params;
         },{replace: true});
-    }, [filterParams]);
+    }, [setSearchParams]);
 
     const resetFilters = useCallback(() => {
         setSearchParams(defaultFilters, {replace: true});
-    }, [filterParams]);
+    }, [setSearchParams]);
 
     const resetFilterByName = useCallback((name) => {
         setSearchParams(prev => {

@@ -1,4 +1,3 @@
-import React from "react";
 const InputElement = ({ name, register, rules, onFocus, onBlur, disabled, ...props }) => {
     return (
         <input

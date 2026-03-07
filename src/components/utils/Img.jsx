@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 
 const Img = ({ src, alt, className, defaultSrc }) => {

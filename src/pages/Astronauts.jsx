@@ -1,4 +1,3 @@
-import React, {useEffect} from "react";
 import Heading from "../components/utils/heading/Heading.jsx";
 import AstronautsSection from "../components/sections/pages/AstronautsSection.jsx";
 import {useSearchParams} from "react-router-dom";
@@ -8,9 +7,7 @@ import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import ContentContainer from "@/layout/ContentContainer.jsx";
-import ContentSection from "@/layout/ContentSection.jsx";
-import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
-import SkeletonPortraitLoader from "@/components/skeleton/SkeletonPortraitLoader.jsx";
+import {useEffect} from "react";
 
 function Astronauts() {
     const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/astronauts`;
@@ -32,6 +29,7 @@ function Astronauts() {
         cacheKey: "astronauts-filters",
         staleTime: Infinity
         });
+
     useEffect(() => {
         if (queryData.data) {
             pagination.setPagination(queryData.data?.page);

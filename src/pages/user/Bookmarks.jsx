@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import BookmarksSection from "@/components/sections/pages/BookmarksSection.jsx";
 import Heading from "@/components/utils/heading/Heading.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";

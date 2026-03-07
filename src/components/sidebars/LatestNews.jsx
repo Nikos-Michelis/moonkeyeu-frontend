@@ -1,4 +1,3 @@
-import React from 'react';
 import {useSpaceFlightNews} from "@/context/SpaceFlightNewsProvider.jsx";
 import NasaApod from "@/components/sidebars/NasaApod.jsx";
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";

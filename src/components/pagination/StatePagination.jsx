@@ -1,7 +1,8 @@
-import React from "react";
 import {Button} from "@/components/button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faAngleRight, faAnglesLeft, faAnglesRight} from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
+
 
 const FIRST_PAGE = 1;
 const StatePagination = ({ pagination, isPending, isFetching}) => {
@@ -56,4 +57,12 @@ const StatePagination = ({ pagination, isPending, isFetching}) => {
         </div>
     );
 }
+
+StatePagination.propTypes = {
+    pagination: PropTypes.object.isRequired,
+    isPending: PropTypes.bool.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+};
+
+
 export default StatePagination;

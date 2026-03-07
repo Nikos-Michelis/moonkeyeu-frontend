@@ -1,5 +1,4 @@
 import {Button} from "@/components/button/Button.jsx";
-import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faAnglesLeft,
@@ -7,6 +6,7 @@ import {
     faAngleRight,
     faAnglesRight
 } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from "prop-types";
 
 const TablePagination = ({table}) => {
     return (
@@ -45,5 +45,9 @@ const TablePagination = ({table}) => {
         </section>
     );
 }
+
+TablePagination.propTypes = {
+    table: PropTypes.object.isRequired,
+};
 
 export default TablePagination;

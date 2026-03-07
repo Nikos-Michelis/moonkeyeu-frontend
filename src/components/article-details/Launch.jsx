@@ -1,4 +1,3 @@
-import React from "react";
 import LaunchCard from "@/components/cards/LaunchCard.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileCircleXmark, faRocket} from '@fortawesome/free-solid-svg-icons';

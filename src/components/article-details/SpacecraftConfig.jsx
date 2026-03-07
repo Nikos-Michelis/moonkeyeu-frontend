@@ -1,4 +1,3 @@
-import React from "react";
 import SpacecraftCard from "@/components/cards/SpacecraftCard.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';

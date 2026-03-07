@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import {Link, NavLink} from "react-router-dom";
@@ -68,7 +68,7 @@ const Header = () => {
 
                         <div className="navbar__user-options">
                             {!status.isPending ? (
-                                !!user ? (
+                                user ? (
                                     <NavLink
                                         to="profile"
                                         type="submit"
@@ -94,7 +94,7 @@ const Header = () => {
                             )}
 
                             {!status.isPending ? (
-                                !!user ? (
+                                user ? (
                                     <NavLink
                                         className="navbar__user-link btn--transparent"
                                         to="/bookmarks">

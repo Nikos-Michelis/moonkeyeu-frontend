@@ -1,8 +1,7 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import Heading from "../components/utils/heading/Heading.jsx";
 import { useSearchParams } from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
-import Pagination from "@/components/pagination/Pagination.jsx";
 import SpacecraftSection from "@/components/sections/pages/SpacecraftSection.jsx";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";

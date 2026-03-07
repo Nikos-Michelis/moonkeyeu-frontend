@@ -30,7 +30,7 @@ const usePagination = (
                 newParams.set("page", newPage);
             }
             setSearchParams(newParams);
-        }, [limit, searchParams, useOffset]
+        }, [limit, searchParams, setSearchParams, useOffset]
     );
     const firstPage = useCallback(() => {
         setPageUrl(FIRST_PAGE);
@@ -56,7 +56,7 @@ const usePagination = (
             setTotalPages(data.totalPages);
             setTotalElements(data.totalElements);
         }
-    }, [useOffset, limit, initialTotalElements]);
+    }, [useOffset, limit]);
 
     return {
         page,
