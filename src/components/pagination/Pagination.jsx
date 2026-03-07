@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import {Button} from "@/components/button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -12,7 +11,12 @@ Pagination.propTypes = {
     previousPage: PropTypes.func.isRequired,
     totalElements: PropTypes.number.isRequired,
     totalPages: PropTypes.number.isRequired,
+    firstPage: PropTypes.number.isRequired,
+    lastPage: PropTypes.number.isRequired,
+    isPending: PropTypes.bool.isRequired,
+    isFetching: PropTypes.bool.isRequired,
 };
+
 export default function Pagination({ page, totalPages, totalElements, nextPage, previousPage, firstPage, lastPage, isPending, isFetching }) {
     return (
         <section className="pagination">

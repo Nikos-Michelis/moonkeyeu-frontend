@@ -30,7 +30,7 @@ export const useCountDown = (initialTimeInMillis, interval) => {
             setRemainingTime(dateTimeFormat(distance));
         }, interval);
 
-    }, [initialTimeInMillis]);
+    }, [dateTimeFormat, interval]);
     useEffect(() => {
         start();
         return () => {

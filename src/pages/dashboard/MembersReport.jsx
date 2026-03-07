@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useAuth } from "@/context/AuthProvider.jsx";
+import { useEffect, useState } from "react";
+import {useAuth} from "@/context/AuthProvider.jsx";
 import toast from "react-hot-toast";
 import { useSimpleQuery } from "@/services/queries.jsx";
 import Table from "@/components/table/Table.jsx";

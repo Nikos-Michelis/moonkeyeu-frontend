@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import PropTypes from "prop-types";
 import {useLaunchFilters} from "@/hooks/paging-filtering/useLaunchFilters.jsx";
 import {useDebounce} from "@/hooks/util/useDebounce.jsx";
@@ -18,6 +18,11 @@ LaunchFiltering.propTypes = {
     astronaut: PropTypes.number,
     search: PropTypes.string,
     limit: PropTypes.number,
+    filters: PropTypes.object.isRequired,
+    searchPlaceHolder: PropTypes.string.isRequired,
+    isPending: PropTypes.bool.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    isError: PropTypes.bool.isRequired,
 };
 
 function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isError }) {

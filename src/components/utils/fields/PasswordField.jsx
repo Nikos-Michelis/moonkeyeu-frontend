@@ -1,5 +1,5 @@
 import Input from "@/components/utils/fields/Input.jsx";
-import React, {useState} from "react";
+import {useState} from "react";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 

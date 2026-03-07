@@ -1,4 +1,3 @@
-import React from "react";
 const FloatingLabel = ({ label, children, isActive }) => {
     return (
         <div className={`floating-label ${isActive ? "active" : ""}`}>

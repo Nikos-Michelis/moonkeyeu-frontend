@@ -14,7 +14,7 @@ export function useBasicFilters(defaultFilters) {
             }
         });
         setSearchParams(filterParams, { replace: true });
-    }, [filterParams, setSearchParams]);
+    }, [defaultFilters, filterParams, setSearchParams]);
 
     const setFilters = useCallback((filters) => {
         setSearchParams((params) => {
@@ -29,11 +29,11 @@ export function useBasicFilters(defaultFilters) {
             });
             return params;
         },{replace: true});
-    }, [filterParams]);
+    }, [defaultFilters.offset, defaultFilters.page, setSearchParams]);
 
     const resetFilters = useCallback(() => {
         setSearchParams(defaultFilters, {replace: true});
-    }, [filterParams]);
+    }, [defaultFilters, setSearchParams]);
 
     const resetFilterByName = useCallback((name) => {
         setSearchParams(prev => {
@@ -44,7 +44,7 @@ export function useBasicFilters(defaultFilters) {
             }
             return prev;
         }, { replace: true });
-    }, [setSearchParams]);
+    }, [defaultFilters, setSearchParams]);
 
     return {
         search,

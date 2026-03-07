@@ -1,4 +1,3 @@
-import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical, faPenToSquare, faTrash} from '@fortawesome/free-solid-svg-icons';
 import * as RadixDropdown from "@radix-ui/react-dropdown-menu";

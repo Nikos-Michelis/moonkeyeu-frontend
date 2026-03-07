@@ -1,4 +1,3 @@
-import React from "react";
 import { flexRender } from "@tanstack/react-table";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';

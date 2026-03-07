@@ -1,4 +1,3 @@
-import React from 'react';
 import ContentSection from "@/layout/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
 import LauncherCard from "@/components/cards/LauncherCard.jsx";

@@ -1,4 +1,3 @@
-import React from "react";
 import OpenStreetMap from "@/components/api/map/OpenStreetMap.jsx";
 import { useSimpleQuery } from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";

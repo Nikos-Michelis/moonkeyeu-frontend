@@ -1,4 +1,3 @@
-import React from "react";
 import ScrollToTop from "@/components/utils/ScrollToTop.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";

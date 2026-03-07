@@ -1,7 +1,7 @@
-import React from 'react';
 import NewsArticle from "@/components/cards/NewsArticle.jsx";
 import ContentSection from "@/layout/ContentSection.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
+
 const NewsSection = ({ articles, isPending, isFetching, isError, pagination }) => {
     const items = articles.results || [];
     const contentConfig = {

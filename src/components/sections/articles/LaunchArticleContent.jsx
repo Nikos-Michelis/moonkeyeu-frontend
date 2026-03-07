@@ -20,7 +20,7 @@ import Rocket from "@/components/article-details/Rocket.jsx";
 import Boosters from "@/components/article-details/Boosters.jsx";
 import RelatedPrograms from "@/components/article-details/RelatedPrograms.jsx";
 import RelatedNews from "@/components/article-details/RelatedNews.jsx";
-import React, {useState} from "react";
+import {useState} from "react";
 import useComparator from "@/hooks/util/useComparator.jsx";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";

@@ -1,4 +1,3 @@
-import React from "react";
 import Img from "@/components/utils/Img.jsx";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 

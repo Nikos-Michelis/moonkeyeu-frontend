@@ -23,7 +23,7 @@ export function useAstronautsFilters() {
             }
         });
         setSearchParams(filterParams, { replace: true });
-    }, [filterParams]);
+    }, [filterParams, setSearchParams]);
 
     const setFilters = useCallback((filters) => {
         setSearchParams((params) => {
@@ -37,11 +37,11 @@ export function useAstronautsFilters() {
             });
             return params;
         },{replace: true});// Replace the current page with the new URL, and it doesn't retain the old parameters
-    }, [filterParams]);// change the function when the params change
+    }, [setSearchParams]);// change the function when the params change
 
     const resetFilters = useCallback(() => {
         setSearchParams(defaultFilters, {replace: true});
-    }, [filterParams]);
+    }, [setSearchParams]);
 
     const resetFilterByName = useCallback((name) => {
         setSearchParams(prev => {

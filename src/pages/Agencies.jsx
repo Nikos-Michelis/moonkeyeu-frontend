@@ -1,4 +1,3 @@
-import React from "react";
 import Heading from "../components/utils/heading/Heading.jsx";
 import { useSimpleQuery } from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";

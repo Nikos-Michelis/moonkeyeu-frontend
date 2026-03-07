@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import SkeletonArticleLoader from "@/components/skeleton/SkeletonArticleLoader.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
@@ -29,7 +29,6 @@ function AgencyArticle(){
 
     const queryData = { agenciesQuery: agenciesQuery || [], rocketConfigQuery: rocketConfigQuery }
     const data = agenciesQuery?.data || [];
-
     const contentConfig = {
         component: SkeletonArticleLoader,
         count: 1
@@ -40,7 +39,7 @@ function AgencyArticle(){
         if (total) {
             pagination.setTotalItems(total);
         }
-    }, [rocketConfigQuery]);
+    }, [pagination, rocketConfigQuery]);
 
     return(
         <>

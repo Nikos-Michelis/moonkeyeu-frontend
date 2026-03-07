@@ -1,4 +1,3 @@
-import React from 'react';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 
 export const VehicleOptionCard = ({ disable, title, description, linkText, sectionImage, navigation }) => {

@@ -1,4 +1,4 @@
-import React, {
+import {
     createContext,
     useCallback,
     useContext,
@@ -14,6 +14,7 @@ import showErrorToast from "@/components/utils/ShowErrorToast.jsx";
 import { useSimpleQuery } from "@/services/queries.jsx";
 
 export const SecurityContext = createContext(undefined);
+
 export const AuthProvider = ({ children }) => {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const logoutUrl = baseUrl + '/user/logout';
@@ -158,7 +159,7 @@ export const AuthProvider = ({ children }) => {
                             failedQueue = [];
                         }
                     }
-                    return new Promise((resolve, reject) => {
+                    return new Promise((resolve) => {
                         subscribeTokenRefresh((newToken) => {
                             originalRequest.headers.Authorization = `Bearer ${newToken}`;
                             originalRequest._retry = true;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import Img from "@/components/utils/Img.jsx";

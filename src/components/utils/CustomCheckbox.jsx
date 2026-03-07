@@ -1,7 +1,6 @@
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
 
 const CustomCheckbox = React.forwardRef((
     {
