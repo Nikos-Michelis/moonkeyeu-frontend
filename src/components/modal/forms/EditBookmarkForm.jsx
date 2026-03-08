@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Button} from "@/components/button/Button.jsx";
 import Input from "@/components/utils/fields/Input.jsx";
 import {useForm} from "react-hook-form";
@@ -6,9 +6,9 @@ import ErrorBox from "@/components/utils/ErrorBox.jsx";
 import {useUpdateMutation} from "@/services/mutations.jsx";
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faArrowRight, faSpinner, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {faArrowRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 
-export function EditBookmarkForm({ bookmark, img, status }) {
+export function EditBookmarkForm({ bookmark, img }) {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const [apiError, setApiError] = useState(null);
     const {

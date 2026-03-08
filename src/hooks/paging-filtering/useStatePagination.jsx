@@ -10,7 +10,7 @@ export const useStatePagination = (itemsPerPage = 6) => {
 
     const firstPage = useCallback(() => {
         setPage(FIRST_PAGE);
-    }, [page]);
+    }, []);
 
     const lastPage = useCallback(() => {
         setPage(totalPages);

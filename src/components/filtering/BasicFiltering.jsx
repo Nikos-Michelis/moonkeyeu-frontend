@@ -1,17 +1,15 @@
 import PropTypes from "prop-types";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {useBasicFilters} from "@/hooks/paging-filtering/useBasicFilters.jsx";
-import {Button} from "@/components/button/Button.jsx";
 import CustomSelect from "@/components/utils/select/CustomSelect.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 BasicFiltering.propTypes = {
     limit: PropTypes.number,
     search: PropTypes.string,
     ordering: PropTypes.string
-
 };
 
 function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
@@ -35,8 +33,8 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
         setFilters,
         resetFilterByName
     } = useBasicFilters(defaultFilters);
-    const [locaSearch, setLocalSearch] = useState(search);
-    const debounceSearch = useDebounce(locaSearch);
+    const [localSearch, setLocalSearch] = useState(search);
+    const debounceSearch = useDebounce(localSearch);
 
     useEffect(() => {
         setFilters({search: debounceSearch});
@@ -77,7 +75,7 @@ function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
                     <input type="hidden" name="action" value="search" />
                     <input
                         className="search__searchbar"
-                        value={locaSearch || ""}
+                        value={localSearch || ""}
                         type="text"
                         name="search"
                         placeholder={searchPlaceHolder}

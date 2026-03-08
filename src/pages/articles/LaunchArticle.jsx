@@ -1,6 +1,5 @@
 import {useParams} from "react-router-dom";
 import SkeletonArticleLoader from "@/components/skeleton/SkeletonArticleLoader.jsx";
-import React from "react";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdEvent from "@/components/seo/jsonld/JsonLdEvent.jsx";
@@ -21,8 +20,8 @@ function LaunchArticle() {
         params: `launch-${id}`,
         cacheKey: 'launch-article'
     });
-    const data = { launchData: launchQuery || [], newsData: newsQuery || [] }
-
+    const queryData = { launchData: launchQuery || [], newsData: newsQuery || [] }
+    const launchData = launchQuery?.data
     const contentConfig = {
         component: SkeletonArticleLoader,
         count: 1
@@ -31,27 +30,27 @@ function LaunchArticle() {
     return(
         <>
             <Head
-                title={data?.launchData?.fullname}
-                description={data?.launchData?.mission?.description}
-                image={data?.launchData?.image?.image_url}
-                alt={data?.launchData?.image?.name}
+                title={launchData?.fullname}
+                description={launchData?.mission?.description}
+                image={launchData?.image?.image_url}
+                alt={launchData?.image?.name}
                 type="article"
 
             />
             <JsonLdEvent
-                title={data?.launchData?.fullname}
-                description={data?.launchData?.description}
-                image={data?.launchData.image?.launchData?.image_url}
-                startDate={data?.launchData?.window_start}
-                endDate={data?.launchData?.window_end}
-                location={data?.launchData?.pad}
-                agency={data?.launchData?.launch_provider?.name}
+                title={launchData?.fullname}
+                description={launchData?.description}
+                image={launchData?.image?.launchData?.image_url}
+                startDate={launchData?.window_start}
+                endDate={launchData?.window_end}
+                location={launchData?.pad}
+                agency={launchData?.launch_provider?.name}
             />
             <ArticleContentSection
                 isPending={launchQuery?.isPending}
                 isFetching={launchQuery?.isFetching}
                 isError={launchQuery?.isError}
-                data={data}
+                data={queryData}
                 contentConfig={contentConfig}
                 ArticleComponent={LaunchArticleContent}
             />

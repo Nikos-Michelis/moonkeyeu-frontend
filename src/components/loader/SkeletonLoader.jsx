@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import {faGears} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -44,7 +43,7 @@ SkeletonLoader.propTypes = {
     isFetching: PropTypes.bool,
     isError: PropTypes.bool,
     contentConfig: PropTypes.shape({
-        component: PropTypes.elementType.isRequired,
+        component: PropTypes.elementType,
         count: PropTypes.number,
         styles: PropTypes.shape({
             wrapper: PropTypes.string,

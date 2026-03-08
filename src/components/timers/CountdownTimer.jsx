@@ -1,4 +1,3 @@
-import React from 'react';
 import {useCountDown} from "@/hooks/time/useCountDown.jsx";
 
 const CountdownTimer = ({net, timerStyle = ""}) => {

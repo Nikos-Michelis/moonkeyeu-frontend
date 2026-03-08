@@ -1,4 +1,3 @@
-import React from 'react';
 const SkeletonSidebarLoader = () => {
     return (
         <article className="portrait-card margin-block-3">

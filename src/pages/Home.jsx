@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import LaunchesSection from "../components/sections/pages/LaunchesSection.jsx";
 import LaunchFiltering from "../components/filtering/LaunchFiltering.jsx";
 import Heading from "../components/utils/heading/Heading.jsx";

@@ -1,4 +1,3 @@
-import React from "react";
 import {useParams} from "react-router-dom";
 import SkeletonArticleLoader from "@/components/skeleton/SkeletonArticleLoader.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";

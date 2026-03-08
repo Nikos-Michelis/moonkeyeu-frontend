@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import InputElement from "@/components/utils/html/InputElement.jsx";
 import FloatingLabel from "@/components/utils/html/FloatingLabel.jsx";
 

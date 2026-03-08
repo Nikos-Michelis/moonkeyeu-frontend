@@ -1,5 +1,5 @@
+import "react";
 import { Helmet } from "react-helmet-async";
-import React from "react";
 import {useLocation} from "react-router-dom";
 
 const Head = (

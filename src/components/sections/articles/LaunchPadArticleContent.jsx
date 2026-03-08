@@ -8,7 +8,7 @@ import {faWikipediaW} from "@fortawesome/free-brands-svg-icons";
 import UpcomingLaunch from "@/components/article-details/UpcomingLaunch.jsx";
 import Agencies from "@/components/article-details/Agencies.jsx";
 import Launch from "@/components/article-details/Launch.jsx";
-import React, {useState} from "react";
+import {useState} from "react";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";

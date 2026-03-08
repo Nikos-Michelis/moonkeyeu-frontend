@@ -1,4 +1,3 @@
-import React from "react";
 import Head from "@/components/seo/Head.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGears } from '@fortawesome/free-solid-svg-icons';

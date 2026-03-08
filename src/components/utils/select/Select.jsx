@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SelectElement from "@/components/utils/html/SelectElement.jsx";
 import FloatingLabel from "@/components/utils/html/FloatingLabel.jsx";
 

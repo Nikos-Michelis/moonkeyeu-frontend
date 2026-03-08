@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import {useRef, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown, faAngleUp, faLink} from "@fortawesome/free-solid-svg-icons";
 import {LinkButton} from "@/components/button/LinkButton.jsx";

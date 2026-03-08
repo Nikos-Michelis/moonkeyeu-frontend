@@ -1,3 +1,4 @@
+import {useState} from "react";
 import {Button} from "@/components/button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faCircleInfo, faShareFromSquare} from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +9,6 @@ import {faWikipediaW} from "@fortawesome/free-brands-svg-icons";
 import UpcomingLaunch from "@/components/article-details/UpcomingLaunch.jsx";
 import Agencies from "@/components/article-details/Agencies.jsx";
 import Launch from "@/components/article-details/Launch.jsx";
-import React, {useState} from "react";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";
 import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
@@ -114,7 +114,7 @@ const ProgramsArticleContent = ({queryData, pagination}) => {
                 </div>
             </div>
             <div className="article__info-container container flex flex-column" data-type="full-bleed">
-                {launchesQuery?.data?.upcoming_launch && <UpcomingLaunch launch={launchesQuery?.data?.upcoming_launch}/>}
+                {programsData?.upcoming_launch && <UpcomingLaunch launch={programsData?.upcoming_launch}/>}
                 {programsData?.agencies.length > 0 && <Agencies agencies={programsData?.agencies}/>}
                 <Launch queryData={launchesQuery} navUrl={'/launches'} pagination={pagination} hasPagination={true}/>
                 <div className="padding-block-end-4">

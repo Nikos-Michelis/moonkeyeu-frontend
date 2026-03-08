@@ -1,4 +1,3 @@
-import React from "react";
 import SkeletonArticleLoader from "@/components/skeleton/SkeletonArticleLoader.jsx";
 import {useNasaApod} from "@/context/NasaApodProvider.jsx";
 import Head from "@/components/seo/Head.jsx";

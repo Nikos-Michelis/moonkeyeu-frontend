@@ -1,4 +1,3 @@
-import React from "react";
 import ScrollToTop from "@/components/utils/ScrollToTop.jsx";
 import { SkeletonLoader } from "@/components/loader/SkeletonLoader.jsx";
 import ContentContainer from "@/layout/ContentContainer.jsx";

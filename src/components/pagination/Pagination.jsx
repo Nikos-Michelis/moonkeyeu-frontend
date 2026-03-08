@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import {Button} from "@/components/button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -12,6 +11,8 @@ Pagination.propTypes = {
     previousPage: PropTypes.func.isRequired,
     totalElements: PropTypes.number.isRequired,
     totalPages: PropTypes.number.isRequired,
+    firstPage: PropTypes.func.isRequired,
+    lastPage: PropTypes.func.isRequired,
 };
 export default function Pagination({ page, totalPages, totalElements, nextPage, previousPage, firstPage, lastPage, isPending, isFetching }) {
     return (
@@ -19,11 +20,11 @@ export default function Pagination({ page, totalPages, totalElements, nextPage, 
             <div className="pagination__container margin-block-start-10 margin-block-end-4">
                 <div className="backward-arrows">
                     { page !== FIRST_PAGE &&
-                    <Button className="btn btn--primary margin-inline-2"
-                            disabled={page === FIRST_PAGE || (isPending || isFetching)}
-                            onClick={firstPage}>
-                        <FontAwesomeIcon icon={faAnglesLeft} />
-                    </Button> }
+                        <Button className="btn btn--primary margin-inline-2"
+                                disabled={page === FIRST_PAGE || (isPending || isFetching)}
+                                onClick={firstPage}>
+                            <FontAwesomeIcon icon={faAnglesLeft} />
+                        </Button> }
                     <Button className="btn btn--primary" disabled={page === FIRST_PAGE || (isPending || isFetching)} onClick={previousPage}>
                         <FontAwesomeIcon icon={faAngleLeft} /> Prev
                     </Button>
@@ -42,12 +43,11 @@ export default function Pagination({ page, totalPages, totalElements, nextPage, 
                         Next <FontAwesomeIcon icon={faAngleRight} />
                     </Button>
                     { page !== totalPages &&
-                    <Button className="btn btn--primary" disabled={page === totalPages || (isPending || isFetching)} onClick={lastPage}>
-                        <FontAwesomeIcon icon={faAnglesRight} />
-                    </Button> }
+                        <Button className="btn btn--primary" disabled={page === totalPages || (isPending || isFetching)} onClick={lastPage}>
+                            <FontAwesomeIcon icon={faAnglesRight} />
+                        </Button> }
                 </div>
             </div>
         </section>
     );
 }
-

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import React from "react";
+import {forwardRef} from "react";
 
-export const LinkButton = React.forwardRef((
+export const LinkButton = forwardRef(function LinkButton(
     {
         to,
         isExternal = false,
@@ -11,7 +11,7 @@ export const LinkButton = React.forwardRef((
         disabled = false,
         onClick,
         ...props
-    }, ref) => {
+    }, ref) {
     const Component = isExternal ? 'a' : Link;
 
     const handleClick = (e) => {
@@ -42,7 +42,7 @@ export const LinkButton = React.forwardRef((
 LinkButton.propTypes = {
     children: PropTypes.node,
     onClick: PropTypes.func,
-    to: PropTypes.string.isRequired,
+    to: PropTypes.string,
     disabled: PropTypes.bool,
     isExternal: PropTypes.bool,
     target: PropTypes.string,

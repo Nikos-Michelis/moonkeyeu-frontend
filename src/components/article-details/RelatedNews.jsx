@@ -1,4 +1,3 @@
-import React from "react";
 import NewsArticle from "@/components/cards/NewsArticle.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faFileCircleXmark, faNewspaper} from '@fortawesome/free-solid-svg-icons';
