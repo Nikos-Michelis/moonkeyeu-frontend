@@ -3,7 +3,6 @@ import {Outlet, useLocation} from "react-router-dom";
 import {GetFallbackComponent} from "@/components/fallback/GetFallbackComponent.jsx";
 import {ErrorBoundary} from "react-error-boundary";
 import Header from "@/layout/Header.jsx";
-import React from "react";
 
 function PageLayout() {
     const location = useLocation();

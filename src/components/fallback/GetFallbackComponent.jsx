@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import FallbackComponent from "@/components/fallback/FallbackComponent.jsx";
 
 /**

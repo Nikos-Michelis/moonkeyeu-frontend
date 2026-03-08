@@ -1,4 +1,3 @@
-import React from "react";
 import {AlertDialog} from "radix-ui";
 import {Button} from "@/components/button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

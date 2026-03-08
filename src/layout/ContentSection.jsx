@@ -1,4 +1,3 @@
-import React from "react";
 import { SkeletonLoader } from "@/components/loader/SkeletonLoader.jsx";
 import {Button} from "@/components/button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

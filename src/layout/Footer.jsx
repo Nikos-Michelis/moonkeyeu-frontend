@@ -1,4 +1,3 @@
-import React from "react";
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';

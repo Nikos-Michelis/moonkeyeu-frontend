@@ -1,4 +1,3 @@
-import React from "react";
 import * as RadixDropdown from "@radix-ui/react-dropdown-menu";
 import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 

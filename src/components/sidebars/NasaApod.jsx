@@ -1,4 +1,3 @@
-import React from 'react';
 import NewsArticle from "../cards/NewsAsideArticle.jsx";
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
 import SkeletonSidebarLoader from "@/components/skeleton/SkeletonSidebarLoader.jsx";

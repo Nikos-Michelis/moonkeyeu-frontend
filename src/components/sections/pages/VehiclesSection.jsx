@@ -1,9 +1,4 @@
-import React from 'react';
 import {VehicleOptionCard} from "@/components/cards/VehicleOptionCard.jsx";
-import BuyMeACoffee from "@/components/button/BuyMeACoffee.jsx";
-import LatestNews from "@/components/sidebars/LatestNews.jsx";
-import SkeletonPortraitLoader from "@/components/skeleton/SkeletonPortraitLoader.jsx";
-import AstronautCard from "@/components/cards/AstronautCard.jsx";
 import ContentSection from "@/layout/ContentSection.jsx";
 
 const sections = [

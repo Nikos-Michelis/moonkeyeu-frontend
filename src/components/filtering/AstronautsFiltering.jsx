@@ -98,16 +98,16 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                         </Button>
                     </div>
                     <CustomSelect
-                         options={limitOptions || []}
-                         field="limit"
-                         placeholder={`Limit ${limit}`}
-                         setFilters={setFilters}
-                         selectedOption={selectedOption}
-                         setSelectedOption={setSelectedOption}
-                         defaultValue={Number(limit)}
-                         isSearchable={false}
-                         btnClassName="select__btn select__btn--small"
-                         dropDownClassName="select__content--medium"
+                        options={limitOptions || []}
+                        field="limit"
+                        placeholder={`Limit ${limit}`}
+                        setFilters={setFilters}
+                        selectedOption={selectedOption}
+                        setSelectedOption={setSelectedOption}
+                        defaultValue={Number(limit)}
+                        isSearchable={false}
+                        btnClassName="select__btn select__btn--small"
+                        dropDownClassName="select__content--medium"
                     />
                 </div>
                 <div className="search">
@@ -166,29 +166,29 @@ function AstronautsFiltering({ filters, searchPlaceHolder, field, isPending, isF
                                 defaultValue={Number(agency)}
                             />
                         </div>
-                         <div className="toolbar__option">
-                             <CustomSelect
-                                 options={orderingOptions || []}
-                                 field="ordering"
-                                 placeholder={selectedOption}
-                                 setFilters={setFilters}
-                                 selectedOption={selectedOption}
-                                 setSelectedOption={setSelectedOption}
-                                 defaultValue={ordering}
-                                 isSearchable={false}
-                             />
+                        <div className="toolbar__option">
+                            <CustomSelect
+                                options={orderingOptions || []}
+                                field="ordering"
+                                placeholder={selectedOption}
+                                setFilters={setFilters}
+                                selectedOption={selectedOption}
+                                setSelectedOption={setSelectedOption}
+                                defaultValue={ordering}
+                                isSearchable={false}
+                            />
                         </div>
-                         <div className="toolbar__option">
-                             <CustomSelect
-                                 options={orderingFields || []}
-                                 field="field"
-                                 placeholder={"OrderBy"}
-                                 setFilters={setFilters}
-                                 selectedOption={selectedOption}
-                                 setSelectedOption={setSelectedOption}
-                                 defaultValue={ordering}
-                                 isSearchable={false}
-                             />
+                        <div className="toolbar__option">
+                            <CustomSelect
+                                options={orderingFields || []}
+                                field="field"
+                                placeholder={"OrderBy"}
+                                setFilters={setFilters}
+                                selectedOption={selectedOption}
+                                setSelectedOption={setSelectedOption}
+                                defaultValue={ordering}
+                                isSearchable={false}
+                            />
                         </div>
                     </div>
                     <div className="toolbar__actions">

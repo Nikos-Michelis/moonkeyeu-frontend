@@ -1,4 +1,3 @@
-
 const DataList = ({data}) => {
   return (
       <div className="datalist margin-block-4">

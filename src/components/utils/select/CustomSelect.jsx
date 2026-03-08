@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import {useState, useRef} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAngleDown, faAngleUp, faMagnifyingGlass, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";

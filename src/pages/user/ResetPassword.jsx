@@ -1,4 +1,3 @@
-import React from "react";
 import {Button} from "@/components/button/Button.jsx";
 import {useForm} from "react-hook-form";
 import {useNavigate, useParams} from "react-router-dom";

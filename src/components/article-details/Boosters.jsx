@@ -1,4 +1,3 @@
-import React from "react";
 import BoosterInfo from "@/components/article-details/BoosterInfo.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBolt } from '@fortawesome/free-solid-svg-icons';

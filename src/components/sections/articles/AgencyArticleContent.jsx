@@ -7,7 +7,7 @@ import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import UpcomingLaunch from "@/components/article-details/UpcomingLaunch.jsx";
 import RocketConfig from "@/components/article-details/RocketConfig.jsx";
 import SpacecraftConfig from "@/components/article-details/SpacecraftConfig.jsx";
-import React, {useState} from "react";
+import {useState} from "react";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";

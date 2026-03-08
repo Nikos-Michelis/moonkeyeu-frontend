@@ -1,4 +1,3 @@
-import React from "react";
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faRocket, faGear, faSatellite, faShuttleSpace} from '@fortawesome/free-solid-svg-icons';

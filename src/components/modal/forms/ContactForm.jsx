@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {Button} from "@/components/button/Button.jsx";
 import Input from "@/components/utils/fields/Input.jsx";
 import {useForm} from "react-hook-form";

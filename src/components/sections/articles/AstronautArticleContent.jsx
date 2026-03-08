@@ -7,7 +7,7 @@ import {faInstagram, faWikipediaW, faXTwitter} from "@fortawesome/free-brands-sv
 import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {faBuilding} from "@fortawesome/free-regular-svg-icons";
 import Launch from "@/components/article-details/Launch.jsx";
-import React, {useState} from "react";
+import {useState} from "react";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";
