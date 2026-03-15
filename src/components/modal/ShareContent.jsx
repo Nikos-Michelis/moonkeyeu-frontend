@@ -44,21 +44,21 @@ const ShareContent = ({ url, title }) => {
                     </TwitterShareButton>
                 </div>
 
-                <div className="share-option">
+                <div className="share__option">
                     <LinkedinShareButton url={url}>
                         <LinkedinIcon size={58} round />
                         <span className="share__text">LinkedIn</span>
                     </LinkedinShareButton>
                 </div>
 
-                <div className="share-option">
+                <div className="share__option">
                     <WhatsappShareButton url={url} title={title}>
                         <WhatsappIcon size={58} round />
                         <span className="share__text">WhatsApp</span>
                     </WhatsappShareButton>
                 </div>
-                <div className="share-option">
-                    <RedditShareButton url={url} title={title}>
+                <div className="share__option">
+                    <RedditShareButton cla url={url} title={title}>
                         <RedditIcon size={58} round />
                         <span className="share__text">Reddit</span>
                     </RedditShareButton>
