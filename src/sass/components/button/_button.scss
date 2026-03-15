@@ -126,7 +126,7 @@
     text-overflow: unset;
   }
 
-  &--disabled {
+  &[disabled] {
     pointer-events: none;
     opacity: 0.6;
     &:is([class*="btn--yt"]) {
