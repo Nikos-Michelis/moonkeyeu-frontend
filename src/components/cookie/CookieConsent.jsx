@@ -2,14 +2,16 @@ import {useCookies} from "react-cookie";
 import {Button} from "@/components/button/Button.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite } from '@fortawesome/free-solid-svg-icons';
+import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
 export default function CookieConsent(){
-    const[setCookie] = useCookies(["cookieConsent"])
+    const [cookies, setCookie] = useCookies(["cookieConsent"])
+    const { getNow } = useLuxonDateTime();
     const giveCookieConsent = () => {
-        const expirationDate = new Date();
-        expirationDate.setDate(expirationDate.getDate() + 365);
-        setCookie("cookieConsent", true, { path: "/", expires: expirationDate });
+        let expirationDate = getNow().plus({ days: 365 });
+        setCookie("cookieConsent", true, { path: "/", expires: expirationDate.toJSDate(), sameSite: 'lax' });
     };
+
     return(
         <div className="container pos-fixed bottom-0 left-0 flex flex-wrap justify-space-between align-center bg-primary-300 border-top-xs z-overlay" data-type="full-width">
             <div className="container flex flex-wrap justify-space-between align-center margin-inline-4" data-type="full-bleed">
