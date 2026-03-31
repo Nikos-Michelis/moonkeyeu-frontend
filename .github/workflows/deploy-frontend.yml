@@ -9,10 +9,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 #v6.0.2
 
       - name: NodeJs Setup
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
           node-version: ${{ secrets.NODE_VERSION }}
 
@@ -38,7 +38,7 @@ jobs:
         run: cp ./sitemap.xml ./dist/
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 #v6.0.0
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -48,5 +48,5 @@ jobs:
         run: aws s3 sync dist s3://fs-moonkeyeu-bucket-test/moonkeyeu-prod-frontend/dist --delete
 
       - name: Invalidate CloudFront Cache
-        run: aws cloudfront create-invalidation --distribution-id E10L9D15E7Z1MB --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
 
