@@ -1,20 +1,17 @@
 import useComparator from "@/hooks/util/useComparator.jsx";
 import Img from "@/components/utils/Img.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTimeline} from '@fortawesome/free-solid-svg-icons';
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
+import PropTypes from "prop-types";
 
-const Mission = ({mission, launchCost, missionPatches}) => {
+const Mission = ({ mission, launchCost, missionPatches }) => {
     const {handleNumberLocale} = useDataFormatter();
     const missionPatch = useComparator(missionPatches, (a, b) => a.priority > b.priority);
     const formattedNumber = handleNumberLocale(Number(launchCost));
     return(
         <section className="mission-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faTimeline} />
-                <h2>Mission</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Mission" icon={faTimeline}/>
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__info-box article__info-box--col">
                     <h3>{mission.name}</h3>
@@ -37,4 +34,12 @@ const Mission = ({mission, launchCost, missionPatches}) => {
         </section>
     );
 }
+
+Mission.propTypes = {
+    mission: PropTypes.object.isRequired,
+    launchCost: PropTypes.number.isRequired,
+    missionPatches: PropTypes.array.isRequired,
+};
+
+
 export default Mission;

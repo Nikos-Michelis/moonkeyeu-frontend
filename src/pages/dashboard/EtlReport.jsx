@@ -6,7 +6,7 @@ import Table from "@/components/table/Table.jsx";
 import { DateTime } from "luxon";
 import { Button } from "@/components/button/Button.jsx";
 import {getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable} from "@tanstack/react-table";
-import Heading from "@/components/utils/heading/Heading.jsx";
+import PageHeading from "@/components/utils/heading/PageHeading.jsx";
 import TablePagination from "@/components/pagination/TablePagination.jsx";
 import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
@@ -132,7 +132,7 @@ function EtlReport() {
     return (
         <>
             <ContentContainer>
-                <Heading
+                <PageHeading
                     title="ETL Tasks"
                     description="Track the progress and review detailed logs of all ETL tasks executed by the ETL API."
                 />

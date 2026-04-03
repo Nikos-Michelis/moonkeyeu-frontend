@@ -4,17 +4,14 @@ import {faCircleInfo, faLocationDot} from '@fortawesome/free-solid-svg-icons';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import Tooltip from "@/components/modal/tooltip/Tooltip.jsx";
 import {faWikipediaW} from "@fortawesome/free-brands-svg-icons";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
+import PropTypes from "prop-types";
 
-const Location = ({pad}) => {
-    pad = pad || [];
+const Location = ({ pad }) => {
     const location =  pad.location || []
     return(
         <section className="location-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faLocationDot} />
-                <h2>Location</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Location" icon={faLocationDot}/>
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__info-box article__info-box--col">
                     <h3>{pad.name}</h3>
@@ -79,4 +76,9 @@ const Location = ({pad}) => {
         </section>
     )
 }
+
+Location.propTypes = {
+    pad: PropTypes.array.isRequired,
+};
+
 export default Location;

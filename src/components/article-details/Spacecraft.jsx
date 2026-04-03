@@ -10,8 +10,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faWikipediaW } from '@fortawesome/free-brands-svg-icons';
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
-const spacecraft = ({ stage }) =>{
+const spacecraft = ({ stage }) => {
     const { handleValue, booleanConverter } = useDataFormatter();
     const spacecraft = stage.spacecraft || {}
     const configuration = stage.spacecraft?.configuration || {}
@@ -20,11 +21,7 @@ const spacecraft = ({ stage }) =>{
     const landingType = stage.landing?.landing_type || {}
     return(
         <section className="spacecraft-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faShuttleSpace} />
-                <h2>Spacecraft</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Spacecraft" icon={faShuttleSpace}/>
             <div className="container flex flex-wrap justify-space-around align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__img-box margin-block-2">
                     <Img

@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import Heading from "../components/utils/heading/Heading.jsx";
+import PageHeading from "../components/utils/heading/PageHeading.jsx";
 import { useSearchParams } from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import SpacecraftSection from "@/components/sections/pages/SpacecraftSection.jsx";
@@ -47,7 +47,7 @@ function Spacecraft() {
                 description="Explore the latest and historic spacecraft vehicles that shaped space exploration."
             />
             <ContentContainer>
-                <Heading
+                <PageHeading
                     title="Spacecraft"
                     description="Explore the latest and historic spacecraft vehicles that shaped space exploration."
                 />

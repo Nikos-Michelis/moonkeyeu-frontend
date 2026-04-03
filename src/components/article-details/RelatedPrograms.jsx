@@ -1,6 +1,7 @@
 import ProgramsCard from "@/components/cards/ProgramsCard.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faClipboardList} from "@fortawesome/free-solid-svg-icons";
+import {faClipboardList, faNewspaper} from "@fortawesome/free-solid-svg-icons";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
 const RelatedPrograms = ({programs}) =>{
     const contentConfig = {
@@ -13,11 +14,7 @@ const RelatedPrograms = ({programs}) =>{
     };
     return(
         <section className="program-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faClipboardList} />
-                <h2>Related Programs</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Related Programs" icon={faClipboardList}/>
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container"
                      data-type="full-width"

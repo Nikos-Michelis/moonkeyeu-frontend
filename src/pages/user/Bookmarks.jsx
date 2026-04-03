@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import BookmarksSection from "@/components/sections/pages/BookmarksSection.jsx";
-import Heading from "@/components/utils/heading/Heading.jsx";
+import PageHeading from "@/components/utils/heading/PageHeading.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import toast from "react-hot-toast";
 import {useSimpleQuery} from "@/services/queries.jsx";
@@ -38,7 +38,7 @@ function Bookmarks() {
                 description="View all your bookmarked space launches."
             />
             <ContentContainer>
-                <Heading
+                <PageHeading
                     title="My Bookmarks"
                     description="Save and organize your favorite launches."
                 />

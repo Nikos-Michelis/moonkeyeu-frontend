@@ -1,6 +1,6 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStopwatch} from "@fortawesome/free-solid-svg-icons";
+import { faStopwatch } from "@fortawesome/free-solid-svg-icons";
 import LaunchCard from "@/components/cards/LaunchCard.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
 const UpcomingLaunch = ({launch}) => {
     const contentConfig = {
@@ -11,11 +11,7 @@ const UpcomingLaunch = ({launch}) => {
     };
     return (
         <section className="upcoming-launch-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faStopwatch} />
-                <h2>Upcoming Launch</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Upcoming Launch" icon={faStopwatch}/>
             <div className="container" data-spacing="none" data-type="full-width">
                 <div className="margin-block-8 margin-inline-4">
                     <LaunchCard

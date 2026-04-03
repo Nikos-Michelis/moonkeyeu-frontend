@@ -1,4 +1,4 @@
-function Heading({ title, description }) {
+function PageHeading({ title, description }) {
     return (
         <section className="heading-section">
             <div>
@@ -11,4 +11,4 @@ function Heading({ title, description }) {
     );
 }
 
-export default Heading;
+export default PageHeading;

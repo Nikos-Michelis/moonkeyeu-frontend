@@ -4,15 +4,13 @@ import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBuilding, faCircleInfo} from '@fortawesome/free-solid-svg-icons';
 import { faWikipediaW } from '@fortawesome/free-brands-svg-icons';
+import PropTypes from "prop-types";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
 const Agency = ({ launchProvider }) =>{
     return(
         <section className="agency-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faBuilding} />
-                <h2>Agency</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Agency" icon={faBuilding}/>
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__img-box margin-block-start-5">
                     <Img
@@ -106,4 +104,9 @@ const Agency = ({ launchProvider }) =>{
         </section>
     )
 }
+
+Agency.propTypes = {
+    launchProvider: PropTypes.object.isRequired,
+}
+
 export default Agency;

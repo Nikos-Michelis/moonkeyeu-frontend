@@ -1,13 +1,10 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChartLine} from "@fortawesome/free-solid-svg-icons";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
-const WeatherConcerns = ({weather_concerns}) => {
+const WeatherConcerns = ({ weather_concerns }) => {
     return(
         <section className="trajectory-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faChartLine} />
-                <h2>Weather</h2>
-            </div>
+            <SectionHeading title="Weather" icon={faChartLine}/>
             <hr className="hr-100-sm" />
             <div className="flex flex-column">
                 <div className="article__info-box">

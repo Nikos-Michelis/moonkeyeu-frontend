@@ -1,6 +1,6 @@
 import SpacecraftCard from "@/components/cards/SpacecraftCard.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
+import {faGear} from '@fortawesome/free-solid-svg-icons';
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
 const SpacecraftConfig = ({ spacecraftConfigs }) =>{
     const contentConfig = {
@@ -12,11 +12,7 @@ const SpacecraftConfig = ({ spacecraftConfigs }) =>{
     };
     return(
         <section className="spacecrfat-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faGear} />
-                <h2>Spacecraft Configs</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Spacecraft Configs" icon={faGear}/>
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container"
                      data-spacing="none"

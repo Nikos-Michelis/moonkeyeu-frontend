@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import Heading from "@/components/utils/heading/Heading.jsx";
+import PageHeading from "@/components/utils/heading/PageHeading.jsx";
 import {useSearchParams} from "react-router-dom";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
@@ -45,7 +45,7 @@ function Programs() {
                 description="Uncover the full spectrum of space programs, past and present."
             />
             <ContentContainer>
-                <Heading
+                <PageHeading
                      title="Programs"
                      description="Uncover the full spectrum of space programs, past and present."
                 />

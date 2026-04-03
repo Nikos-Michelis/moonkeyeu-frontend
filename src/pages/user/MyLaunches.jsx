@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import {useParams, useSearchParams} from "react-router-dom";
-import Heading from "@/components/utils/heading/Heading.jsx";
+import PageHeading from "@/components/utils/heading/PageHeading.jsx";
 import LaunchesSection from "@/components/sections/pages/LaunchesSection.jsx";
 import {useParameterizedQuery} from "@/services/queries.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
@@ -56,7 +56,7 @@ function MyLaunches() {
                 description="Manage and view all registered members from your dashboard."
             />
             <ContentContainer>
-                <Heading
+                <PageHeading
                     title={`My Launches - ${name}`}
                     description="View and manage your bookmarked space launches."
                 />

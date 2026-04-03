@@ -1,6 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import AgencyCard from "@/components/cards/AgencyCard.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
+import PropTypes from "prop-types";
 
 const Agencies = ({ agencies }) =>{
     const contentConfig = {
@@ -12,11 +13,7 @@ const Agencies = ({ agencies }) =>{
     };
     return(
         <section className="agency-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faBuilding} />
-                <h2>Related Agencies</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Related Agencies" icon={faBuilding}/>
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container"
                      data-type="full-width"
@@ -40,5 +37,9 @@ const Agencies = ({ agencies }) =>{
             </div>
         </section>
     )
+}
+
+Agencies.propTypes = {
+    agencies: PropTypes.array.isRequired,
 }
 export default Agencies;

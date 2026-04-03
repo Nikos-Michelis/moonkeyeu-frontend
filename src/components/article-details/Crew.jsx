@@ -1,8 +1,9 @@
 import AstronautLandScapeCard from "@/components/cards/AstronautLandScapeCard.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
+import {faUserAstronaut} from '@fortawesome/free-solid-svg-icons';
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
+import PropTypes from "prop-types";
 
-const Crew = ({crew}) =>{
+const Crew = ({ crew }) =>{
     const contentConfig = {
         scroll: 2,
         styles: {
@@ -13,10 +14,7 @@ const Crew = ({crew}) =>{
     };
     return(
         <section className="crew-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faUserAstronaut} />
-                <h2>Crew</h2>
-            </div>
+            <SectionHeading title="Crew" icon={faUserAstronaut}/>
             <hr className="hr-100-sm" />
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container"
@@ -42,4 +40,9 @@ const Crew = ({crew}) =>{
         </section>
     )
 }
+
+Crew.propTypes = {
+    crew: PropTypes.array.isRequired,
+}
+
 export default Crew;

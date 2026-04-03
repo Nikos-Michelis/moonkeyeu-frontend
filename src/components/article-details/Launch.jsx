@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 import StatePagination from "@/components/pagination/StatePagination.jsx";
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
-const Launch = ({ launches = {}, queryData= {}, navUrl= "", pagination, hasPagination = false }) => {
+const Launch = ({ launches = {}, queryData= {}, navUrl= "", pagination = null, hasPagination = false }) => {
     const parsedLaunches = queryData?.data?._embedded?.launchNormalDTOes || launches || [];
     const contentConfig = {
         component: SkeletonLandscapeLoader,
@@ -26,11 +27,7 @@ const Launch = ({ launches = {}, queryData= {}, navUrl= "", pagination, hasPagin
 
     return (
         <section className="launches-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faRocket} />
-                <h2>Related Launches</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Related Launches" icon={faRocket}/>
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container"
                      data-spacing="none"
@@ -75,5 +72,14 @@ export default Launch;
 Launch.propTypes = {
     launches: PropTypes.array,
     navUrl: PropTypes.string.isRequired,
+    queryData: PropTypes.object,
     pagination: PropTypes.object,
+    hasPagination: PropTypes.bool,
+};
+
+Launch.defaultTypes = {
+    launches: {},
+    queryData: {},
+    pagination: null,
+    hasPagination: false,
 };

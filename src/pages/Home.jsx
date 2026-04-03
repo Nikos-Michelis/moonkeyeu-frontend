@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import LaunchesSection from "../components/sections/pages/LaunchesSection.jsx";
 import LaunchFiltering from "../components/filtering/LaunchFiltering.jsx";
-import Heading from "../components/utils/heading/Heading.jsx";
+import PageHeading from "../components/utils/heading/PageHeading.jsx";
 import {useSearchParams} from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
@@ -54,7 +54,7 @@ function Home() {
             />
 
             <ContentContainer>
-                <Heading
+                <PageHeading
                     title={`${searchParams.get("upcoming") === "true" ? "Upcoming" : "Previous"} Launches`}
                     description={
                         <>

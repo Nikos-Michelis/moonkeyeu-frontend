@@ -7,7 +7,7 @@ import {useAuth} from "@/context/AuthProvider.jsx";
 import {useParams} from "react-router-dom";
 import useComparator from "@/hooks/util/useComparator.jsx";
 import Img from "@/components/utils/Img.jsx";
-import {useCreateMutation, useDeleteMutation} from "@/services/mutations.jsx";
+import { useDeleteMutation} from "@/services/mutations.jsx";
 import toast from "react-hot-toast";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {

@@ -1,8 +1,9 @@
 import NewsArticle from "@/components/cards/NewsArticle.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faFileCircleXmark, faNewspaper} from '@fortawesome/free-solid-svg-icons';
+import {faFileCircleXmark, faNewspaper, faTimeline} from '@fortawesome/free-solid-svg-icons';
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
 const RelatedNews = ({ queryData }) =>{
     const articles = queryData?.data?.results;
@@ -18,11 +19,7 @@ const RelatedNews = ({ queryData }) =>{
     };
     return(
         <section className="related-news-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faNewspaper} />
-                <h2>Related News</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Related News" icon={faNewspaper}/>
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container"
                      data-type="full-width"

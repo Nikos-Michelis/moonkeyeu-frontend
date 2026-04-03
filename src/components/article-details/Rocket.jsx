@@ -1,7 +1,8 @@
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faRocket, faGear, faSatellite, faShuttleSpace} from '@fortawesome/free-solid-svg-icons';
+import {faRocket, faGear, faSatellite, faShuttleSpace, faClipboardList} from '@fortawesome/free-solid-svg-icons';
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
 const Rocket = (
     {
@@ -29,11 +30,7 @@ const Rocket = (
     const formattedNumber = handleValue(handleNumberLocale(launch_cost));
     return(
         <section className="rocket-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faRocket} />
-                <h2>Rocket</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Rocket" icon={faRocket}/>
             <div className="container flex flex-wrap justify-center align-center padding-block-8" data-type="full-bleed" data-spacing="none">
                 <div className="article__img-box margin-block-start-5">
                     <Img

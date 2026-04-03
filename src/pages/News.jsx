@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import Heading from "@/components/utils/heading/Heading.jsx";
+import PageHeading from "@/components/utils/heading/PageHeading.jsx";
 import NewsSection from "@/components/sections/pages/NewsSection.jsx";
 import {useSearchParams} from "react-router-dom";
 import BasicFiltering from "@/components/filtering/BasicFiltering.jsx";
@@ -42,7 +42,7 @@ function News() {
                 description="Stay up to date by exploring the latest space news."
             />
             <ContentContainer>
-                <Heading
+                <PageHeading
                     title="News"
                     description="Stay up to date by exploring the latest space news."
                 />

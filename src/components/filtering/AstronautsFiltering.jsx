@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import PropTypes from "prop-types";
 import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {useAstronautsFilters} from "@/hooks/paging-filtering/useAstronautsFilters.jsx";

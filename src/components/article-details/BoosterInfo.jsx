@@ -1,7 +1,8 @@
 import Img from "@/components/utils/Img.jsx";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
+import PropTypes from "prop-types";
 
-const BoosterInfo = ({launcher, type, landing}) =>{
+const BoosterInfo = ({ launcher, type, landing }) =>{
     const {handleValue, booleanConverter} = useDataFormatter();
     return(
         <>
@@ -88,4 +89,11 @@ const BoosterInfo = ({launcher, type, landing}) =>{
         </>
     );
 }
+
+BoosterInfo.propTypes = {
+    launcher: PropTypes.object.isRequired,
+    type: PropTypes.object.isRequired,
+    landing: PropTypes.object.isRequired,
+}
+
 export default BoosterInfo;

@@ -1,15 +1,12 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine } from '@fortawesome/free-solid-svg-icons';
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
+import PropTypes from "prop-types";
 
 const Trajectory = ({ flightclub_url }) => {
     return(
         <section className="trajectory-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faChartLine} />
-                <h2>Telemetry</h2>
-            </div>
-            <hr className="hr-100-sm" />
-                <div className="article__info-box">
+            <SectionHeading title="Telemetry" icon={faChartLine}/>
+            <div className="article__info-box">
                     <>
                         {flightclub_url ?
                             (
@@ -26,4 +23,9 @@ const Trajectory = ({ flightclub_url }) => {
         </section>
     );
 };
+
+Trajectory.propTypes = {
+    flightclub_url: PropTypes.string.isRequired,
+};
+
 export default Trajectory

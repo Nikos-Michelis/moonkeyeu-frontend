@@ -1,15 +1,12 @@
 import BoosterInfo from "@/components/article-details/BoosterInfo.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBolt } from '@fortawesome/free-solid-svg-icons';
+import {faBolt} from '@fortawesome/free-solid-svg-icons';
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
+import PropTypes from "prop-types";
 
-const Boosters = ({stage}) =>{
+const Boosters = ({ stage }) =>{
     return(
         <section className="agency-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faBolt} />
-                <h2>Booster</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Booster" icon={faBolt}/>
             {stage.length > 0 &&
                 stage.map(stage => (
                    <BoosterInfo key={stage.id} {...stage}></BoosterInfo>
@@ -17,4 +14,9 @@ const Boosters = ({stage}) =>{
         </section>
     )
 }
+
+Boosters.propTypes = {
+    stage: PropTypes.array.isRequired,
+}
+
 export default Boosters;

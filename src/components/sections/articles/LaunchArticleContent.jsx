@@ -120,7 +120,7 @@ const LaunchArticleContent = ({ data }) => {
                     spacecraftStage[0]?.crew?.length > 0 &&
                     <Crew key={launchData.rocket.id} crew={spacecraftStage[0].crew || []}/>
                 }
-                {launchData?.pad && <Location pad={launchData?.pad}/>}
+                {launchData?.pad && <Location pad={ launchData?.pad || [] }/>}
                 {rocketConfig && <Rocket {...rocketConfig}/>}
                 {launcherStage.length > 0 && <Boosters stage={launcherStage} />}
                 {programs.length > 0 && <RelatedPrograms programs={programs} />}
