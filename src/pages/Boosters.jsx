@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import Heading from "../components/utils/heading/Heading.jsx";
+import PageHeading from "../components/utils/heading/PageHeading.jsx";
 import { useSearchParams } from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import LauncherSection from "@/components/sections/pages/LauncherSection.jsx";
@@ -47,7 +47,7 @@ function Boosters() {
                 description="Explore the latest and historic boosters that shaped space exploration"
             />
             <ContentContainer>
-                <Heading
+                <PageHeading
                     title="Boosters"
                     description="Explore the latest and historic boosters that shaped space exploration"
                 />

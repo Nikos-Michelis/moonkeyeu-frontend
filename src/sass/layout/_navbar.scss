@@ -10,7 +10,7 @@
   overflow: hidden;
   background-color: var(--nav-300);
   padding: 0.5rem 2rem;
-  border-bottom: 1px solid var(--primary-300);
+  //border-bottom: 1px solid var(--primary-300);
 
   &__brand-box {
     display: flex;
@@ -139,7 +139,7 @@
     text-decoration: none;
     width: 100%;
     margin: 0.625rem 0.25rem;
-    @include abs.font($font-size: var(--fs-medium-300), $color: $clr-dark-cosmos-300);
+    @include abs.font($font-size: var(--fs-small-200), $color: $clr-dark-cosmos-300);
     &:hover {
       box-shadow: $box-shadow-nav-1;
     }
@@ -234,7 +234,7 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      padding: 2.5rem 0;
+      padding: 2rem 0;
       max-height: 0;
       width: 100%;
     }
@@ -251,8 +251,8 @@
 @include abs.mq(xxl) {
   .navbar {
     &__image-link {
-      width: 70px;
-      height: 70px;
+      width: 50px;
+      height: 50px;
     }
     &__brand-title {
       & h1 {

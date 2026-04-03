@@ -1,87 +1,136 @@
-import {useEffect} from "react";
-import LaunchesSection from "../components/sections/pages/LaunchesSection.jsx";
-import LaunchFiltering from "../components/filtering/LaunchFiltering.jsx";
-import Heading from "../components/utils/heading/Heading.jsx";
-import {useSearchParams} from "react-router-dom";
-import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
-import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
-import Head from "@/components/seo/Head.jsx";
-import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
+import Hero from "@/layout/Hero.jsx";
 import ContentContainer from "@/layout/ContentContainer.jsx";
+import moonBackground from "/artemis.jpeg"
+import nasaAstronomy from "/astronomy.jpg"
+import falcon from "/falcon.png"
+import sojuz from "/sojuz.webp"
+import {OverlayCard} from "@/components/cards/OverlayCard.jsx";
+import UpcomingLaunchesSection from "@/components/sections/UpcomingLaunchesSection.jsx";
+import LatestNewsSections from "@/components/sections/LatestNewsSections.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
+import QuickLinksSection from "@/components/sections/QuickLinksSection.jsx";
+import {faBuilding, faClipboardList, faLocationDot, faShuttleSpace} from "@fortawesome/free-solid-svg-icons";
+import {faSpaceAwesome} from "@fortawesome/free-brands-svg-icons";
 
-const options = {
-    showPrevBtn: true,
-}
-function Home() {
-    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/launches`;
-    const filtersUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/launches/filters`;
-    const [searchParams] = useSearchParams();
-    const pagination = usePagination();
-    const queryData
-        = useParameterizedQuery({
-            url: `${baseUrl}?${searchParams}`,
-            params: `pagination-${searchParams.toString()}`,
-            cacheKey: "launches-pagination",
-            queryOptions:{
-                enabled: !!searchParams.toString().length > 0,
-            }
-        });
-    const filterData
-        = useSimpleQuery({
-            url: filtersUrl,
-            cacheKey: "launches-filters",
-            staleTime: Infinity,
-        });
+const Home = () => {
+    const launchData = [
+        {
+            id: 1,
+            title: "SLS | Artemis II",
+            image: moonBackground, // Using your imported variable
+            description: "Artemis II is the first crewed mission as part of the Artemis program. It will send a crew of 4—3 Americans and 1 Canadian—around the moon and return them safely to Earth.",
+            net: '2026-08-01'
+        },
+        {
+            id: 2,
+            title: "Starship | HLS",
+            image: falcon,
+            description: "The Human Landing System (HLS) is designed to land the first woman and next man on the lunar surface, marking a new era of deep space exploration and sustainability.",
+            net: '2026-08-01'
 
-    useEffect(() => {
-        if (queryData.data) {
-            pagination.setPagination(queryData.data?.page);
+        },
+        {
+            id: 3,
+            title: "Falcon Heavy | Gateway",
+            image: sojuz,
+            description: "Launching the foundational elements of the Lunar Gateway, this mission provides the essential power and propulsion needed for a permanent human presence in lunar orbit.",
+            net: '2026-08-01'
         }
-    }, [queryData.data, pagination]);
+    ];
+
+    const linksData = [
+        {
+            id: 1,
+            title: "Upcoming Launches",
+            description: "Next missions scheduled worldwide. Filters for rocket, agency, orbit & more.",
+            image: moonBackground,
+            link: '',
+            icon: faSpaceAwesome,
+            arrow: true
+        },
+        {
+            id: 2,
+            title: "Agencies",
+            description: "NASA, SpaceX, ESA, Roscosmos, CNSA and every active space agency tracked.",
+            image: moonBackground,
+            link: '',
+            icon: faBuilding,
+            arrow: true
+
+        },
+        {
+            id: 3,
+            title: "Launch Locations",
+            description: "Every spaceport on Earth — Cape Canaveral, Baikonur, Vandenberg & beyond.",
+            image: moonBackground,
+            link: '',
+            icon: faLocationDot,
+            arrow: true
+
+        },
+        {
+            id: 4,
+            title: "Programs",
+            description: "Artemis, ISS, Starlink, Galileo — all major space programs and their missions.",
+            image: moonBackground,
+            link: '',
+            icon: faClipboardList,
+            arrow: true
+
+        },
+
+        {
+            id: 5,
+            title: "Vehicles",
+            description: "Falcon 9, Starship, Ariane 6, Soyuz, Long March — full specs and history.",
+            image: moonBackground,
+            link: '',
+            icon: faShuttleSpace,
+            arrow: true
+        },
+    ]
+    const firstLaunch = launchData?.length > 0 ? launchData[0] : []
+
 
     return (
         <>
-            <Head
-                title="Space Launch Tracker"
-                description="Stay up to date with upcoming and past spaceflights from NASA, SpaceX, and other leading space agencies around the world."
-            />
-            <JsonLdGeneric
-                type="CollectionPage"
-                title="Launches"
-                description="Stay up to date with upcoming and past spaceflights from NASA, SpaceX, and other leading space agencies around the world."
-                createdAt={queryData?.data?.window_start}
-                updatedAt={queryData?.data?.window_end}
-            />
-
-            <ContentContainer>
-                <Heading
-                    title={`${searchParams.get("upcoming") === "true" ? "Upcoming" : "Previous"} Launches`}
-                    description={
-                        <>
-                            Discover past and upcoming space launches,
-                            <br />
-                            apply filters to easily find results that match your specific interests.
-                        </>
-                    }
-                />
-                <LaunchFiltering
-                    filters={filterData.data}
-                    searchPlaceHolder="e.g. Falcon 9 | Block 5"
-                    isPending={filterData.isPending}
-                    isFetching={filterData.isFetching}
-                    isError={filterData.isError}
-                />
-                <LaunchesSection
-                    launches={queryData.data || {}}
-                    isPending={queryData.isPending}
-                    isFetching={queryData.isFetching}
-                    isError={queryData.isError}
-                    options={options}
-                    pagination={pagination}
-                />
+            <Hero/>
+            <ContentContainer size="wide">
+                <div className="margin-block-12">
+                    <SectionHeading title="Quick Access"/>
+                    <QuickLinksSection links={linksData} />
+                </div>
+                <div className="margin-block-12">
+                    <SectionHeading title="Next Upcoming Launch" linkText="ALL Launches"/>
+                    <div className="flex justify-center">
+                        <OverlayCard
+                            className={{content: "portrait-card--md", body: "portrait-card__container--overlay"}}
+                            imageSrc={moonBackground}
+                            title={firstLaunch.title} description="Artemis II is the first crewed mission as part of the Artemis program. Artemis II will send a crew of 4 - 3 Americans and 1 Canadian around the moon and return them back to Earth. The mission will test the core systems of NASA's Orion spacecraft including the critical life support system, among other systems which could not be tested during Artemis I due to the lack of crew onboard."
+                            net="2026-08-01"
+                        />
+                    </div>
+                </div>
+                <div className="margin-block-12">
+                    <SectionHeading title="Upcoming Launches" linkText="ALL Launches"/>
+                    <UpcomingLaunchesSection launches={launchData}/>
+                </div>
+                <div className="margin-block-12">
+                    <SectionHeading title="Astronomy Picture Of the Day"/>
+                    <div className="flex justify-center">
+                        <OverlayCard
+                            className={{content: "portrait-card--md", body: "portrait-card__container--overlay"}}
+                            imageSrc={nasaAstronomy}
+                            title="SLS | Artemis II" description="Artemis II is the first crewed mission as part of the Artemis program. Artemis II will send a crew of 4 - 3 Americans and 1 Canadian around the moon and return them back to Earth. The mission will test the core systems of NASA's Orion spacecraft including the critical life support system, among other systems which could not be tested during Artemis I due to the lack of crew onboard."
+                        />
+                    </div>
+                </div>
+                <div className="margin-block-12">
+                    <LatestNewsSections />
+                </div>
             </ContentContainer>
         </>
+
     );
 }
-
 export default Home;

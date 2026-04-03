@@ -11,6 +11,7 @@ import {useState} from "react";
 import useDataFormatter from "@/hooks/util/useDataFormatter.jsx";
 import Modal from "@/components/modal/dialog/Modal.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
 const AgencyArticleContent = ({queryData, pagination}) => {
     const [shareOpen, setShareOpen] = useState(false);
@@ -112,11 +113,7 @@ const AgencyArticleContent = ({queryData, pagination}) => {
               <div className="article__info-container container flex flex-column" data-type="full-bleed">
                   { agenciesData?.description &&
                       <section className="agency-section">
-                          <div className="article__heading-box">
-                              <FontAwesomeIcon icon={faAlignLeft} />
-                              <h2>Agency Description</h2>
-                          </div>
-                          <hr className="hr-100-sm" />
+                          <SectionHeading title="Agency Description" icon={faAlignLeft}/>
                           <div className="article__info-box">
                               <p>{agenciesData?.description}</p>
                           </div>

@@ -5,7 +5,7 @@ import { useSimpleQuery } from "@/services/queries.jsx";
 import Table from "@/components/table/Table.jsx";
 import { DateTime } from "luxon";
 import { Button } from "@/components/button/Button.jsx";
-import Heading from "@/components/utils/heading/Heading.jsx";
+import PageHeading from "@/components/utils/heading/PageHeading.jsx";
 import TablePagination from "@/components/pagination/TablePagination.jsx";
 import {
     getCoreRowModel,
@@ -98,7 +98,7 @@ function MembersReport() {
     return (
         <>
             <ContentContainer>
-                <Heading
+                <PageHeading
                     title="Members"
                     description="Manage and view all registered members from your dashboard."
                 />

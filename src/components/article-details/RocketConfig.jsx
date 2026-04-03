@@ -4,6 +4,7 @@ import {faFileCircleXmark, faGear} from '@fortawesome/free-solid-svg-icons';
 import StatePagination from "@/components/pagination/StatePagination.jsx";
 import {SkeletonLoader} from "@/components/loader/SkeletonLoader.jsx";
 import SkeletonLandscapeLoader from "@/components/skeleton/SkeletonLandscapeLoader.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
 
 const RocketConfig = ({ queryData,  pagination }) =>{
     const parsedLaunches = queryData?.data?._embedded?.rocketConfigSummarizedDTOes || [];
@@ -19,11 +20,7 @@ const RocketConfig = ({ queryData,  pagination }) =>{
 
     return(
         <section className="rockets-section">
-            <div className="article__heading-box">
-                <FontAwesomeIcon icon={faGear} />
-                <h2>Rocket Configs</h2>
-            </div>
-            <hr className="hr-100-sm" />
+            <SectionHeading title="Rocket Configurations" icon={faGear}/>
             <div className="flex justify-center align-center padding-block-8">
                 <div className="container" data-spacing="none" data-type="full-width">
                     <div className="margin-block-5 margin-inline-4">

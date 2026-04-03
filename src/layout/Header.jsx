@@ -31,7 +31,7 @@ const Header = () => {
                         <img className="navbar__brand-icon" src={`${import.meta.env.VITE_CLOUDFRONT_URL}/assets/logo/moonkeyeu-logo.svg`} alt="MoonkeyEU logo"/>
                     </Link>
                     <div className="navbar__brand-title">
-                        <h1>MoonkeyEU</h1>
+                        <h1>TheCosmicNews</h1>
                     </div>
                 </div>
 

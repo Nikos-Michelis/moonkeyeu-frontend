@@ -1,33 +1,36 @@
+import {useEffect} from "react";
+import LaunchesSection from "../components/sections/pages/LaunchesSection.jsx";
+import LaunchFiltering from "../components/filtering/LaunchFiltering.jsx";
 import PageHeading from "../components/utils/heading/PageHeading.jsx";
-import AstronautsSection from "../components/sections/pages/AstronautsSection.jsx";
 import {useSearchParams} from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
-import AstronautsFiltering from "@/components/filtering/AstronautsFiltering.jsx";
 import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import ContentContainer from "@/layout/ContentContainer.jsx";
-import {useEffect} from "react";
 
-function Astronauts() {
-    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/astronauts`;
-    const filtersUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/astronauts/filters`;
+const options = {
+    showPrevBtn: true,
+}
+function Launches() {
+    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/launches`;
+    const filtersUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/launches/filters`;
     const [searchParams] = useSearchParams();
     const pagination = usePagination();
     const queryData
         = useParameterizedQuery({
             url: `${baseUrl}?${searchParams}`,
             params: `pagination-${searchParams.toString()}`,
-            cacheKey: "astronauts-pagination",
+            cacheKey: "launches-pagination",
             queryOptions:{
                 enabled: !!searchParams.toString().length > 0,
             }
         });
     const filterData
         = useSimpleQuery({
-        url: filtersUrl,
-        cacheKey: "astronauts-filters",
-        staleTime: Infinity
+            url: filtersUrl,
+            cacheKey: "launches-filters",
+            staleTime: Infinity,
         });
 
     useEffect(() => {
@@ -38,39 +41,42 @@ function Astronauts() {
 
     return (
         <>
-             <Head
-                 title="Astronauts"
-                 description="Meet the astronauts from different missions and backgrounds, apply filters to find those that align with your interests."
-             />
+            <Head
+                title="Space Launch Tracker"
+                description="Stay up to date with upcoming and past spaceflights from NASA, SpaceX, and other leading space agencies around the world."
+            />
             <JsonLdGeneric
                 type="CollectionPage"
-                title="Astronauts"
-                description="Meet the astronauts from different missions and backgrounds, apply filters to find those that align with your interests."
+                title="Launches"
+                description="Stay up to date with upcoming and past spaceflights from NASA, SpaceX, and other leading space agencies around the world."
+                createdAt={queryData?.data?.window_start}
+                updatedAt={queryData?.data?.window_end}
             />
 
             <ContentContainer>
                 <PageHeading
-                    title="Astronauts"
+                    title={`${searchParams.get("upcoming") === "true" ? "Upcoming" : "Previous"} Launches`}
                     description={
                         <>
-                            Meet the astronauts from different missions and Biography,
+                            Discover past and upcoming space launches,
                             <br />
-                            apply filters to find those that align with your interests.
+                            apply filters to easily find results that match your specific interests.
                         </>
                     }
                 />
-                <AstronautsFiltering
+                <LaunchFiltering
                     filters={filterData.data}
-                    searchPlaceHolder="e.g. Armstrong"
+                    searchPlaceHolder="e.g. Falcon 9 | Block 5"
                     isPending={filterData.isPending}
                     isFetching={filterData.isFetching}
                     isError={filterData.isError}
                 />
-                <AstronautsSection
-                    astronauts={queryData.data || {}}
+                <LaunchesSection
+                    launches={queryData.data || {}}
                     isPending={queryData.isPending}
                     isFetching={queryData.isFetching}
                     isError={queryData.isError}
+                    options={options}
                     pagination={pagination}
                 />
             </ContentContainer>
@@ -78,4 +84,4 @@ function Astronauts() {
     );
 }
 
-export default Astronauts;
+export default Launches;

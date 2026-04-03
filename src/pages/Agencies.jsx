@@ -1,4 +1,4 @@
-import Heading from "../components/utils/heading/Heading.jsx";
+import PageHeading from "../components/utils/heading/PageHeading.jsx";
 import { useSimpleQuery } from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
@@ -25,7 +25,7 @@ function Agencies() {
                 description="Explore key space agencies that have shaped space exploration."
             />
             <ContentContainer>
-                <Heading
+                <PageHeading
                     title="Agencies"
                     description="Explore key space agencies that have shaped space exploration."
                 />

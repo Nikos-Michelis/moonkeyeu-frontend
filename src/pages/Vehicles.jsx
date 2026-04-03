@@ -1,4 +1,4 @@
-import Heading from "@/components/utils/heading/Heading.jsx";
+import PageHeading from "@/components/utils/heading/PageHeading.jsx";
 import VehiclesSection from "@/components/sections/pages/VehiclesSection.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
@@ -17,7 +17,7 @@ function Vehicles() {
                 description="Explore the vehicles that shape space exploration, from historic milestones to today's cutting-edge technology."
             />
             <ContentContainer size="fit-content">
-                <Heading
+                <PageHeading
                     title="Spaceflight Vehicles"
                     description={
                         <>

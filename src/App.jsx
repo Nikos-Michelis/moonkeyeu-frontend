@@ -1,5 +1,5 @@
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import Home from "@/pages/Home.jsx";
+import Launches from "@/pages/Launches.jsx";
 import Astronauts from "./pages/Astronauts.jsx";
 import Programs from "@/pages/Programs.jsx";
 import Locations from "./pages/Locations.jsx";
@@ -41,6 +41,7 @@ import {SpaceFlightNewsProvider} from "@/context/SpaceFlightNewsProvider.jsx";
 import BuildProviderTree from "@/context/BuildProviderTree.jsx";
 import {ThemeProvider} from "@/context/ThemeProvider.jsx";
 import ToastPortal from "@/portals/ToastPortal.jsx";
+import Home from "@/pages/Home.jsx";
 
 function App() {
     const[cookies] = useCookies(["cookieConsent"])
@@ -58,8 +59,11 @@ function App() {
                 <Routes>
                     <Route element={<PageLayout />}>
                         <Route path="/" element={<Navigate to="/launches" />} />
-                        <Route path="/launches" element={<Layout />}>
+                        <Route path="/home" element={<Layout />}>
                             <Route index element={<Home />} />
+                        </Route>
+                        <Route path="/launches" element={<Layout />}>
+                            <Route index element={<Launches />} />
                             <Route path=":id" element={<LaunchArticle/>} />
                         </Route>
                         <Route path="/programs" element={<Layout />}>

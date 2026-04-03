@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import Heading from "../components/utils/heading/Heading.jsx";
+import PageHeading from "../components/utils/heading/PageHeading.jsx";
 import { useSearchParams } from "react-router-dom";
 import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
 import RocketSection from "@/components/sections/pages/RocketSection.jsx";
@@ -45,7 +45,7 @@ function Rockets() {
                 description="Explore the latest and historic rocket vehicles that shaped space exploration."
             />
             <ContentContainer>
-                <Heading
+                <PageHeading
                     title="Rockets"
                     description="Explore the latest and historic rocket vehicles that shaped space exploration."
                 />

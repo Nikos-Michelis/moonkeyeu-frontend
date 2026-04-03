@@ -124,7 +124,8 @@ $light: (
     "bg": $-clr-main-100,
   ),
   "nav": (
-    "300": $-clr-main-300
+    "300": $-clr-main-300,
+    "400": $-clr-main-400
   )
 );
 
@@ -156,7 +157,8 @@ $dark: (
     "bg": $-clr-dark-cosmos-300,
   ),
   "nav": (
-    "300": $-clr-secondary-300
+    "300": $-clr-secondary-300,
+    "400": $-clr-secondary-400
   ),
 );
 
@@ -164,6 +166,7 @@ $dark: (
 // contextual color tokens
 $clr-star-200: $-clr-star-200;
 $clr-secondary-300: $-clr-secondary-300;
+$clr-secondary-400: $-clr-secondary-400;
 $clr-main-300: $-clr-main-300;
 $clr-yt-red-300: $-clr-yt-red-300;
 $clr-yt-red-400: $-clr-yt-red-400;

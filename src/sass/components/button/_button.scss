@@ -20,6 +20,38 @@
     }
   }
 
+  &--yellow {
+    @include abs.button-color-variation($color: var(--neutral-1000), $background-color: var(--primary-300), $border-color: var(--neutral-1000));
+    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
+    @include abs.button-hover($color: var(--neutral-1000), $background-color: var(--primary-400), $border-color: var(--neutral-1000));
+    box-shadow: $box-shadow-3;
+    padding: 5px 10px;
+    &:not([class*="margin-"]) {
+      margin: 0.2rem;
+    }
+
+    &:active {
+      box-shadow: 0 0 0 var(--neutral-1000);
+      transform: translate(0.22rem, 0.22rem);
+    }
+  }
+
+  &--primary-transparent {
+    @include abs.button-color-variation($color: var(--neutral-1000), $background-color: transparent, $border-color: var(--neutral-1000));
+    @include abs.button-size($padding-y: 5px, $padding-x: 10px, $font-size: var(--fs-medium-200));
+    @include abs.button-hover($color: var(--neutral-1000), $background-color: var(--primary-400), $border-color: var(--neutral-1000));
+    box-shadow: $box-shadow-3;
+    padding: 5px 10px;
+    &:not([class*="margin-"]) {
+      margin: 0.2rem;
+    }
+
+    &:active {
+      box-shadow: 0 0 0 var(--neutral-1000);
+      transform: translate(0.22rem, 0.22rem);
+    }
+  }
+
   &--warning {
     @include abs.button-color-variation($color: $clr-dark-cosmos-300, $background-color: $clr-warning-300, $border-color: var(--neutral-1000));
     @include abs.button-hover($color: $clr-secondary-300, $background-color: $clr-warning-400, $border-color: var(--neutral-1000));
