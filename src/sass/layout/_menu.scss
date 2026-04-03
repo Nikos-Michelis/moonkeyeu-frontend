@@ -10,7 +10,7 @@
   overflow: hidden;
   background-color: var(--nav-300);
   padding: 0.5rem 2rem;
-  border-bottom: 1px solid var(--primary-300);
+  border-bottom: 0.125rem solid $clr-dark-cosmos-300;
 
   &__brand-box {
     display: flex;

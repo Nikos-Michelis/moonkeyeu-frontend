@@ -2,7 +2,7 @@ import {Button} from "@/components/button/Button.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCalendarDays,
-    faChevronLeft,
+    faChevronLeft, faCircleCheck,
     faLocationDot,
     faShareFromSquare,
     faTriangleExclamation
@@ -36,6 +36,7 @@ const LaunchArticleContent = ({ data }) => {
     const programs = launchData?.programs || [];
     const rocketConfig = launchData.rocket?.configuration || {};
     const zonedDateTime = getZonedDateTime(launchData.net);
+    const isSuccessfulOrGo = launchData?.status === 'Launch Successful' || launchData?.status === 'Go for Launch';
     const formattedZonedDateTime = getFormattedDateTime(zonedDateTime, 'MMMM dd, yyyy - hh:mm a ZZZZ');
     const recommendedVideo = useComparator(
         launchData?.video_urls?.filter(
@@ -71,7 +72,7 @@ const LaunchArticleContent = ({ data }) => {
                     </div>
                     <hr className="hr-100-xs hr-my-xs"/>
                     <div className="article__detail-box">
-                        <FontAwesomeIcon icon={faTriangleExclamation} />
+                        <FontAwesomeIcon icon={isSuccessfulOrGo ? faCircleCheck : faTriangleExclamation} />
                         <p className="article__text">{launchData?.status}</p>
                     </div>
                     <div className="article__detail-box">

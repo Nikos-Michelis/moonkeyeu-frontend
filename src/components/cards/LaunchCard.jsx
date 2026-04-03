@@ -48,6 +48,7 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
     const tooltipVideoMessage = item?.videoUrl ? "" : "No Video Available";
     const xTwitterUrl = "x.com";
     const url = `${window.location.origin}${navUrl || window.location.pathname}/${id}`;
+    const isSuccessfulOrGo = launchStatus === 'Launch Successful' || launchStatus === 'Go for Launch';
     const removeLaunchMutation =
         useDeleteMutation({
             successMessage: undefined,
@@ -88,7 +89,7 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'large-wrapper'}`}>
             <div className={`landscape-card__container lift lift--lg ${cardStyles?.card_type || ''}`}>
-                <LinkButton to={navUrl? `${navUrl}/` + id: id} className="landscape-card__media landscape-card__media--link">
+                <LinkButton to={navUrl ? `${navUrl}/` + id: id} className="landscape-card__media landscape-card__media--link">
                     <Img
                         src={image?.image_url}
                         alt={image?.name || "default"}
@@ -100,7 +101,7 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
                     <div className="landscape-card__details">
                         <div className="flex justify-space-between align-center">
                             <LinkButton
-                                to={navUrl? navUrl + id: id}
+                                to={navUrl ? `${navUrl}/` + id: id}
                                 className="landscape-card__title"
                             >
                                 <h3 className="fs-small-300">{fullname}</h3>
@@ -131,11 +132,7 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
                         </div>
                         <div className="landscape-card__detail-box">
                             <div>
-                                {launchStatus === 'Launch Successful' || launchStatus === 'Go for Launch' ? (
-                                    <FontAwesomeIcon icon={faCircleCheck} />
-                                ) : (
-                                    <FontAwesomeIcon icon={faTriangleExclamation} />
-                                )}
+                                <FontAwesomeIcon icon={isSuccessfulOrGo ? faCircleCheck : faTriangleExclamation} />
                             </div>
                             <p className="fw-regular"><small>{launchStatus}</small></p>
                         </div>

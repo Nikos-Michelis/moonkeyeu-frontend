@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
                 },
             }
         )
-    }, [token, userQuery.data]);
+    }, [logoutMutation, logoutUrl]);
 
     const invalidateCredentials = useCallback(() => {
         queryClient.removeQueries(["user"]);
