@@ -61,8 +61,11 @@
   }
 
   &__title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     padding: 1rem;
-    @include abs.font($font-size: var(--fs-medium-400), $font-weight: 500, $color: var(--neutral-1000));
+    @include abs.font($font-size: var(--fs-medium-300), $font-weight: 500, $color: var(--neutral-1000));
   }
 
   &__thumbnail {

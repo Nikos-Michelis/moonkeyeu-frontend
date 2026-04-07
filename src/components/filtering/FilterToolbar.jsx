@@ -49,17 +49,17 @@ function FilteringToolbar(
             <div className="container toolbar__container margin-block-4" data-type="full-bleed">
                 <div className="toolbar__tools">
                     {hasFilters && (
-                        <div className="margin-inline-end-2">
+                        <div className="toolbar__option">
                             <FilterPopover>
                                 <FilterPopover.Button
-                                    className="btn btn--primary btn--big fw-bold fs-medium-200"
+                                    className="btn btn--primary btn--big fw-bold fs-medium-200 margin-0"
                                     disabled={isFetching || isPending || isError}
                                 >
                                     Add Filter <FontAwesomeIcon icon={faPlus} />
                                 </FilterPopover.Button>
                                 <FilterPopover.Content title="Filter by..." onReset={handleReset}>
                                     {filters.map(({ field, placeholder, options, searchable, value, defaultValue }) => (
-                                        <div key={field} className="toolbar__option">
+                                        <div key={field}>
                                             <SearchableSelect
                                                 onSelectChange={onFilterChange}
                                                 onSelectClear={onFilterClear}
@@ -76,17 +76,19 @@ function FilteringToolbar(
                             </FilterPopover>
                         </div>
                     )}
-                    <SearchableSelect
-                        onSelectChange={onFilterChange}
-                        onSelectClear={onFilterClear}
-                        field="limit"
-                        options={LIMIT_OPTIONS}
-                        placeholder={`Limit ${Math.min(limit, MAX_LIMIT)}`}
-                        value={limit}
-                        defaultValue={Number(LIMIT_OPTIONS[0]?.id)}
-                        isSearchable={false}
-                        className={{content: "select__content--medium", button: "select__trigger--small"}}
-                    />
+                    <div className="toolbar__option">
+                        <SearchableSelect
+                            onSelectChange={onFilterChange}
+                            onSelectClear={onFilterClear}
+                            field="limit"
+                            options={LIMIT_OPTIONS}
+                            placeholder={`Limit ${Math.min(limit, MAX_LIMIT)}`}
+                            value={limit}
+                            defaultValue={Number(LIMIT_OPTIONS[0]?.id)}
+                            isSearchable={false}
+                            className={{content: "select__content--medium", button: "select__trigger--small"}}
+                        />
+                    </div>
 
                     {!hasFilters &&
                        <>

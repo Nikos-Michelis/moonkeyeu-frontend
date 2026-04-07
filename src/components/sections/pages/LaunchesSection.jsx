@@ -14,7 +14,7 @@ const LaunchesSection = (
         options,
         navUrl = undefined
     }) => {
-    const items =  launches._embedded?.launchNormalDTOes || launches || [];
+    const items =  launches?._embedded?.launchNormalDTOes || launches || [];
 
     const contentConfig = {
         component: SkeletonLandscapeLoader,

@@ -5,10 +5,9 @@ import {Link, NavLink} from "react-router-dom";
 import toast from "react-hot-toast";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRocket, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
-import { faUser, faBookmark } from '@fortawesome/free-regular-svg-icons';
+import {faBookmark } from '@fortawesome/free-regular-svg-icons';
 import ThemeButton from "@/components/button/ThemeButton.jsx";
-import Modal from "@/components/modal/dialog/Modal.jsx";
-import LoginForm from "@/components/modal/forms/LoginForm.jsx";
+import AuthModal from "@/components/modal/dialog/AuthModal.jsx";
 
 const Header = () => {
     const [open, setOpen] = useState(false)
@@ -76,16 +75,7 @@ const Header = () => {
                                         <FontAwesomeIcon icon={faUserAstronaut} />
                                     </NavLink>
                                 ) : (
-                                <Modal open={open} onOpenChange={setOpen}>
-                                    <Modal.Button
-                                        className="navbar__user-link btn--transparent"
-                                    >
-                                        <FontAwesomeIcon icon={faUser} />
-                                    </Modal.Button>
-                                    <Modal.Content>
-                                        <LoginForm setOpen={setOpen} />
-                                    </Modal.Content>
-                                </Modal>
+                                    <AuthModal open={open} setOpen={setOpen}/>
                                 )
                             ) : (
                                 <div>
