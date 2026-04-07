@@ -1,92 +1,42 @@
 import PropTypes from "prop-types";
-import {useEffect, useState} from "react";
-import {useDebounce} from "@/hooks/util/useDebounce.jsx";
 import {useBasicFilters} from "@/hooks/paging-filtering/useBasicFilters.jsx";
-import CustomSelect from "@/components/utils/select/CustomSelect.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
+import FilterToolbar from "@/components/filtering/FilterToolbar.jsx";
 BasicFiltering.propTypes = {
     limit: PropTypes.number,
     search: PropTypes.string,
     ordering: PropTypes.string
 };
 
-function BasicFiltering({defaultFilters, searchPlaceHolder, field}) {
-    const [selectedOption, setSelectedOption] = useState('');
-    const limitOptions =
-        [
-            {id: 12, name: "Limit 12"},
-            {id: 24, name: "Limit 24"},
-            {id: 50, name: "Limit 50"}
-        ];
-    const orderingOptions =
-        [
-            {id: field ? field : "asc", name: "Asc"},
-            {id: field ? `-${field}` : "desc", name: "Desc"}
-        ]
-
+function BasicFiltering({ defaultFilters, searchPlaceHolder, field }) {
     const {
         search,
         limit,
         ordering,
         setFilters,
+        resetFilters,
         resetFilterByName
     } = useBasicFilters(defaultFilters);
-    const [localSearch, setLocalSearch] = useState(search);
-    const debounceSearch = useDebounce(localSearch);
 
-    useEffect(() => {
-        setFilters({search: debounceSearch});
-    }, [debounceSearch]);
+    const ORDERING_OPTIONS = [
+        { id: field ? field : "asc", name: "Asc" },
+        { id: field ? `-${field}` : "desc", name: "Desc" }
+    ];
+
+    const filterSections = [
+        { field: "ordering", placeholder: "Ordering", options: ORDERING_OPTIONS, value: ordering, defaultValue: defaultFilters?.ordering , searchable: false },
+    ];
 
     return (
-        <section className="toolbar">
-            <div className="container toolbar__container margin-block-4" data-type="full-bleed">
-                <div className="toolbar__tools">
-                    <CustomSelect
-                        options={limitOptions || []}
-                        field="limit"
-                        placeholder={`Limit ${limit}`}
-                        setFilters={setFilters}
-                        resetFilterByName={resetFilterByName}
-                        selectedOption={selectedOption}
-                        setSelectedOption={setSelectedOption}
-                        defaultValue={Number(limit)}
-                        isSearchable={false}
-                        btnClassName="select__btn select__btn--small"
-                        dropDownClassName="select__content--medium"
-                    />
-                    <CustomSelect
-                        options={orderingOptions || []}
-                        field="ordering"
-                        placeholder={selectedOption}
-                        setFilters={setFilters}
-                        resetFilterByName={resetFilterByName}
-                        selectedOption={selectedOption}
-                        setSelectedOption={setSelectedOption}
-                        defaultValue={ordering}
-                        isSearchable={false}
-                        btnClassName="select__btn select__btn--small"
-                        dropDownClassName="select__content--medium"
-                    />
-                </div>
-                <div className="search">
-                    <input type="hidden" name="action" value="search" />
-                    <input
-                        className="search__searchbar"
-                        value={localSearch || ""}
-                        type="text"
-                        name="search"
-                        placeholder={searchPlaceHolder}
-                        onChange={(e) => setLocalSearch(e.target.value)}
-                    />
-                    <div className="search__btn-search">
-                        <FontAwesomeIcon icon={faSearch} />
-                    </div>
-                </div>
-            </div>
-        </section>
+       <FilterToolbar
+            filters={filterSections}
+            initialSearch={search}
+            onFilterChange={setFilters}
+            onFilterClear={resetFilterByName}
+            onFiltersReset={resetFilters}
+            searchPlaceHolder={searchPlaceHolder}
+            limit={limit}
+            hasFilters={false}
+       />
     );
 }
 

@@ -14,6 +14,7 @@ const defaultFilters = {
     limit: 12,
     ordering: "desc"
 };
+
 function Rockets() {
     const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/rockets`;
     const [searchParams] = useSearchParams();

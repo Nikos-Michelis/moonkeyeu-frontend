@@ -40,7 +40,7 @@ import {NasaApodProvider} from "@/context/NasaApodProvider.jsx";
 import {SpaceFlightNewsProvider} from "@/context/SpaceFlightNewsProvider.jsx";
 import BuildProviderTree from "@/context/BuildProviderTree.jsx";
 import {ThemeProvider} from "@/context/ThemeProvider.jsx";
-import ToastPortal from "@/portals/ToastPortal.jsx";
+import ToastPortal from "@/portal/ToastPortal.jsx";
 
 function App() {
     const[cookies] = useCookies(["cookieConsent"])

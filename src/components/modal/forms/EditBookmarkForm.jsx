@@ -7,8 +7,9 @@ import {useUpdateMutation} from "@/services/mutations.jsx";
 import Img from "@/components/utils/Img.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faArrowRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import { BookmarkX, BookmarkPlus } from 'lucide-react';
 
-export function EditBookmarkForm({ bookmark, img }) {
+function EditBookmarkForm({ bookmark, img }) {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const [apiError, setApiError] = useState(null);
     const {
@@ -65,6 +66,7 @@ export function EditBookmarkForm({ bookmark, img }) {
                         <div className="input-field">
                             <Input
                                 className={`${errors.currentName ? 'input-error' : ''}`}
+                                lucideIcon={<BookmarkX />}
                                 name="currentName"
                                 type="text"
                                 register={register}
@@ -81,6 +83,7 @@ export function EditBookmarkForm({ bookmark, img }) {
                         <div className="input-field">
                             <Input
                                 className={`${errors.bookmarkName ? 'input-error' : ''}`}
+                                lucideIcon={<BookmarkPlus/>}
                                 label="New Name"
                                 name="newName"
                                 type="text"
@@ -105,3 +108,5 @@ export function EditBookmarkForm({ bookmark, img }) {
         </>
     );
 }
+
+export default EditBookmarkForm

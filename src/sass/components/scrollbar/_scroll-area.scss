@@ -1,7 +1,6 @@
 .scroll {
   &__root {
     width: 100%;
-    height: 20rem;
     border-radius: 4px;
     overflow: hidden;
     --scrollbar-size: 10px;
@@ -11,6 +10,7 @@
     width: 100%;
     height: 100%;
     border-radius: inherit;
+    margin-block: 0.6rem;
   }
   &__scrollbar {
     display: flex;

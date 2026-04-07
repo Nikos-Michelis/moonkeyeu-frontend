@@ -20,6 +20,7 @@ import CustomScrollArea from "@/components/utils/CustomScrollArea.jsx";
 import CustomCheckbox from "@/components/utils/CustomCheckbox.jsx";
 import SpinnerLoader from "@/components/loader/SpinnerLoader.jsx";
 import toast from "react-hot-toast";
+import {BookmarkPlus} from "lucide-react";
 
 export function AddBookmarkForm({launchId}) {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -148,7 +149,7 @@ export function AddBookmarkForm({launchId}) {
     return(
         <>
             <div className="dialog__content padding-8">
-                <CustomScrollArea>
+                <CustomScrollArea styles={{ height: '20rem' }}>
                     <div className="padding-inline-2">
                         {queryData.isPending && <SpinnerLoader/>}
                         {!queryData.isPending && queryData.data?.length > 0 && (
@@ -203,6 +204,7 @@ export function AddBookmarkForm({launchId}) {
                         <div className="input-field">
                             <Input
                                 className={`${errors.email ? 'input-error' : ''}`}
+                                lucideIcon={<BookmarkPlus/>}
                                 label="Bookmark Name"
                                 name="bookmarkName"
                                 type="text"

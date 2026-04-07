@@ -1,29 +1,45 @@
-import {useState} from "react";
 import InputElement from "@/components/utils/html/InputElement.jsx";
-import FloatingLabel from "@/components/utils/html/FloatingLabel.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Input = ({ label= "", register, name, rules, errors = null, defaultValue = "", disabled, ...props }) => {
-
-    const [isActive, setIsActive] = useState(!!defaultValue);
-
-    const handleFocus = () => setIsActive(true);
-    const handleBlur = (e) => setIsActive(!!e.target.value);
-
-    const errorMessage = errors ? errors[name]?.message : null;
+const Input = (
+    {
+        className = "",
+        type,
+        icon,
+        lucideIcon,
+        suffix = null,
+        label = "",
+        register,
+        name,
+        rules,
+        errors = null,
+        disabled,
+        ...props
+    }) => {
+    const errorMessage = errors?.[name]?.message;
 
     return (
-        <FloatingLabel label={label} isActive={isActive}>
-            <InputElement
-                {...props}
-                name={name}
-                register={register}
-                rules={rules}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                disabled={disabled}
-            />
+        <>
+            <div className={`input ${className}`}>
+                {icon && <FontAwesomeIcon size="lg" icon={icon} />}
+                {lucideIcon && lucideIcon }
+                <InputElement
+                    {...props}
+                    type={type}
+                    placeholder={label}
+                    name={name}
+                    register={register}
+                    rules={rules}
+                    disabled={disabled}
+                />
+                {suffix && (
+                    <span className="input__suffix">
+                        {suffix}
+                    </span>
+                )}
+            </div>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-        </FloatingLabel>
+        </>
     );
 };
 

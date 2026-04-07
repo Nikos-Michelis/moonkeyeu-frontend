@@ -1,15 +1,16 @@
 import {useEffect} from 'react';
 import {Button} from "@/components/button/Button.jsx";
 import Input from "@/components/utils/fields/Input.jsx";
-import {useForm} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import ErrorBox from "@/components/utils/ErrorBox.jsx";
-import Select from "@/components/utils/select/Select.jsx";
 import TextArea from "@/components/utils/fields/TextArea.jsx";
 import {useCreateMutation} from "@/services/mutations.jsx";
 import {useAuth} from "@/context/AuthProvider.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faArrowRight, faBug, faChevronLeft, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {faAngleDown, faArrowRight, faAt, faBug, faChevronLeft, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
+import SimpleSelect from "@/components/utils/select/SimpleSelect.jsx";
+import CustomReCAPTCHA from "@/components/utils/fields/Recaptcha.jsx";
 
 const ContactForm = () => {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -19,11 +20,12 @@ const ContactForm = () => {
         handleSubmit,
         setValue,
         reset,
+        control,
         formState: {errors}} = useForm({
         mode: 'onChange',
         defaultValues: {
             email: user?.email || "",
-
+            category: ""
         },
     });
 
@@ -57,6 +59,12 @@ const ContactForm = () => {
             setValue("email", user.email);
         }
     }, [user?.email, setValue]);
+
+    const options = [
+        { value: "Bug", label: "Report A Bug" },
+        { value: "Account", label: "Account Issue" },
+        { value: "Other", label: "Other" },
+    ]
 
     return (
         <>
@@ -95,6 +103,7 @@ const ContactForm = () => {
                                         <Input
                                             className={`${errors.email ? 'input-error' : ''}`}
                                             label={!user?.email? "Email" : ''}
+                                            icon={faAt}
                                             name="email"
                                             type="email"
                                             register={register}
@@ -107,18 +116,50 @@ const ContactForm = () => {
                                         />
                                     </div>
                                     <div className="input-field">
-                                       <Select
-                                           label="Category"
-                                           name="category"
-                                           register={register}
-                                           options={[
-                                               { value: "Bug", label: "Report A Bug" },
-                                               { value: "Account", label: "Account Issue" },
-                                               { value: "Other", label: "Other" },
-                                           ]}
-                                           rules={{ required: "Category is required" }}
-                                           errors={errors}
-                                       />
+                                        <Controller
+                                            name="category"
+                                            control={control}
+                                            rules={{ required: "Category is required" }}
+                                            render={({ field, fieldState }) => (
+                                                <>
+                                                    <SimpleSelect
+                                                        name="category"
+                                                        value={field.value}
+                                                        onValueChange={field.onChange}
+                                                    >
+                                                        <SimpleSelect.Button
+                                                            className={`select__trigger select__trigger--full ${fieldState.error ? "select__trigger--error" : ""}`}
+                                                        >
+                                                            <SimpleSelect.Value placeholder="Category" />
+                                                            <SimpleSelect.Icon>
+                                                                <FontAwesomeIcon icon={faAngleDown} />
+                                                            </SimpleSelect.Icon>
+                                                        </SimpleSelect.Button>
+
+                                                        <SimpleSelect.Content className="select__content--full-width">
+                                                            {options.map((option) => (
+                                                                <SimpleSelect.Item
+                                                                    key={option.value}
+                                                                    value={option.value}
+                                                                    className="select__option"
+                                                                    data-selected={field.value === option.value}
+                                                                >
+                                                                    <SimpleSelect.ItemText>
+                                                                        {option.label}
+                                                                    </SimpleSelect.ItemText>
+                                                                </SimpleSelect.Item>
+                                                            ))}
+                                                        </SimpleSelect.Content>
+                                                    </SimpleSelect>
+
+                                                    {fieldState.error && (
+                                                        <p className="error-message">
+                                                            {fieldState.error.message}
+                                                        </p>
+                                                    )}
+                                                </>
+                                            )}
+                                        />
                                     </div>
                                     <div className="input-field">
                                         <TextArea
@@ -136,6 +177,9 @@ const ContactForm = () => {
                                             }}
                                             errors={errors}
                                         />
+                                    </div>
+                                    <div className="input-field">
+                                        <CustomReCAPTCHA control={control} />
                                     </div>
                                     <div className="flex justify-center padding-2">
                                         <Button className="btn btn--primary btn--big" type="submit" disabled={contactFormMutation.isPending}>

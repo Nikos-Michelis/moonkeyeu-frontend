@@ -19,7 +19,6 @@ function Spacecraft() {
     const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/spacecraft`;
     const [searchParams] = useSearchParams();
     const pagination = usePagination();
-
     const queryData
         = useParameterizedQuery({
             url: `${baseUrl}?${searchParams}`,
