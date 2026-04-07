@@ -9,15 +9,7 @@ $enable-media-query-dark-mode: false;
 $section-padding-block: clamp(5rem, 10vh, 6rem);
 $letter-spacing-loose: 0;
 
-/* box shadows *
-/*
-$box-shadow-1: 0px 6px 5px rgb(0, 0, 0, 0.012),
-0px 22px 18px rgb(0, 0, 0, 0.018), 0px 100px 80px rgb(0, 0, 0, 0.03);
-
-$box-shadow-2: 0px 6px 5px rgb(0, 0, 0, 0.016),
-0px 22px 18px rgb(0, 0, 0, 0.024), 0px 100px 80px rgb(0, 0, 0, 0.04);
-*/
-
+/* box shadows */
 $box-shadow-1: 0.45rem 0.45rem var(--neutral-1000);
 $box-shadow-2: 0.35rem 0.35rem var(--neutral-1000);
 $box-shadow-3: 0.25rem 0.25rem var(--neutral-1000);

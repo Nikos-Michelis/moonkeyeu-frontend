@@ -9,7 +9,14 @@ import {useNavigate} from "react-router-dom";
 import {useCreateMutation} from "@/services/mutations.jsx";
 import PasswordField from "@/components/utils/fields/PasswordField.jsx";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowLeft, faArrowRight, faRightToBracket, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {
+    faArrowLeft,
+    faArrowRight,
+    faAt, faLock,
+    faRightToBracket,
+    faSpinner,
+    faUserAstronaut
+} from '@fortawesome/free-solid-svg-icons';
 import GoogleLoginButton from "@/components/button/GoogleLoginButton.jsx";
 import CustomCheckbox from "@/components/utils/CustomCheckbox.jsx";
 
@@ -241,6 +248,7 @@ const LoginForm = ({ setOpen }) => {
                             <div className="input-field">
                                 <Input
                                     className={`${errors.confirmUsername ? 'input-error' : ''}`}
+                                    icon={faUserAstronaut}
                                     label="Username"
                                     name="confirmUsername"
                                     type="text"
@@ -278,6 +286,7 @@ const LoginForm = ({ setOpen }) => {
                             <div className="input-field">
                                 <Input
                                     className={`${errors.email ? 'input-error' : ''}`}
+                                    icon={faAt}
                                     label="Email"
                                     name="email"
                                     type="email"
@@ -335,6 +344,7 @@ const LoginForm = ({ setOpen }) => {
                             <div className="input-field">
                                 <Input
                                     className={`${errors.otp ? 'input-error' : ''}`}
+                                    icon={faLock}
                                     label="One Time Password (OTP)"
                                     name="otp"
                                     type="text"
@@ -373,6 +383,7 @@ const LoginForm = ({ setOpen }) => {
                             <div className="input-field">
                                 <Input
                                     className={`${errors.email ? 'input-error' : ''}`}
+                                    icon={faAt}
                                     label="Email"
                                     name="email"
                                     type="email"
@@ -414,6 +425,7 @@ const LoginForm = ({ setOpen }) => {
                             <div className="input-field">
                                 <Input
                                     className={`${errors.username ? 'input-error' : ''}`}
+                                    icon={faUserAstronaut}
                                     label="Username"
                                     name="username"
                                     type="text"
@@ -431,6 +443,7 @@ const LoginForm = ({ setOpen }) => {
                             <div className="input-field">
                                 <Input
                                     className={`${errors.email ? 'input-error' : ''}`}
+                                    icon={faAt}
                                     label="Email"
                                     name="email"
                                     type="email"

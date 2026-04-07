@@ -3,33 +3,34 @@
 @use "../abstracts/colors" as *;
 
 .select {
-  &__btn {
-    display: flex;
+  &__trigger {
+    display: inline-flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     background-color: var(--primary-300);
     min-width: 0.625rem;
     height: 1.3125rem;
-    user-select: none;
     box-shadow: $box-shadow-3;
     @include abs.font($font-size: var(--fs-medium-200), $font-weight: 700, $color: var(--neutral-1000));
     @include abs.cursive_border($border-width: 0.12rem);
-    &:not(.select__btn--small):not(.select__btn--medium):not(.select__btn--large):not(.select__btn--yt-video) {
+
+    &:not(&--small):not(&--yt-video):not(&--full) {
       width: 12rem;
-      margin-inline: 0.2rem;
+      max-width: 15rem;
+      padding: 1rem;
     }
 
-    &:not(.select__btn--yt-video){
-      max-width: 15rem;
-      margin-inline: 0.2rem;
-      padding: 1rem;
+    &--full {
+      padding: 1.4rem;
+      width: 100%;
     }
 
     &--small {
       max-width: 7rem;
       min-width: 7rem;
       height: 2.25rem;
+      padding: 1rem;
     }
 
     &--yt-video {
@@ -37,14 +38,25 @@
       color: $clr-star-200;
       background-color: abs.$clr-yt-red-300;
       padding: 2rem 1rem;
+      &:hover {
+        background-color: abs.$clr-yt-red-400;
+      }
     }
+
+    &--error {
+      @include abs.cursive_border($color: $clr-warning-300);
+      box-shadow: $box-shadow-warning-1;
+      &:hover {
+        @include abs.cursive_border($color: $clr-warning-300);
+      }
+    }
+
     &--ellipsis {
       @include abs.singleLine-ellipsis(9rem);
     }
   }
 
   &__content {
-    display: block;
     margin-top: 0.9375rem;
     background-color: var(--card-bg);
     @include abs.cursive_border($border-width: 0.13rem, $border-radius: 0.2rem);
@@ -55,21 +67,13 @@
       position: absolute;
     }
 
-    &--scrollable {
-      overflow-y: scroll;
-    }
-
     &--medium {
       width: 8rem;
     }
 
     &--full-width{
-      width: 100%;
+      width: var(--radix-select-trigger-width);
     }
-  }
-
-  &__wrapper {
-    padding: 0.9375rem;
   }
 
   &__search {
@@ -108,34 +112,30 @@
   }
 
   &__options {
-    margin-top: 10px;
     max-height: 250px;
     overflow: visible;
-    padding: 0;
+    width: 100%;
+    cursor: pointer;
+    padding: 1rem;
+  }
 
-    & a {
-      width: 100%;
-      color: var(--neutral-1000);
+  &__option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.6rem;
+    @include abs.font($font-size: var(--fs-medium-200), $font-weight: 600, $color: var(--neutral-1000));
+
+    &:hover, &[data-highlighted] {
+      border-radius: 5px;
+      background: var(--primary-200);
     }
 
-    & li, a {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      height: 50px;
-      padding: 0 0.8125rem;
-      @include abs.font($font-size: var(--fs-medium-200), $font-weight: 600, $color: var(--neutral-1000));
-
-      &:hover {
-        border-radius: 5px;
-        background: var(--primary-200);
-      }
-
-      &.selected {
-        border-radius: 5px;
-        background: var(--primary-200);
-      }
+    &--selected, &[data-state="checked"]{
+      border-radius: 5px;
+      background: var(--primary-200);
     }
+
     &--ellipsis {
       @include abs.singleLine-ellipsis(9rem);
     }

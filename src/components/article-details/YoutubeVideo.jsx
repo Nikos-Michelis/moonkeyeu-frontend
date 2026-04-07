@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {YouTubeEmbed} from "@/components/api/youtube-window/YouTubeEmbed.jsx";
-import VideoSelector from "@/components/utils/select/VideoSelector.jsx";
+import VideoSelector from "@/components/utils/select/VideoSelect.jsx";
 
 const YoutubeVideo = ({recommendedVideo, videos}) =>{
     const [video, setVideo] = useState(recommendedVideo);

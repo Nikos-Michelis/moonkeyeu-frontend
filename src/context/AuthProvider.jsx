@@ -182,7 +182,7 @@ export const AuthProvider = ({ children }) => {
         ),
         isError: userQuery?.isError || logoutMutation.isError,
         isSuccess: userQuery?.isSuccess,
-    }), [refreshMutation.isPending, logoutMutation, csrfQuery, userQuery,]);
+    }), [refreshMutation.isPending, logoutMutation, csrfQuery, userQuery]);
 
     const providerValues = useMemo(() => ({
             logout,
@@ -194,7 +194,7 @@ export const AuthProvider = ({ children }) => {
             status: combinedStatus,
             error: logoutMutation.error,
         }),
-        [ userQuery?.data, combinedStatus.isSuccess, combinedStatus.isError, logoutMutation.error ]
+        [logout, invalidateCredentials, userQuery.data, token, csrfQuery.data, combinedStatus, logoutMutation.error]
     );
 
     return (

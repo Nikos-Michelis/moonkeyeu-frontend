@@ -1,7 +1,7 @@
 import Input from "@/components/utils/fields/Input.jsx";
-import {useState} from "react";
-import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import { faEye, faEyeSlash, faLock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PasswordField = (
     {
@@ -16,35 +16,29 @@ const PasswordField = (
                     'at least 1 UPPERCASE letter, 1 number, 1 special character!'}
         }
     }) => {
-    const [type, setType] = useState('password');
-    const [icon, setIcon] = useState(faEyeSlash);
-
-    const handleToggle = () => {
-        if (type === 'password') {
-            setType('text');
-            setIcon(faEye);
-        } else {
-            setType('password');
-            setIcon(faEyeSlash);
-        }
-    };
-
+    const [visible, setVisible] = useState(false);
 
     return (
         <div className="input-field">
             <Input
-                className={`${errors.password ? 'input-error' : ''}`}
+                className={errors?.[name] ? "input-error" : ""}
+                icon={faLock}
+                suffix={
+                    <FontAwesomeIcon
+                        icon={visible ? faEye : faEyeSlash}
+                        onClick={() => setVisible((prev) => !prev)}
+                        style={{ cursor: "pointer" }}
+                    />
+                }
                 label={label}
                 name={name}
-                type={type}
+                type={visible ? "text" : "password"}
                 register={register}
                 rules={rules}
                 errors={errors}
             />
-            <span className="visibility" onClick={handleToggle}>
-                <FontAwesomeIcon icon={icon} />
-            </span>
         </div>
-    )
-}
+    );
+};
+
 export default PasswordField;

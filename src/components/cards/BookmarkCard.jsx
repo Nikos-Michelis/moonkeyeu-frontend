@@ -7,7 +7,7 @@ import { faList  } from '@fortawesome/free-solid-svg-icons';
 import toast from "react-hot-toast";
 import BookmarkDropdown from "@/components/modal/dropdown/BookmarkDropdown.jsx";
 import Modal from "@/components/modal/dialog/Modal.jsx";
-import {EditBookmarkForm} from "@/components/modal/forms/EditBookmarkForm.jsx";
+import EditBookmarkForm from "@/components/modal/forms/EditBookmarkForm.jsx";
 
 const BookmarkCard = ({ id, bookmark, launches }) => {
     const [open, setOpen] = useState(false);

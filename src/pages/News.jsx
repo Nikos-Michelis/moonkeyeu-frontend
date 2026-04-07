@@ -8,10 +8,16 @@ import {useParameterizedQuery} from "@/services/queries.jsx";
 import Head from "@/components/seo/Head.jsx";
 import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
 import ContentContainer from "@/layout/ContentContainer.jsx";
+
+const defaultFilters = {
+    limit: 12,
+    offset: 0,
+    ordering:"-published_at"
+};
+
 function News() {
     const baseUrl = import.meta.env.VITE_NEWS_API_URL;
-    const defaultFilters = {limit: 12, offset: 0, ordering:"-published_at"};
-    const pagination =  usePagination({useOffset: true});
+    const pagination =  usePagination({ useOffset: true });
     const [searchParams] = useSearchParams();
     const queryData
         = useParameterizedQuery({
@@ -47,7 +53,7 @@ function News() {
                     description="Stay up to date by exploring the latest space news."
                 />
                 <BasicFiltering
-                    defaultFilters={defaultFilters} s
+                    defaultFilters={defaultFilters}
                     searchPlaceHolder="e.g. SpaceNews"
                     field="published_at"
                 />

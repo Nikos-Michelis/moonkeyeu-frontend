@@ -35,7 +35,7 @@ function Messages() {
 
     useEffect(() => {
         queryData.isError && showErrorToast(queryData?.error);
-    }, [queryData.error]);
+    }, [queryData?.error, queryData.isError]);
 
     useEffect(() => {
         if (queryData.data) {
