@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAngleDown, faArrowRight, faAt, faBug, faChevronLeft, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {LinkButton} from "@/components/button/LinkButton.jsx";
 import SimpleSelect from "@/components/utils/select/SimpleSelect.jsx";
-import CustomReCAPTCHA from "@/components/utils/fields/Recaptcha.jsx";
 
 const ContactForm = () => {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -89,7 +88,7 @@ const ContactForm = () => {
                                     className="btn--transparent fw-bold" to="https://github.com/Nikos-Michelis/MoonkeyEU-Feedback/issues/new"
                                     isExternal={true}> here.
                                 </LinkButton>
-                                Thank you for your feedback — we're striving to make the platform better!
+                                Thank you for your feedback — we&#39;re striving to make the platform better!
                             </p>
                             <hr/>
                             <p className="margin-block-start-2 fs-small-300 text-center">You can email us at moonkeyeu@gmail.com</p>
@@ -177,9 +176,6 @@ const ContactForm = () => {
                                             }}
                                             errors={errors}
                                         />
-                                    </div>
-                                    <div className="input-field">
-                                        <CustomReCAPTCHA control={control} />
                                     </div>
                                     <div className="flex justify-center padding-2">
                                         <Button className="btn btn--primary btn--big" type="submit" disabled={contactFormMutation.isPending}>
