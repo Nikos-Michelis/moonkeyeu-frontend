@@ -24,7 +24,7 @@ function SearchableSelect(
         () => options.find((option) => option?.id?.toString() === value?.toString())?.name ?? null,
         [options, value]
     );
-    const placeholder = selectedLabel || placeholder;
+    const btnPlaceholder = selectedLabel || placeholder;
     const isSelected = !!selectedLabel && value?.toString() !== defaultValue?.toString();
     const paramValue = (value ?? defaultValue)?.toString();
     const filteredOptions = useMemo(
@@ -48,12 +48,12 @@ function SearchableSelect(
         <Popover.Root open={open} onOpenChange={setOpen}>
             <Popover.Trigger asChild>
                 <div className={`select__trigger lift lift--md ${className?.button ?? ""}`}>
-                    {placeholder.length > OPTIONS_LENGTH ? (
-                        <Tooltip content={placeholder}>
-                            <div className="select__trigger--ellipsis">{placeholder}</div>
+                    {btnPlaceholder.length > OPTIONS_LENGTH ? (
+                        <Tooltip content={btnPlaceholder}>
+                            <div className="select__trigger--ellipsis">{btnPlaceholder}</div>
                         </Tooltip>
                     ) : (
-                        <div>{placeholder}</div>
+                        <div>{btnPlaceholder}</div>
                     )}
                     <FontAwesomeIcon
                         icon={isSelected ? faXmark : faAngleDown}
