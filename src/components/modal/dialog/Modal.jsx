@@ -40,23 +40,25 @@ function ModalContent(
                     className={`flex align-center justify-space-between${classNames.header || ''}`}
                     style={styles.header}
                 >
-                    <div className="dialog__title">
-                        {showBack && (
-                            <Button className="btn--transparent" onClick={onBack}>
-                                <FontAwesomeIcon icon={faArrowLeft} />
-                            </Button>)
-                        }
-                        {title && <Dialog.Title>{title}</Dialog.Title>}
-                        <Dialog.Close
-                            className={`btn--transparent ${classNames.closeBtn || ''}`}
-                            style={{...styles.closeBtn}}
-                        >
-                            {closeIcon || <FontAwesomeIcon icon={closeIcon || faXmark} />}
-                        </Dialog.Close>
-                    </div>
+                    {(showBack || title) &&
+                        <div className="dialog__title">
+                            {showBack && (
+                                <Button className="btn--transparent" onClick={onBack}>
+                                    <FontAwesomeIcon icon={faArrowLeft} />
+                                </Button>)
+                            }
+                            {title && <Dialog.Title>{title}</Dialog.Title>}
+                        </div>
+                    }
                     <Dialog.Description className="sr-only">
                         {description || "Details about " + title}
                     </Dialog.Description>
+                    <Dialog.Close
+                        className={`btn--transparent btn--close ${classNames.closeBtn || ''}`}
+                        style={{...styles.closeBtn}}
+                    >
+                        {closeIcon || <FontAwesomeIcon icon={closeIcon || faXmark} />}
+                    </Dialog.Close>
                 </div>
                 <div className={`modal-body ${classNames.body || ''}`} style={styles.body}>
                     {children}
