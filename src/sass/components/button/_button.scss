@@ -98,6 +98,14 @@
     height: 1.2rem;
   }
 
+  &--close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    z-index: 1;
+  }
+
   &--small {
     @include abs.button-color-variation($color: var(--neutral-1000), $background-color: var(--primary-300), $border-color: var(--neutral-1000));
     @include abs.button-size($padding-y: 10px, $padding-x: 10px, $font-size: var(--fs-small-200));
