@@ -15,7 +15,7 @@ function PopoverContent({ title, onReset, children }) {
     return (
         <Popover.Portal  container={document.getElementById("portal")}>
             <Popover.Content
-                className="toolbar__wrapper"
+                className="toolbar__content"
                 sideOffset={8}
                 align="start"
                 collisionPadding={16}
