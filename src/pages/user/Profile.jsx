@@ -13,12 +13,14 @@ import { faUserAstronaut, faChevronLeft, faSpinner, faTableColumns, faDoorOpen, 
 import AlertModal from "@/components/modal/dialog/AlertModal.jsx";
 import DataList from "@/components/utils/DataList.jsx";
 import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
+import {useQueryClient} from "@tanstack/react-query";
 
 const Profile = () =>{
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const [open, setOpen] = useState(false);
-    const { logout, invalidateCredentials, user, status } = useAuth();
+    const { logout, user, status } = useAuth();
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const { hasRole } = useHasRole();
     const roles = ["DEVELOPER", "ADMIN", "MODERATOR"]
     const alertMessage = [
@@ -41,7 +43,7 @@ const Profile = () =>{
             },
             {
                 onSuccess: () => {
-                    invalidateCredentials();
+                    queryClient.setQueriesData({ queryKey: ['user'] }, null);
                     setOpen(false);
                     navigate("/launches");
                 },

@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faArrowRight, faAt, faLock, faRightToBracket, faSpinner, faUserAstronaut} from "@fortawesome/free-solid-svg-icons";
 import GoogleLoginButton from "@/components/button/GoogleLoginButton.jsx";
 import CustomCheckbox from "@/components/utils/CustomCheckbox.jsx";
+import {useQueryClient} from "@tanstack/react-query";
 
 const FORM_STATES = {
     LOGIN:              "login",
@@ -70,10 +71,12 @@ function formReducer(state, action) {
     }
 }
 
-const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
-    const baseUrl  = import.meta.env.VITE_BACKEND_BASE_URL;
+const BASE_URL  = import.meta.env.VITE_BACKEND_BASE_URL;
+
+const LoginForm = ({ setOpen, onTitleChange, onBackChange }) => {
     const navigate = useNavigate();
-    const { setToken, status, error: authContextError } = useAuth();
+    const queryClient = useQueryClient();
+    const { setJwtToken, status, error: authContextError } = useAuth();
     const [state, dispatch] = useReducer(formReducer, initialState);
 
     const { register, handleSubmit, reset, setValue, watch, control, formState: { errors } } =
@@ -95,10 +98,15 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
     const isPending = signInWithGoogleMutation.isPending || credentialsMutation.isPending;
 
     const handleClose = useCallback(() => {
-        setOpen(false);
         dispatch({ type: "RESET" });
         reset();
+        setOpen(false);
     }, [setOpen, reset]);
+
+    const onNavigate = (url)=> {
+        handleClose();
+        navigate(url);
+    }
 
     const handleSwitchForm = useCallback((newState) => {
         dispatch({ type: "SET_FORM_STATE", payload: newState });
@@ -106,8 +114,9 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
     }, [reset]);
 
     const handleFormView = useCallback(() => {
-        dispatch({ type: "SET_API_ERROR", payload: null });
         const { LOGIN, REGISTER, FORGOT_PASSWORD, OTP_VERIFY, RESET_PASSWORD } = FORM_STATES;
+
+        dispatch({ type: "SET_API_ERROR", payload: null });
 
         if ([LOGIN, REGISTER].includes(state.formState)) {
             dispatch({ type: "SET_FORM_STATE", payload: OTP_VERIFY });
@@ -120,16 +129,20 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
 
     const handleOtpResend = (token) => {
         resendMutation.mutate(
-            { data: { token }, url: `${baseUrl}/auth/resend-otp` },
+            { data: { token }, url: `${BASE_URL}/auth/resend-otp` },
             { onSuccess: (res) => setValue("token", res.token) }
         );
     };
 
-    const handleOtpVerification = (tokenUrl, credentials = null) => {
+    const handleUserVerification = (tokenUrl, credentials = null) => {
         otpVerificationMutation.mutate(
             { url: tokenUrl, data: credentials, options: { withCredentials: true } },
             {
-                onSuccess: (res) => setToken(res?.token),
+                onSuccess: (res) => {
+                    setJwtToken(res?.token)
+                    queryClient.removeQueries({ queryKey: ["user"] });
+                    handleClose()
+                },
                 onError: (err) => dispatch({ type: "SET_API_ERROR", payload: err.response?.data }),
             }
         );
@@ -157,24 +170,30 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
     const handleOAuth2Response = ((response) => {
         const { credential: idToken } = response;
         signInWithGoogleMutation.mutate(
-            { url: `${baseUrl}/oauth2/login/google`, data: { idToken } },
+            { url: `${BASE_URL}/oauth2/login/google`, data: { idToken } },
             {
                 onSuccess: (res) => {
-                    if (res.token) { setToken(res.token); handleClose(); return; }
+                    queryClient.removeQueries({ queryKey: ["user"] });
+                    if (res.token) {
+                        setJwtToken(res.token);
+                        handleClose()
+                        return;
+                    }
                     handleGoogleLoginSuccess(res, idToken);
                 },
                 onError: (err) => dispatch({ type: "SET_API_ERROR", payload: err.response?.data }),
             }
         );
     });
+
     useEffect(() => {
         const canGoBack = [FORM_STATES.REGISTER, FORM_STATES.FORGOT_PASSWORD].includes(state.formState);
-        setBackConfig?.({
+        onBackChange?.({
             show: canGoBack,
             onBack: () => handleSwitchForm(FORM_STATES.LOGIN)
         });
 
-    }, [state.formState, handleSwitchForm, setBackConfig]);
+    }, [state.formState, handleSwitchForm, onBackChange]);
 
     useEffect(() => {
         if (state.user?.name) setValue("confirmUsername", state.user.name);
@@ -196,14 +215,14 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
     const hasErrors = Object.keys(errors).length > 0;
 
     const onSubmit = (data) => {
-        const url = `${baseUrl}${API_URLS[state.formState]}`;
+        const url = `${BASE_URL}${API_URLS[state.formState]}`;
 
         if (state.formState === FORM_STATES.OTP_VERIFY) {
-            handleOtpVerification(url, data);
+            handleUserVerification(url, data);
             return;
         }
         if (state.formState === FORM_STATES.OAUTH2_REGISTRATION) {
-            handleOtpVerification(url, {
+            handleUserVerification(url, {
                 confirmUsername: data.confirmUsername,
                 email: state.user?.email,
                 idToken: state.idToken,
@@ -240,8 +259,13 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
                             <div className="input-field">
                                 <Input
                                     className={errors.email ? "input-error" : ""}
-                                    icon={faAt} label="Email" name="email" type="email"
-                                    register={register} errors={errors} autoComplete="email"
+                                    icon={faAt}
+                                    label="Email"
+                                    name="email"
+                                    type="email"
+                                    register={register}
+                                    errors={errors}
+                                    autoComplete="email"
                                     rules={{ required: "Email is required.", pattern: EMAIL_PATTERN }}
                                 />
                             </div>
@@ -251,9 +275,11 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
                                     name="rememberMe" control={control}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <CustomCheckbox
-                                            ref={ref} id="checkbox-remember" label="Remember me"
+                                            ref={ref} id="checkbox-remember"
+                                            label="Remember me"
                                             className={{ root: "checkbox__root checkbox__root--small" }}
-                                            defaultChecked={value} onCheckedChange={onChange}
+                                            defaultChecked={value}
+                                            onCheckedChange={onChange}
                                             disabled={isPending}
                                         />
                                     )}
@@ -264,8 +290,7 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
                             </div>
                             <div className="flex flex-wrap justify-center">
                                 <Button className="btn btn--primary btn--big" type="submit" disabled={isPending}>
-                                    <FontAwesomeIcon icon={isPending ? faSpinner : faRightToBracket} spin={isPending} />
-                                    {" "}Login
+                                    <FontAwesomeIcon icon={isPending ? faSpinner : faRightToBracket} spin={isPending} /> Login
                                 </Button>
                             </div>
                         </form>
@@ -280,16 +305,26 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
                             <div className="input-field">
                                 <Input
                                     className={errors.username ? "input-error" : ""}
-                                    icon={faUserAstronaut} label="Username" name="username" type="text"
-                                    register={register} errors={errors} autoComplete="username"
+                                    icon={faUserAstronaut}
+                                    label="Username"
+                                    name="username"
+                                    type="text"
+                                    register={register}
+                                    errors={errors}
+                                    autoComplete="username"
                                     rules={{ required: "Username is required.", pattern: USERNAME_PATTERN }}
                                 />
                             </div>
                             <div className="input-field">
                                 <Input
                                     className={errors.email ? "input-error" : ""}
-                                    icon={faAt} label="Email" name="email" type="email"
-                                    register={register} errors={errors} autoComplete="email"
+                                    icon={faAt}
+                                    label="Email"
+                                    name="email"
+                                    type="email"
+                                    register={register}
+                                    errors={errors}
+                                    autoComplete="email"
                                     rules={{ required: "Email is required.", pattern: EMAIL_PATTERN }}
                                 />
                             </div>
@@ -308,13 +343,15 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
                                     rules={{ required: "You must agree to the privacy policy" }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <CustomCheckbox
-                                            ref={ref} checked={value ?? false} onCheckedChange={onChange}
+                                            ref={ref}
+                                            checked={value ?? false}
+                                            onCheckedChange={onChange}
                                             className={{ root: "checkbox__root checkbox__root--small" }}
                                             disabled={credentialsMutation.isPending}
                                             label={
                                                 <>
                                                     I agree to the
-                                                    <Button type="button" className="btn--transparent" onClick={() => { handleClose(); navigate("/privacy"); }}>
+                                                    <Button type="button" className="btn--transparent" onClick={() => onNavigate("/privacy")}>
                                                         Privacy Policy
                                                     </Button>
                                                 </>
@@ -325,8 +362,7 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
                             </div>
                             <div className="flex justify-center margin-block-start-2">
                                 <Button className="btn btn--primary btn--big" type="submit" disabled={credentialsMutation.isPending}>
-                                    {credentialsMutation.isPending && <FontAwesomeIcon icon={faSpinner} spin />}
-                                    {" "}Register
+                                    {credentialsMutation.isPending && <FontAwesomeIcon icon={faSpinner} spin />} Register
                                 </Button>
                             </div>
                         </form>
@@ -346,8 +382,12 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
                             <div className="input-field">
                                 <Input
                                     className={errors.otp ? "input-error" : ""}
-                                    icon={faLock} label="One Time Password (OTP)" name="otp" type="text"
-                                    register={register} errors={errors} autoComplete="one-time-code"
+                                    icon={faLock}
+                                    label="One Time Password (OTP)"
+                                    name="otp"
+                                    type="text"
+                                    register={register}
+                                    errors={errors} autoComplete="one-time-code"
                                     rules={{
                                         required: "OTP code is required.",
                                         pattern: { value: /^\d{6}$/, message: "OTP must be 6 digits." },
@@ -356,8 +396,7 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
                             </div>
                             <div className="flex justify-center">
                                 <Button className="btn btn--primary btn--small" type="submit" disabled={otpVerificationMutation.isPending}>
-                                    <FontAwesomeIcon icon={otpVerificationMutation.isPending ? faSpinner : faArrowRight} spin={otpVerificationMutation.isPending} />
-                                    {" "}Continue
+                                    <FontAwesomeIcon icon={otpVerificationMutation.isPending ? faSpinner : faArrowRight} spin={otpVerificationMutation.isPending} /> Continue
                                 </Button>
                                 <ResendButton
                                     handleOtpResend={handleOtpResend}
@@ -378,15 +417,18 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
                             <div className="input-field">
                                 <Input
                                     className={errors.email ? "input-error" : ""}
-                                    icon={faAt} label="Email" name="email" type="email"
-                                    register={register} errors={errors} autoComplete="email"
+                                    icon={faAt} label="Email"
+                                    name="email"
+                                    type="email"
+                                    register={register}
+                                    errors={errors}
+                                    autoComplete="email"
                                     rules={{ required: "Email is required.", pattern: EMAIL_PATTERN }}
                                 />
                             </div>
                             <div className="flex justify-center">
                                 <Button className="btn btn--primary btn--big" type="submit" disabled={credentialsMutation.isPending}>
-                                    <FontAwesomeIcon icon={credentialsMutation.isPending ? faSpinner : faArrowRight} spin={credentialsMutation.isPending} />
-                                    {" "}Continue
+                                    <FontAwesomeIcon icon={credentialsMutation.isPending ? faSpinner : faArrowRight} spin={credentialsMutation.isPending} /> Continue
                                 </Button>
                             </div>
                         </form>
@@ -409,15 +451,19 @@ const LoginForm = ({ setOpen, onTitleChange, setBackConfig }) => {
                             <div className="input-field">
                                 <Input
                                     className={errors.confirmUsername ? "input-error" : ""}
-                                    icon={faUserAstronaut} label="Username" name="confirmUsername" type="text"
-                                    register={register} errors={errors} autoComplete="username"
+                                    icon={faUserAstronaut}
+                                    label="Username"
+                                    name="confirmUsername"
+                                    type="text"
+                                    register={register}
+                                    errors={errors}
+                                    autoComplete="username"
                                     rules={{ required: "Username is required.", pattern: USERNAME_PATTERN }}
                                 />
                             </div>
                             <div className="flex justify-center">
                                 <Button className="btn btn--primary btn--big" type="submit" disabled={otpVerificationMutation.isPending}>
-                                    <FontAwesomeIcon icon={otpVerificationMutation.isPending ? faSpinner : faArrowRight} spin={otpVerificationMutation.isPending} />
-                                    {" "}Continue
+                                    <FontAwesomeIcon icon={otpVerificationMutation.isPending ? faSpinner : faArrowRight} spin={otpVerificationMutation.isPending} /> Continue
                                 </Button>
                             </div>
                         </form>

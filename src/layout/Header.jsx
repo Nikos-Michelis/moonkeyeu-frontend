@@ -11,17 +11,11 @@ import AuthModal from "@/components/modal/dialog/AuthModal.jsx";
 
 const Header = () => {
     const [open, setOpen] = useState(false)
-    const {user, status } = useAuth();
-
+    const {user, status} = useAuth();
     const onBookmark = () => {
         setOpen(true);
-        !user &&
-        toast(
-            "You're almost there! Sign up or log in to bookmark your favorites launches.", {
-                icon: <FontAwesomeIcon icon={faRocket} />
-            });
+        !user && toast("You're almost there! Sign up or log in to bookmark your favorites launches.", { icon: <FontAwesomeIcon icon={faRocket} />});
     }
-
     return (
         <header>
             <nav className="navbar">
@@ -66,7 +60,7 @@ const Header = () => {
                         </li>
 
                         <div className="navbar__user-options">
-                            {!status.isPending ? (
+                            {!status.isFetching ? (
                                 user ? (
                                     <NavLink
                                         to="profile"
@@ -83,7 +77,7 @@ const Header = () => {
                                 </div>
                             )}
 
-                            {!status.isPending ? (
+                            {!status.isFetching ? (
                                 user ? (
                                     <NavLink
                                         className="navbar__user-link btn--transparent"

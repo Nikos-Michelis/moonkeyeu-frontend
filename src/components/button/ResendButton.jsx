@@ -16,7 +16,7 @@ const ResendButton = ({ handleOtpResend, otpToken, status, delay }) => {
             setMillis(delay);
         }
         return () => setMillis(0);
-    }, [delay]);
+    }, [delay, status.isError]);
 
     return (
         <Button
