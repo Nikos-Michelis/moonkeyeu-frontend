@@ -13,20 +13,20 @@
     justify-content: flex-start;
     width: 100%;
     align-items: center;
-    margin-block: 0.5rem;
+    margin-block: 0.85rem;
+    gap: 0.55rem;
   }
 
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--primary-300);
+  &__content {
     @include cursive_border($border-width: 0.12rem);
+    background-color: var(--primary-300);
     box-shadow: $box-shadow-2;
-    z-index: 1;
-    position: absolute;
-    top: 23rem;
-    width: fit-content;
-    overflow: visible;
+    animation-duration: 400ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+    &[data-state="open"][data-side="bottom"] {
+      animation-name: slideUpAndFade;
+    }
   }
 
   &__options {
@@ -37,7 +37,6 @@
     height: auto;
     gap: 10px;
     padding: 1rem;
-
   }
 
   &__title {
@@ -59,5 +58,16 @@
       justify-content: center;
       width: fit-content;
     }
+  }
+}
+
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

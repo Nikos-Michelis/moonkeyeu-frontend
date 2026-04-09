@@ -1,9 +1,10 @@
-import { useState } from "react";
-import FloatingLabel from "@/components/utils/html/FloatingLabel.jsx";
 import TextAreaElement from "@/components/utils/html/TextAreaElement.jsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMessage} from "@fortawesome/free-solid-svg-icons";
 
 const TextArea = (
     {
+        className,
         label,
         register,
         name,
@@ -11,29 +12,26 @@ const TextArea = (
         options,
         errors = null,
         defaultValue = "",
-        disabled, ...props
+        disabled,
+        ...props
     }) => {
-    const [isActive, setIsActive] = useState(!!defaultValue);
-
-    const handleFocus = () => setIsActive(true);
-    const handleBlur = (e) => setIsActive(!!e.target.value);
-
     const errorMessage = errors ? errors[name]?.message : null;
-
     return (
-        <FloatingLabel label={label} isActive={isActive}>
-            <TextAreaElement
-                {...props}
-                name={name}
-                register={register}
-                rules={rules}
-                options={options}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                disabled={disabled}
-            />
+        <>
+            <div className={`input ${className}`}>
+                <FontAwesomeIcon size="lg" icon={faMessage} />
+                <TextAreaElement
+                    {...props}
+                    name={name}
+                    placeholder={label}
+                    register={register}
+                    rules={rules}
+                    options={options}
+                    disabled={disabled}
+                />
+            </div>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-        </FloatingLabel>
+        </>
     );
 };
 

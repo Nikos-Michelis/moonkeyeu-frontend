@@ -7,9 +7,6 @@ import FallbackComponent from "@/components/fallback/FallbackComponent.jsx";
  * @returns {React.JSX.Element} A specific fallback component.
  */
 export const GetFallbackComponent = ({ error }) => {
-    useEffect(() => {
-        console.log(error)
-    }, [error]);
     switch (error?.response?.status) {
         case 404:
             return (

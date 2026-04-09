@@ -5,24 +5,17 @@ import {Link, NavLink} from "react-router-dom";
 import toast from "react-hot-toast";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRocket, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
-import { faUser, faBookmark } from '@fortawesome/free-regular-svg-icons';
+import {faBookmark } from '@fortawesome/free-regular-svg-icons';
 import ThemeButton from "@/components/button/ThemeButton.jsx";
-import Modal from "@/components/modal/dialog/Modal.jsx";
-import LoginForm from "@/components/modal/forms/LoginForm.jsx";
+import AuthModal from "@/components/modal/dialog/AuthModal.jsx";
 
 const Header = () => {
     const [open, setOpen] = useState(false)
-    const {user, status } = useAuth();
-
+    const {user, status} = useAuth();
     const onBookmark = () => {
         setOpen(true);
-        !user &&
-        toast(
-            "You're almost there! Sign up or log in to bookmark your favorites launches.", {
-                icon: <FontAwesomeIcon icon={faRocket} />
-            });
+        !user && toast("You're almost there! Sign up or log in to bookmark your favorites launches.", { icon: <FontAwesomeIcon icon={faRocket} />});
     }
-
     return (
         <header>
             <nav className="navbar">
@@ -67,7 +60,7 @@ const Header = () => {
                         </li>
 
                         <div className="navbar__user-options">
-                            {!status.isPending ? (
+                            {!status.isFetching ? (
                                 user ? (
                                     <NavLink
                                         to="profile"
@@ -76,16 +69,7 @@ const Header = () => {
                                         <FontAwesomeIcon icon={faUserAstronaut} />
                                     </NavLink>
                                 ) : (
-                                <Modal open={open} onOpenChange={setOpen}>
-                                    <Modal.Button
-                                        className="navbar__user-link btn--transparent"
-                                    >
-                                        <FontAwesomeIcon icon={faUser} />
-                                    </Modal.Button>
-                                    <Modal.Content>
-                                        <LoginForm setOpen={setOpen} />
-                                    </Modal.Content>
-                                </Modal>
+                                    <AuthModal open={open} setOpen={setOpen}/>
                                 )
                             ) : (
                                 <div>
@@ -93,7 +77,7 @@ const Header = () => {
                                 </div>
                             )}
 
-                            {!status.isPending ? (
+                            {!status.isFetching ? (
                                 user ? (
                                     <NavLink
                                         className="navbar__user-link btn--transparent"

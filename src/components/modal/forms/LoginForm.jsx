@@ -1,106 +1,149 @@
 import { useCallback, useEffect, useReducer } from "react";
-import {Button} from "@/components/button/Button.jsx";
-import {Controller, useForm} from "react-hook-form";
-import {useAuth} from "@/context/AuthProvider.jsx";
+import { Button } from "@/components/button/Button.jsx";
+import { Controller, useForm } from "react-hook-form";
+import { useAuth } from "@/context/AuthProvider.jsx";
 import ErrorBox from "@/components/utils/ErrorBox.jsx";
 import ResendButton from "@/components/button/ResendButton.jsx";
 import Input from "@/components/utils/fields/Input.jsx";
-import {useNavigate} from "react-router-dom";
-import {useCreateMutation} from "@/services/mutations.jsx";
+import { useNavigate } from "react-router-dom";
+import { useCreateMutation } from "@/services/mutations.jsx";
 import PasswordField from "@/components/utils/fields/PasswordField.jsx";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowLeft, faArrowRight, faRightToBracket, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faArrowRight, faAt, faLock, faRightToBracket, faSpinner, faUserAstronaut} from "@fortawesome/free-solid-svg-icons";
 import GoogleLoginButton from "@/components/button/GoogleLoginButton.jsx";
 import CustomCheckbox from "@/components/utils/CustomCheckbox.jsx";
+import {useQueryClient} from "@tanstack/react-query";
+
+const FORM_STATES = {
+    LOGIN:              "login",
+    REGISTER:           "register",
+    OTP_VERIFY:         "otpVerify",
+    FORGOT_PASSWORD:    "forgotPassword",
+    RESET_PASSWORD:     "resetPassword",
+    OAUTH2_REGISTRATION:"oAuth2Registration",
+};
+
+const API_URLS = {
+    [FORM_STATES.REGISTER]:            "/auth/register",
+    [FORM_STATES.OAUTH2_REGISTRATION]: "/oauth2/register/google",
+    [FORM_STATES.LOGIN]:               "/auth/authenticate",
+    [FORM_STATES.OTP_VERIFY]:          "/auth/verify-otp",
+    [FORM_STATES.FORGOT_PASSWORD]:     "/auth/forgot-password",
+    [FORM_STATES.RESET_PASSWORD]:      "",
+};
+
+const TITLE_MAP = {
+    [FORM_STATES.LOGIN]:               "Welcome back",
+    [FORM_STATES.REGISTER]:            "Create account",
+    [FORM_STATES.OTP_VERIFY]:          "Account verification",
+    [FORM_STATES.FORGOT_PASSWORD]:     "Forgot password?",
+    [FORM_STATES.RESET_PASSWORD]:      "Check your inbox",
+    [FORM_STATES.OAUTH2_REGISTRATION]: "One more step!",
+};
+
+const USERNAME_PATTERN = {
+    value: /^[A-Za-z][A-Za-z0-9_]{6,15}$/,
+    message: "Username must be between 7 and 16 characters and cannot contain spaces.",
+};
+
+const EMAIL_PATTERN = {
+    value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    message: "Incorrect email.",
+};
 
 const initialState = {
-    formState: "login",
-    apiError: null,
-    otpToken: null,
-    rememberMe: false
+    formState: FORM_STATES.LOGIN,
+    apiError:  null,
+    otpToken:  null,
+    user:      null,
+    idToken:   null,
 };
 
 function formReducer(state, action) {
     switch (action.type) {
-        case "SET_FORM_STATE":
-            return { ...state, formState: action.payload, apiError: null };
-        case "SET_API_ERROR":
-            return { ...state, apiError: action.payload };
-        case "SET_OTP_TOKEN":
-            return { ...state, otpToken: action.payload };
-        case "SET_ID_TOKEN":
-            return { ...state, idToken: action.payload };
-        case "SET_USERNAME":
-            return { ...state, user: action.payload };
-        case "RESET":
-            return initialState;
-        default:
-            return state;
+        case "SET_FORM_STATE": return { ...state, formState: action.payload, apiError: null };
+        case "SET_API_ERROR":  return { ...state, apiError: action.payload };
+        case "SET_OTP_TOKEN":  return { ...state, otpToken: action.payload };
+        case "SET_ID_TOKEN":   return { ...state, idToken: action.payload };
+        case "SET_USERNAME":   return { ...state, user: action.payload };
+        case "RESET":          return initialState;
+        default:               return state;
     }
 }
 
-const LoginForm = ({ setOpen }) => {
-    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+const BASE_URL  = import.meta.env.VITE_BACKEND_BASE_URL;
+
+const LoginForm = ({ setOpen, onTitleChange, onBackChange }) => {
     const navigate = useNavigate();
-    const { setToken, status, error: authContextError } = useAuth();
+    const queryClient = useQueryClient();
+    const { setJwtToken, status, error: authContextError } = useAuth();
     const [state, dispatch] = useReducer(formReducer, initialState);
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        setValue,
-        watch,
-        control,
-        formState: { errors }
-    } = useForm({
-        mode: "onChange",
+    const { register, handleSubmit, reset, setValue, watch, control, formState: { errors } } =
+        useForm({ mode: "onChange" });
+
+    const resendMutation = useCreateMutation({
+        successMessage: "OTP resent successfully."
+    });
+    const otpVerificationMutation = useCreateMutation({
+        successMessage: undefined
+    });
+    const credentialsMutation = useCreateMutation({
+        successMessage: undefined
+    });
+    const signInWithGoogleMutation = useCreateMutation({
+        successMessage: undefined
     });
 
-    const apiUrl = {
-        register: "/auth/register",
-        oAuth2Registration: "/oauth2/register/google",
-        login: "/auth/authenticate",
-        otpVerify: "/auth/verify-otp",
-        forgotPassword: "/auth/forgot-password",
-        resetPassword: ""
-    }[state.formState];
+    const isPending = signInWithGoogleMutation.isPending || credentialsMutation.isPending;
 
-    const resendMutation =
-        useCreateMutation({
-            successMessage: "OTP resent successfully."
-        });
-    const otpVerificationMutation =
-        useCreateMutation({
-            successMessage: undefined
-        });
-    const credentialsMutation =
-        useCreateMutation({
-            successMessage: undefined
-        });
-    const signInWithGoogleMutation =
-        useCreateMutation({
-            successMessage: undefined
-        });
+    const handleClose = useCallback(() => {
+        dispatch({ type: "RESET" });
+        reset();
+        setOpen(false);
+    }, [setOpen, reset]);
 
+    const onNavigate = (url)=> {
+        handleClose();
+        navigate(url);
+    }
+
+    const handleSwitchForm = useCallback((newState) => {
+        dispatch({ type: "SET_FORM_STATE", payload: newState });
+        reset();
+    }, [reset]);
+
+    const handleFormView = useCallback(() => {
+        const { LOGIN, REGISTER, FORGOT_PASSWORD, OTP_VERIFY, RESET_PASSWORD } = FORM_STATES;
+
+        dispatch({ type: "SET_API_ERROR", payload: null });
+
+        if ([LOGIN, REGISTER].includes(state.formState)) {
+            dispatch({ type: "SET_FORM_STATE", payload: OTP_VERIFY });
+        } else if (state.formState === FORGOT_PASSWORD) {
+            dispatch({ type: "SET_FORM_STATE", payload: RESET_PASSWORD });
+        } else {
+            handleClose();
+        }
+    }, [state.formState, handleClose]);
 
     const handleOtpResend = (token) => {
         resendMutation.mutate(
-            { data: { token }, url: `${baseUrl}/auth/resend-otp` },
-            { onSuccess: (response) => setValue("token", response.token) }
+            { data: { token }, url: `${BASE_URL}/auth/resend-otp` },
+            { onSuccess: (res) => setValue("token", res.token) }
         );
     };
 
-    const handleOtpVerification = (tokenUrl, credentials = null) => {
+    const handleUserVerification = (tokenUrl, credentials = null) => {
         otpVerificationMutation.mutate(
             { url: tokenUrl, data: credentials, options: { withCredentials: true } },
             {
-                onSuccess: (response) => {
-                    setToken(response?.token)
+                onSuccess: (res) => {
+                    setJwtToken(res?.token)
+                    queryClient.removeQueries({ queryKey: ["user"] });
+                    handleClose()
                 },
-                onError: (error) => {
-                    dispatch({ type: "SET_API_ERROR", payload: error.response?.data });
-                }
+                onError: (err) => dispatch({ type: "SET_API_ERROR", payload: err.response?.data }),
             }
         );
     };
@@ -109,251 +152,251 @@ const LoginForm = ({ setOpen }) => {
         credentialsMutation.mutate(
             { data: credentials, url },
             {
-                onSuccess: (response) => {
-                    if (response.token) {
-                        dispatch({ type: "SET_OTP_TOKEN", payload: response.token });
-                    }
+                onSuccess: (res) => {
+                    if (res.token) dispatch({ type: "SET_OTP_TOKEN", payload: res.token });
                     handleFormView();
                 },
-                onError: (error) => {
-                    dispatch({ type: "SET_API_ERROR", payload: error.response?.data });
-                },
+                onError: (err) => dispatch({ type: "SET_API_ERROR", payload: err.response?.data }),
             }
         );
     };
 
-    const handleOAuth2Response = useCallback((response) => {
+    const handleGoogleLoginSuccess = (res, idToken) => {
+        dispatch({ type: "SET_USERNAME", payload: { ...res } });
+        dispatch({ type: "SET_ID_TOKEN",  payload: idToken });
+        handleSwitchForm(FORM_STATES.OAUTH2_REGISTRATION);
+    };
+
+    const handleOAuth2Response = ((response) => {
         const { credential: idToken } = response;
         signInWithGoogleMutation.mutate(
-            { url: `${baseUrl}/oauth2/login/google`, data: { idToken } },
+            { url: `${BASE_URL}/oauth2/login/google`, data: { idToken } },
             {
                 onSuccess: (res) => {
+                    queryClient.removeQueries({ queryKey: ["user"] });
                     if (res.token) {
-                        setToken(res.token);
-                        handleClose();
+                        setJwtToken(res.token);
+                        handleClose()
+                        return;
                     }
                     handleGoogleLoginSuccess(res, idToken);
                 },
-                onError: (error) => {
-                    dispatch({ type: "SET_API_ERROR", payload: error.response?.data });
-                },
+                onError: (err) => dispatch({ type: "SET_API_ERROR", payload: err.response?.data }),
             }
         );
-    }, []);
-
-
-    const handleSwitchForm = (newState) => {
-        dispatch({ type: "SET_FORM_STATE", payload: newState });
-        reset();
-    };
-    const handleGoogleLoginSuccess = (response, idToken) => {
-        dispatch({ type: "SET_USERNAME", payload: {...response}});
-        dispatch({ type: "SET_ID_TOKEN", payload:  idToken});
-        handleSwitchForm("oAuth2Registration")
-    };
-
-    const handleFormView = () => {
-        dispatch({ type: "SET_API_ERROR", payload: null });
-        if (state.formState === "register" || state.formState === "login") {
-            dispatch({ type: "SET_FORM_STATE", payload: "otpVerify" });
-        } else if (state.formState === "forgotPassword") {
-            dispatch({ type: "SET_FORM_STATE", payload: "resetPassword" });
-        } else {
-            handleClose();
-        }
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-        dispatch({ type: "RESET" });
-        reset();
-    };
-    const onNavigate = ()=> {
-        handleClose();
-        navigate("/privacy");
-    }
-    const onSubmit = (data) => {
-        if (state.formState === "otpVerify") {
-            handleOtpVerification(`${baseUrl}${apiUrl}`, data);
-            return;
-        } else if(state.formState === "oAuth2Registration"){
-            handleOtpVerification(
-                `${baseUrl}${apiUrl}`,
-                {
-                    confirmUsername: data?.confirmUsername,
-                    email: state?.user?.email,
-                    idToken: state?.idToken
-                }
-            );
-            return;
-        }
-        handleCredentials(`${baseUrl}${apiUrl}`, data);
-    };
+    });
 
     useEffect(() => {
-        if (state?.user?.name) {
-            setValue("confirmUsername", state?.user?.name);
-        }
-    }, [state?.user?.name, setValue]);
+        const canGoBack = [FORM_STATES.REGISTER, FORM_STATES.FORGOT_PASSWORD].includes(state.formState);
+        onBackChange?.({
+            show: canGoBack,
+            onBack: () => handleSwitchForm(FORM_STATES.LOGIN)
+        });
+
+    }, [state.formState, handleSwitchForm, onBackChange]);
 
     useEffect(() => {
-        if (status.isSuccess) {
-            handleClose();
-        }
-    }, [status]);
+        if (state.user?.name) setValue("confirmUsername", state.user.name);
+    }, [state.user?.name, setValue]);
 
     useEffect(() => {
-        dispatch({ type: "SET_API_ERROR", payload: authContextError?.response?.data });
+        if (status.isSuccess) handleClose();
+    }, [status.isSuccess, handleClose]);
+
+    useEffect(() => {
+        if (!authContextError) return;
+        dispatch({ type: "SET_API_ERROR", payload: authContextError.response?.data });
     }, [authContextError]);
 
+    useEffect(() => {
+        onTitleChange?.(TITLE_MAP[state.formState] ?? "");
+    }, [state.formState, onTitleChange]);
+
+    const hasErrors = Object.keys(errors).length > 0;
+
+    const onSubmit = (data) => {
+        const url = `${BASE_URL}${API_URLS[state.formState]}`;
+
+        if (state.formState === FORM_STATES.OTP_VERIFY) {
+            handleUserVerification(url, data);
+            return;
+        }
+        if (state.formState === FORM_STATES.OAUTH2_REGISTRATION) {
+            handleUserVerification(url, {
+                confirmUsername: data.confirmUsername,
+                email: state.user?.email,
+                idToken: state.idToken,
+            });
+            return;
+        }
+        handleCredentials(url, data);
+    };
+
+    const isSmall = [FORM_STATES.OTP_VERIFY, FORM_STATES.FORGOT_PASSWORD, FORM_STATES.RESET_PASSWORD].includes(state.formState);
 
     return (
         <>
-            {["register", "forgotPassword"].includes(state.formState) && (
-                <Button className="btn--transparent btn--back" onClick={() => handleSwitchForm("login")}>
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                </Button>)
-            }
-            <div className={`dialog__content${
-                (["otpVerify", "forgotPassword", "resetPassword"].includes(state.formState)) ? ' small-form' : ""} `}>
-                {(state.formState === "login")  && (
+            <div className={`dialog__content${isSmall ? " small-form" : ""}`}>
+                {state.formState === FORM_STATES.LOGIN && (
                     <div className="dialog__info fs-small-300">
                         <h2>Create Account</h2>
-                        <p>Don’t you want to miss a single launch?</p>
+                        <p>Don&#39;t you want to miss a single launch?</p>
                         <div className="text-center">
                             Become a member now!
-                            <Button className="btn--transparent" type="button" onClick={() => handleSwitchForm("register")}>Sign-up</Button>
+                            <Button className="btn--transparent" type="button" onClick={() => handleSwitchForm(FORM_STATES.REGISTER)}>
+                                Sign-up
+                            </Button>
                         </div>
                         <GoogleLoginButton onSuccess={handleOAuth2Response} />
-                    </div>)
-                }
-                {state.formState === "oAuth2Registration" && (
+                    </div>
+                )}
+                {state.formState === FORM_STATES.LOGIN && (
                     <div className="form-content">
-                        <h2>One more step!</h2>
-                        {
-                            (errors && Object.keys(errors).length > 0 || state.apiError?.validationErrors)
-                            && <ErrorBox errors={errors} apiError={state.apiError}/>
-                        }
-                        <div className="margin-block-end-4">
-                            <p>Oops! Looks like you forgot your username.</p>
-                        </div>
+                        {(hasErrors || state.apiError?.validationErrors) && (
+                            <ErrorBox errors={errors} apiError={state.apiError} />
+                        )}
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="input-field">
                                 <Input
-                                    className={`${errors.confirmUsername ? 'input-error' : ''}`}
-                                    label="Username"
-                                    name="confirmUsername"
-                                    type="text"
-                                    register={register}
-                                    rules={{
-                                        required: 'Username is required.',
-                                        pattern:{
-                                            value:/[A-Za-z][A-Za-z0-9_]{7,16}$/g,
-                                            message:'Username must be between 7 and 16 characters long and cannot contain spaces.'
-                                        }
-                                    }}
-                                    errors={errors}
-                                />
-                            </div>
-                            <div className="flex justify-center">
-                                <Button
-                                    className="btn btn--primary btn--big"
-                                    type="submit"
-                                    disabled={otpVerificationMutation.isPending}>
-                                    {(otpVerificationMutation.isPending)
-                                        ? <FontAwesomeIcon icon={faSpinner} spin />
-                                        : <FontAwesomeIcon icon={faArrowRight} />
-                                    } Continue
-                                </Button>
-                            </div>
-                        </form>
-                    </div>)
-                }
-                {state.formState === "login" && (
-                    <div className="form-content">
-                        <h2>Do you already have an account?</h2>
-                        {(errors && Object.keys(errors).length > 0 || state.state?.validationErrors)
-                            && <ErrorBox errors={errors} apiError={state.apiError}/>}
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="input-field">
-                                <Input
-                                    className={`${errors.email ? 'input-error' : ''}`}
+                                    className={errors.email ? "input-error" : ""}
+                                    icon={faAt}
                                     label="Email"
                                     name="email"
                                     type="email"
                                     register={register}
-                                    rules={{
-                                        required: 'Email is required.',
-                                        pattern:{value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g, message:'Incorrect email.'}}}
                                     errors={errors}
                                     autoComplete="email"
+                                    rules={{ required: "Email is required.", pattern: EMAIL_PATTERN }}
                                 />
                             </div>
                             <PasswordField errors={errors} register={register} />
                             <div className="flex justify-space-between align-center fs-medium-200 margin-block-end-4">
-                                <div className="flex justify-center align-center">
-                                    <Controller
-                                        name="rememberMe"
-                                        control={control}
-                                        render={({ field: { onChange, value, ref } }) => (
-                                            <CustomCheckbox
-                                                ref={ref}
-                                                id="checkbox-remember"
-                                                className={{root: "checkbox__root checkbox__root--small"}}
-                                                label="Remember me"
-                                                defaultChecked={value}
-                                                onCheckedChange={onChange}
-                                                disabled={credentialsMutation.isPending}
-                                            />
-                                        )}
-                                    />
-                                </div>
-                                <Button className="btn--transparent" type="button" onClick={() => handleSwitchForm("forgotPassword")}>Forgot password?</Button>
+                                <Controller
+                                    name="rememberMe" control={control}
+                                    render={({ field: { onChange, value, ref } }) => (
+                                        <CustomCheckbox
+                                            ref={ref} id="checkbox-remember"
+                                            label="Remember me"
+                                            className={{ root: "checkbox__root checkbox__root--small" }}
+                                            defaultChecked={value}
+                                            onCheckedChange={onChange}
+                                            disabled={isPending}
+                                        />
+                                    )}
+                                />
+                                <Button className="btn--transparent" type="button" onClick={() => handleSwitchForm(FORM_STATES.FORGOT_PASSWORD)}>
+                                    Forgot password?
+                                </Button>
                             </div>
                             <div className="flex flex-wrap justify-center">
-                                <Button className="btn btn--primary btn--big" type="submit" disabled={signInWithGoogleMutation.isPending || credentialsMutation.isPending}>
-                                    {(signInWithGoogleMutation.isPending || credentialsMutation.isPending) ? <FontAwesomeIcon icon={faSpinner} spin /> : <FontAwesomeIcon icon={faRightToBracket} />} Login
+                                <Button className="btn btn--primary btn--big" type="submit" disabled={isPending}>
+                                    <FontAwesomeIcon icon={isPending ? faSpinner : faRightToBracket} spin={isPending} /> Login
                                 </Button>
                             </div>
                         </form>
-                    </div>)
-                }
-                {(state.formState === "otpVerify") && (
+                    </div>
+                )}
+                {state.formState === FORM_STATES.REGISTER && (
                     <div className="form-content">
-                        {state.formState === "otpVerify" ? <h2>Account Verification</h2> : <h2>Account Activation</h2> }
-                        {
-                            (errors && Object.keys(errors).length > 0
-                                || state.apiError?.validationErrors) && <ErrorBox errors={errors} apiError={state.apiError}/>
-                        }
-                        <div className="padding-block-3">
-                            <p>{credentialsMutation.data? credentialsMutation?.data?.message : null}</p>
-                        </div>
+                        {(hasErrors || state.apiError?.validationErrors) && (
+                            <ErrorBox errors={errors} apiError={state.apiError} />
+                        )}
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <input type="hidden" {...register('token')} value={state.otpToken}/>
-                            <input type="hidden" {...register('rememberMe')} value={state.rememberMe}/>
-
                             <div className="input-field">
                                 <Input
-                                    className={`${errors.otp ? 'input-error' : ''}`}
+                                    className={errors.username ? "input-error" : ""}
+                                    icon={faUserAstronaut}
+                                    label="Username"
+                                    name="username"
+                                    type="text"
+                                    register={register}
+                                    errors={errors}
+                                    autoComplete="username"
+                                    rules={{ required: "Username is required.", pattern: USERNAME_PATTERN }}
+                                />
+                            </div>
+                            <div className="input-field">
+                                <Input
+                                    className={errors.email ? "input-error" : ""}
+                                    icon={faAt}
+                                    label="Email"
+                                    name="email"
+                                    type="email"
+                                    register={register}
+                                    errors={errors}
+                                    autoComplete="email"
+                                    rules={{ required: "Email is required.", pattern: EMAIL_PATTERN }}
+                                />
+                            </div>
+                            <PasswordField errors={errors} register={register} />
+                            <PasswordField
+                                label="Repeat Password" name="repeatPassword"
+                                errors={errors} register={register}
+                                rules={{
+                                    required: "Repeat Password is required.",
+                                    validate: (v) => v === watch("password") || "Passwords do not match.",
+                                }}
+                            />
+                            <div className="flex justify-space-between align-center margin-block-end-4">
+                                <Controller
+                                    name="policy" control={control}
+                                    rules={{ required: "You must agree to the privacy policy" }}
+                                    render={({ field: { onChange, value, ref } }) => (
+                                        <CustomCheckbox
+                                            ref={ref}
+                                            checked={value ?? false}
+                                            onCheckedChange={onChange}
+                                            className={{ root: "checkbox__root checkbox__root--small" }}
+                                            disabled={credentialsMutation.isPending}
+                                            label={
+                                                <>
+                                                    I agree to the
+                                                    <Button type="button" className="btn--transparent" onClick={() => onNavigate("/privacy")}>
+                                                        Privacy Policy
+                                                    </Button>
+                                                </>
+                                            }
+                                        />
+                                    )}
+                                />
+                            </div>
+                            <div className="flex justify-center margin-block-start-2">
+                                <Button className="btn btn--primary btn--big" type="submit" disabled={credentialsMutation.isPending}>
+                                    {credentialsMutation.isPending && <FontAwesomeIcon icon={faSpinner} spin />} Register
+                                </Button>
+                            </div>
+                        </form>
+                    </div>
+                )}
+                {state.formState === FORM_STATES.OTP_VERIFY && (
+                    <div className="form-content">
+                        {(hasErrors || state.apiError?.validationErrors) && (
+                            <ErrorBox errors={errors} apiError={state.apiError} />
+                        )}
+                        <div className="padding-block-3">
+                            <p>{credentialsMutation.data?.message}</p>
+                        </div>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <input type="hidden" {...register("token")}     value={state.otpToken ?? ""} />
+                            <input type="hidden" {...register("rememberMe")} value="false" />
+                            <div className="input-field">
+                                <Input
+                                    className={errors.otp ? "input-error" : ""}
+                                    icon={faLock}
                                     label="One Time Password (OTP)"
                                     name="otp"
                                     type="text"
                                     register={register}
+                                    errors={errors} autoComplete="one-time-code"
                                     rules={{
-                                        required: 'Otp code is required.',
-                                        pattern:{ value: /^\d{6}$/g, message:'Otp Code should be 6 characters.'}
+                                        required: "OTP code is required.",
+                                        pattern: { value: /^\d{6}$/, message: "OTP must be 6 digits." },
                                     }}
-                                    errors={errors}/>
+                                />
                             </div>
                             <div className="flex justify-center">
-                                <Button
-                                    className="btn btn--primary btn--small"
-                                    type="submit"
-                                    disabled={otpVerificationMutation.isPending}>
-                                    {(otpVerificationMutation.isPending)
-                                        ? <FontAwesomeIcon icon={faSpinner} spin />
-                                        : <FontAwesomeIcon icon={faArrowRight} />
-                                    } Continue
+                                <Button className="btn btn--primary btn--small" type="submit" disabled={otpVerificationMutation.isPending}>
+                                    <FontAwesomeIcon icon={otpVerificationMutation.isPending ? faSpinner : faArrowRight} spin={otpVerificationMutation.isPending} /> Continue
                                 </Button>
                                 <ResendButton
                                     handleOtpResend={handleOtpResend}
@@ -363,136 +406,72 @@ const LoginForm = ({ setOpen }) => {
                                 />
                             </div>
                         </form>
-                    </div>)
-                }
-                {state.formState === "forgotPassword" && (
+                    </div>
+                )}
+                {state.formState === FORM_STATES.FORGOT_PASSWORD && (
                     <div className="form-content">
-                        <h2>Forgot Password?</h2>
-                        {(errors && Object.keys(errors).length > 0 || state.apiError?.validationErrors) && <ErrorBox errors={errors} apiError={state.apiError}/>}
+                        {(hasErrors || state.apiError?.validationErrors) && (
+                            <ErrorBox errors={errors} apiError={state.apiError} />
+                        )}
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="input-field">
                                 <Input
-                                    className={`${errors.email ? 'input-error' : ''}`}
-                                    label="Email"
+                                    className={errors.email ? "input-error" : ""}
+                                    icon={faAt} label="Email"
                                     name="email"
                                     type="email"
                                     register={register}
-                                    rules={{
-                                        required: 'Email is required.',
-                                        pattern:{ value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g, message:'Incorrect email.'}
-                                    }}
                                     errors={errors}
                                     autoComplete="email"
+                                    rules={{ required: "Email is required.", pattern: EMAIL_PATTERN }}
                                 />
                             </div>
                             <div className="flex justify-center">
-                                <Button
-                                    className="btn btn--primary btn--big"
-                                    type="submit"
-                                    disabled={credentialsMutation.isPending}>
-                                    {credentialsMutation.isPending
-                                        ? <FontAwesomeIcon icon={faSpinner} spin />
-                                        : <FontAwesomeIcon icon={faArrowRight} />
-                                    } Continue
+                                <Button className="btn btn--primary btn--big" type="submit" disabled={credentialsMutation.isPending}>
+                                    <FontAwesomeIcon icon={credentialsMutation.isPending ? faSpinner : faArrowRight} spin={credentialsMutation.isPending} /> Continue
                                 </Button>
                             </div>
                         </form>
-                    </div>)
-                }
-                {state.formState === "resetPassword" && (
+                    </div>
+                )}
+                {state.formState === FORM_STATES.RESET_PASSWORD && (
                     <div className="form-content">
-                        <h2>Forgot Password</h2>
-                        <p>You will soon receive a link to reset your password via email. Don’t forget to check your inbox!</p>
-                    </div>)
-                }
-                {state.formState === "register" && (
+                        <p>You will soon receive a link to reset your password via email. Don&#39;t forget to check your inbox!</p>
+                    </div>
+                )}
+                {state.formState === FORM_STATES.OAUTH2_REGISTRATION && (
                     <div className="form-content">
-                        <h2>Register</h2>
-                        {(errors && Object.keys(errors).length > 0 || state.apiError?.validationErrors) &&
-                            <ErrorBox errors={errors} apiError={state.apiError}/>}
+                        {(hasErrors || state.apiError?.validationErrors) && (
+                            <ErrorBox errors={errors} apiError={state.apiError} />
+                        )}
+                        <div className="margin-block-end-4">
+                            <p>Oops! Looks like you forgot your username.</p>
+                        </div>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="input-field">
                                 <Input
-                                    className={`${errors.username ? 'input-error' : ''}`}
+                                    className={errors.confirmUsername ? "input-error" : ""}
+                                    icon={faUserAstronaut}
                                     label="Username"
-                                    name="username"
+                                    name="confirmUsername"
                                     type="text"
                                     register={register}
-                                    rules={{
-                                        required: 'Username is required.',
-                                        pattern:{
-                                            value:/[A-Za-z][A-Za-z0-9_]{7,16}$/g,
-                                            message:'Username must be between 7 and 16 characters long and cannot contain spaces.'
-                                        }
-                                    }}
                                     errors={errors}
+                                    autoComplete="username"
+                                    rules={{ required: "Username is required.", pattern: USERNAME_PATTERN }}
                                 />
                             </div>
-                            <div className="input-field">
-                                <Input
-                                    className={`${errors.email ? 'input-error' : ''}`}
-                                    label="Email"
-                                    name="email"
-                                    type="email"
-                                    register={register}
-                                    rules={{
-                                        required: 'Email is required.',
-                                        pattern:{
-                                            value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g,
-                                            message:'Incorrect email.'
-                                        }
-                                    }}
-                                    errors={errors}
-                                />
-                            </div>
-                            <PasswordField errors={errors} register={register} />
-                            <PasswordField
-                                label={"Repeat Password"}
-                                name={"repeatPassword"}
-                                errors={errors}
-                                register={register}
-                                rules={{
-                                    required: 'Repeat Password is required.',
-                                    validate: value => value === watch('password') || 'Passwords do not match.'
-                                }}
-                            />
-                            <div className="flex justify-space-between align-center margin-block-end-4">
-                                <Controller
-                                    name="policy"
-                                    control={control}
-                                    rules={{ required: 'You must agree to the privacy policy' }}
-                                    render={({ field: { onChange, value, ref } }) => (
-                                        <CustomCheckbox
-                                            ref={ref}
-                                            className={{root: "checkbox__root checkbox__root--small"}}
-                                            label= {
-                                                <>
-                                                    I agree to the
-                                                    <Button type="button" className="btn--transparent" onClick={onNavigate}>
-                                                        Privacy Policy
-                                                    </Button>
-                                                </>
-                                            }
-                                            checked={value ?? false}
-                                            onCheckedChange={onChange}
-                                            disabled={credentialsMutation.isPending}
-                                        />
-                                    )}
-                                />
-                            </div>
-                            <div className="flex justify-center margin-block-start-2">
-                                <Button
-                                    className="btn btn--primary btn--big"
-                                    type="submit"
-                                    disabled={credentialsMutation.isPending}>
-                                    { credentialsMutation.isPending && <FontAwesomeIcon icon={faSpinner} spin /> } Register
+                            <div className="flex justify-center">
+                                <Button className="btn btn--primary btn--big" type="submit" disabled={otpVerificationMutation.isPending}>
+                                    <FontAwesomeIcon icon={otpVerificationMutation.isPending ? faSpinner : faArrowRight} spin={otpVerificationMutation.isPending} /> Continue
                                 </Button>
                             </div>
                         </form>
-                    </div>)
-                }
+                    </div>
+                )}
             </div>
         </>
     );
 };
+
 export default LoginForm;

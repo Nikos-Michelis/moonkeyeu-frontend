@@ -138,22 +138,6 @@
     }
   }
 
-  &--close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    cursor: pointer;
-    z-index: 1;
-  }
-
-  &--back {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    cursor: pointer;
-    z-index: 1;
-  }
-
   &__donation {
     @include abs.cursive_border($border-radius: 1rem);
     box-shadow: $box-shadow-3;

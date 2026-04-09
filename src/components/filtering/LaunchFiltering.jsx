@@ -1,12 +1,6 @@
-import {useEffect, useRef, useState} from "react";
 import PropTypes from "prop-types";
 import {useLaunchFilters} from "@/hooks/paging-filtering/useLaunchFilters.jsx";
-import {useDebounce} from "@/hooks/util/useDebounce.jsx";
-import {Button} from "@/components/button/Button.jsx";
-import CustomSelect from "@/components/utils/select/CustomSelect.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faArrowsRotate, faPlus, faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
-import {useClickOutside} from "@/hooks/util/useClickOutside.jsx";
+import FilterToolbar from "@/components/filtering/FilterToolbar.jsx";
 
 LaunchFiltering.propTypes = {
     location: PropTypes.number,
@@ -20,29 +14,19 @@ LaunchFiltering.propTypes = {
     limit: PropTypes.number,
 };
 
+const SCHEDULED_OPTIONS =
+    [
+        { id: "true", name: "Upcoming" },
+        { id: "false", name: "Previous" }
+    ];
+
+const ORDERING_OPTIONS  =
+    [
+        { id: "asc", name: "Asc" },
+        { id: "desc", name: "Desc" }
+    ];
+
 function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isError }) {
-    const [showOptions, setShowOptions] = useState(false);
-    const [searchValue, setSearchValue] = useState('');
-    const [selectedOption, setSelectedOption] = useState('');
-    const optionsRef = useRef(null);
-    const triggerRef = useRef(null);
-    const maxLimit = 50;
-    const scheduled =
-        [
-            { id: "true", name: "Upcoming" },
-            { id: "false", name: "Previous" }
-        ];
-    const limitOptions =
-        [
-            { id: 12, name: "Limit 12" },
-            { id: 24, name: "Limit 24" },
-            { id: 50, name: "Limit 50" }
-        ];
-    const orderingOptions =
-        [
-            { id: "asc", name: "Asc" },
-            { id: "desc", name: "Desc" }
-        ];
     const {
         search,
         location,
@@ -58,195 +42,33 @@ function LaunchFiltering({filters, searchPlaceHolder, isPending, isFetching, isE
         resetFilters,
         resetFilterByName
     } = useLaunchFilters();
-    const [localSearch, setLocalSearch] = useState(search);
-    const debounceSearch = useDebounce(localSearch);
 
-    useEffect(() => {
-        setFilters({ search: debounceSearch});
-    }, [debounceSearch]);
-
-    const toggleOptions = (isClicked) => {
-        setShowOptions((prevState) => prevState !== isClicked);
-    };
-    const handleReset = () => {
-        setSearchValue('');
-        setSelectedOption('');
-        resetFilters();
-        setLocalSearch('');
-    };
-
-    const handleClickOutside = (event) => {
-        if (optionsRef.current && !optionsRef.current.contains(event.target)) {
-            setShowOptions(false);
-        }
-    };
-
-    const handleClearance = (field) => {
-        setLocalSearch("");
-        resetFilterByName(field);
-    };
-
-    useClickOutside({
-        modalRef: optionsRef,
-        triggerRef: triggerRef,
-        handler: handleClickOutside
-    });
+    const filtersData = filters?.data;
+    const filterSections = [
+        { field: "upcoming", placeholder: "Upcoming/Past", options: SCHEDULED_OPTIONS, value: upcoming, defaultValue: true , searchable: false },
+        { field: "location", placeholder: "Location", options: filtersData?.locations ?? [], value: location  },
+        { field: "launcher", placeholder: "Launcher", options: filtersData?.launchers ?? [], value: launcher },
+        { field: "agency", placeholder: "Agency", options: filtersData?.agencies ?? [], value: agency },
+        { field: "rocketConfig", placeholder: "Rocket", options: filtersData?.rocket_configurations ?? [], value: rocketConfig },
+        { field: "spacecraftConfig", placeholder: "Spacecraft", options: filtersData?.spacecraft_configurations ?? [], value: spacecraftConfig },
+        { field: "astronaut", placeholder: "Astronaut", options: filtersData?.astronauts ?? [], value: astronaut },
+    ];
 
     return (
-        <div className="toolbar">
-            <div className="container toolbar__container margin-block-4" data-type="full-bleed">
-                <div className="toolbar__tools">
-                    <div className="margin-inline-end-2">
-                        <Button
-                            ref={triggerRef}
-                            className="btn btn--primary btn--big fw-bold fs-medium-200"
-                            onClick={() => toggleOptions(true)}
-                            disabled={isFetching || isPending || isError}
-                        >
-                            Add Filter <FontAwesomeIcon icon={faPlus} />
-                        </Button>
-                    </div>
-                    <CustomSelect
-                        options={limitOptions || []}
-                        field="limit"
-                        placeholder={`Limit ${limit <= maxLimit ? limit : maxLimit }`}
-                        setFilters={setFilters}
-                        resetFilterByName={resetFilterByName}
-                        selectedOption={selectedOption}
-                        setSelectedOption={setSelectedOption}
-                        defaultValue={Number(limit)}
-                        isSearchable={false}
-                        btnClassName="select__btn--small"
-                        dropDownClassName="select__content--medium"
-                    />
-                </div>
-                <div className="search">
-                    <input type="hidden" name="action" value="search" />
-                    <input
-                        className="search__searchbar"
-                        value={localSearch || ""}
-                        type="text"
-                        name="search"
-                        placeholder={searchPlaceHolder}
-                        onChange={(e) => setLocalSearch(e.target.value)}
-                    />
-                    <div className="search__btn-search" onClick={() => localSearch && handleClearance('search')}>
-                        <FontAwesomeIcon icon={localSearch ? faXmark : faSearch} />
-                    </div>
-                </div>
-            </div>
-            <div ref={optionsRef} className={`toolbar__wrapper height-fade ${ showOptions ? "show md" : ""}`}>
-                <div className="toolbar__options">
-                    <div className="toolbar__title"><span>Filter by...</span></div>
-                    <div className="toolbar__option">
-                        <CustomSelect
-                            options={scheduled || []}
-                            field="upcoming"
-                            setFilters={setFilters}
-                            resetFilterByName={resetFilterByName}
-                            placeholder="Upcoming/Past"
-                            searchValue={searchValue}
-                            setSearchValue={setSearchValue}
-                            selectedOption={selectedOption}
-                            setSelectedOption={setSelectedOption}
-                            defaultValue={upcoming}
-                            isSearchable={false}
-                        />
-                    </div>
-                    <div className="toolbar__option">
-                        <CustomSelect
-                            options={filters?.data?.locations || []}
-                            field="location"
-                            placeholder={"Location"}
-                            setFilters={setFilters}
-                            resetFilterByName={resetFilterByName}
-                            searchValue={searchValue}
-                            setSearchValue={setSearchValue}
-                            selectedOption={selectedOption}
-                            setSelectedOption={setSelectedOption}
-                            defaultValue={Number(location)}
-                        />
-                    </div>
-                    <div className="toolbar__option">
-                        <CustomSelect
-                            options={filters?.data?.launchers || []}
-                            field="launcher"
-                            setFilters={setFilters}
-                            resetFilterByName={resetFilterByName}
-                            placeholder="Launcher"
-                            searchValue={searchValue}
-                            setSearchValue={setSearchValue}
-                            selectedOption={selectedOption}
-                            setSelectedOption={setSelectedOption}
-                            defaultValue={Number(launcher)}
-                        />
-                    </div>
-                    <div className="toolbar__option">
-                        <CustomSelect
-                            options={filters?.data?.agencies || []}
-                            field="agency"
-                            setFilters={setFilters}
-                            resetFilterByName={resetFilterByName}
-                            placeholder="Agency"
-                            searchValue={searchValue}
-                            setSearchValue={setSearchValue}
-                            selectedOption={selectedOption}
-                            setSelectedOption={setSelectedOption}
-                            defaultValue={Number(agency)}
-                        />
-                    </div>
-                    <div className="toolbar__option">
-                        <CustomSelect
-                            options={filters?.data?.rocket_configurations || []}
-                            field="rocketConfig"
-                            setFilters={setFilters}
-                            resetFilterByName={resetFilterByName}
-                            placeholder="Rocket"
-                            searchValue={searchValue}
-                            setSearchValue={setSearchValue}
-                            selectedOption={selectedOption}
-                            setSelectedOption={setSelectedOption}
-                            defaultValue={Number(rocketConfig)}
-                        />
-                    </div>
-                    <div className="toolbar__option">
-                        <CustomSelect
-                            options={filters?.data?.spacecraft_configurations || []}
-                            field="spacecraftConfig"
-                            setFilters={setFilters}
-                            resetFilterByName={resetFilterByName}
-                            placeholder="Spacecraft"
-                            searchValue={searchValue}
-                            setSearchValue={setSearchValue}
-                            selectedOption={selectedOption}
-                            setSelectedOption={setSelectedOption}
-                            defaultValue={Number(spacecraftConfig)}
-                        />
-                    </div>
-                    <div className="toolbar__option">
-                        <CustomSelect
-                            options={filters?.data?.astronauts || []}
-                            field="astronaut"
-                            setFilters={setFilters}
-                            resetFilterByName={resetFilterByName}
-                            placeholder="Astronaut"
-                            searchValue={searchValue}
-                            setSearchValue={setSearchValue}
-                            selectedOption={selectedOption}
-                            setSelectedOption={setSelectedOption}
-                            defaultValue={Number(astronaut)}
-                        />
-                    </div>
-                </div>
-                <div className="toolbar__actions">
-                    <Button
-                        className="btn--transparent rotation fs-small-200"
-                        onClick={ handleReset }>
-                        <FontAwesomeIcon icon={faArrowsRotate} />
-                    </Button>
-                </div>
-            </div>
-        </div>
+       <FilterToolbar
+            filters={filterSections}
+            initialSearch={search}
+            onFilterChange={setFilters}
+            onFilterClear={resetFilterByName}
+            onFiltersReset={resetFilters}
+            searchPlaceHolder={searchPlaceHolder}
+            limit={limit}
+            status={{
+                isPending: isPending,
+                isFetching: isFetching,
+                isError: isError
+            }}
+       />
     );
 }
 
