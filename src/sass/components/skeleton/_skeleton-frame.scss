@@ -30,7 +30,7 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    min-height: 20rem;
+    min-height: 21rem;
     outline: 0.1rem solid var(--neutral-1000);
   }
 
@@ -53,7 +53,7 @@
     }
   }
 
-  &--title, &--text, &--heading, &--btn {
+  &--title, &--text, &--heading, &--btn, &--subtitle {
     margin: 0.2rem;
     border-radius: 0.2rem;
     background-color: var(--neutral-1000);

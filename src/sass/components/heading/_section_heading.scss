@@ -1,0 +1,40 @@
+@use "../../abstracts/typography" as *;
+
+.section-heading {
+  text-align: start;
+  padding-block-end: 2rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  color: var(--neutral-1000);
+  &__title {
+    font-variant: all-petite-caps;
+    font-family: $font-family-monospace;
+    transform: skew(-18deg);
+    border-bottom: 4px solid var(--nav-300);
+    color: var(--nav-300);
+  }
+
+  &__text {
+    font-size: var(--fs-small-200);
+  }
+
+  &__link {
+    font-family: $font-family-orbitron;
+    font-size: var(--fs-small-200);
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
+      text-decoration: underline;
+    }
+  }
+
+  &__arrow {
+    margin-left: 0.5rem;
+  }
+}

@@ -23,7 +23,9 @@ const ArticleContentSection = (
                 contentConfig={contentConfig}>
                 <section className="article">
                     <div className="container flex justify-center" data-type="wide" data-spacing="none">
-                        <ContentContainer className="article__content" size="medium">
+                        <ContentContainer className="article__content" size="medium" initial={{ opacity: 0, y: 20 }}
+                                          animate={{ opacity: 1, y: 0 }}
+                                          transition={{ duration: 0.4 }}>
                             <ArticleComponent data={data} queryData={queryData} pagination={pagination}/>
                         </ContentContainer>
                     </div>

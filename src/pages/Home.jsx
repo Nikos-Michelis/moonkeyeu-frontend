@@ -1,87 +1,190 @@
-import {useEffect} from "react";
-import LaunchesSection from "../components/sections/pages/LaunchesSection.jsx";
-import LaunchFiltering from "../components/filtering/LaunchFiltering.jsx";
-import Heading from "../components/utils/heading/Heading.jsx";
-import {useSearchParams} from "react-router-dom";
-import usePagination from "@/hooks/paging-filtering/usePagination.jsx";
-import {useParameterizedQuery, useSimpleQuery} from "@/services/queries.jsx";
-import Head from "@/components/seo/Head.jsx";
-import JsonLdGeneric from "@/components/seo/jsonld/JsonLdGeneric.jsx";
+import { motion } from "framer-motion";
+import Hero from "@/layout/Hero.jsx";
+import {OverlayCard} from "@/components/cards/OverlayCard.jsx";
 import ContentContainer from "@/layout/ContentContainer.jsx";
+import QuickLinksSection from "@/components/sections/QuickLinksSection.jsx";
+import artemis from "/artemis.jpeg"
+import {faSpaceAwesome} from "@fortawesome/free-brands-svg-icons";
+import {faBuilding, faClipboardList, faLocationDot, faShuttleSpace} from "@fortawesome/free-solid-svg-icons";
+import UpcomingLaunchesSection from "@/components/sections/UpcomingLaunchesSection.jsx";
+import SectionHeading from "@/components/utils/heading/SectionHeading.jsx";
+import LatestNewsSections from "@/components/sections/LatestNewsSection.jsx";
+import NasaApodSection from "@/components/sections/NasaApodSection.jsx";
+import LaunchesHistorySection from "@/components/sections/LaunchesHistorySection.jsx";
+import NextUpcomingLaunchSection from "@/components/sections/NextUpcomingLaunchSection.jsx";
 
-const options = {
-    showPrevBtn: true,
-}
+const sectionVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+    }
+};
+
 function Home() {
-    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/launches`;
-    const filtersUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}/public/launches/filters`;
-    const [searchParams] = useSearchParams();
-    const pagination = usePagination();
-    const queryData
-        = useParameterizedQuery({
-            url: `${baseUrl}?${searchParams}`,
-            params: `pagination-${searchParams.toString()}`,
-            cacheKey: "launches-pagination",
-            queryOptions:{
-                enabled: !!searchParams.toString().length > 0,
-            }
-        });
-    const filterData
-        = useSimpleQuery({
-            url: filtersUrl,
-            cacheKey: "launches-filters",
-            staleTime: Infinity,
-        });
+    const linksData = [
 
-    useEffect(() => {
-        if (queryData.data) {
-            pagination.setPagination(queryData.data?.page);
-        }
-    }, [queryData.data, pagination]);
+        {
+
+            id: 1,
+
+            title: "Upcoming Launches",
+
+            description: "Next missions scheduled worldwide. Filters for rocket, agency, orbit & more.",
+
+            link: '',
+
+            icon: faSpaceAwesome,
+
+            arrow: true
+
+        },
+
+        {
+
+            id: 2,
+
+            title: "Agencies",
+
+            description: "NASA, SpaceX, ESA, Roscosmos, CNSA and every active space agency tracked.",
+
+            link: '',
+
+            icon: faBuilding,
+
+            arrow: true
+
+
+
+        },
+
+        {
+
+            id: 3,
+
+            title: "Launch Locations",
+
+            description: "Every spaceport on Earth — Cape Canaveral, Baikonur, Vandenberg & beyond.",
+
+            link: '',
+
+            icon: faLocationDot,
+
+            arrow: true
+
+
+
+        },
+
+        {
+
+            id: 4,
+
+            title: "Programs",
+
+            description: "Artemis, ISS, Starlink, Galileo — all major space programs and their missions.",
+
+            link: '',
+
+            icon: faClipboardList,
+
+            arrow: true
+
+
+
+        },
+
+
+
+        {
+
+            id: 5,
+
+            title: "Vehicles",
+
+            description: "Falcon 9, Starship, Ariane 6, Soyuz, Long March — full specs and history.",
+
+            link: '',
+
+            icon: faShuttleSpace,
+
+            arrow: true
+
+        },
+
+    ]
 
     return (
         <>
-            <Head
-                title="Space Launch Tracker"
-                description="Stay up to date with upcoming and past spaceflights from NASA, SpaceX, and other leading space agencies around the world."
-            />
-            <JsonLdGeneric
-                type="CollectionPage"
-                title="Launches"
-                description="Stay up to date with upcoming and past spaceflights from NASA, SpaceX, and other leading space agencies around the world."
-                createdAt={queryData?.data?.window_start}
-                updatedAt={queryData?.data?.window_end}
-            />
+            <Hero/>
+            <ContentContainer size="wide">
+                <motion.div
+                    className="margin-block-12"
+                    variants={sectionVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                >
+                    <SectionHeading title="Quick Access"/>
+                    <QuickLinksSection links={linksData} />
+                </motion.div>
 
-            <ContentContainer>
-                <Heading
-                    title={`${searchParams.get("upcoming") === "true" ? "Upcoming" : "Previous"} Launches`}
-                    description={
-                        <>
-                            Discover past and upcoming space launches,
-                            <br />
-                            apply filters to easily find results that match your specific interests.
-                        </>
-                    }
-                />
-                <LaunchFiltering
-                    filters={filterData.data}
-                    searchPlaceHolder="e.g. Falcon 9 | Block 5"
-                    isPending={filterData.isPending}
-                    isFetching={filterData.isFetching}
-                    isError={filterData.isError}
-                />
-                <LaunchesSection
-                    launches={queryData.data || {}}
-                    isPending={queryData.isPending}
-                    isFetching={queryData.isFetching}
-                    isError={queryData.isError}
-                    options={options}
-                    pagination={pagination}
-                />
+                <motion.div
+                    className="margin-block-12"
+                    variants={sectionVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                >
+                   <NextUpcomingLaunchSection/>
+                </motion.div>
+
+                <motion.div
+                    className="margin-block-12"
+                    variants={sectionVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                >
+                    <SectionHeading title="Upcoming Launches" linkText="ALL Launches"/>
+                    <UpcomingLaunchesSection/>
+                </motion.div>
+
+                <motion.div
+                    className="margin-block-12"
+                    variants={sectionVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                >
+                    <NasaApodSection/>
+                </motion.div>
+
+                <motion.div
+                    className="margin-block-12"
+                    variants={sectionVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                >
+                    <SectionHeading title="This Day in History"/>
+                    <LaunchesHistorySection/>
+
+                </motion.div>
+
+                <motion.div
+                    className="margin-block-12"
+                    variants={sectionVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                >
+                    <LatestNewsSections />
+                </motion.div>
             </ContentContainer>
         </>
-    );
+    )
 }
 
 export default Home;

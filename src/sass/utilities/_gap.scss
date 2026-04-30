@@ -1,0 +1,15 @@
+@use "../abstracts" as *;
+
+@each $key, $value in $sizes {
+  .gap-#{$key} {
+    gap: $value;
+  }
+
+  // Optional: Row and Column specific gaps
+  .row-gap-#{$key} {
+    row-gap: $value;
+  }
+  .col-gap-#{$key} {
+    column-gap: $value;
+  }
+}

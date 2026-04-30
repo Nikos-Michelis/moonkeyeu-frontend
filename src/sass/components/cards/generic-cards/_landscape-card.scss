@@ -128,6 +128,14 @@
     }
   }
 
+  &__description {
+    margin-block: 1rem;
+    padding-inline: 0.5rem;
+    border-left: 0.15rem solid var(--neutral-1000);
+    font-size: var(--fs-small-200);
+    border-radius: 0.25rem;
+  }
+
   &__actions, &__video {
     display: flex;
     flex-flow: wrap;

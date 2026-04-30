@@ -38,6 +38,9 @@ const Header = () => {
                 <div className="navbar__nav-container">
                     <ul className="navbar__nav-list">
                         <li className="navbar__nav-item">
+                            <NavLink className="navbar__nav-link" to="home">Home</NavLink>
+                        </li>
+                        <li className="navbar__nav-item">
                             <NavLink className="navbar__nav-link" to="launches">Launches</NavLink>
                         </li>
                         <li className="navbar__nav-item">

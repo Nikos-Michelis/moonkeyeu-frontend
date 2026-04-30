@@ -32,8 +32,11 @@
     &__container {
       flex-direction: row;
     }
-    &__layout:not(.grid__layout--vehicle) {
+    &__layout:not(.grid__layout--vehicle):not(.grid__layout--col-3) {
       --col-size: 13.5rem;
+    }
+    &__layout--col-3 {
+      --col-size: 20rem;
     }
   }
 

@@ -1,3 +1,5 @@
+import MotionBox from "@/layout/MotionBox.jsx";
+
 const ContentContainer = (
     {
         children,

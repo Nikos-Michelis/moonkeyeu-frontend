@@ -11,6 +11,7 @@ export function SkeletonLoader(
         },
         children
     }) {
+
     const Component = contentConfig?.component || null;
     if (isFetching || isPending) {
         return (
@@ -45,6 +46,7 @@ SkeletonLoader.propTypes = {
     contentConfig: PropTypes.shape({
         component: PropTypes.elementType,
         count: PropTypes.number,
+        className: PropTypes.object,
         styles: PropTypes.shape({
             wrapper: PropTypes.string,
             img: PropTypes.string

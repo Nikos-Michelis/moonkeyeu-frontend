@@ -7,7 +7,7 @@ import {useAuth} from "@/context/AuthProvider.jsx";
 import {useParams} from "react-router-dom";
 import useComparator from "@/hooks/util/useComparator.jsx";
 import Img from "@/components/utils/Img.jsx";
-import {useCreateMutation, useDeleteMutation} from "@/services/mutations.jsx";
+import {useDeleteMutation} from "@/services/mutations.jsx";
 import toast from "react-hot-toast";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -26,7 +26,7 @@ import {YouTubeEmbed} from "@/components/api/youtube-window/YouTubeEmbed.jsx";
 import ShareContent from "@/components/modal/ShareContent.jsx";
 import useLuxonDateTime from "@/hooks/time/useLuxonDateTime.jsx";
 
-const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status:launchStatus, video_urls, isBookmarked = false, cardStyles }) => {
+const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status:launchStatus, description, video_urls, isBookmarked = false, cardStyles }) => {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
     const [open, setOpen] = useState(false);
     const [shareOpen, setShareOpen] = useState(false);
@@ -55,12 +55,6 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
             queryKeysToInvalidate: ["my-launches", "user-bookmarks"]
         });
 
-    /*const askAiMutation =
-        useCreateMutation({
-            successMessage: undefined,
-            showError: false
-        });*/
-
     const handleRemove = async () => {
         await toast.promise(
             removeLaunchMutation.mutateAsync(
@@ -85,7 +79,6 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
             { icon: <FontAwesomeIcon icon={faRocket} /> }
         );
     }, [user]);
-
     return (
         <article className={`landscape-card flex justify-center ${cardStyles?.wrapper || 'large-wrapper'}`}>
             <div className={`landscape-card__container lift lift--lg ${cardStyles?.card_type || ''}`}>
@@ -150,9 +143,11 @@ const LaunchCard = ({ navUrl, id, agency, fullname, net, location, image, status
                                 <p className="fw-regular"><small>{location?.name}</small></p>
                             </div>
                         }
-                        { zonedDateTime > getNow() && (
+                        { zonedDateTime > getNow() ? (
                             <CountdownTimer net={zonedDateTime} timerStyle="margin-block-3" />
-                        ) }
+                        ) :
+                            (description) && <div className="landscape-card__detail-box"><p className="landscape-card__description ellipsis-2-lines">{description}</p></div>
+                        }
                     </div>
                     <div className="landscape-card__actions">
                         {item ? (

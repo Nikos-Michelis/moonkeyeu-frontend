@@ -28,6 +28,7 @@
     "@tanstack/react-query-devtools": "^5.59.17",
     "@tanstack/react-table": "^8.21.2",
     "@uidotdev/usehooks": "^2.4.1",
+    "framer-motion": "^12.38.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.7.0",
     "luxon": "^3.5.0",

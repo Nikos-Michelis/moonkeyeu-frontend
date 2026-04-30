@@ -6,10 +6,12 @@
           $font-weight: normal,
           $color: var(--neutral-1000),
           $font-family: inherit,
+          $font-style: none,
           $font-variant: none) {
   font-size: $font-size;
   font-weight: $font-weight;
   font-family: $font-family;
+  font-style:  $font-style;
   font-variant: $font-variant;
   color: $color;
 }
