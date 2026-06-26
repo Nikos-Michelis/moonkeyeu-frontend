@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
 import Hero from "@/layout/Hero.jsx";
-import {OverlayCard} from "@/components/cards/OverlayCard.jsx";
 import ContentContainer from "@/layout/ContentContainer.jsx";
 import QuickLinksSection from "@/components/sections/QuickLinksSection.jsx";
-import artemis from "/artemis.jpeg"
 import {faSpaceAwesome} from "@fortawesome/free-brands-svg-icons";
 import {faBuilding, faClipboardList, faLocationDot, faShuttleSpace} from "@fortawesome/free-solid-svg-icons";
 import UpcomingLaunchesSection from "@/components/sections/UpcomingLaunchesSection.jsx";
