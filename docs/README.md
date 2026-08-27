@@ -1,4 +1,5 @@
 # Frontend configuration React + Vite
+[![Deploy react frontend to AWS S3](https://github.com/Nikos-Michelis/moonkeyeu-frontend/actions/workflows/deploy-frontend.yml/badge.svg?branch=main)](https://github.com/Nikos-Michelis/moonkeyeu-frontend/actions/workflows/deploy-frontend.yml)
 
 1. Make sure you have Node.js version 16 or higher installed for compatibility with Vite and React dependencies.
     ```bash 
