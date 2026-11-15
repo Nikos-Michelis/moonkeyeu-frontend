@@ -1,4 +1,4 @@
-name: Deploy react frontend to AWS S3
+name: Frontend CI/CD Pipeline
 on:
   push:
     branches:
